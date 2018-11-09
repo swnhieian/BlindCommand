@@ -10,9 +10,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
+import com.shiweinan.BlindCommand.touch.TouchPoint;
+import com.shiweinan.BlindCommand.util.CommandParser;
+
 public class MyAccessibilityService extends AccessibilityService {
 
     DisplayMetrics metrics;
+    CommandParser cp;
 
     public MyAccessibilityService() {
     }
@@ -34,7 +38,7 @@ public class MyAccessibilityService extends AccessibilityService {
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
-        params.gravity = Gravity.LEFT | Gravity.TOP;
+        params.gravity = Gravity.START | Gravity.TOP;
 
         final View kbdView = new View(this);
 
@@ -44,7 +48,10 @@ public class MyAccessibilityService extends AccessibilityService {
         kbdView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                System.out.println("????????");
+                System.out.println(motionEvent.getX() + " " + motionEvent.getY());
+                TouchPoint a = new TouchPoint(motionEvent.getX(), motionEvent.getY(),motionEvent.getRawX(), motionEvent.getRawY());
+
+
                 return false;
             }
         });
@@ -52,7 +59,7 @@ public class MyAccessibilityService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        System.out.println(AccessibilityEvent.eventTypeToString(event.getEventType()));
+        //System.out.println(AccessibilityEvent.eventTypeToString(event.getEventType()));
     }
 
     @Override
