@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:columnCount = "3"
+    android:rowCount = "3"
+    android:id="@+id/nine_block">
+
+    <TextView
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:gravity = "center"
+        android:id= "@+id/bt1"
+        android:text = "1">
+    </TextView>
+    <TextView
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:gravity = "center"
+        android:id= "@+id/bt2"
+        android:text = "ABC">
+    </TextView>
+    <TextView
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:gravity = "center"
+        android:id= "@+id/bt3"
+        android:text = "DEF">
+    </TextView>
+    <TextView
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:gravity = "center"
+        android:id= "@+id/bt4"
+        android:text = "GHI">
+    </TextView>
+    <TextView
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:gravity = "center"
+        android:id= "@+id/bt5"
+        android:text = "JKL">
+    </TextView>
+    <TextView
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+
+        android:gravity = "center"
+        android:id= "@+id/bt6"
+        android:text = "MNO">
+    </TextView>
+    <TextView
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:gravity = "center"
+        android:id= "@+id/bt7"
+        android:text = "PQRS">
+    </TextView>
+    <TextView
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:gravity = "center"
+        android:id= "@+id/bt8"
+        android:text = "TUV">
+    </TextView>
+    <TextView
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:gravity = "center"
+        android:id= "@+id/bt9"
+        android:text = "WXYZ">
+    </TextView>
+
+</GridLayout>

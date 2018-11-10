@@ -6,21 +6,25 @@ import java.util.List;
 
 public interface CommandParser {
     // parse current touchPoint info
-    String parse();
+    List<String> parse();
 
-    void add(List<TouchPoint> touchPointList);
+    //void add(List<TouchPoint> touchPointList);
 
-    void add(TouchPoint... touchPoints);
 
     void add(TouchPoint touchPoint);
 
-    void setKeyboardLayout();
+
+    void setKeyboardInfo(int width, int height);
 
     // delete info at the tail
-    void delete();
+    TouchPoint delete();
+
+    void deleteAll();
 
     // accept the parse result and clear the list
     void accept();
+
+
 
 
 }
