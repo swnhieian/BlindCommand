@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
             }
         });
+
     }
 
     public void checkPermission() {

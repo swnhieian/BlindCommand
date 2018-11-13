@@ -1,20 +1,14 @@
 package com.shiweinan.BlindCommand;
 
 import android.accessibilityservice.AccessibilityService;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
-import android.widget.GridView;
 
 import com.shiweinan.BlindCommand.keyboard.KBView;
-import com.shiweinan.BlindCommand.touch.TouchPoint;
-import com.shiweinan.BlindCommand.util.CommandParser;
 
 
 public class MyAccessibilityService extends AccessibilityService {
@@ -35,7 +29,7 @@ public class MyAccessibilityService extends AccessibilityService {
 
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 metrics.widthPixels,
-                metrics.heightPixels / 3,
+                metrics.heightPixels  / 3 ,
                 0,
                 metrics.heightPixels * 2 / 3,
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,

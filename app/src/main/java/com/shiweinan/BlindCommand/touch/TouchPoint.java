@@ -8,13 +8,16 @@ import lombok.Data;
 public class TouchPoint {
 
     int keyNumber;
-    float x;
-    float y;
-    float rawX;
-    float rawY;
+    double x;
+    double y;
+    double rawX;
+    double rawY;
 
 
+    public String allInfo() {
+        return String.format("(x, y): (%f, %f), (rawX, rawY): (%f, %f)", x,y,rawX,rawY);
+    }
     public String info() {
-        return String.format("Key: %d, (x, y): (%f, %f), (rawX, rawY): (%f, %f)", keyNumber, x,y,rawX,rawY);
+        return String.format("(x, y): (%f, %f)", x, y);
     }
 }
