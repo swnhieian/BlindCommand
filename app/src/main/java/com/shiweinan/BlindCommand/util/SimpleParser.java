@@ -1,5 +1,7 @@
 package com.shiweinan.BlindCommand.util;
 
+
+import android.media.SoundPool;
 import android.util.Log;
 
 import com.shiweinan.BlindCommand.keyboard.MyKey;
@@ -183,20 +185,27 @@ public class SimpleParser {
         }
         Log.i("Key Pressed", "press: " + c);
         if(c >= 'a' && c <= 'z'){
+            SoundPlayer.click();
             touchPoints.add(touchPoint);
             Log.i("Add Touch Point", "press: " + c);
             return "input " + c;
         }
         else if(c == '-'){
-            if(!touchPoints.isEmpty())
+
+            if (!touchPoints.isEmpty()) {
+                SoundPlayer.delete();
                 touchPoints.remove(touchPoints.size() - 1);
+            } else {
+                SoundPlayer.ding();
+            }
             Log.i("Remove Touch Point", "size: " + touchPoints.size());
             return "delete input, size:" + touchPoints.size();
 
         }
         else if(c == '+'){
             String res = parse();
-            return "Parse Result: " + res;
+            SoundPlayer.tts(InstructionSet.instructions.get(res));
+            return "Parse Result: " + res + "-" + InstructionSet.instructions.get(res);
         }
         return "";
     }

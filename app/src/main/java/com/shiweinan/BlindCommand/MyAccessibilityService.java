@@ -9,6 +9,8 @@ import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
 import com.shiweinan.BlindCommand.keyboard.KBView;
+import com.shiweinan.BlindCommand.util.InstructionSet;
+import com.shiweinan.BlindCommand.util.SoundPlayer;
 
 
 public class MyAccessibilityService extends AccessibilityService {
@@ -32,11 +34,14 @@ public class MyAccessibilityService extends AccessibilityService {
                 metrics.heightPixels  / 3 ,
                 0,
                 metrics.heightPixels * 2 / 3,
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+                WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
+                //WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
         params.gravity = Gravity.START | Gravity.TOP;
 
+        SoundPlayer.setContext(this);
+        InstructionSet.init();
         View kbdView = new KBView(this, params);
 
         wm.addView(kbdView, params);

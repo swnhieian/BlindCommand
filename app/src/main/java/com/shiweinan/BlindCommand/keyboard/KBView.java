@@ -3,6 +3,8 @@ package com.shiweinan.BlindCommand.keyboard;
 import android.content.Context;
 import android.graphics.Color;
 import android.inputmethodservice.KeyboardView;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -32,6 +34,8 @@ public class KBView extends GridLayout {
 
     public KBView(Context context, WindowManager.LayoutParams params){
         super(context);
+
+
 
         //inflate(context, R.layout.service, this);
        // editText = findViewById(R.id.input);
@@ -95,6 +99,7 @@ public class KBView extends GridLayout {
                 case MotionEvent.ACTION_UP:
                     TouchPoint a = new TouchPoint(0, motionEvent.getX(), motionEvent.getY(), motionEvent.getRawX(), motionEvent.getRawY());
                     //Log.i("touch info", "onTouch: " + a.info());
+
                     String pressResult = SimpleParser.getInstance().press(a);
                     if(toast != null){
                         toast.cancel();
