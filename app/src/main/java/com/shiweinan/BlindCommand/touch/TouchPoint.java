@@ -3,6 +3,8 @@ package com.shiweinan.BlindCommand.touch;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.Locale;
+
 @Data
 @AllArgsConstructor
 public class TouchPoint {
@@ -13,11 +15,10 @@ public class TouchPoint {
     double rawX;
     double rawY;
 
-
     public String allInfo() {
-        return String.format("(x, y): (%f, %f), (rawX, rawY): (%f, %f)", x,y,rawX,rawY);
+        return String.format(Locale.ENGLISH,"(x, y): (%f, %f), (rawX, rawY): (%f, %f)", x,y,rawX,rawY);
     }
     public String info() {
-        return String.format("(x, y): (%f, %f)", x, y);
+        return String.format(Locale.ENGLISH,"(x, y): (%f, %f)", x, y);
     }
 }

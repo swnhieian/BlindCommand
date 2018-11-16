@@ -5,6 +5,8 @@ import com.shiweinan.BlindCommand.touch.TouchPoint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.Locale;
+
 @Data
 @AllArgsConstructor
 public class MyKey {
@@ -32,16 +34,16 @@ public class MyKey {
         this(c, width, height, left, left + width, up, up + height, left + width * 0.5, up + height * 0.5);
     }
     public String info(){
-        return String.format("Key: %c, left-up: (%f, %f), right-bottom: (%f, %f)", c, left, up, right, bottom);
+        return String.format(Locale.ENGLISH,"Key: %c, left-up: (%f, %f), right-bottom: (%f, %f)", c, left, up, right, bottom);
     }
 
 
     public String center(){
-        return String.format("Key: %c, center: (%f, %f)", c, cx, cy);
+        return String.format(Locale.ENGLISH,"Key: %c, center: (%f, %f)", c, cx, cy);
     }
 
     public String allInfo(){
-        return String.format("Key: %c, left-up: (%f, %f), right-bottom: (%f, %f), center: (%f, %f)", c, left, up, right, bottom, cx, cy);
+        return String.format(Locale.ENGLISH,"Key: %c, left-up: (%f, %f), right-bottom: (%f, %f), center: (%f, %f)", c, left, up, right, bottom, cx, cy);
     }
     public boolean contains(TouchPoint tp){
         return tp.getX() >= left && tp.getX() < right && tp.getY() >= up && tp.getY() < bottom;

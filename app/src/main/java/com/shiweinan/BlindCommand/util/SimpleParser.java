@@ -5,13 +5,7 @@ import android.util.Log;
 import com.shiweinan.BlindCommand.keyboard.MyKey;
 import com.shiweinan.BlindCommand.touch.TouchPoint;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -58,8 +52,9 @@ public class SimpleParser {
                map.put(keyValue[i][j], t);
            }
        }
-       keys.add(new MyKey('-', 0, keyHeight * 2, keyWidth * 1.5, keyHeight));
-        keys.add(new MyKey('+', keyWidth * 8.5, keyHeight * 2, keyWidth * 1.5, keyHeight));
+
+       //keys.add(new MyKey('-', 0, keyHeight * 2, keyWidth * 1.5, keyHeight));
+        // keys.add(new MyKey('+', keyWidth * 8.5, keyHeight * 2, keyWidth * 1.5, keyHeight));
        for(MyKey key: keys){
            Log.i("insert key", "initKeys: " + key.info());
        }
@@ -94,7 +89,7 @@ public class SimpleParser {
         public double poss;
 
         public String info(){
-            return String.format("(%s, %d, %f)", instruction, curInputCnt, poss);
+            return String.format(Locale.ENGLISH,"(%s, %d, %f)", instruction, curInputCnt, poss);
         }
 
     }
@@ -170,7 +165,23 @@ public class SimpleParser {
         return instance;
     }
 
-    public String press(TouchPoint touchPoint){
+    public String performSwipeLeft(){
+        if(!touchPoints.isEmpty())
+            touchPoints.remove(touchPoints.size() - 1);
+        Log.i("Remove Touch Point", "size: " + touchPoints.size());
+        return "delete input, size:" + touchPoints.size();
+    }
+    public String performSwipeRight(){
+        String res = parse();
+        return "Parse Result: " + res;
+    }
+    public String performSwipeUp(){
+        return "swipe up";
+    }
+    public String performSwipeDown(){
+        return "swipe down";
+    }
+    public String performTouch(TouchPoint touchPoint){
         char c = '?';
         for(MyKey key: keys){
             if(key.contains(touchPoint)){
@@ -182,24 +193,8 @@ public class SimpleParser {
             }
         }
         Log.i("Key Pressed", "press: " + c);
-        if(c >= 'a' && c <= 'z'){
-            touchPoints.add(touchPoint);
-            Log.i("Add Touch Point", "press: " + c);
-            return "input " + c;
-        }
-        else if(c == '-'){
-            if(!touchPoints.isEmpty())
-                touchPoints.remove(touchPoints.size() - 1);
-            Log.i("Remove Touch Point", "size: " + touchPoints.size());
-            return "delete input, size:" + touchPoints.size();
-
-        }
-        else if(c == '+'){
-            String res = parse();
-            return "Parse Result: " + res;
-        }
-        return "";
+        touchPoints.add(touchPoint);
+        Log.i("Add Touch Point", "press: " + c);
+        return "input " + c;
     }
-
-
 }
