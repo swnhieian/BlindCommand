@@ -6,9 +6,6 @@ import com.shiweinan.BlindCommand.keyboard.MyKey;
 import com.shiweinan.BlindCommand.touch.TouchPoint;
 
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -85,11 +82,14 @@ public class SimpleParser {
     @AllArgsConstructor
     class Entry {
         public String instruction;
-        public int curInputCnt;
+        /*
+        public int lastPos;
+        public int curPos;
+        */
         public double poss;
 
         public String info(){
-            return String.format(Locale.ENGLISH,"(%s, %d, %f)", instruction, curInputCnt, poss);
+            return String.format(Locale.ENGLISH,"(%s, %f)", instruction, poss);
         }
 
     }
@@ -99,10 +99,34 @@ public class SimpleParser {
         // first filter
         for(String ist: InstructionSet.set){
             if(ist.length() >= touchPoints.size()){
-                set.add(new Entry(ist, 0, 100.0));
+                set.add(new Entry(ist, 100.0));
+            }
+        }
+        if(touchPoints.size() <= 1)
+            return "Parse error: Only " + touchPoints.size() + " touch.";
+
+        for(int i = 1; i < touchPoints.size(); i ++){
+            double maxPoss = 0;
+            for(Entry e: set){
+                char curChar = e.instruction.charAt(i - 1);
+                char lastChar = e.instruction.charAt(i);
+                Vector2 expectedShift = Vector2.sub(keyOfValue(lastChar).getCenter(), keyOfValue(curChar).getCenter());
+                Vector2 actualShift = Vector2.sub(touchPoints.get(i).getPosition(), touchPoints.get(i - 1).getPosition());
+                double sd = Vector2.sqrDistance(expectedShift, actualShift);
+                e.poss *= Gauss2(1.0, sd);
+                maxPoss = Math.max(e.poss, maxPoss);
+            }
+
+            Iterator<Entry> it = set.iterator();
+            while(it.hasNext()){
+                Entry e = it.next();
+                if(e.poss < maxPoss * 0.05){
+                    it.remove();
+                }
             }
         }
 
+        /*
         for(int i = 0; i < touchPoints.size(); i ++){
             double maxPoss = 0;
             for(Entry e: set){
@@ -119,14 +143,8 @@ public class SimpleParser {
                     it.remove();
                 }
             }
-            /*
-            for(Entry e: set){
-                if(e.poss < (maxPoss * 0.1)){ // configurable
-                    set.remove(e);
-                }
-            }
-            */
         }
+        */
         Log.i("Entry set size", "parse: " + set.size());
 
         for(Entry e: set){
