@@ -1,5 +1,7 @@
 package com.shiweinan.BlindCommand.util;
 
+
+import android.media.SoundPool;
 import android.util.Log;
 
 import com.shiweinan.BlindCommand.keyboard.MyKey;
@@ -184,14 +186,20 @@ public class SimpleParser {
     }
 
     public String performSwipeLeft(){
-        if(!touchPoints.isEmpty())
+        if(!touchPoints.isEmpty()){
             touchPoints.remove(touchPoints.size() - 1);
+            SoundPlayer.delete();
+        }
+        else{
+            SoundPlayer.ding();
+        }
         Log.i("Remove Touch Point", "size: " + touchPoints.size());
         return "delete input, size:" + touchPoints.size();
     }
     public String performSwipeRight(){
         String res = parse();
-        return "Parse Result: " + res;
+        SoundPlayer.tts(InstructionSet.instructions.get(res));
+        return "Parse Result: " + res + "-" + InstructionSet.instructions.get(res);
     }
     public String performSwipeUp(){
         return "swipe up";
@@ -210,7 +218,8 @@ public class SimpleParser {
                 break;
             }
         }
-        Log.i("Key Pressed", "press: " + c);
+        SoundPlayer.click();
+      
         touchPoints.add(touchPoint);
         Log.i("Add Touch Point", "press: " + c);
         return "input " + c;

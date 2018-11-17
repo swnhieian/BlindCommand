@@ -12,6 +12,8 @@ import android.view.accessibility.AccessibilityEvent;
 
 import android.widget.TextView;
 import com.shiweinan.BlindCommand.keyboard.KBView;
+import com.shiweinan.BlindCommand.util.InstructionSet;
+import com.shiweinan.BlindCommand.util.SoundPlayer;
 
 
 public class MyAccessibilityService extends AccessibilityService {
@@ -42,6 +44,11 @@ public class MyAccessibilityService extends AccessibilityService {
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
         params.gravity = Gravity.START | Gravity.TOP;
+
+
+        SoundPlayer.setContext(this);
+        InstructionSet.init();
+      
 
         TextView candidateView = new TextView(this);
         candidateView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));

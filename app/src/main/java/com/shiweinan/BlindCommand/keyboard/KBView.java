@@ -3,6 +3,8 @@ package com.shiweinan.BlindCommand.keyboard;
 import android.content.Context;
 import android.graphics.Color;
 import android.inputmethodservice.KeyboardView;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -38,9 +40,6 @@ public class KBView extends GridLayout {
         SimpleParser.getInstance().setKeyboardInfo(params.width, params.height);
         candidateView = candidate;
         this.setOnTouchListener(listener);
-
-        /*
-        */
     }
     private View.OnTouchListener listener = new OnTouchListener() {
         private double beginPosX = 0.0;
@@ -106,6 +105,7 @@ public class KBView extends GridLayout {
                     curPosY = 0.0;
 
                     //Log.i("touch info", "onTouch: " + a.info());
+
                     if(toast != null){
                         toast.cancel();
                     }
