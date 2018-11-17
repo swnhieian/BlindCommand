@@ -28,83 +28,88 @@ import java.util.List;
 
 
 public class KBView extends GridLayout {
-    private KeyboardView keyboardView;
     //private EditText editText;
+    private TextView candidateView;
     Toast toast;
 
-    public KBView(Context context, WindowManager.LayoutParams params){
+    public KBView(Context context, WindowManager.LayoutParams params, TextView candidate){
         super(context);
-
-
-
-        //inflate(context, R.layout.service, this);
-       // editText = findViewById(R.id.input);
-        /*
-        editText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(editText.hasFocus()){
-                    //用来初始化我们的软键盘
-                    new KeyBoardUtil(keyboardView,editText).showKeyboard();
-                }
-                return false;
-            }
-        });
-        */
-
-        /*
-        kb = findViewById(R.id.nine_block);
-        Log.i("count", "Count : " + kb.getChildCount());
-        kbButton = new ArrayList<>();
-
-        for(int i = 0; i < 9; i ++){
-            kbButton.add(kb.getChildAt(i));
-        }
-        for(int i = 0; i < 9; i ++){
-            final int keyNumber = i + 1;
-            kbButton.get(i).setOnTouchListener(new OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent motionEvent) {
-                    switch(motionEvent.getAction()) {
-                        case MotionEvent.ACTION_UP:
-                            TouchPoint a = new TouchPoint(keyNumber, v.getLeft() + motionEvent.getX(), v.getTop() + motionEvent.getY(), motionEvent.getRawX(), motionEvent.getRawY());
-                            SimpleParser.getInstance().add(a);
-                            //Log.i("Touch from Key", "onTouch: " + a.info());
-                            break;
-                        default:
-                            break;
-                    }
-                    return true;
-                }
-            });
-        }
-
-*/
-        //kb = (GridView)findViewById(R.id.nine_block);
 
         setBackgroundColor(ContextCompat.getColor(context, R.color.back));
         setAlpha(0.4f);
         SimpleParser.getInstance().setKeyboardInfo(params.width, params.height);
-
-
+        candidateView = candidate;
         this.setOnTouchListener(listener);
-
-        /*
-        */
     }
     private View.OnTouchListener listener = new OnTouchListener() {
+        private double beginPosX = 0.0;
+        private double beginPosY = 0.0;
+        private double curPosX = 0.0;
+        private double curPosY = 0.0;
+
         @Override
         public boolean onTouch(View v, MotionEvent motionEvent) {
             switch(motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    beginPosX = (double)motionEvent.getX();
+                    beginPosY = (double)motionEvent.getY();
+                    //Log.i("touch down","down " + beginPosX + " " + beginPosY);
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    //curPosX = (double)motionEvent.getX();
+                    //curPosY = (double)motionEvent.getY();
+                    //Log.i("touch move","move " + curPosX + " " + curPosY);
+                    break;
                 case MotionEvent.ACTION_UP:
-                    TouchPoint a = new TouchPoint(0, motionEvent.getX(), motionEvent.getY(), motionEvent.getRawX(), motionEvent.getRawY());
+                    curPosX = (double)motionEvent.getX();
+                    curPosY = (double)motionEvent.getY();
+                    double hshift = curPosX - beginPosX;
+                    double vshift = curPosY - beginPosY;
+
+                    TouchPoint tp = new TouchPoint(0, motionEvent.getX(), motionEvent.getY(), motionEvent.getRawX(), motionEvent.getRawY());
+                    String result = "";
+                    if(Math.abs(hshift) > Math.abs(vshift)){
+                        if(hshift > 25){  // swipe right
+                           //Log.i("swipe","right " + hshift);
+                           result = SimpleParser.getInstance().performSwipeRight();
+                        }
+                        else if(hshift < -25) { // swipe left
+                            //Log.i("swipe", "left " + (-hshift));
+                            result = SimpleParser.getInstance().performSwipeLeft();
+                        }
+                        else{
+                            //Log.i("click0","click at " + curPosX + " " + curPosY);
+                            result = SimpleParser.getInstance().performTouch(tp);
+                        }
+                    }
+                    else if(Math.abs(hshift) < Math.abs(vshift)) {
+                        if (vshift > 25) { // swipe down
+                            //Log.i("swipe", "down " + vshift);
+                            result = SimpleParser.getInstance().performSwipeDown();
+                        } else if (vshift < -25) { // swipe up
+                            //Log.i("swipe", "up " + (-vshift));
+                            result = SimpleParser.getInstance().performSwipeUp();
+                        }
+                        else{
+                            //Log.i("click1","click at " + curPosX + " " + curPosY);
+                            result = SimpleParser.getInstance().performTouch(tp);
+                        }
+                    }
+                    else{
+                        //Log.i("click2","click at " + curPosX + " " + curPosY);
+                        result = SimpleParser.getInstance().performTouch(tp);
+                    }
+                    beginPosX = 0.0;
+                    beginPosY = 0.0;
+                    curPosX = 0.0;
+                    curPosY = 0.0;
+
                     //Log.i("touch info", "onTouch: " + a.info());
 
-                    String pressResult = SimpleParser.getInstance().press(a);
                     if(toast != null){
                         toast.cancel();
                     }
-                    toast = Toast.makeText(getContext(), pressResult, Toast.LENGTH_SHORT);
+                    toast = Toast.makeText(getContext(), result, Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.TOP, 0, 200);
                     toast.show();
                     //SimpleParser.getInstance().add(a);

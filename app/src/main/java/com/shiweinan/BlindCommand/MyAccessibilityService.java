@@ -2,12 +2,15 @@ package com.shiweinan.BlindCommand;
 
 import android.accessibilityservice.AccessibilityService;
 import android.graphics.PixelFormat;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
+import android.widget.TextView;
 import com.shiweinan.BlindCommand.keyboard.KBView;
 import com.shiweinan.BlindCommand.util.InstructionSet;
 import com.shiweinan.BlindCommand.util.SoundPlayer;
@@ -29,21 +32,39 @@ public class MyAccessibilityService extends AccessibilityService {
         metrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(metrics);
 
+
+        int touchPadHeight = metrics.heightPixels / 3;
+        int candidateHeight = metrics.heightPixels / 30;
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 metrics.widthPixels,
-                metrics.heightPixels  / 3 ,
+                touchPadHeight ,
                 0,
-                metrics.heightPixels * 2 / 3,
-                WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
-                //WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+                metrics.heightPixels - touchPadHeight,
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
         params.gravity = Gravity.START | Gravity.TOP;
 
+
         SoundPlayer.setContext(this);
         InstructionSet.init();
-        View kbdView = new KBView(this, params);
+      
 
+        TextView candidateView = new TextView(this);
+        candidateView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        candidateView.setText("empty");
+        WindowManager.LayoutParams candidateParams = new WindowManager.LayoutParams(
+                metrics.widthPixels,
+                candidateHeight,
+                0,
+                metrics.heightPixels - touchPadHeight - 2 * candidateHeight,
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                PixelFormat.TRANSLUCENT);
+        candidateParams.gravity = Gravity.START | Gravity.TOP;
+        wm.addView(candidateView, candidateParams);
+
+        View kbdView = new KBView(this, params, candidateView);
         wm.addView(kbdView, params);
 
         /*kbdView.setOnTouchListener(new View.OnTouchListener() {
