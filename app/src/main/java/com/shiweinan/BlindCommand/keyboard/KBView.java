@@ -26,18 +26,17 @@ import java.util.List;
 
 
 public class KBView extends GridLayout {
-    private KeyboardView keyboardView;
     //private EditText editText;
+    private TextView candidateView;
     Toast toast;
 
-    public KBView(Context context, WindowManager.LayoutParams params){
+    public KBView(Context context, WindowManager.LayoutParams params, TextView candidate){
         super(context);
 
         setBackgroundColor(ContextCompat.getColor(context, R.color.back));
         setAlpha(0.4f);
         SimpleParser.getInstance().setKeyboardInfo(params.width, params.height);
-
-
+        candidateView = candidate;
         this.setOnTouchListener(listener);
 
         /*
