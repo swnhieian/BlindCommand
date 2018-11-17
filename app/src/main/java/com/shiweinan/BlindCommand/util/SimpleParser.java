@@ -13,8 +13,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 public class SimpleParser {
+    enum State{INPUT, CHOOSE}
+
     static SimpleParser instance;
     private List<TouchPoint> touchPoints;
+
+    private State state = State.INPUT;
+
+    private List<Entry> candidateSet = null;
+    private int candidateIndex = 0;
 
     private List<MyKey> keys;
     private Map<Character, MyKey> map;
@@ -41,7 +48,7 @@ public class SimpleParser {
        double x_offset = 0;
        for(int i = 0; i < keyValue.length; i ++) {
            switch(i){
-               case 0: x_offset = 0f; break;
+               case 0: x_offset = 0.0f; break;
                case 1: x_offset = keyWidth * 0.5f; break;
                case 2: x_offset = keyWidth * 1.5f; break;
            }
@@ -96,7 +103,7 @@ public class SimpleParser {
 
     }
 
-    public String parse(){
+    public List<Entry> parse(){
         List<Entry> set = new ArrayList<>();
         // first filter
         for(String ist: InstructionSet.set){
@@ -104,12 +111,10 @@ public class SimpleParser {
                 set.add(new Entry(ist, 100.0));
             }
         }
-        if(touchPoints.size() <= 1)
-            return "Parse error: Only " + touchPoints.size() + " touch.";
 
-        for(int i = 1; i < touchPoints.size(); i ++){
+        for(int i = 1; i < touchPoints.size(); i ++) {
             double maxPoss = 0;
-            for(Entry e: set){
+            for (Entry e : set) {
                 char curChar = e.instruction.charAt(i - 1);
                 char lastChar = e.instruction.charAt(i);
                 Vector2 expectedShift = Vector2.sub(keyOfValue(lastChar).getCenter(), keyOfValue(curChar).getCenter());
@@ -120,56 +125,33 @@ public class SimpleParser {
             }
 
             Iterator<Entry> it = set.iterator();
-            while(it.hasNext()){
+            while (it.hasNext()) {
                 Entry e = it.next();
-                if(e.poss < maxPoss * 0.05){
+                if (e.poss < maxPoss * 0.05) {
                     it.remove();
                 }
             }
         }
-
-        /*
-        for(int i = 0; i < touchPoints.size(); i ++){
-            double maxPoss = 0;
-            for(Entry e: set){
-                char c = e.instruction.charAt(e.curInputCnt);
-                e.poss *= Gauss2(1.0, sqrdis(touchPoints.get(i), keyOfValue(c)));
-                maxPoss = Math.max(e.poss, maxPoss);
-                e.curInputCnt ++;
-            }
-            final double m = maxPoss;
-            Iterator<Entry> it = set.iterator();
-            while(it.hasNext()){
-                Entry e = it.next();
-                if(e.poss < maxPoss * 0.1){
-                    it.remove();
-                }
-            }
-        }
-        */
         Log.i("Entry set size", "parse: " + set.size());
 
         for(Entry e: set){
             Log.i("Entry Info", "parse: " + e.info());
         }
-        touchPoints.clear();
-        if(set.size() == 0){
-            return "";
-        }
-        else{
-            return Collections.max(set, new Comparator<Entry>(){
-                @Override
-                public int compare(Entry e1, Entry e2){
-                    if(e1.poss > e2.poss){
-                        return 1;
-                    }
-                    if(e1.poss < e2.poss){
-                        return -1;
-                    }
-                    return 0;
+
+        Collections.sort(set, new Comparator<Entry>() {
+            @Override
+            public int compare(Entry e1, Entry e2) {
+                if (e1.poss > e2.poss) {
+                    return 1;
                 }
-            }).instruction;
-        }
+                if (e1.poss < e2.poss) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+
+        return set;
     }
 
     public void setKeyboardInfo(int width, int height){
@@ -186,42 +168,98 @@ public class SimpleParser {
     }
 
     public String performSwipeLeft(){
-        if(!touchPoints.isEmpty()){
-            touchPoints.remove(touchPoints.size() - 1);
-            SoundPlayer.delete();
+        if(state == State.INPUT) {
+            if (!touchPoints.isEmpty()) {
+                touchPoints.remove(touchPoints.size() - 1);
+                SoundPlayer.delete();
+            } else {
+                SoundPlayer.ding();
+            }
+            Log.i("Remove Touch Point", "size: " + touchPoints.size());
+            return "delete input, size:" + touchPoints.size();
         }
         else{
-            SoundPlayer.ding();
+           if(candidateIndex > 0) {
+               candidateIndex--;
+               Log.i("select candidate","candidateIndex: " + candidateIndex);
+               select(candidateSet.get(candidateIndex).instruction);
+           }
+           return "select candidate, candidateIndex: " + candidateIndex;
         }
-        Log.i("Remove Touch Point", "size: " + touchPoints.size());
-        return "delete input, size:" + touchPoints.size();
     }
     public String performSwipeRight(){
-        String res = parse();
-        SoundPlayer.tts(InstructionSet.instructions.get(res));
-        return "Parse Result: " + res + "-" + InstructionSet.instructions.get(res);
+        if(state == State.INPUT) {
+            state = State.CHOOSE;
+
+            if(touchPoints.size() <= 1)
+                return "Parse error: Only " + touchPoints.size() + " touch.";
+
+            //List<Entry> parseResult = parse();
+            candidateSet = parse();
+            String res = "";
+            if(candidateSet.size() > 0){
+                candidateIndex = 0;
+                res = candidateSet.get(0).instruction;
+                select(candidateSet.get(candidateIndex).instruction);
+            }
+
+            return "Parse Result: " + res + "-" + InstructionSet.instructions.get(res);
+        }
+        else{
+            if(candidateIndex + 1 < candidateSet.size()){
+                candidateIndex ++;
+            }
+            select(candidateSet.get(candidateIndex).instruction);
+            Log.i("select candidate","candidateIndex: " + candidateIndex);
+            return "select candidate, candidateIndex: " + candidateIndex;
+        }
     }
     public String performSwipeUp(){
+        if(state == State.CHOOSE){
+           accept(candidateSet.get(candidateIndex).instruction);
+           state = State.INPUT;
+        }
+        else{
+           Log.i("nop","performSwipeUp");
+        }
         return "swipe up";
     }
     public String performSwipeDown(){
+        if(state == State.CHOOSE){
+            state = State.INPUT;
+        }
+        else{
+            Log.i("nop","performSwipeDown");
+        }
         return "swipe down";
     }
     public String performTouch(TouchPoint touchPoint){
+        if(state == State.CHOOSE) {
+            Log.i("state change", "performTouch : choose -> input");
+            state = State.INPUT;
+        }
+
         char c = '?';
-        for(MyKey key: keys){
-            if(key.contains(touchPoint)){
+        for (MyKey key : keys) {
+            if (key.contains(touchPoint)) {
                 c = key.getC();
                 Log.i("Distance", "dis: " + dis(touchPoint, key) + " Gauss: " + Gauss2(1.0, sqrdis(touchPoint, key)));
-                Log.i("Info","TouchPoint " + touchPoint.info());
-                Log.i("Info","Key Info " + key.allInfo());
+                Log.i("Info", "TouchPoint " + touchPoint.info());
+                Log.i("Info", "Key Info " + key.allInfo());
                 break;
             }
         }
         SoundPlayer.click();
-      
+
         touchPoints.add(touchPoint);
         Log.i("Add Touch Point", "press: " + c);
         return "input " + c;
+    }
+    public void accept(String instruction){
+        SoundPlayer.tts(InstructionSet.instructions.get(instruction));
+        touchPoints.clear();
+    }
+    public void select(String instruction){
+        SoundPlayer.tts(InstructionSet.instructions.get(instruction));
     }
 }

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.inputmethodservice.KeyboardView;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -32,7 +33,7 @@ public class KBView extends GridLayout {
     private TextView candidateView;
     Toast toast;
 
-    public KBView(Context context, WindowManager.LayoutParams params, TextView candidate){
+    public KBView(Context context, @NonNull WindowManager.LayoutParams params, TextView candidate){
         super(context);
 
         setBackgroundColor(ContextCompat.getColor(context, R.color.back));
