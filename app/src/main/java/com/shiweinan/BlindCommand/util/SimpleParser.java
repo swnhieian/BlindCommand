@@ -108,7 +108,7 @@ public class SimpleParser {
         // first filter
         for(String ist: InstructionSet.set){
             if(ist.length() >= touchPoints.size()){
-                set.add(new Entry(ist, 100.0));
+                set.add(new Entry(ist, 1000.0));
             }
         }
 
@@ -127,7 +127,7 @@ public class SimpleParser {
             Iterator<Entry> it = set.iterator();
             while (it.hasNext()) {
                 Entry e = it.next();
-                if (e.poss < maxPoss * 0.05) {
+                if (e.poss < maxPoss * 0.01) {
                     it.remove();
                 }
             }
@@ -188,11 +188,13 @@ public class SimpleParser {
         }
     }
     public String performSwipeRight(){
+
+        if(touchPoints.size() <= 1)
+            return "Parse error: Only " + touchPoints.size() + " touch.";
+
         if(state == State.INPUT) {
             state = State.CHOOSE;
 
-            if(touchPoints.size() <= 1)
-                return "Parse error: Only " + touchPoints.size() + " touch.";
 
             //List<Entry> parseResult = parse();
             candidateSet = parse();
@@ -227,6 +229,9 @@ public class SimpleParser {
     public String performSwipeDown(){
         if(state == State.CHOOSE){
             state = State.INPUT;
+            touchPoints.clear();
+            candidateSet = null;
+            candidateIndex = 0;
         }
         else{
             Log.i("nop","performSwipeDown");

@@ -33,6 +33,8 @@ public class SoundPlayer {
                 }
             }
         });
+        tts.setPitch(0.5f);
+        tts.setSpeechRate(1.5f);
 
 
     }
