@@ -266,9 +266,10 @@ public class SimpleParser {
             if(candidateIndex + 1 < candidateSet.size()){
                 candidateIndex ++;
             }
-            select(candidateSet.get(candidateIndex).instruction);
+            Entry selectedEntry = candidateSet.get(candidateIndex);
+            select(selectedEntry.instruction);
             Log.i("select candidate","candidateIndex: " + candidateIndex);
-            return "select candidate, candidateIndex: " + candidateIndex;
+            return selectedEntry.instruction + "-" + selectedEntry.content;
         }
         else{
             touchPoints.clear();
@@ -278,16 +279,17 @@ public class SimpleParser {
 
     /* 下滑
      * 输入模式： 删除全部触摸点
-     * 候选模式：  选择上一个候选词 语音反馈
+     * 候选模式： 选择上一个候选词 语音反馈
      */
     public String performSwipeDown(){
         if(state == State.CHOOSE){
             if(candidateIndex > 0) {
                 candidateIndex--;
-                Log.i("select candidate","candidateIndex: " + candidateIndex);
-                select(candidateSet.get(candidateIndex).instruction);
             }
-            return "select candidate, candidateIndex: " + candidateIndex;
+            Entry selectedEntry = candidateSet.get(candidateIndex);
+            select(selectedEntry.instruction);
+            Log.i("select candidate","candidateIndex: " + candidateIndex);
+            return selectedEntry.instruction + "-" + selectedEntry.content;
         }
         else{
             touchPoints.clear();
