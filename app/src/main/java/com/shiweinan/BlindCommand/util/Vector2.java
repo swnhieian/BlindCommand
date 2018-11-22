@@ -24,5 +24,9 @@ public class Vector2 {
         return new Vector2(v1.x - v2.x, v1.y - v2.y);
     }
 
+    public static Vector2 div(Vector2 v1, Vector2 v2){
+        return new Vector2(v1.x / v2.x, v1.y / v2.y);
+    }
+
 
 }

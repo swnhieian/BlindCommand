@@ -19,6 +19,7 @@ public class SimpleParser {
     private List<TouchPoint> touchPoints;
 
     private State state = State.INPUT;
+    private Vector2 keySize;
 
     private List<Entry> candidateSet = null;
     private int candidateIndex = 0;
@@ -35,6 +36,9 @@ public class SimpleParser {
     private double height;
 
 
+    private Vector2 relativeCoordinate(Vector2 v){
+        return Vector2.div(v, keySize);
+    }
     private SimpleParser(){
         touchPoints = new ArrayList<>();
     }
@@ -44,6 +48,8 @@ public class SimpleParser {
 
        double keyWidth = width / 10;
        double keyHeight = height / 3;
+       keySize = new Vector2(keyWidth, keyHeight);
+
        Log.i("Keysize", "initKeys: " + keyWidth + " " + keyHeight);
        double x_offset = 0;
        for(int i = 0; i < keyValue.length; i ++) {
@@ -79,7 +85,6 @@ public class SimpleParser {
     }
 
     private static double Gauss2(double sigma, double sd){
-        sd *= 0.0001; // rescale range to almost 1
         return Math.exp(-0.5 * sd / sigma / sigma);
     }
 
@@ -96,6 +101,11 @@ public class SimpleParser {
         public int curPos;
         */
         public double poss;
+        public String content;
+
+        public Entry(String instruction, double poss){
+            this(instruction, poss, InstructionSet.instructions.get(instruction));
+        }
 
         public String info(){
             return String.format(Locale.ENGLISH,"(%s, %f)", instruction, poss);
@@ -108,19 +118,31 @@ public class SimpleParser {
         // first filter
         for(String ist: InstructionSet.set){
             if(ist.length() >= touchPoints.size()){
-                set.add(new Entry(ist, 1000.0));
+                set.add(new Entry(ist, 100.0));
             }
         }
+        // 第一次点击考虑绝对位置
+        Vector2 absFirstTouchPos = touchPoints.get(0).getPosition();
+        for(Entry e: set){
+            Vector2 firstKeyCenter = keyOfValue(e.instruction.charAt(0)).getCenter();
+            double sd = Vector2.sqrDistance(relativeCoordinate(firstKeyCenter), relativeCoordinate(absFirstTouchPos));
+            //System.out.println("" + sd + " " + e.instruction);
+            e.poss *= Gauss2(1.0, sd);
+        }
 
+
+        //  之后的点击考虑相对位置
         for(int i = 1; i < touchPoints.size(); i ++) {
-            double maxPoss = 0;
+            double maxPoss = 0.0;
+            Vector2 actualShift = Vector2.sub(touchPoints.get(i).getPosition(), touchPoints.get(i - 1).getPosition());
+
             for (Entry e : set) {
-                char curChar = e.instruction.charAt(i - 1);
-                char lastChar = e.instruction.charAt(i);
-                Vector2 expectedShift = Vector2.sub(keyOfValue(lastChar).getCenter(), keyOfValue(curChar).getCenter());
-                Vector2 actualShift = Vector2.sub(touchPoints.get(i).getPosition(), touchPoints.get(i - 1).getPosition());
-                double sd = Vector2.sqrDistance(expectedShift, actualShift);
+                char curChar = e.instruction.charAt(i);
+                char lastChar = e.instruction.charAt(i - 1);
+                Vector2 expectedShift = Vector2.sub(keyOfValue(curChar).getCenter(), keyOfValue(lastChar).getCenter());
+                double sd = Vector2.sqrDistance(relativeCoordinate(expectedShift), relativeCoordinate(actualShift));
                 e.poss *= Gauss2(1.0, sd);
+                //System.out.println("" + sd + " " + curChar + " " + e.instruction + " "  + e.poss);
                 maxPoss = Math.max(e.poss, maxPoss);
             }
 
@@ -132,28 +154,38 @@ public class SimpleParser {
                 }
             }
         }
-        Log.i("Entry set size", "parse: " + set.size());
-
-        for(Entry e: set){
-            Log.i("Entry Info", "parse: " + e.info());
-        }
-
         Collections.sort(set, new Comparator<Entry>() {
             @Override
             public int compare(Entry e1, Entry e2) {
-                if (e1.poss > e2.poss) {
+                if (e1.poss < e2.poss) {
                     return 1;
                 }
-                if (e1.poss < e2.poss) {
+                if (e1.poss > e2.poss) {
                     return -1;
                 }
                 return 0;
             }
         });
 
+        Log.i("Entry set size", "parse: " + set.size());
+
+        for(Entry e: set){
+            Log.i("Entry Info", "parse: " + e.info());
+        }
         return set;
     }
-
+    //去除命令里面重复的项
+    private void removeDuplicateWithOrder(List<Entry> entryList){
+       Set<String> set = new HashSet<>();
+       List<Entry> newList = new ArrayList<>();
+       for (Iterator<Entry> iter = entryList.iterator(); iter.hasNext();) {
+          Entry element = iter.next();
+          if (set.add(element.content))
+             newList.add(element);
+       }
+       entryList.clear();
+       entryList.addAll(newList);
+    }
     public void setKeyboardInfo(int width, int height){
         this.width = (double)width;
         this.height = (double)height;
@@ -167,6 +199,10 @@ public class SimpleParser {
         return instance;
     }
 
+    /* 左滑
+     * 输入模式： 删除一个触摸点
+     * 候选模式：  回到输入模式
+     */
     public String performSwipeLeft(){
         if(state == State.INPUT) {
             if (!touchPoints.isEmpty()) {
@@ -179,14 +215,18 @@ public class SimpleParser {
             return "delete input, size:" + touchPoints.size();
         }
         else{
-           if(candidateIndex > 0) {
-               candidateIndex--;
-               Log.i("select candidate","candidateIndex: " + candidateIndex);
-               select(candidateSet.get(candidateIndex).instruction);
-           }
-           return "select candidate, candidateIndex: " + candidateIndex;
+            state = State.INPUT;
+            //touchPoints.clear();
+            candidateSet = null;
+            candidateIndex = 0;
+            return "return to input mode";
         }
     }
+    /* 右滑
+     * 输入模式： 候选并语音反馈首个候选
+     * 候选模式： 执行当前命令
+     */
+
     public String performSwipeRight(){
 
         if(touchPoints.size() <= 1)
@@ -194,10 +234,9 @@ public class SimpleParser {
 
         if(state == State.INPUT) {
             state = State.CHOOSE;
-
-
             //List<Entry> parseResult = parse();
             candidateSet = parse();
+            removeDuplicateWithOrder(candidateSet);
             String res = "";
             if(candidateSet.size() > 0){
                 candidateIndex = 0;
@@ -208,6 +247,22 @@ public class SimpleParser {
             return "Parse Result: " + res + "-" + InstructionSet.instructions.get(res);
         }
         else{
+            String inst = candidateSet.get(candidateIndex).instruction;
+            accept(inst);
+            state = State.INPUT;
+            candidateSet.clear();
+            candidateIndex = 0;
+            touchPoints.clear();
+            return "accept Instrucion " + inst;
+        }
+    }
+
+    /* 上滑
+     * 输入模式： 删除全部触摸点
+     * 候选模式：  选择下一个候选词 语音反馈
+     */
+    public String performSwipeUp(){
+        if(state == State.CHOOSE){
             if(candidateIndex + 1 < candidateSet.size()){
                 candidateIndex ++;
             }
@@ -215,28 +270,29 @@ public class SimpleParser {
             Log.i("select candidate","candidateIndex: " + candidateIndex);
             return "select candidate, candidateIndex: " + candidateIndex;
         }
-    }
-    public String performSwipeUp(){
-        if(state == State.CHOOSE){
-           accept(candidateSet.get(candidateIndex).instruction);
-           state = State.INPUT;
-        }
         else{
-           Log.i("nop","performSwipeUp");
+            touchPoints.clear();
+            return "clear";
         }
-        return "swipe up";
     }
+
+    /* 下滑
+     * 输入模式： 删除全部触摸点
+     * 候选模式：  选择上一个候选词 语音反馈
+     */
     public String performSwipeDown(){
         if(state == State.CHOOSE){
-            state = State.INPUT;
-            touchPoints.clear();
-            candidateSet = null;
-            candidateIndex = 0;
+            if(candidateIndex > 0) {
+                candidateIndex--;
+                Log.i("select candidate","candidateIndex: " + candidateIndex);
+                select(candidateSet.get(candidateIndex).instruction);
+            }
+            return "select candidate, candidateIndex: " + candidateIndex;
         }
         else{
-            Log.i("nop","performSwipeDown");
+            touchPoints.clear();
+            return "clear";
         }
-        return "swipe down";
     }
     public String performTouch(TouchPoint touchPoint){
         if(state == State.CHOOSE) {

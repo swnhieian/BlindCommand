@@ -50,6 +50,7 @@ public class MyAccessibilityService extends AccessibilityService {
         InstructionSet.init();
       
 
+        /*
         TextView candidateView = new TextView(this);
         candidateView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
         candidateView.setText("empty");
@@ -63,8 +64,9 @@ public class MyAccessibilityService extends AccessibilityService {
                 PixelFormat.TRANSLUCENT);
         candidateParams.gravity = Gravity.START | Gravity.TOP;
         wm.addView(candidateView, candidateParams);
+        */
 
-        View kbdView = new KBView(this, params, candidateView);
+        View kbdView = new KBView(this, params);
         wm.addView(kbdView, params);
 
         /*kbdView.setOnTouchListener(new View.OnTouchListener() {

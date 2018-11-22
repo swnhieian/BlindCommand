@@ -22,6 +22,7 @@ public class MyKey {
     private double cy; // center y
 
     private Vector2 center;
+    private Vector2 relativeCenter;
 
     /*
       ---- up
@@ -35,12 +36,11 @@ public class MyKey {
 
     public MyKey(char c, double left, double up, double width, double height){
         this(c, width, height, left, left + width, up, up + height, left + width * 0.5, up + height * 0.5,
-                new Vector2(left + width * 0.5, up + height * 0.5));
+                new Vector2(left + width * 0.5, up + height * 0.5), new Vector2(left / width + 0.5, up / height + 0.5));
     }
     public String info(){
         return String.format(Locale.ENGLISH,"Key: %c, left-up: (%f, %f), right-bottom: (%f, %f)", c, left, up, right, bottom);
     }
-
 
     public String center(){
         return String.format(Locale.ENGLISH,"Key: %c, center: (%f, %f)", c, cx, cy);
