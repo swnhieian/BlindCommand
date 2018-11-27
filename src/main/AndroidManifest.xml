@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.google.android.accessibility.talkback"
     android:installLocation="internalOnly"
-    android:sharedUserId="com.google.android.marvin.feedback"
     android:versionCode="50200001">
-
+    <!--android:sharedUserId="com.google.android.marvin.feedback"-->
     <!-- Permission used to restrict sending gestures and resuming feedback. -->
     <permission
-        android:name="com.google.android.marvin.feedback.permission.TALKBACK"
+        android:name="com.google.android.marvin.diy.feedback.permission.TALKBACK"
         android:description="@string/permission_talkback_desc"
         android:icon="@drawable/icon"
         android:label="@string/permission_talkback_label"
@@ -16,7 +15,7 @@
 
     <!-- Permission used to restrict storing and retrieving custom view labels. -->
     <permission
-        android:name="com.google.android.marvin.talkback.permission.LABELING"
+        android:name="com.google.android.marvin.diy.talkback.permission.LABELING"
         android:description="@string/permission_labeling_desc"
         android:icon="@drawable/icon"
         android:label="@string/permission_labeling_label"

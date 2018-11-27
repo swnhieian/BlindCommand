@@ -195,7 +195,6 @@ public class AccessibilityEventProcessor {
   }
 
   public void onAccessibilityEvent(AccessibilityEvent event, EventId eventId) {
-
     if (mTestingListener != null) {
       mTestingListener.onAccessibilityEvent(event);
     }

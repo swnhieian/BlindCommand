@@ -35,6 +35,7 @@ import android.database.ContentObserver;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -81,6 +82,8 @@ public class TalkBackPreferencesActivity extends Activity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+
+
     super.onCreate(savedInstanceState);
 
     // Shows TalkBack's abbreviated version number in the action bar,
@@ -95,6 +98,33 @@ public class TalkBackPreferencesActivity extends Activity {
         .beginTransaction()
         .replace(android.R.id.content, new TalkBackPreferenceFragment())
         .commit();
+    checkPermission();
+  }
+  boolean hasAlertPermission;
+  final int ALERT_PERMISSION_REQUEST_CODE = 101;
+  public void checkPermission() {
+    if (!Settings.canDrawOverlays(this)) {
+      hasAlertPermission = false;
+      Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
+      startActivityForResult(intent, ALERT_PERMISSION_REQUEST_CODE);
+    }
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    switch (requestCode) {
+      case ALERT_PERMISSION_REQUEST_CODE:
+        if (Build.VERSION.SDK_INT > 22) {
+          if (!Settings.canDrawOverlays(this)) {
+            hasAlertPermission = false;
+          } else {
+            hasAlertPermission = true;
+          }
+        }
+        break;
+      default:
+        super.onActivityResult(requestCode, resultCode, data);
+    }
   }
 
   /** Fragment that holds the preference user interface controls. */

@@ -39,6 +39,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.PixelFormat;
+import android.graphics.Rect;
 import android.graphics.Region;
 import android.media.AudioManager;
 import android.os.Build;
@@ -48,9 +50,13 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -122,6 +128,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+
+import blindcommand.BlindCommandController;
+import blindcommand.KBView;
+import blindcommand.SoundPlayer;
 
 /** An {@link AccessibilityService} that provides spoken, haptic, and audible feedback. */
 public class TalkBackService extends AccessibilityService
@@ -758,6 +768,12 @@ public class TalkBackService extends AccessibilityService
 
   @Override
   protected boolean onGesture(int gestureId) {
+    //gesture Id : 1 up, 2 down, 3 left, 4 right
+    System.out.println("==========================================================gesture????????????????????" + gestureId);
+    if (blindCommandController.getState() != BlindCommandController.State.Idle) {
+      return blindCommandController.performGesture(gestureId);
+    }
+
     if (!isServiceActive()) {
       return false;
     }
@@ -1082,9 +1098,33 @@ public class TalkBackService extends AccessibilityService
     }
   }
 
+  DisplayMetrics metrics;
+  public KBView kbdView;
   @Override
   protected void onServiceConnected() {
+
+
     LogUtils.log(this, Log.VERBOSE, "System bound to service.");
+
+    WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
+    metrics = new DisplayMetrics();
+    wm.getDefaultDisplay().getMetrics(metrics);
+    int touchPadHeight = metrics.heightPixels / 3;
+    int candidateHeight = metrics.heightPixels / 30;
+    WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+        metrics.widthPixels,
+        touchPadHeight ,
+        0,
+        metrics.heightPixels - touchPadHeight,
+        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+        PixelFormat.TRANSLUCENT);
+    params.gravity = Gravity.START | Gravity.TOP;
+
+    kbdView = new KBView(this, params);
+    wm.addView(kbdView, params);
+    SoundPlayer.setContext(this);
+    System.out.println("here+++++++++++++++" + "window view added!");
 
     // The service must be connected before getFingerprintGestureController() is called, thus we
     // cannot initialize fingerprint gesture detection in onCreate().
@@ -1093,7 +1133,7 @@ public class TalkBackService extends AccessibilityService
     resumeInfrastructure();
 
     // Handle any update actions.
-    final TalkBackUpdateHelper helper = new TalkBackUpdateHelper(this);
+    final com.google.android.accessibility.talkback.TalkBackUpdateHelper helper = new com.google.android.accessibility.talkback.TalkBackUpdateHelper(this);
     helper.showPendingNotifications();
     helper.checkUpdate();
 
@@ -1120,6 +1160,42 @@ public class TalkBackService extends AccessibilityService
     }
     showTutorialIfNecessary();
   }
+  public BlindCommandController blindCommandController = new BlindCommandController(this);
+  Rect minBound;
+  AccessibilityNodeInfo res;
+  public void performMotionEvent(MotionEvent event) {
+    blindCommandController.performMotionEvent(event);
+  }
+  public AccessibilityNodeInfo perform(int x, int y) {
+    AccessibilityNodeInfo rootNode = getRootInActiveWindow();
+    minBound = new Rect(-100, -100, metrics.widthPixels+100, metrics.heightPixels+100);
+    res = null;
+    traverse(rootNode, x, y);
+    return res;
+    //System.out.println("=====" + x + "," + y + "=====");
+  }
+  public void traverse(AccessibilityNodeInfo node, int x, int y) {
+   // System.out.println(node.getHintText() + "," + node.getViewIdResourceName() + "," + node.getText());
+    Rect bounds = new Rect();
+    node.getBoundsInScreen(bounds);
+    boolean contained = bounds.contains(x, y);
+    System.out.println(contained);
+    if (minBound.contains(bounds) && contained) {
+      minBound.set(bounds);
+      res = node;
+    }
+//    System.out.println(node.isFocusable());
+//
+//    System.out.println(bounds.left + "," + bounds.right + " " + bounds.top + "," + bounds.bottom);
+//    System.out.println(minBound.left + "," + minBound.right + " " + minBound.top + "," + minBound.bottom);
+//    System.out.println(bounds.contains(x, y));
+    if (contained) {
+      for (int i = 0; i < node.getChildCount(); i++) {
+        traverse(node.getChild(i), x, y);
+      }
+    }
+  }
+
 
   /**
    * @return The current state of the TalkBack service, or {@code INACTIVE} if the service is not
