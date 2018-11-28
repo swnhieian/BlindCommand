@@ -33,7 +33,10 @@ public class SimpleParser {
         SoundPlayer.click();
     }
     public void delete() {
-        if (touchPoints.size() <= 1) {
+        if (touchPoints.size() == 0) {
+            SoundPlayer.ding();
+        } else if (touchPoints.size() == 1) {
+            touchPoints.remove(touchPoints.size() - 1);
             SoundPlayer.ding();
         } else {
             touchPoints.remove(touchPoints.size() - 1);

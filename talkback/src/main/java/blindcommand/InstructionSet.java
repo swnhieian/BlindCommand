@@ -1,5 +1,16 @@
 package blindcommand;
 
+
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.FeatureInfo;
+import android.content.pm.PackageManager;
+import android.hardware.Camera;
+import android.hardware.camera2.CameraManager;
+
+import com.google.android.accessibility.talkback.TalkBackService;
+
 import java.util.HashMap;
 
 public class InstructionSet {
@@ -15,8 +26,10 @@ public class InstructionSet {
         "weixinyy"// 微信语音
     };
     public static HashMap<String, String> instructions;
-    public static void init() {
-
+    public static TalkBackService service;
+    public static boolean lightStatus = false;
+    public static void init(TalkBackService service) {
+        InstructionSet.service = service;
         instructions = new HashMap<>();
         instructions.put("jieping", "截屏");
         instructions.put("jp", "截屏");
@@ -48,7 +61,59 @@ public class InstructionSet {
         instructions.put("erweima", "微信二维码");
         instructions.put("ewm", "微信二维码");
         instructions.put("wxewm", "微信二维码");
+        instructions.put("zhuomian", "返回桌面");
+        instructions.put("fanhuizhuomian", "返回桌面");
+        instructions.put("fhzm", "返回桌面");
+        instructions.put("zhm", "返回桌面");
+        instructions.put("zm", "返回桌面");
         //Set<String> keys = instructions.keySet();
         InstructionSet.set = instructions.keySet().toArray(new String[] {});
     }
+    public static void execute(String command) {
+        switch (command) {
+            case "打开微信":
+                Intent intent = new Intent();
+                ComponentName cmp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.LauncherUI");
+                intent.setAction(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setComponent(cmp);
+                InstructionSet.service.startActivity(intent);
+                break;
+            case "打开支付宝":
+                intent = new Intent();
+                cmp = new ComponentName("com.eg.android.AlipayGphone", "com.eg.android.AlipayGphone.AlipayLogin");
+                intent.setAction(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setComponent(cmp);
+                InstructionSet.service.startActivity(intent);
+                break;
+            case "打电话":
+                intent =  new Intent(Intent.ACTION_CALL_BUTTON);//跳转到拨号界面
+                InstructionSet.service.startActivity(intent);
+                break;
+            case "手电筒":
+                try {
+                    CameraManager manager = (CameraManager) InstructionSet.service.getSystemService(Context.CAMERA_SERVICE);
+                    InstructionSet.lightStatus = !InstructionSet.lightStatus;
+                    manager.setTorchMode("0", InstructionSet.lightStatus);
+                    SoundPlayer.tts("手电筒已"+ (InstructionSet.lightStatus?"打开":"关闭"));
+                } catch (Exception e) {
+                    InstructionSet.lightStatus = false;
+                }
+                break;
+            case "截屏":
+                break;
+            case "返回桌面":
+                intent =  new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                InstructionSet.service.startActivity(intent);
+                break;
+            default:
+                break;
+        }
+    }
+
 }

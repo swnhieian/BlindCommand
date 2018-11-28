@@ -1167,28 +1167,35 @@ public class TalkBackService extends AccessibilityService
     blindCommandController.performMotionEvent(event);
   }
   public AccessibilityNodeInfo perform(int x, int y) {
-    AccessibilityNodeInfo rootNode = getRootInActiveWindow();
+
     minBound = new Rect(-100, -100, metrics.widthPixels+100, metrics.heightPixels+100);
     res = null;
-    traverse(rootNode, x, y);
+    List<AccessibilityWindowInfo> windows = getWindows();
+    for (AccessibilityWindowInfo window:windows) {
+      AccessibilityNodeInfo rootNode = window.getRoot();
+      System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + window.getTitle());
+      traverse(rootNode, x, y);
+    }
     return res;
     //System.out.println("=====" + x + "," + y + "=====");
   }
   public void traverse(AccessibilityNodeInfo node, int x, int y) {
-   // System.out.println(node.getHintText() + "," + node.getViewIdResourceName() + "," + node.getText());
+    System.out.println("in traverse");
+    if (node != null)
+    System.out.println(node.getHintText() + "," + node.getViewIdResourceName() + "," + node.getText());
     Rect bounds = new Rect();
     node.getBoundsInScreen(bounds);
     boolean contained = bounds.contains(x, y);
     System.out.println(contained);
-    if (minBound.contains(bounds) && contained) {
+    if (minBound.contains(bounds) && contained && node.isClickable()) {
       minBound.set(bounds);
       res = node;
     }
-//    System.out.println(node.isFocusable());
-//
-//    System.out.println(bounds.left + "," + bounds.right + " " + bounds.top + "," + bounds.bottom);
-//    System.out.println(minBound.left + "," + minBound.right + " " + minBound.top + "," + minBound.bottom);
-//    System.out.println(bounds.contains(x, y));
+    System.out.println(node.isFocusable());
+
+    System.out.println(bounds.left + "," + bounds.right + " " + bounds.top + "," + bounds.bottom);
+    System.out.println(minBound.left + "," + minBound.right + " " + minBound.top + "," + minBound.bottom);
+    System.out.println(bounds.contains(x, y));
     if (contained) {
       for (int i = 0; i < node.getChildCount(); i++) {
         traverse(node.getChild(i), x, y);

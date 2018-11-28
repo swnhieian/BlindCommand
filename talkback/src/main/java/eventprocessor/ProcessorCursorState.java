@@ -60,6 +60,7 @@ public class ProcessorCursorState implements AccessibilityEventListener, OnDoubl
    * long, but it is OK if the delay is slightly noticeable. Mostly, we just want to avoid
    * preempting more important feedback.
    */
+  //private static final long SPEECH_DELAY = 150;
   private static final long SPEECH_DELAY = 150;
 
   /** Event types that are handled by ProcessorCursorState. */

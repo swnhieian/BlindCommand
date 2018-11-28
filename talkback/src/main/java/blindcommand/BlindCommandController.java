@@ -1,9 +1,17 @@
 package blindcommand;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.view.MotionEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityWindowInfo;
 
 import com.google.android.accessibility.talkback.TalkBackService;
+
+import java.util.Collections;
+import java.util.List;
 
 
 public class BlindCommandController {
@@ -13,7 +21,7 @@ public class BlindCommandController {
     public BlindCommandController(TalkBackService service) {
         this.service = service;
         this.state = State.Idle;
-        InstructionSet.init();
+        InstructionSet.init(service);
     }
 
     private long enterTime = -1;
@@ -24,7 +32,6 @@ public class BlindCommandController {
         //System.out.println("************************************************get event");
         switch (event.getAction()) {
             case MotionEvent.ACTION_HOVER_ENTER:
-                System.out.println("enter time" + System.currentTimeMillis());
                 enterTime = event.getEventTime();
                 break;
             case MotionEvent.ACTION_HOVER_MOVE:
@@ -32,21 +39,19 @@ public class BlindCommandController {
                 //System.out.println("Stay Time:" + time);
                 if (time > STAY_THRESHOLD && getState() == State.Idle) {
                     currentNode = getClickNode((int) event.getRawX(), (int) event.getRawY());
-                    if (lastNode != null && currentNode != lastNode) {
+                    if ((lastNode != null && !lastNode.equals(currentNode)) || (lastNode == null && currentNode != null)) {
                         dropClick();
                     }
                     lastNode = currentNode;
-
                 }
                 break;
             case MotionEvent.ACTION_HOVER_EXIT:
-                System.out.println("exit time" + System.currentTimeMillis());
                 time = event.getEventTime() - enterTime;
                 //System.out.println("Stay Time:" + time);
                 if (time > STAY_THRESHOLD && getState() == State.Idle) {
                     currentNode = getClickNode((int) event.getRawX(), (int) event.getRawY());
-                    if (lastNode != null && currentNode != lastNode) {
-                        dropClick();
+                    if (lastNode != null && currentNode !=lastNode) {
+                        dropClick(true);
                     }
                     lastNode = currentNode;
                 } else {
@@ -68,7 +73,16 @@ public class BlindCommandController {
     }
 
     public void dropClick() {
-        currentNode.performAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS);
+        dropClick(false);
+    }
+    public void dropClick(boolean exit) {
+        if (currentNode != null) {
+            if (currentNode.getWindow().getType() == AccessibilityWindowInfo.TYPE_INPUT_METHOD && exit) {
+                currentNode.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+            } else {
+                currentNode.performAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS);
+            }
+        }
     }
     public State getState() {
         return state;
@@ -108,6 +122,7 @@ public class BlindCommandController {
                         result = SimpleParser.getInstance().current();
                         SoundPlayer.tts("执行" + result);
                         //toast("accept:" + result);
+                        InstructionSet.execute(result);
                         SimpleParser.getInstance().clear();
                         this.setState(State.Idle);
                         break;

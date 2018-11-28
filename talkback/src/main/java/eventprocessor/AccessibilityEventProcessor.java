@@ -101,6 +101,7 @@ public class AccessibilityEventProcessor {
    * The minimum delay between window state change and automatic events. Note that this delay
    * doesn't affect response to user actions, so it is OK if it is a tad long.
    */
+  //public static final long DELAY_AUTO_AFTER_STATE = 200;
   public static final long DELAY_AUTO_AFTER_STATE = 200;
 
   /**
@@ -108,6 +109,7 @@ public class AccessibilityEventProcessor {
    * of the accessibility node tree. Note that this delay doesn't affect response to user actions,
    * so it is OK if it is a tad long.
    */
+  //public static final long DELAY_SELECTED_AFTER_FOCUS = 200;
   public static final long DELAY_SELECTED_AFTER_FOCUS = 200;
 
   /**
@@ -116,6 +118,7 @@ public class AccessibilityEventProcessor {
    * has determined that the minimum delay is ~150ms, but a 150ms delay should be barely
    * perceptible. The 150ms delay has been tested on a variety of Nexus/non-Nexus devices.
    */
+  //public static final long EVENT_PROCESSING_DELAY = 150;
   public static final long EVENT_PROCESSING_DELAY = 150;
 
   static final String CLASS_DIALER = "com.android.incallui.InCallActivity";

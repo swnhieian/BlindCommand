@@ -40,13 +40,13 @@ public class SoundPlayer {
 
     }
     public static void click() {
-        soundPool.play(1,1,1,0,0,1);
+        soundPool.play(1,1,1,0,0,1.5f);
     }
     public static void delete() {
-        soundPool.play(2,1,1,1,0,1);
+        soundPool.play(2,1,1,1,0,1.5f);
     }
     public static void ding() {
-        soundPool.play(3,1,1,1,0,1);
+        soundPool.play(3,1,1,1,0,1.5f);
     }
     public static void tts(String text) {
         System.out.println("tts: " + text +"   " + System.currentTimeMillis());
