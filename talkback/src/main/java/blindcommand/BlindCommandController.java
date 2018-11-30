@@ -15,6 +15,7 @@ import java.util.List;
 
 
 public class BlindCommandController {
+    final private boolean ENABLE_QUICK_INPUT = true;
     final private int STAY_THRESHOLD = 150;
     public enum State {Idle, Input, Select};
     private TalkBackService service;
@@ -55,10 +56,10 @@ public class BlindCommandController {
                     }
                     lastNode = currentNode;
                 } else {
-                    if (getState() != State.Input) {
-                        setState(State.Input);
+                    performClick(new TouchPoint(0, event));
+                    if (ENABLE_QUICK_INPUT) {
+                        service.disableTouchExploration();
                     }
-                    SimpleParser.getInstance().addTouchPoint(new TouchPoint(0, event));
                 }
                 lastNode = null;
                 enterTime = -STAY_THRESHOLD - 1000;
@@ -66,6 +67,12 @@ public class BlindCommandController {
             default:
                 break;
         }
+    }
+    public void performClick(TouchPoint tp) {
+        if (getState() != State.Input) {
+            setState(State.Input);
+        }
+        SimpleParser.getInstance().addTouchPoint(tp);
     }
 
     public AccessibilityNodeInfo getClickNode(int x, int y) {
@@ -94,6 +101,7 @@ public class BlindCommandController {
         service.kbdView.toast(info);
     }
     public boolean performGesture(int gestureId) {
+        System.out.println("perform gesture in controller:" + gestureId + state);
         switch (gestureId) {
             case TalkBackService.GESTURE_SWIPE_LEFT:
                 switch(state) {
@@ -101,6 +109,9 @@ public class BlindCommandController {
                         SimpleParser.getInstance().delete();
                         if (SimpleParser.getInstance().getSize() == 0) {
                             this.setState(State.Idle);
+                            if (ENABLE_QUICK_INPUT) {
+                                service.enableTouchExploration();
+                            }
                         }
                         break;
                     case Select:
@@ -125,6 +136,9 @@ public class BlindCommandController {
                         InstructionSet.execute(result);
                         SimpleParser.getInstance().clear();
                         this.setState(State.Idle);
+                        if (ENABLE_QUICK_INPUT) {
+                            service.enableTouchExploration();
+                        }
                         break;
                     default:
                         break;

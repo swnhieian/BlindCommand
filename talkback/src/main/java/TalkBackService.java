@@ -495,8 +495,21 @@ public class TalkBackService extends AccessibilityService
     mMenuManager.clearCache();
   }
 
+  private long lastTouchStartTime = -1;
+  private final long QUICK_TYPE_TIMEOUT = 300;
   @Override
   public void onAccessibilityEvent(AccessibilityEvent event) {
+
+    System.out.println("??????????????????????" + AccessibilityEvent.eventTypeToString(event.getEventType()) + ":" + event.getEventTime());
+    if (event.getEventType() == AccessibilityEvent.TYPE_TOUCH_INTERACTION_START) {
+      long time = event.getEventTime();
+      if (time - lastTouchStartTime < QUICK_TYPE_TIMEOUT) {
+        disableTouchExploration();
+      }
+      lastTouchStartTime = time;
+    }
+
+
     Performance perf = Performance.getInstance();
     EventId eventId = perf.onEventReceived(event);
 
@@ -1201,6 +1214,22 @@ public class TalkBackService extends AccessibilityService
         traverse(node.getChild(i), x, y);
       }
     }
+  }
+
+  public void enableTouchExploration() {
+    AccessibilityServiceInfo info = getServiceInfo();
+
+    info.flags |= AccessibilityServiceInfo.FLAG_REQUEST_TOUCH_EXPLORATION_MODE;
+
+    setServiceInfo(info);
+  }
+
+  public void disableTouchExploration() {
+    AccessibilityServiceInfo serviceInfo = getServiceInfo();
+
+    serviceInfo.flags &= ~AccessibilityServiceInfo.FLAG_REQUEST_TOUCH_EXPLORATION_MODE;
+
+    setServiceInfo(serviceInfo);
   }
 
 
