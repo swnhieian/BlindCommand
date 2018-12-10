@@ -46,6 +46,7 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
+import android.support.multidex.MultiDex;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.telephony.TelephonyManager;
@@ -497,15 +498,22 @@ public class TalkBackService extends AccessibilityService
 
   private long lastTouchStartTime = -1;
   private final long QUICK_TYPE_TIMEOUT = 300;
+
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+    MultiDex.install(base);
+  }
+
   @Override
   public void onAccessibilityEvent(AccessibilityEvent event) {
 
     System.out.println("??????????????????????" + AccessibilityEvent.eventTypeToString(event.getEventType()) + ":" + event.getEventTime());
     if (event.getEventType() == AccessibilityEvent.TYPE_TOUCH_INTERACTION_START) {
       long time = event.getEventTime();
-      if (time - lastTouchStartTime < QUICK_TYPE_TIMEOUT) {
-        disableTouchExploration();
-      }
+//      if (time - lastTouchStartTime < QUICK_TYPE_TIMEOUT) {
+//        disableTouchExploration();
+//      }
       lastTouchStartTime = time;
     }
 

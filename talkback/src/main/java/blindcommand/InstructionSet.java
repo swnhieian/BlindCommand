@@ -8,6 +8,8 @@ import android.content.pm.FeatureInfo;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraManager;
+import android.provider.MediaStore;
+import android.widget.Toast;
 
 import com.google.android.accessibility.talkback.TalkBackService;
 
@@ -25,47 +27,46 @@ public class InstructionSet {
         "weixinzf",// 微信支付
         "weixinyy"// 微信语音
     };
-    public static HashMap<String, String> instructions;
+    //public static HashMap<String, String> instructions;
     public static TalkBackService service;
     public static boolean lightStatus = false;
+    public static HashMap<String, Instruction> instructions;
+    public static String[][] ins = {
+            {"截屏", "JiePing"},
+            {"手电筒", "ShouDianTong"},
+            {"截屏", "JiePing"},
+            {"打电话", "DaDianHua"},
+            {"打电话", "DianHua"},
+            {"微信红包", "HongBao"},
+            {"朋友圈", "PengYouQuan"},
+            {"打开微信", "WeiXin"},
+            {"打开支付宝", "ZhiFuBao"},
+            {"打开录音机", "LuYinJi"},
+            {"微信语音", "YuYin"},
+            {"微信语音", "WeiXinYuYin"},
+            {"扫码付款", "FuKuan"},
+            {"微信二维码", "ErWeiMa"},
+            {"返回桌面", "ZhuoMian"},   //15
+            {"返回桌面", "FanHuiZhuoMian"},
+            {"打开相机", "XiangJi"},
+            {"打开淘宝", "TaoBao"},
+            {"打开邮箱", "YouXiang"},
+            {"打开闹钟", "NaoZhong"}, //20
+            {"搜索", "SouSuo"},
+            {"打开设置", "SheZhi"},
+            {"蓝牙", "LanYa"},
+            {"无线网络", "WuXianWang"},
+            {"撤销", "CheXiao"}    //25
+    };
     public static void init(TalkBackService service) {
         InstructionSet.service = service;
         instructions = new HashMap<>();
-        instructions.put("jieping", "截屏");
-        instructions.put("jp", "截屏");
-        instructions.put("shoudian", "手电筒");
-        instructions.put("shd", "手电筒");
-        instructions.put("sd", "手电筒");
-        instructions.put("shoudiantong", "手电筒");
-        instructions.put("shdt", "手电筒");
-        instructions.put("sdt", "手电筒");
-        instructions.put("dianhua", "打电话");
-        instructions.put("dh", "打电话");
-        instructions.put("dadianhua", "打电话");
-        instructions.put("ddh", "打电话");
-        instructions.put("hongbao", "微信红包");
-        instructions.put("hb", "微信红包");
-        instructions.put("pengyouquan", "朋友圈");
-        instructions.put("pyq", "朋友圈");
-        instructions.put("weixin", "打开微信");
-        instructions.put("wx", "打开微信");
-        instructions.put("zhifubao", "打开支付宝");
-        instructions.put("zfb", "打开支付宝");
-        instructions.put("zhfb", "打开支付宝");
-        instructions.put("yuyin", "微信语音");
-        instructions.put("yy", "微信语音");
-        instructions.put("fukuan", "扫码付款");
-        instructions.put("saomafukuan", "扫码付款");
-        instructions.put("smfk", "扫码付款");
-        instructions.put("fk", "扫码付款");
-        instructions.put("erweima", "微信二维码");
-        instructions.put("ewm", "微信二维码");
-        instructions.put("wxewm", "微信二维码");
-        instructions.put("zhuomian", "返回桌面");
-        instructions.put("fanhuizhuomian", "返回桌面");
-        instructions.put("fhzm", "返回桌面");
-        instructions.put("zhm", "返回桌面");
-        instructions.put("zm", "返回桌面");
+        for (String[] i:ins) {
+            String cmd = i[1].toLowerCase();
+            instructions.put(cmd, new Instruction(cmd, i[0]));
+            cmd = i[1].replaceAll("[a-z]+", "").toLowerCase();
+            instructions.put(cmd, new Instruction(cmd, i[0]));
+        }
         //Set<String> keys = instructions.keySet();
         InstructionSet.set = instructions.keySet().toArray(new String[] {});
     }
@@ -93,6 +94,10 @@ public class InstructionSet {
                 intent =  new Intent(Intent.ACTION_CALL_BUTTON);//跳转到拨号界面
                 InstructionSet.service.startActivity(intent);
                 break;
+            case "打开相机":
+                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                InstructionSet.service.startActivity(intent);
+                break;
             case "手电筒":
                 try {
                     CameraManager manager = (CameraManager) InstructionSet.service.getSystemService(Context.CAMERA_SERVICE);
@@ -112,6 +117,7 @@ public class InstructionSet {
                 InstructionSet.service.startActivity(intent);
                 break;
             default:
+                Toast.makeText(service, command, Toast.LENGTH_SHORT).show();
                 break;
         }
     }

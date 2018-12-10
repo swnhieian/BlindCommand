@@ -9,11 +9,13 @@ android {
 
 dependencies {
     compile 'com.google.guava:guava:22.0'
-    compile 'com.google.android.gms:play-services:8.4.0'
+    //compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.android.support:support-v4:27.0.0'
     compile 'com.android.support:appcompat-v7:27.0.0'
     compileOnly 'org.projectlombok:lombok:1.18.4'
     annotationProcessor 'org.projectlombok:lombok:1.18.4'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.4'
     testCompileOnly 'org.projectlombok:lombok:1.18.4'
+    implementation 'com.android.support:multidex:1.0.0'
 }
+

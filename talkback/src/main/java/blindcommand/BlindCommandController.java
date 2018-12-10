@@ -15,7 +15,7 @@ import java.util.List;
 
 
 public class BlindCommandController {
-    final private boolean ENABLE_QUICK_INPUT = true;
+    final private boolean ENABLE_QUICK_INPUT = false;
     final private int STAY_THRESHOLD = 150;
     public enum State {Idle, Input, Select};
     private TalkBackService service;
@@ -96,6 +96,9 @@ public class BlindCommandController {
     }
     public void setState(State s) {
         this.state = s;
+        if (this.state == State.Idle && ENABLE_QUICK_INPUT) {
+            service.enableTouchExploration();
+        }
     }
     public void toast(String info) {
         service.kbdView.toast(info);
@@ -109,13 +112,11 @@ public class BlindCommandController {
                         SimpleParser.getInstance().delete();
                         if (SimpleParser.getInstance().getSize() == 0) {
                             this.setState(State.Idle);
-                            if (ENABLE_QUICK_INPUT) {
-                                service.enableTouchExploration();
-                            }
                         }
                         break;
                     case Select:
-                        this.setState(State.Input);
+                        this.setState(State.Idle);
+                        SimpleParser.getInstance().clear();
                         break;
                     default:
                         break;

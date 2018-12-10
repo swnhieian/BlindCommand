@@ -52,29 +52,30 @@ public class SimpleParser {
         String res = "";
         if(candidateSet.size() > 0){
             candidateIndex = 0;
-            res = candidateSet.get(0).instruction;
+            res = candidateSet.get(0).instruction.getInstruction();
         }
-        return InstructionSet.instructions.get(res);
+        return res;
     }
     public String next() {
         if (candidateSet.size() == 0) return "";
         candidateIndex = (candidateIndex + 1) % candidateSet.size();
-        return InstructionSet.instructions.get(candidateSet.get(candidateIndex).instruction);
+        return candidateSet.get(candidateIndex).instruction.getInstruction();
     }
     public String previous() {
         if (candidateSet.size() == 0) return "";
         candidateIndex = (candidateIndex + 1) % candidateSet.size();
-        return InstructionSet.instructions.get(candidateSet.get(candidateIndex).instruction);
+        return candidateSet.get(candidateIndex).instruction.getInstruction();
     }
     public String current() {
         if (candidateSet.size() == 0) return "";
-        return InstructionSet.instructions.get(candidateSet.get(candidateIndex).instruction);
+        return candidateSet.get(candidateIndex).instruction.getInstruction();
     }
     public void clear() {
         if (candidateSet != null)
             candidateSet.clear();
         if (touchPoints != null)
             touchPoints.clear();
+        SoundPlayer.ding();
     }
 
 
@@ -102,7 +103,7 @@ public class SimpleParser {
 
     @AllArgsConstructor
     class Entry {
-        public String instruction;
+        public Instruction instruction;
         /*
         public int lastPos;
         public int curPos;
@@ -110,8 +111,8 @@ public class SimpleParser {
         public double poss;
         public String content;
 
-        public Entry(String instruction, double poss){
-            this(instruction, poss, InstructionSet.instructions.get(instruction));
+        public Entry(Instruction instruction, double poss){
+            this(instruction, poss, instruction.getInstruction());
         }
 
         public String info(){
@@ -125,38 +126,43 @@ public class SimpleParser {
         // first filter
         for(String ist: InstructionSet.set){
             if(ist.length() >= touchPoints.size()){
-                set.add(new Entry(ist, 100.0));
+                set.add(new Entry(InstructionSet.instructions.get(ist), 0));
             }
         }
         // 第一次点击考虑绝对位置
         Vector2 absFirstTouchPos = touchPoints.get(0).getPosition();
         for(Entry e: set){
-            Vector2 firstKeyCenter = keyOfValue(e.instruction.charAt(0)).getCenter();
+            Vector2 firstKeyCenter = keyOfValue(e.instruction.getCommand().charAt(0)).getCenter();
             double sd = Vector2.sqrDistance(relativeCoordinate(firstKeyCenter), relativeCoordinate(absFirstTouchPos));
             //System.out.println("" + sd + " " + e.instruction);
-            e.poss *= Gauss2(1.0, sd);
+            e.poss += logGaussian(absFirstTouchPos.x, firstKeyCenter.x, 5.0/3);
+            e.poss += logGaussian(absFirstTouchPos.y, firstKeyCenter.y, 0.5);
+            //e.poss *= Gauss2(1.0, sd);
         }
 
 
         //  之后的点击考虑相对位置
         for(int i = 1; i < touchPoints.size(); i ++) {
-            double maxPoss = 0.0;
+            double maxPoss = Double.NEGATIVE_INFINITY;
             Vector2 actualShift = Vector2.sub(touchPoints.get(i).getPosition(), touchPoints.get(i - 1).getPosition());
 
             for (Entry e : set) {
-                char curChar = e.instruction.charAt(i);
-                char lastChar = e.instruction.charAt(i - 1);
+                char curChar = e.instruction.getCommand().charAt(i);
+                char lastChar = e.instruction.getCommand().charAt(i - 1);
                 Vector2 expectedShift = Vector2.sub(keyOfValue(curChar).getCenter(), keyOfValue(lastChar).getCenter());
                 double sd = Vector2.sqrDistance(relativeCoordinate(expectedShift), relativeCoordinate(actualShift));
-                e.poss *= Gauss2(1.0, sd);
+                e.poss += logGaussian(actualShift.x, expectedShift.x, 5.0/3);
+                e.poss += logGaussian(actualShift.y, expectedShift.y, 0.5);
+                //e.poss *= Gauss2(1.0, sd);
                 //System.out.println("" + sd + " " + curChar + " " + e.instruction + " "  + e.poss);
+                System.out.println(e.instruction + " " + e.poss);
                 maxPoss = Math.max(e.poss, maxPoss);
             }
 
             Iterator<Entry> it = set.iterator();
             while (it.hasNext()) {
                 Entry e = it.next();
-                if (e.poss < maxPoss * 0.01) {
+                if (e.poss < maxPoss * 100) {
                     it.remove();
                 }
             }
@@ -174,10 +180,10 @@ public class SimpleParser {
             }
         });
 
-        Log.i("Entry set size", "parse: " + set.size());
+        System.out.println("Entry set size" +  "parse: " + set.size());
 
         for(Entry e: set){
-            Log.i("Entry Info", "parse: " + e.info());
+            System.out.println("Entry Info" + "parse: " + e.info());
         }
         return set;
     }
@@ -233,6 +239,14 @@ public class SimpleParser {
     }
     private static double Gauss2(double sigma, double sd){
         return Math.exp(-0.5 * sd / sigma / sigma);
+    }
+
+    private static double Gaussian(double x, double mu, double sigma) {
+        return Math.exp(-(x-mu)*(x-mu)/2/sigma/sigma)/(sigma * Math.sqrt(2*Math.PI));
+    }
+
+    private static double logGaussian(double x, double mu, double sigma) {
+        return -Math.log(sigma*Math.sqrt(2*Math.PI)) - (x - mu)*(x-mu)/2/sigma/sigma;
     }
 
     private MyKey keyOfValue(char c){
