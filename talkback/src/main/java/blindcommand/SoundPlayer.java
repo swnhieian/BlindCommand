@@ -26,7 +26,12 @@ public class SoundPlayer {
             @Override
             public void onInit(int i) {
                 if (i == TextToSpeech.SUCCESS) {
-                    int result = tts.setLanguage(Locale.CHINA);
+                    int result;
+                    if (Utility.getLanguage().equals("CN")) {
+                        result = tts.setLanguage(Locale.CHINA);
+                    } else {
+                        result = tts.setLanguage(Locale.US);
+                    }
                     if (result != TextToSpeech.LANG_COUNTRY_AVAILABLE
                         && result != TextToSpeech.LANG_AVAILABLE) {
                         Toast.makeText(SoundPlayer.context, "TTS暂不支持", Toast.LENGTH_SHORT).show();
@@ -52,4 +57,15 @@ public class SoundPlayer {
         System.out.println("tts: " + text +"   " + System.currentTimeMillis());
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
+//    public static void tts(Operations oper) {
+//
+//        switch (oper) {
+//            case CLEAER_ALL:
+//
+//        }
+//    }
+//    enum Operations {
+//        CLEAER_ALL
+//    }
+//    public static
 }

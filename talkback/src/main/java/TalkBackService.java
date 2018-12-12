@@ -131,8 +131,10 @@ import java.util.List;
 import java.util.Locale;
 
 import blindcommand.BlindCommandController;
+import blindcommand.InstructionSet;
 import blindcommand.KBView;
 import blindcommand.SoundPlayer;
+import blindcommand.Utility;
 
 /** An {@link AccessibilityService} that provides spoken, haptic, and audible feedback. */
 public class TalkBackService extends AccessibilityService
@@ -1123,6 +1125,9 @@ public class TalkBackService extends AccessibilityService
   public KBView kbdView;
   @Override
   protected void onServiceConnected() {
+
+    Utility.service = this;
+    InstructionSet.init(this);
 
 
     LogUtils.log(this, Log.VERBOSE, "System bound to service.");

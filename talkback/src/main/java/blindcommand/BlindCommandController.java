@@ -15,14 +15,14 @@ import java.util.List;
 
 
 public class BlindCommandController {
-    final private boolean ENABLE_QUICK_INPUT = false;
+    final private boolean ENABLE_QUICK_INPUT = true;
     final private int STAY_THRESHOLD = 150;
     public enum State {Idle, Input, Select};
     private TalkBackService service;
     public BlindCommandController(TalkBackService service) {
         this.service = service;
         this.state = State.Idle;
-        InstructionSet.init(service);
+
     }
 
     private long enterTime = -1;
