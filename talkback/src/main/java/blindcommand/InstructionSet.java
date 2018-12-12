@@ -16,17 +16,7 @@ import com.google.android.accessibility.talkback.TalkBackService;
 import java.util.HashMap;
 
 public class InstructionSet {
-    public static String[] set = {
-        "jieping", //  截屏
-        "shoudian",//  手电筒
-        "dianhua",// 打电话
-        "shangwang",// 网络
-        "yinliangda",// 音量调节
-        "yinliangxiao",
-        "weixinhb",// 微信红包
-        "weixinzf",// 微信支付
-        "weixinyy"// 微信语音
-    };
+    public static String[] set;
     //public static HashMap<String, String> instructions;
     public static TalkBackService service;
     public static boolean lightStatus = false;

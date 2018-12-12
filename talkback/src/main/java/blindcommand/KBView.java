@@ -118,18 +118,6 @@ public class KBView extends GridLayout {
                     beginPosY = 0.0;
                     curPosX = 0.0;
                     curPosY = 0.0;
-
-                    //Log.i("touch info", "onTouch: " + a.info());
-
-//                    if(toast != null){
-//                        toast.cancel();
-//                    }
-                    //String result = "test";
-//                    toast = Toast.makeText(getContext(), result, Toast.LENGTH_SHORT);
-//                    toast.setGravity(Gravity.TOP, 0, 200);
-//                    toast.show();
-                    //SimpleParser.getInstance().add(a);
-                    //SoundPlayer.click();
                     break;
                 default:
                     break;

@@ -78,10 +78,6 @@ public class SimpleParser {
         SoundPlayer.ding();
     }
 
-
-
-
-
     public void setKeyboardInfo(int width, int height){
         this.width = (double)width;
         this.height = (double)height;
@@ -104,10 +100,6 @@ public class SimpleParser {
     @AllArgsConstructor
     class Entry {
         public Instruction instruction;
-        /*
-        public int lastPos;
-        public int curPos;
-        */
         public double poss;
         public String content;
 
@@ -131,12 +123,15 @@ public class SimpleParser {
         }
         // 第一次点击考虑绝对位置
         Vector2 absFirstTouchPos = touchPoints.get(0).getPosition();
+        Vector2 relFirstTouchPos = relativeCoordinate(absFirstTouchPos);
         for(Entry e: set){
             Vector2 firstKeyCenter = keyOfValue(e.instruction.getCommand().charAt(0)).getCenter();
-            double sd = Vector2.sqrDistance(relativeCoordinate(firstKeyCenter), relativeCoordinate(absFirstTouchPos));
+            Vector2 firstKeyRelCenter = relativeCoordinate(firstKeyCenter);
             //System.out.println("" + sd + " " + e.instruction);
-            e.poss += logGaussian(absFirstTouchPos.x, firstKeyCenter.x, 5.0/3);
-            e.poss += logGaussian(absFirstTouchPos.y, firstKeyCenter.y, 0.5);
+//            e.poss += logGaussian(absFirstTouchPos.x, firstKeyCenter.x, 5.0/3);
+//            e.poss += logGaussian(absFirstTouchPos.y, firstKeyCenter.y, 0.5);
+              e.poss += logGaussian(relFirstTouchPos.x, firstKeyRelCenter.x, 5.0/3);
+              e.poss += logGaussian(relFirstTouchPos.y, firstKeyRelCenter.y, 0.5);
             //e.poss *= Gauss2(1.0, sd);
         }
 
@@ -145,14 +140,15 @@ public class SimpleParser {
         for(int i = 1; i < touchPoints.size(); i ++) {
             double maxPoss = Double.NEGATIVE_INFINITY;
             Vector2 actualShift = Vector2.sub(touchPoints.get(i).getPosition(), touchPoints.get(i - 1).getPosition());
+            Vector2 relActualShift = relativeCoordinate(actualShift);
 
             for (Entry e : set) {
                 char curChar = e.instruction.getCommand().charAt(i);
                 char lastChar = e.instruction.getCommand().charAt(i - 1);
-                Vector2 expectedShift = Vector2.sub(keyOfValue(curChar).getCenter(), keyOfValue(lastChar).getCenter());
-                double sd = Vector2.sqrDistance(relativeCoordinate(expectedShift), relativeCoordinate(actualShift));
-                e.poss += logGaussian(actualShift.x, expectedShift.x, 5.0/3);
-                e.poss += logGaussian(actualShift.y, expectedShift.y, 0.5);
+                Vector2 relExpectedShift = relativeCoordinate(Vector2.sub(keyOfValue(curChar).getCenter(), keyOfValue(lastChar).getCenter()));
+
+                e.poss += logGaussian(relActualShift.x, relExpectedShift.x, 5.0/3);
+                e.poss += logGaussian(relActualShift.y, relExpectedShift.y, 0.5);
                 //e.poss *= Gauss2(1.0, sd);
                 //System.out.println("" + sd + " " + curChar + " " + e.instruction + " "  + e.poss);
                 System.out.println(e.instruction + " " + e.poss);
@@ -170,16 +166,21 @@ public class SimpleParser {
         Collections.sort(set, new Comparator<Entry>() {
             @Override
             public int compare(Entry e1, Entry e2) {
+                if (e1.poss > e2.poss) {
+                    return -1;
+                }
                 if (e1.poss < e2.poss) {
                     return 1;
                 }
-                if (e1.poss > e2.poss) {
+                if (e1.instruction.getCommand().length() < e2.instruction.getCommand().length()){
                     return -1;
+                }
+                if (e1.instruction.getCommand().length() > e2.instruction.getCommand().length()){
+                    return 1;
                 }
                 return 0;
             }
         });
-
         System.out.println("Entry set size" +  "parse: " + set.size());
 
         for(Entry e: set){
@@ -231,8 +232,6 @@ public class SimpleParser {
             }
         }
 
-        //keys.add(new MyKey('-', 0, keyHeight * 2, keyWidth * 1.5, keyHeight));
-        // keys.add(new MyKey('+', keyWidth * 8.5, keyHeight * 2, keyWidth * 1.5, keyHeight));
         for(MyKey key: keys){
             Log.i("insert key", "initKeys: " + key.info());
         }
