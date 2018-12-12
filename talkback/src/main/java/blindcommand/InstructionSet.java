@@ -24,7 +24,6 @@ public class InstructionSet {
     public static String[][] ins = {
             {"截屏", "JiePing"},
             {"手电筒", "ShouDianTong"},
-            {"截屏", "JiePing"},
             {"打电话", "DaDianHua"},
             {"打电话", "DianHua"},
             {"微信红包", "HongBao"},

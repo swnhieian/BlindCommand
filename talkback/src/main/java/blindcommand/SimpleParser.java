@@ -63,7 +63,7 @@ public class SimpleParser {
     }
     public String previous() {
         if (candidateSet.size() == 0) return "";
-        candidateIndex = (candidateIndex + 1) % candidateSet.size();
+        candidateIndex = (candidateIndex + candidateSet.size() - 1) % candidateSet.size();
         return candidateSet.get(candidateIndex).instruction.getInstruction();
     }
     public String current() {
