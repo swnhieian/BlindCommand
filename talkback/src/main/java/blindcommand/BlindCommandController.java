@@ -104,7 +104,7 @@ public class BlindCommandController {
         service.kbdView.toast(info);
     }
     public boolean performGesture(int gestureId) {
-        System.out.println("perform gesture in controller:" + gestureId + state);
+        System.out.println("perform gesture in controller:" + gestureId +" " + state);
         switch (gestureId) {
             case TalkBackService.GESTURE_SWIPE_LEFT:
                 switch(state) {
@@ -157,6 +157,7 @@ public class BlindCommandController {
                     default:
                         break;
                 }
+                break;
             case TalkBackService.GESTURE_SWIPE_DOWN:
                 switch (state) {
                     case Input:
@@ -173,6 +174,7 @@ public class BlindCommandController {
                     default:
                         break;
                 }
+                break;
             default:
                 break;
         }
