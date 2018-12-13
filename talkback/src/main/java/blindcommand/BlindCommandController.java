@@ -14,6 +14,8 @@ import java.util.Collections;
 import java.util.List;
 
 
+
+
 public class BlindCommandController {
     final private boolean ENABLE_QUICK_INPUT = true;
     final private int STAY_THRESHOLD = 150;
@@ -132,7 +134,12 @@ public class BlindCommandController {
                         break;
                     case Select:
                         result = SimpleParser.getInstance().current();
-                        SoundPlayer.tts("执行" + result);
+                        System.out.println("111111111" + Utility.getLanguage());
+                        if (Utility.getLanguage().equals("CN")) {
+                            SoundPlayer.tts("执行" + result);
+                        } else {
+                            SoundPlayer.tts("Execute " + result);
+                        }
                         //toast("accept:" + result);
                         InstructionSet.execute(result);
                         SimpleParser.getInstance().clear();

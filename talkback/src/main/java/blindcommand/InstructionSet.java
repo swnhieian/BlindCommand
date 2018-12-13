@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraManager;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import com.google.android.accessibility.talkback.TalkBackService;
@@ -140,6 +141,11 @@ public class InstructionSet {
                 intent =  new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                InstructionSet.service.startActivity(intent);
+                break;
+            case "Open Settings":
+            case "打开设置":
+                intent =  new Intent(Settings.ACTION_SETTINGS);
                 InstructionSet.service.startActivity(intent);
                 break;
             default:
