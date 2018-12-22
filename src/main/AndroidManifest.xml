@@ -23,8 +23,6 @@
 
 
 
-    <!--&lt;!&ndash; Required to write log. &ndash;&gt;-->
-    <!--<uses-permission android:name="android.permission.write_external_storage" />-->
     <!-- Required to monitor phone busy state. -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
