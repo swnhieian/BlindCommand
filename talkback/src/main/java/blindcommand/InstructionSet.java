@@ -1,6 +1,4 @@
 package blindcommand;
-
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +9,14 @@ import android.hardware.camera2.CameraManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.widget.Toast;
+// import android.util.Log;
 
 import com.google.android.accessibility.talkback.TalkBackService;
 
 import java.util.HashMap;
 
 public class InstructionSet {
+    private static final String TAG = "InstructionSet.";
     public static String[] set;
     //public static HashMap<String, String> instructions;
     public static TalkBackService service;
@@ -92,6 +92,8 @@ public class InstructionSet {
         InstructionSet.set = instructions.keySet().toArray(new String[] {});
     }
     public static void execute(String command) {
+        final String SUBTAG = "execute";
+        Log.d(TAG + SUBTAG, "command: " + command);
         switch (command) {
             case "Open Wechat":
             case "打开微信":

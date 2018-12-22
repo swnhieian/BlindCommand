@@ -21,6 +21,10 @@
         android:label="@string/permission_labeling_label"
         android:protectionLevel="signature" />
 
+
+
+    <!--&lt;!&ndash; Required to write log. &ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.write_external_storage" />-->
     <!-- Required to monitor phone busy state. -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
@@ -59,7 +63,8 @@
     <application
         android:icon="@drawable/icon"
         android:label="@string/talkback_title"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        tools:replace="android:label">
 
         <receiver android:name=".BootReceiver"
             android:directBootAware="true"

@@ -30,4 +30,9 @@ public class TouchPoint {
     public String info() {
         return String.format(Locale.ENGLISH,"(x, y): (%f, %f)", x, y);
     }
+
+    @Override
+    public String toString() {
+        return String.format(Locale.ENGLISH, "(%.2f, %.2f)", x, y);
+    }
 }

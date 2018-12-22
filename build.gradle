@@ -19,6 +19,9 @@ allprojects {
     repositories {
         jcenter()
         google()
+        maven{
+            url "https://jitpack.io"
+        }
     }
 }
 
@@ -42,9 +45,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
     compile project(':switchaccess')
     compile project(':talkback')
+//    compile files('libs/android-logging-log4j-1.0.3.jar')
+//    compile files('libs/log4j-1.2.17.jar')
 }

@@ -1,6 +1,6 @@
 package blindcommand;
 
-import android.util.Log;
+// import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 public class SimpleParser {
     static SimpleParser instance;
     private List<TouchPoint> touchPoints;
+    private static final String TAG = "Parser.";
     private SimpleParser(){
         touchPoints = new ArrayList<>();
     }
@@ -29,10 +30,13 @@ public class SimpleParser {
 
     public void addTouchPoint(TouchPoint tp) {
         touchPoints.add(tp);
-        System.out.println("play time" + System.currentTimeMillis());
+        final String SUBTAG = "addTouchPoint";
+        Log.d(TAG + SUBTAG, String.format("Touch point: %s, size: %d" , tp.toString(), touchPoints.size()));
         SoundPlayer.click();
     }
     public void delete() {
+        final String SUBTAG = "delete";
+        int preSize = touchPoints.size();
         if (touchPoints.size() == 0) {
             SoundPlayer.ding();
         } else if (touchPoints.size() == 1) {
@@ -42,11 +46,14 @@ public class SimpleParser {
             touchPoints.remove(touchPoints.size() - 1);
             SoundPlayer.delete();
         }
+        int curSize = touchPoints.size();
+        Log.d(TAG + SUBTAG, String.format("size: %d -> %d", preSize, curSize));
     }
     public int getSize() {
         return touchPoints.size();
     }
     public String parseInput() {
+        final String SUBTAG = "parseInput";
         candidateSet = parse();
         removeDuplicateWithOrder(candidateSet);
         String res = "";
@@ -54,34 +61,63 @@ public class SimpleParser {
             candidateIndex = 0;
             res = candidateSet.get(0).instruction.getInstruction();
         }
+        Log.d(TAG + SUBTAG, "Parse Result: ");
+        for(Entry entry: candidateSet){
+            Log.d(TAG + SUBTAG, "\t" + entry.toString());
+        }
         return res;
     }
     public String next() {
-        if (candidateSet.size() == 0) return "";
+        final String SUBTAG = "next";
+        if (candidateSet.size() == 0) {
+            Log.d(TAG + SUBTAG, "Candidate list size: 0");
+            return "";
+        }
         candidateIndex = (candidateIndex + 1) % candidateSet.size();
-        return candidateSet.get(candidateIndex).instruction.getInstruction();
+        Entry selectedCandidate = candidateSet.get(candidateIndex);
+        Log.d(TAG + SUBTAG, "candidate index: " + candidateIndex);
+        Log.d(TAG + SUBTAG, "candidate: " + selectedCandidate.toString());
+        return selectedCandidate.instruction.getInstruction();
     }
     public String previous() {
-        if (candidateSet.size() == 0) return "";
+        final String SUBTAG = "previous";
+        if (candidateSet.size() == 0) {
+            Log.d(TAG + SUBTAG, "Candidate list size: 0");
+            return "";
+        }
         candidateIndex = (candidateIndex + candidateSet.size() - 1) % candidateSet.size();
-        return candidateSet.get(candidateIndex).instruction.getInstruction();
+        Entry selectedCandidate = candidateSet.get(candidateIndex);
+        Log.d(TAG + SUBTAG, "candidate index: " + candidateIndex);
+        Log.d(TAG + SUBTAG, "candidate: " + selectedCandidate.toString());
+        return selectedCandidate.instruction.getInstruction();
     }
     public String current() {
-        if (candidateSet.size() == 0) return "";
-        return candidateSet.get(candidateIndex).instruction.getInstruction();
+        final String SUBTAG = "current";
+        if (candidateSet.size() == 0) {
+            Log.d(TAG + SUBTAG, "Candidate list size: 0");
+            return "";
+        }
+        Entry selectedCandidate = candidateSet.get(candidateIndex);
+        Log.d(TAG + SUBTAG, "candidate index: " + candidateIndex);
+        Log.d(TAG + SUBTAG, "candidate: " + selectedCandidate.toString());
+        return selectedCandidate.instruction.getInstruction();
     }
     public void clear() {
+        final String SUBTAG = "clear";
         if (candidateSet != null)
             candidateSet.clear();
         if (touchPoints != null)
             touchPoints.clear();
         SoundPlayer.ding();
+
+        Log.d(TAG + SUBTAG, "Clear input list.");
     }
 
     public void setKeyboardInfo(int width, int height){
+        final String SUBTAG = "setKeyboardInfo";
         this.width = (double)width;
         this.height = (double)height;
-        Log.i("Set Keyboard Size",width + " " + height);
+        Log.d(TAG + SUBTAG,width + " " + height);
         initKeys();
     }
 
@@ -109,6 +145,11 @@ public class SimpleParser {
 
         public String info(){
             return String.format(Locale.ENGLISH,"(%s, %f)", instruction, poss);
+        }
+
+        @Override
+        public String toString(){
+            return String.format(Locale.ENGLISH, "(%s, %s, %.2f)", instruction.getCommand(), instruction.getInstruction(), poss);
         }
 
     }
@@ -217,7 +258,7 @@ public class SimpleParser {
         double keyHeight = height / 3;
         keySize = new Vector2(keyWidth, keyHeight);
 
-        Log.i("Keysize", "initKeys: " + keyWidth + " " + keyHeight);
+        Log.i(TAG + "initKeys", "initKeys: " + keyWidth + " " + keyHeight);
         double x_offset = 0;
         for(int i = 0; i < keyValue.length; i ++) {
             switch(i){
@@ -251,7 +292,4 @@ public class SimpleParser {
     private MyKey keyOfValue(char c){
         return map.get(c);
     }
-
-
-
 }

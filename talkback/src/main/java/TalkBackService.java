@@ -17,7 +17,9 @@
 package com.google.android.accessibility.talkback;
 
 import static com.google.android.accessibility.utils.Performance.EVENT_ID_UNTRACKED;
+import static java.util.Collections.singleton;
 
+import android.Manifest;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityService.MagnificationController.OnMagnificationChangedListener;
 import android.accessibilityservice.AccessibilityServiceInfo;
@@ -65,10 +67,13 @@ import android.view.accessibility.AccessibilityWindowInfo;
 import android.widget.CheckBox;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.talkback.TalkBackPreferencesActivity;
 import com.google.android.accessibility.compositor.Compositor;
 import com.google.android.accessibility.compositor.EventFilter;
 import com.google.android.accessibility.compositor.GlobalVariables;
+import com.google.android.accessibility.talkback.NotificationActivity;
 import com.google.android.accessibility.talkback.contextmenu.ListMenuManager;
 import com.google.android.accessibility.talkback.contextmenu.MenuManager;
 import com.google.android.accessibility.talkback.contextmenu.MenuManagerWrapper;
@@ -124,6 +129,8 @@ import com.google.android.accessibility.utils.output.FeedbackController;
 import com.google.android.accessibility.utils.output.SpeechController;
 import com.google.android.accessibility.utils.output.SpeechController.UtteranceCompleteRunnable;
 import com.google.android.accessibility.utils.output.SpeechControllerImpl;
+import com.intentfilter.androidpermissions.PermissionManager;
+
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -133,6 +140,7 @@ import java.util.Locale;
 import blindcommand.BlindCommandController;
 import blindcommand.InstructionSet;
 import blindcommand.KBView;
+import blindcommand.Log4jConfigure;
 import blindcommand.SoundPlayer;
 import blindcommand.Utility;
 
@@ -510,7 +518,7 @@ public class TalkBackService extends AccessibilityService
   @Override
   public void onAccessibilityEvent(AccessibilityEvent event) {
 
-    System.out.println("??????????????????????" + AccessibilityEvent.eventTypeToString(event.getEventType()) + ":" + event.getEventTime());
+    // System.out.println("??????????????????????" + AccessibilityEvent.eventTypeToString(event.getEventType()) + ":" + event.getEventTime());
     if (event.getEventType() == AccessibilityEvent.TYPE_TOUCH_INTERACTION_START) {
       long time = event.getEventTime();
 //      if (time - lastTouchStartTime < QUICK_TYPE_TIMEOUT) {
@@ -792,7 +800,24 @@ public class TalkBackService extends AccessibilityService
   @Override
   protected boolean onGesture(int gestureId) {
     //gesture Id : 1 up, 2 down, 3 left, 4 right
-    System.out.println("==========================================================gesture????????????????????" + gestureId);
+    // System.out.println("==========================================================gesture????????????????????" + gestureId);
+    switch(gestureId){
+      case 1:
+        blindcommand.Log.d("TalkBack.onGesture", "Swipe up not on overlay.");
+        break;
+      case 2:
+        blindcommand.Log.d("TalkBack.onGesture", "Swipe down not on overlay.");
+        break;
+      case 3:
+        blindcommand.Log.d("TalkBack.onGesture", "Swipe left not on overlay.");
+        break;
+      case 4:
+        blindcommand.Log.d("TalkBack.onGesture", "Swipe right not on overlay.");
+        break;
+      default:
+        break;
+    }
+
     if (blindCommandController.getState() != BlindCommandController.State.Idle) {
       return blindCommandController.performGesture(gestureId);
     }
@@ -1128,16 +1153,16 @@ public class TalkBackService extends AccessibilityService
 
     Utility.service = this;
     InstructionSet.init(this);
-
-
+    PermissionManager permissionManager = PermissionManager.getInstance(this);
+    final Context contextt = this;
     LogUtils.log(this, Log.VERBOSE, "System bound to service.");
 
-    WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
+    final WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
     metrics = new DisplayMetrics();
     wm.getDefaultDisplay().getMetrics(metrics);
     int touchPadHeight = metrics.heightPixels / 3;
     int candidateHeight = metrics.heightPixels / 30;
-    WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+    final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
         metrics.widthPixels,
         touchPadHeight ,
         0,
@@ -1147,10 +1172,25 @@ public class TalkBackService extends AccessibilityService
         PixelFormat.TRANSLUCENT);
     params.gravity = Gravity.START | Gravity.TOP;
 
-    kbdView = new KBView(this, params);
-    wm.addView(kbdView, params);
     SoundPlayer.setContext(this);
-    System.out.println("here+++++++++++++++" + "window view added!");
+
+    permissionManager.checkPermissions(singleton(Manifest.permission.WRITE_EXTERNAL_STORAGE), new PermissionManager.PermissionRequestListener() {
+      @Override
+      public void onPermissionGranted() {
+        Toast.makeText(contextt, "Permissions Granted", Toast.LENGTH_SHORT).show();
+        System.out.println("**********************");
+        blindcommand.Log4jConfigure.configure();
+        System.out.println("here+++++++++++++++" + "window view added!");
+        kbdView = new KBView(contextt, params);
+        wm.addView(kbdView, params);
+      }
+
+      @Override
+      public void onPermissionDenied() {
+        Toast.makeText(contextt, "Permissions Denied", Toast.LENGTH_SHORT).show();
+      }
+    });
+
 
     // The service must be connected before getFingerprintGestureController() is called, thus we
     // cannot initialize fingerprint gesture detection in onCreate().
@@ -1193,38 +1233,52 @@ public class TalkBackService extends AccessibilityService
     blindCommandController.performMotionEvent(event);
   }
   public AccessibilityNodeInfo perform(int x, int y) {
+    final String TAG = "TalkBack.perform";
 
     minBound = new Rect(-100, -100, metrics.widthPixels+100, metrics.heightPixels+100);
     res = null;
     List<AccessibilityWindowInfo> windows = getWindows();
     for (AccessibilityWindowInfo window:windows) {
       AccessibilityNodeInfo rootNode = window.getRoot();
-      System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + window.getTitle());
+      // System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + window.getTitle());
       traverse(rootNode, x, y);
     }
+    blindcommand.Log.d(TAG, "Node Info:");
+    blindcommand.Log.d(TAG, "\tHint text: " + res.getHintText());
+    blindcommand.Log.d(TAG, "\tView id resouece name: " + res.getViewIdResourceName());
+    blindcommand.Log.d(TAG, "\ttext: " + res.getText());
+
     return res;
     //System.out.println("=====" + x + "," + y + "=====");
   }
   public void traverse(AccessibilityNodeInfo node, int x, int y) {
-    System.out.println("in traverse");
-    if (node != null)
-    System.out.println(node.getHintText() + "," + node.getViewIdResourceName() + "," + node.getText());
-    Rect bounds = new Rect();
-    node.getBoundsInScreen(bounds);
-    boolean contained = bounds.contains(x, y);
-    System.out.println(contained);
-    if (minBound.contains(bounds) && contained && node.isClickable()) {
-      minBound.set(bounds);
-      res = node;
-    }
-    System.out.println(node.isFocusable());
+//    System.out.println("in traverse");
+    final String TAG = "TalkBack.traverse";
+//    Log.d(TAG, String.format("in traverse find: (%d, %d)", x, y));
+    if (node != null){
+//      Log.d(TAG, "Node Info:");
+//      Log.d(TAG, "\tHint text: " + node.getHintText());
+//      Log.d(TAG, "\tView id resouece name: " + node.getViewIdResourceName());
+//      Log.d(TAG, "\ttext: " + node.getText());
 
-    System.out.println(bounds.left + "," + bounds.right + " " + bounds.top + "," + bounds.bottom);
-    System.out.println(minBound.left + "," + minBound.right + " " + minBound.top + "," + minBound.bottom);
-    System.out.println(bounds.contains(x, y));
-    if (contained) {
-      for (int i = 0; i < node.getChildCount(); i++) {
-        traverse(node.getChild(i), x, y);
+      Rect bounds = new Rect();
+      node.getBoundsInScreen(bounds);
+      boolean contained = bounds.contains(x, y);
+      // System.out.println(contained);
+//      Log.d(TAG, "\tisContained: " + contained);
+      if (minBound.contains(bounds) && contained && node.isClickable()) {
+        minBound.set(bounds);
+        res = node;
+      }
+//      Log.d(TAG, "\tisFocusable: " + node.isFocusable());
+//      Log.d(TAG, String.format("minBound: %d, %d, %d, %d", minBound.left, minBound.right, minBound.top, minBound.bottom));
+//      Log.d(TAG, String.format("curBound: %d, %d, %d, %d", bounds.left, bounds.right, bounds.top, bounds.bottom));
+
+//      System.out.println(bounds.contains(x, y));
+      if (contained) {
+        for (int i = 0; i < node.getChildCount(); i++) {
+          traverse(node.getChild(i), x, y);
+        }
       }
     }
   }

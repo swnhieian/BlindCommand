@@ -3,7 +3,7 @@ package blindcommand;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
+// import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,6 +21,7 @@ public class KBView extends GridLayout {
     TalkBackService service;
     BlindCommandController controller;
 
+    public static final String TAG = "KBView.";
     public KBView(Context context, @NonNull WindowManager.LayoutParams params){
         super(context);
         this.service = (TalkBackService)context;
@@ -30,6 +31,7 @@ public class KBView extends GridLayout {
         setAlpha(0.4f);
         SimpleParser.getInstance().setKeyboardInfo(params.width, params.height);
         this.setOnTouchListener(listener);
+        Log.d(TAG, "keyboard view init.");
     }
 
     @Override
@@ -51,36 +53,35 @@ public class KBView extends GridLayout {
         private double beginPosY = 0.0;
         private double curPosX = 0.0;
         private double curPosY = 0.0;
+        private final String SUBTAG = TAG + "onTouch";
 
         @Override
         public boolean onTouch(View v, MotionEvent motionEvent) {
-            System.out.println("HHHHHHHHHHHHHHHHHHHHH"+ MotionEvent.actionToString(motionEvent.getAction()));
+            // System.out.println("HHHHHHHHHHHHHHHHHHHHH"+ MotionEvent.actionToString(motionEvent.getAction()));
             switch(motionEvent.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     beginPosX = (double)motionEvent.getX();
                     beginPosY = (double)motionEvent.getY();
-                    System.out.println("touch down" + "down " + beginPosX + " " + beginPosY);
+                    Log.d(SUBTAG, String.format("Action down: (%.2f, %.2f)", beginPosX, beginPosY));
                     break;
                 case MotionEvent.ACTION_MOVE:
                     curPosX = (double)motionEvent.getX();
                     curPosY = (double)motionEvent.getY();
-                    Log.i("touch move","move " + curPosX + " " + curPosY);
+                    Log.d(SUBTAG, String.format("Action move: (%.2f, %.2f)", curPosX, curPosY));
                     break;
                 case MotionEvent.ACTION_UP:
                     curPosX = (double)motionEvent.getX();
                     curPosY = (double)motionEvent.getY();
                     double hshift = curPosX - beginPosX;
                     double vshift = curPosY - beginPosY;
+                    Log.d(SUBTAG, String.format("Action up: (%.2f, %.2f)", curPosX, curPosY));
 
                     TouchPoint tp = new TouchPoint(0, motionEvent.getX(), motionEvent.getY(), motionEvent.getRawX(), motionEvent.getRawY());
-                    String result = "";
                     if(Math.abs(hshift) > Math.abs(vshift)){
                         if(hshift > 25){  // swipe right
-                            Log.i("swipe","right " + hshift);
                             controller.performGesture(TalkBackService.GESTURE_SWIPE_RIGHT);
                         }
                         else if(hshift < -25) { // swipe left
-                            Log.i("swipe", "left " + (-hshift));
                             controller.performGesture(TalkBackService.GESTURE_SWIPE_LEFT);
                         }
                         else{
@@ -89,14 +90,11 @@ public class KBView extends GridLayout {
                     }
                     else if(Math.abs(hshift) < Math.abs(vshift)) {
                         if (vshift > 25) { // swipe down
-                            Log.i("swipe", "down " + vshift);
                             controller.performGesture(TalkBackService.GESTURE_SWIPE_DOWN);
                         } else if (vshift < -25) { // swipe up
-                            Log.i("swipe", "up " + (-vshift));
                             controller.performGesture(TalkBackService.GESTURE_SWIPE_UP);
                         }
                         else{
-                            Log.i("click1","click at " + curPosX + " " + curPosY);
                             controller.performClick(tp);
                         }
                     }
