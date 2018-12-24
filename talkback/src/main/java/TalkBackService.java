@@ -1244,9 +1244,13 @@ public class TalkBackService extends AccessibilityService
       traverse(rootNode, x, y);
     }
     blindcommand.Log.d(TAG, "Node Info:");
-    blindcommand.Log.d(TAG, "\tHint text: " + res.getHintText());
-    blindcommand.Log.d(TAG, "\tView id resouece name: " + res.getViewIdResourceName());
-    blindcommand.Log.d(TAG, "\ttext: " + res.getText());
+    if (res == null) {
+      blindcommand.Log.d(TAG, "\tnull");
+    } else {
+      blindcommand.Log.d(TAG, "\tHint text: " + res.getHintText());
+      blindcommand.Log.d(TAG, "\tView id resouece name: " + res.getViewIdResourceName());
+      blindcommand.Log.d(TAG, "\ttext: " + res.getText());
+    }
 
     return res;
     //System.out.println("=====" + x + "," + y + "=====");

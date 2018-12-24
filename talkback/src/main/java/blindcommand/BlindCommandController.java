@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BlindCommandController {
-    final private boolean ENABLE_QUICK_INPUT = true;
+    final private boolean ENABLE_QUICK_INPUT = false;
     final private int STAY_THRESHOLD = 150;
     public enum State {Idle, Input, Select};
     private TalkBackService service;
