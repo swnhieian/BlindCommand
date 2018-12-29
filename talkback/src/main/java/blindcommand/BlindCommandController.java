@@ -124,7 +124,9 @@ public class BlindCommandController {
                 Log.d(TAG + SUBTAG, "Gesture Swipe Left.");
                 switch(state) {
                     case Input:
-                        SimpleParser.getInstance().delete();
+                        SimpleParser.getInstance().clear();
+                        SoundPlayer.tts("清空输入");
+                        //toast("clear input!");
                         if (SimpleParser.getInstance().getSize() == 0) {
                             this.setState(State.Idle);
                         }
@@ -141,10 +143,23 @@ public class BlindCommandController {
                 Log.d(TAG + SUBTAG, "Gesture Swipe Right.");
                 switch(state) {
                     case Input:
-                        String result = SimpleParser.getInstance().parseInput();
-                        SoundPlayer.tts(result);
-                        //toast("parse:" + result);
-                        this.setState(State.Select);
+                        String result = SimpleParser.getInstance().current();
+                        //System.out.println("111111111" + Utility.getLanguage());
+                        if (Utility.getLanguage().equals("CN")) {
+                            SoundPlayer.tts("执行" + result);
+                        } else {
+                            SoundPlayer.tts("Execute " + result);
+                        }
+//                        String result = SimpleParser.getInstance().parseInput();
+//                        SoundPlayer.tts(result);
+//                        //toast("parse:" + result);
+//                        this.setState(State.Select);
+                        InstructionSet.execute(result);
+                        SimpleParser.getInstance().clear();
+                        this.setState(State.Idle);
+                        if (ENABLE_QUICK_INPUT) {
+                            service.enableTouchExploration();
+                        }
                         break;
                     case Select:
                         result = SimpleParser.getInstance().current();
@@ -170,11 +185,13 @@ public class BlindCommandController {
                 Log.d(TAG + SUBTAG, "Gesture Swipe Up.");
                 switch (state) {
                     case Input:
-                        break;
-                    case Select:
                         String result = SimpleParser.getInstance().previous();
                         //toast("parse:" + result);
                         SoundPlayer.tts(result);
+                        break;
+                    case Select:
+                        //String result = SimpleParser.getInstance().previous();
+                        //SoundPlayer.tts(result);
                         break;
                     default:
                         break;
@@ -184,15 +201,15 @@ public class BlindCommandController {
                 Log.d(TAG + SUBTAG, "Gesture Swipe Down.");
                 switch (state) {
                     case Input:
-                        SimpleParser.getInstance().clear();
-                        SoundPlayer.tts("清空输入");
-                        //toast("clear input!");
-                        setState(State.Idle);
-                        break;
-                    case Select:
                         String result = SimpleParser.getInstance().next();
                         //toast("parse:" + result);
                         SoundPlayer.tts(result);
+
+                        break;
+                    case Select:
+                        //String result = SimpleParser.getInstance().next();
+                        //toast("parse:" + result);
+                        //SoundPlayer.tts(result);
                         break;
                     default:
                         break;

@@ -33,6 +33,8 @@ public class SimpleParser {
         final String SUBTAG = "addTouchPoint";
         Log.d(TAG + SUBTAG, String.format("Touch point: %s, size: %d" , tp.toString(), touchPoints.size()));
         SoundPlayer.click();
+        String res = parseInput();
+        SoundPlayer.tts(res);
     }
     public void delete() {
         final String SUBTAG = "delete";
