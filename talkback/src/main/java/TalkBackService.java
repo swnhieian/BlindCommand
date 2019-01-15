@@ -73,7 +73,6 @@ import com.android.talkback.TalkBackPreferencesActivity;
 import com.google.android.accessibility.compositor.Compositor;
 import com.google.android.accessibility.compositor.EventFilter;
 import com.google.android.accessibility.compositor.GlobalVariables;
-import com.google.android.accessibility.talkback.NotificationActivity;
 import com.google.android.accessibility.talkback.contextmenu.ListMenuManager;
 import com.google.android.accessibility.talkback.contextmenu.MenuManager;
 import com.google.android.accessibility.talkback.contextmenu.MenuManagerWrapper;
@@ -137,10 +136,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
-import blindcommand.BlindCommandController;
-import blindcommand.InstructionSet;
-import blindcommand.KBView;
-import blindcommand.Log4jConfigure;
+import blindcommand.KbdView;
 import blindcommand.SoundPlayer;
 import blindcommand.Utility;
 
@@ -526,6 +522,15 @@ public class TalkBackService extends AccessibilityService
 //      }
       lastTouchStartTime = time;
     }
+    switch (event.getEventType()) {
+      case AccessibilityEvent.TYPE_TOUCH_INTERACTION_START:
+        mTouchingScreen = true;
+        break;
+      case AccessibilityEvent.TYPE_TOUCH_INTERACTION_END:
+        mTouchingScreen = false;
+        break;
+      default: // fall out
+    }
 
 
     Performance perf = Performance.getInstance();
@@ -776,6 +781,11 @@ public class TalkBackService extends AccessibilityService
           && keyEvent.getKeyCode() != KeyEvent.KEYCODE_VOLUME_UP) {
         interruptAllFeedback(false /* stopTtsSpeechCompletely */);
       }
+      if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_VOLUME_DOWN || keyEvent.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP) {
+        System.out.println("entrance of dispatch");
+        dispatchKeyEvent(keyEvent);
+        return true;
+      }
     }
 
     for (ServiceKeyEventListener listener : mKeyEventListeners) {
@@ -818,9 +828,7 @@ public class TalkBackService extends AccessibilityService
         break;
     }
 
-    if (blindCommandController.getState() != BlindCommandController.State.Idle) {
-      return blindCommandController.performGesture(gestureId);
-    }
+
 
     if (!isServiceActive()) {
       return false;
@@ -1146,33 +1154,269 @@ public class TalkBackService extends AccessibilityService
     }
   }
 
+  /////////////////////////double click judging
+  ////////////////////////source: https://blog.csdn.net/L_mixiu/article/details/51792927
+  private boolean isVolumeDown = false;
+  private boolean isVolumeUp = false;
+  private boolean isMenu = false;
+  private int currentKeyCode = 0;
+
+  private static Boolean isDoubleClick = false;
+  private static Boolean isLongClick = false;
+
+  CheckForLongPress mPendingCheckForLongPress = null;
+  CheckForDoublePress mPendingCheckForDoublePress = null;
+  Handler mHandler = new Handler();
+
+
+  public void dispatchKeyEvent(KeyEvent event) {
+    int keycode = event.getKeyCode();
+    System.out.println("in dispatch key event");
+
+
+    // 有不同按键按下，取消长按、短按的判断
+    if (currentKeyCode != keycode) {
+      removeLongPressCallback();
+      isDoubleClick = false;
+    }
+
+    // 处理长按、单击、双击按键
+    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+      checkForLongClick(event);
+    } else if (event.getAction() == KeyEvent.ACTION_UP) {
+      checkForDoubleClick(event);
+    }
+
+    if (keycode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+      if (event.getAction() == KeyEvent.ACTION_DOWN) {
+        isVolumeDown = true;
+      } else if (event.getAction() == KeyEvent.ACTION_UP) {
+        isVolumeDown = false;
+      }
+    } else if (keycode == KeyEvent.KEYCODE_VOLUME_UP) {
+      if (event.getAction() == KeyEvent.ACTION_DOWN) {
+        isVolumeUp = true;
+      } else if (event.getAction() == KeyEvent.ACTION_UP) {
+        isVolumeUp = false;
+      }
+    } else if (keycode == KeyEvent.KEYCODE_MENU) {
+      if (event.getAction() == KeyEvent.ACTION_DOWN) {
+        isMenu = true;
+      } else if (event.getAction() == KeyEvent.ACTION_UP) {
+        isMenu = true;
+      }
+    }
+
+    // 判断组合按键
+    if (isVolumeDown
+            && isVolumeUp
+            && isMenu
+            && (keycode == KeyEvent.KEYCODE_VOLUME_UP
+            || keycode == KeyEvent.KEYCODE_VOLUME_DOWN || keycode == KeyEvent.KEYCODE_MENU)
+            && event.getAction() == KeyEvent.ACTION_DOWN) {
+      //组合按键事件处理；
+      isVolumeDown = false;
+      isVolumeUp = false;
+      isMenu = false;
+    }
+  }
+
+  private void removeLongPressCallback() {
+    if (mPendingCheckForLongPress != null) {
+      mHandler.removeCallbacks(mPendingCheckForLongPress);
+    }
+  }
+
+  private void checkForLongClick(KeyEvent event) {
+    int count = event.getRepeatCount();
+    int keycode = event.getKeyCode();
+    if (count == 0) {
+      currentKeyCode = keycode;
+    } else {
+      return;
+    }
+    if (mPendingCheckForLongPress == null) {
+      mPendingCheckForLongPress = new CheckForLongPress();
+    }
+    mPendingCheckForLongPress.setKeycode(event.getKeyCode());
+    mHandler.postDelayed(mPendingCheckForLongPress, 1000);
+  }
+
+  class CheckForLongPress implements Runnable {
+
+    int currentKeycode = 0;
+
+    public void run() {
+      isLongClick = true;
+      longPress(currentKeycode);
+    }
+
+    public void setKeycode(int keycode) {
+      currentKeycode = keycode;
+    }
+  }
+
+  private void longPress(int keycode) {
+    //Log.i(TAG, "--longPress 长按事件--" + keycode);
+  }
+  private boolean mTouchingScreen = false;
+  private void singleClick(int keycode) {
+    //Log.i(TAG, "--singleClick 单击事件--" + keycode);
+    System.out.println("single click!!!!!!!!!!");
+
+//    KeyEvent kdown = new KeyEvent(KeyEvent.ACTION_DOWN, keycode);
+//    super.onKeyEvent(kdown);
+//    KeyEvent kup = new KeyEvent(KeyEvent.ACTION_UP, keycode);
+//    super.onKeyEvent(kup);
+    AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+    final int DEFAULT_FLAGS_TOUCHING_SCREEN = (AudioManager.FLAG_VIBRATE);
+
+    /** Default flags for volume adjustment while not touching the screen. */
+    final int DEFAULT_FLAGS_NOT_TOUCHING_SCREEN =
+            (AudioManager.FLAG_SHOW_UI | AudioManager.FLAG_VIBRATE | AudioManager.FLAG_PLAY_SOUND);
+    final int STREAM_DEFAULT = AudioManager.USE_DEFAULT_STREAM_TYPE;
+
+    int direction = (keycode == KeyEvent.KEYCODE_VOLUME_DOWN)? AudioManager.ADJUST_LOWER:AudioManager.ADJUST_RAISE;
+    // While continuous reading is active, we do not want to show the UI and interrupt continuous
+    // reading.
+    if (mTouchingScreen || mFullScreenReadController.isActive()) {
+      mAudioManager.adjustStreamVolume(
+              SpeechController.DEFAULT_STREAM, direction, DEFAULT_FLAGS_TOUCHING_SCREEN);
+    } else if (mSpeechController.isSpeakingOrSpeechQueued()) {
+      mAudioManager.adjustStreamVolume(
+              SpeechController.DEFAULT_STREAM, direction, DEFAULT_FLAGS_NOT_TOUCHING_SCREEN);
+    } else {
+      // Attempt to adjust the suggested stream, but let the system
+      // override in special situations like during voice calls, when an
+      // application has locked the volume control stream, or when music
+      // is playing.
+      mAudioManager.adjustSuggestedStreamVolume(
+              direction, STREAM_DEFAULT, DEFAULT_FLAGS_NOT_TOUCHING_SCREEN);
+    }
+
+
+
+  }
+
+  private void doublePress(int keycode) {
+    //Log.i(TAG, "---doublePress 双击事件--" + keycode);
+    triggerBCMode();
+  }
+
+
+
+  private void checkForDoubleClick(KeyEvent event) {
+    System.out.println("Checking for double click");
+    // 有长按时间发生，则不处理单击、双击事件
+    removeLongPressCallback();
+    if (isLongClick) {
+      isLongClick = false;
+      return;
+    }
+
+    if (!isDoubleClick) {
+      isDoubleClick = true;
+      if (mPendingCheckForDoublePress == null) {
+        mPendingCheckForDoublePress = new CheckForDoublePress();
+      }
+      mPendingCheckForDoublePress.setKeycode(event.getKeyCode());
+      mHandler.postDelayed(mPendingCheckForDoublePress, 500);
+    } else {
+      // 500ms内两次单击，触发双击
+      isDoubleClick = false;
+      doublePress(event.getKeyCode());
+    }
+  }
+
+  class CheckForDoublePress implements Runnable {
+
+    int currentKeycode = 0;
+
+    public void run() {
+      if (isDoubleClick) {
+        singleClick(currentKeycode);
+      }
+      isDoubleClick = false;
+    }
+
+    public void setKeycode(int keycode) {
+      currentKeycode = keycode;
+    }
+  }
+
+  private void removeDoublePressCallback() {
+    if (mPendingCheckForDoublePress != null) {
+      mHandler.removeCallbacks(mPendingCheckForDoublePress);
+    }
+  }
+  /////////////////////////////////////////
+  public void triggerBCMode() {
+    Toast.makeText(this, "Trigger BC Mode", Toast.LENGTH_SHORT).show();
+    if (kbdView.getVisibility() == View.VISIBLE) {
+      kbdView.setVisibility(View.INVISIBLE);
+      enableTouchExploration();
+      //disableAccessibilityServices();
+    } else {
+      kbdView.setVisibility(View.VISIBLE);
+      disableTouchExploration();
+      //System.out.println("CTRL_ALT_Z start");
+      //ALT_CTRL_Z();
+      //System.out.println("CTRL_ALT_Z end");
+      //enableAccessibilityService(TALKBACK_SERVICE_NAME);
+    }
+  }
+
+
   DisplayMetrics metrics;
-  public KBView kbdView;
+  public KbdView kbdView;
   @Override
   protected void onServiceConnected() {
-
     Utility.service = this;
-    InstructionSet.init(this);
-    PermissionManager permissionManager = PermissionManager.getInstance(this);
-    final Context contextt = this;
-    LogUtils.log(this, Log.VERBOSE, "System bound to service.");
+    kbdView = new KbdView(this);
+    SoundPlayer.setContext(this);
+    enableTouchExploration();
+    WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
 
-    final WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
     metrics = new DisplayMetrics();
     wm.getDefaultDisplay().getMetrics(metrics);
-    int touchPadHeight = metrics.heightPixels / 3;
-    int candidateHeight = metrics.heightPixels / 30;
-    final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-        metrics.widthPixels,
-        touchPadHeight ,
-        0,
-        metrics.heightPixels - touchPadHeight,
-        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-        PixelFormat.TRANSLUCENT);
-    params.gravity = Gravity.START | Gravity.TOP;
 
-    SoundPlayer.setContext(this);
+    WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+            metrics.widthPixels,
+            metrics.heightPixels / 2,
+            0,
+            metrics.heightPixels / 2,
+            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+            PixelFormat.TRANSLUCENT);
+    params.gravity = Gravity.LEFT | Gravity.TOP;
+
+
+
+    wm.addView(kbdView, params);
+    kbdView.setVisibility(View.INVISIBLE);
+
+//    Utility.service = this;
+//    InstructionSet.init(this);
+    PermissionManager permissionManager = PermissionManager.getInstance(this);
+    final Context contextt = this;
+//    LogUtils.log(this, Log.VERBOSE, "System bound to service.");
+//
+//    final WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
+//    metrics = new DisplayMetrics();
+//    wm.getDefaultDisplay().getMetrics(metrics);
+//    int touchPadHeight = metrics.heightPixels / 3;
+//    int candidateHeight = metrics.heightPixels / 30;
+//    final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+//        metrics.widthPixels,
+//        touchPadHeight ,
+//        0,
+//        metrics.heightPixels - touchPadHeight,
+//        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+//        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+//        PixelFormat.TRANSLUCENT);
+//    params.gravity = Gravity.START | Gravity.TOP;
+//
+//    SoundPlayer.setContext(this);
 
     permissionManager.checkPermissions(singleton(Manifest.permission.WRITE_EXTERNAL_STORAGE), new PermissionManager.PermissionRequestListener() {
       @Override
@@ -1181,8 +1425,8 @@ public class TalkBackService extends AccessibilityService
         System.out.println("**********************");
         blindcommand.Log4jConfigure.configure();
         System.out.println("here+++++++++++++++" + "window view added!");
-        kbdView = new KBView(contextt, params);
-        wm.addView(kbdView, params);
+//        kbdView = new KbdView(contextt, params);
+//        wm.addView(kbdView, params);
       }
 
       @Override
@@ -1226,12 +1470,10 @@ public class TalkBackService extends AccessibilityService
     }
     showTutorialIfNecessary();
   }
-  public BlindCommandController blindCommandController = new BlindCommandController(this);
+
   Rect minBound;
   AccessibilityNodeInfo res;
-  public void performMotionEvent(MotionEvent event) {
-    blindCommandController.performMotionEvent(event);
-  }
+
   public AccessibilityNodeInfo perform(int x, int y) {
     final String TAG = "TalkBack.perform";
 

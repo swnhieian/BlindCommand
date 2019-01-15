@@ -1,27 +1,27 @@
 package blindcommand;
+
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.FeatureInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.widget.Toast;
-// import android.util.Log;
-
-import com.google.android.accessibility.talkback.TalkBackService;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class InstructionSet {
     private static final String TAG = "InstructionSet.";
-    public static String[] set;
+    private Context service;
+    public String[] dict;
     //public static HashMap<String, String> instructions;
-    public static TalkBackService service;
-    public static boolean lightStatus = false;
-    public static HashMap<String, Instruction> instructions;
+    public boolean lightStatus = false;
+    public HashMap<String, Instruction> instructions;
     public static String[][] ins = {
             {"截屏", "JiePing"},
             {"手电筒", "ShouDianTong"},
@@ -30,6 +30,7 @@ public class InstructionSet {
             {"微信红包", "HongBao"},
             {"朋友圈", "PengYouQuan"},
             {"打开微信", "WeiXin"},
+            {"打开微信", "w"},
             {"打开支付宝", "ZhiFuBao"},
             {"打开录音机", "LuYinJi"},
             {"微信语音", "YuYin"},
@@ -46,33 +47,37 @@ public class InstructionSet {
             {"打开设置", "SheZhi"},
             {"蓝牙", "LanYa"},
             {"无线网络", "WuXianWang"},
-            {"撤销", "CheXiao"}    //24
+            {"撤销", "CheXiao"},   //24
+            {"打开微博", "WeiBo"}
     };
     public static String[][] ins_en = {
-        {"Screenshot", "Screenshot"},
-        {"Flashlight", "Flashlight"},
-        {"Phone", "phone"},
-        {"Red Packet", "RedPacket"},
-        {"Moments", "Moments"},
-        {"Open Wechat", "Wechat"},
-        {"Open Alipay", "Alipay"},
-        {"Open Recorder", "Recorder"},
-        {"Send Voice Message", "VoiceMessage"},
-        {"Scan QR Code", "ScanQRCode"},
-        {"My QR Code", "QRCode"},
-        {"Home", "Home"},
-        {"Open Camera", "Camera"},
-        {"Open TaoBao", "TaoBao"},
-        {"Open Email", "Email"},
-        {"Open Alarm Clock", "AlarmClock"},
-        {"Search", "Search"},
-        {"Open Settings", "Settings"},
-        {"Open Bluetooth", "BlueTooth"},
-        {"Open Wifi", "Wifi"},  //20
-        {"Undo", "Undo"}
+            {"Screenshot", "Screenshot"},
+            {"Flashlight", "Flashlight"},
+            {"Phone", "phone"},
+            {"Red Packet", "RedPacket"},
+            {"Moments", "Moments"},
+            {"Open Wechat", "Wechat"},
+            {"Open Alipay", "Alipay"},
+            {"Open Recorder", "Recorder"},
+            {"Send Voice Message", "VoiceMessage"},
+            {"Scan QR Code", "ScanQRCode"},
+            {"My QR Code", "QRCode"},
+            {"Home", "Home"},
+            {"Open Camera", "Camera"},
+            {"Open TaoBao", "TaoBao"},
+            {"Open Email", "Email"},
+            {"Open Alarm Clock", "AlarmClock"},
+            {"Search", "Search"},
+            {"Open Settings", "Settings"},
+            {"Open Bluetooth", "BlueTooth"},
+            {"Open Wifi", "Wifi"},  //20
+            {"Undo", "Undo"},
+            {"Open Weibo", "Weibo"}
     };
-    public static void init(TalkBackService service) {
-        InstructionSet.service = service;
+
+
+    public InstructionSet(Context service) {
+        this.service = service;
         instructions = new HashMap<>();
         String [][] iter = ins;
         if (Utility.getLanguage().equals("CN")) {
@@ -89,12 +94,27 @@ public class InstructionSet {
             }
         }
         //Set<String> keys = instructions.keySet();
-        InstructionSet.set = instructions.keySet().toArray(new String[] {});
+        this.dict = instructions.keySet().toArray(new String[] {});
+//        List<PackageInfo> packList = service.getPackageManager().getInstalledPackages(0);
+//        System.out.println("=========");
+//        PackageManager packageManager = null;
+//
+//
+//            packageManager = service.getPackageManager();
+//
+//        for (PackageInfo pkgInfo: packList) {
+//            System.out.println(pkgInfo.packageName);
+//            String applicationName =
+//                    (String) packageManager.getApplicationLabel(pkgInfo.applicationInfo);
+//            System.out.println(applicationName);
+//            System.out.println("----------");
+//
+//        }
+//        System.out.println("=========");
     }
-    public static void execute(String command) {
+    public void execute(String commandName) {
         final String SUBTAG = "execute";
-        Log.d(TAG + SUBTAG, "command: " + command);
-        switch (command) {
+        switch (commandName) {
             case "Open Wechat":
             case "打开微信":
                 Intent intent = new Intent();
@@ -103,7 +123,7 @@ public class InstructionSet {
                 intent.addCategory(Intent.CATEGORY_LAUNCHER);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.setComponent(cmp);
-                InstructionSet.service.startActivity(intent);
+                this.service.startActivity(intent);
                 break;
             case "Open Alipay":
             case "打开支付宝":
@@ -113,27 +133,27 @@ public class InstructionSet {
                 intent.addCategory(Intent.CATEGORY_LAUNCHER);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.setComponent(cmp);
-                InstructionSet.service.startActivity(intent);
+                this.service.startActivity(intent);
                 break;
             case "Phone":
             case "打电话":
                 intent =  new Intent(Intent.ACTION_CALL_BUTTON);//跳转到拨号界面
-                InstructionSet.service.startActivity(intent);
+                this.service.startActivity(intent);
                 break;
             case "Open Camera":
             case "打开相机":
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                InstructionSet.service.startActivity(intent);
+                this.service.startActivity(intent);
                 break;
             case "Flashlight":
             case "手电筒":
                 try {
-                    CameraManager manager = (CameraManager) InstructionSet.service.getSystemService(Context.CAMERA_SERVICE);
-                    InstructionSet.lightStatus = !InstructionSet.lightStatus;
-                    manager.setTorchMode("0", InstructionSet.lightStatus);
-                    SoundPlayer.tts("手电筒已"+ (InstructionSet.lightStatus?"打开":"关闭"));
+                    CameraManager manager = (CameraManager) this.service.getSystemService(Context.CAMERA_SERVICE);
+                    this.lightStatus = !this.lightStatus;
+                    manager.setTorchMode("0", this.lightStatus);
+                    SoundPlayer.tts("手电筒已"+ (this.lightStatus?"打开":"关闭"));
                 } catch (Exception e) {
-                    InstructionSet.lightStatus = false;
+                    this.lightStatus = false;
                 }
                 break;
             case "截屏":
@@ -143,16 +163,41 @@ public class InstructionSet {
                 intent =  new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                InstructionSet.service.startActivity(intent);
+                this.service.startActivity(intent);
                 break;
             case "Open Settings":
             case "打开设置":
                 intent =  new Intent(Settings.ACTION_SETTINGS);
-                InstructionSet.service.startActivity(intent);
+                this.service.startActivity(intent);
+                break;
+            case "Open TaoBao":
+            case "打开淘宝":
+                String pkgName = "com.taobao.taobao";
+                launchApp(pkgName);
+                break;
+            case "打开微博":
+            case "Open Weibo":
+                launchApp("com.sina.weibo");
                 break;
             default:
-                Toast.makeText(service, command, Toast.LENGTH_SHORT).show();
+                Toast.makeText(service, commandName, Toast.LENGTH_SHORT).show();
                 break;
+        }
+    }
+    public void launchApp(String pkgName) {
+        PackageManager packageManager = service.getPackageManager();
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = packageManager.getPackageInfo(pkgName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            packageInfo = null;
+            e.printStackTrace();
+        }
+        if (packageInfo != null) {
+            Intent intent = packageManager.getLaunchIntentForPackage(pkgName);
+            if (intent != null) {
+                service.startActivity(intent);
+            }
         }
     }
 

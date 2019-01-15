@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Instruction {
-    String command;
-    String instruction;
+    String id;
+    String name;
 }
