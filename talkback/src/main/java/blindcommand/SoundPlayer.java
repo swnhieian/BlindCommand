@@ -76,7 +76,15 @@ public class SoundPlayer {
     public static void readKey(int speed, char key) {
         interrupt();
         MediaPlayer current = MediaPlayer.create(context, voice.get("ios11_"+speed)[Character.toLowerCase(key)- 'a']);
+        current.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.reset();
+                mediaPlayer.release();
+            }
+        });
         current.start();
+
     }
     public static void execute(Instruction ins) {
         if (ins.name.equals("手电筒") || ins.name.equals("Flashlight")) return;
