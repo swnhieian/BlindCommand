@@ -93,7 +93,10 @@ public class NodeGraph {
         for(int i = 0; i < size; i ++){
             List<JsonClickable> jsonClickables = jsonNodes.get(i).buttons;
             for(JsonClickable button: jsonClickables){
-                nodes.get(i).addEdge(new Edge(nodes.get(i), map.get(button.target), button));
+                Node targetNode = map.get(button.target);
+                if(targetNode != null) {
+                    nodes.get(i).addEdge(new Edge(nodes.get(i), targetNode, button));
+                }
             }
         }
     }
