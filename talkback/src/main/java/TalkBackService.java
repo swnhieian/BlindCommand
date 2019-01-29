@@ -1391,7 +1391,6 @@ public class TalkBackService extends AccessibilityService
     params.gravity = Gravity.LEFT | Gravity.TOP;
 
 
-
     wm.addView(kbdView, params);
     kbdView.setVisibility(View.INVISIBLE);
 

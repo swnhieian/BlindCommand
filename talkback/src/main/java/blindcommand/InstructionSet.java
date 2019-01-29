@@ -75,6 +75,7 @@ public class InstructionSet {
             {"Open Weibo", "Weibo"}
     };
 
+    private Executor executor;
 
     public InstructionSet(Context service) {
         this.service = service;
@@ -111,9 +112,12 @@ public class InstructionSet {
 //
 //        }
 //        System.out.println("=========");
+        this.executor = new Executor(Utility.service);
     }
     public void execute(String commandName) {
         final String SUBTAG = "execute";
+        executor.execute(commandName);
+        /*
         switch (commandName) {
             case "Open Wechat":
             case "打开微信":
@@ -183,6 +187,7 @@ public class InstructionSet {
                 Toast.makeText(service, commandName, Toast.LENGTH_SHORT).show();
                 break;
         }
+        */
     }
     public void launchApp(String pkgName) {
         PackageManager packageManager = service.getPackageManager();
