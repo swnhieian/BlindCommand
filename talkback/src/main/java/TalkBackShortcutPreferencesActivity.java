@@ -19,12 +19,14 @@ package com.google.android.accessibility.talkback;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceFragment;
+import android.provider.Settings;
 import android.view.MenuItem;
 import com.google.android.accessibility.utils.ArrayUtils;
 import com.google.android.accessibility.utils.BuildVersionUtils;
@@ -59,6 +61,8 @@ public class TalkBackShortcutPreferencesActivity extends Activity {
     // Create user-interface for currently selected verbosity preset.
     mPrefFragment = new ShortcutPrefFragment();
     getFragmentManager().beginTransaction().replace(android.R.id.content, mPrefFragment).commit();
+
+    startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
   }
 
   /** If action-bar "navigate up" button is pressed, end this sub-activity. */
