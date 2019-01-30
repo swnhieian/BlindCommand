@@ -19,8 +19,10 @@ public class NodeGraph {
     }
 
     public Node getCurrentWindowNode(AccessibilityWindowInfo activeWindow){
+        System.out.println("node: " +  nodes.size());
         for(Node node: nodes){
             if(node.represent(activeWindow)){
+                System.out.println("current window found!");
                 return node;
             }
         }

@@ -23,21 +23,22 @@ public class Executor {
 
     public void singleStep(Edge edge){
         List<AccessibilityWindowInfo> windows = service.getWindows();
-        for(AccessibilityWindowInfo w: windows){
-            if(w.isActive()){
-                List<AccessibilityNodeInfo> nodes = w.getRoot().findAccessibilityNodeInfosByText(edge.text);
-                if(nodes.size() > 0){
-                    nodes.get(0).performAction(edge.action);
-                }
-                else{
-                    System.out.println("find no node");
-                }
+        AccessibilityWindowInfo currentWindow = null;
+        for(AccessibilityWindowInfo window: windows){
+            if(window.isActive()){
+                currentWindow = window;
+                break;
             }
         }
+        if(currentWindow == null)
+            return;
+        AccessibilityNodeInfo operatedNode = NodeInfoFinder.find(currentWindow.getRoot(), edge.path);
+        if(operatedNode != null)
+            operatedNode.performAction(edge.action);
     }
 
     public void execute(String commandName){
-        System.out.println(commandName);
+        System.out.println("execute: " + commandName);
         List<AccessibilityWindowInfo> windows = service.getWindows();
         AccessibilityWindowInfo currentWindow = null;
         for(AccessibilityWindowInfo window: windows){
@@ -49,11 +50,21 @@ public class Executor {
         Node currentNode = graph.getCurrentWindowNode(currentWindow);
         // TODO ? 用 commandName 得出目标窗口的name
         Node targetNode = graph.getTargetWindowNode(commandName);
-        List<Edge> edges = graph.findPath(currentNode, targetNode);
+
+        if(currentNode == null || targetNode == null) return;
+        final List<Edge> edges = graph.findPath(currentNode, targetNode);
+        // 起一个新线程
         if(edges != null){
-            for(Edge edge: edges){
-                singleStep(edge);
-            }
+            Runnable runnable = new Runnable(){
+                @Override
+                public void run(){
+                    for(Edge edge: edges){
+                        singleStep(edge);
+                    }
+                }
+            };
+            Thread thread = new Thread(runnable);
+            thread.start();
         }
     }
 

@@ -24,6 +24,7 @@ public class Node {
         pre = null;
     }
     public boolean represent(AccessibilityWindowInfo window){
+        System.out.println("feature: " + pageFeatures.size());
         for(Feature feature: pageFeatures){
             if(!feature.correspondTo(window)){
                 return false;

@@ -1,6 +1,9 @@
 package blindcommand;
 
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
+
+import java.util.regex.Pattern;
 
 public class Feature {
     public String contentReg;
@@ -18,9 +21,17 @@ public class Feature {
         textReg = feature.textReg;
     }
     public boolean correspondTo(AccessibilityWindowInfo window){
-        // TODO
-        return true;
+        AccessibilityNodeInfo featureNode = NodeInfoFinder.find(window.getRoot(), nodeId);
+        if(featureNode == null) return false;
+        CharSequence text = featureNode.getText();
+        boolean match = true;
+        if(text != null){
+            match = Pattern.matches(textReg, text);
+        }
+        CharSequence content = featureNode.getContentDescription();
+        if(content != null){
+            match = match && Pattern.matches(contentReg, content);
+        }
+        return match;
     }
-
-
 }
