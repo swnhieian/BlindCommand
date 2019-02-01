@@ -61,8 +61,6 @@ public class TalkBackShortcutPreferencesActivity extends Activity {
     // Create user-interface for currently selected verbosity preset.
     mPrefFragment = new ShortcutPrefFragment();
     getFragmentManager().beginTransaction().replace(android.R.id.content, mPrefFragment).commit();
-
-    startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
   }
 
   /** If action-bar "navigate up" button is pressed, end this sub-activity. */

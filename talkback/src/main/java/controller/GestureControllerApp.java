@@ -142,6 +142,10 @@ public class GestureControllerApp implements GestureController {
       case AccessibilityService.GESTURE_SWIPE_DOWN_AND_UP:
         {
           if (prefs.contains(mService.getString(R.string.pref_shortcut_down_and_up_key))) {
+            System.out.println("ssssswwwwwnnnnn");
+            System.out.println(prefs.getString(
+                    mService.getString(R.string.pref_shortcut_down_and_up_key),
+                    "AAAAAABBBBBCCCCC"));
             return prefs.getString(
                 mService.getString(R.string.pref_shortcut_down_and_up_key),
                 mService.getString(R.string.pref_shortcut_down_and_up_default));
@@ -342,6 +346,8 @@ public class GestureControllerApp implements GestureController {
     } else if (action.equals(
         mService.getString(R.string.shortcut_value_selected_setting_next_action))) {
       mSelectorController.performSelectedSettingAction(eventId, true);
+    } else if (action.equals(mService.getString(R.string.shortcut_value_trigger_BC_mode))) {
+      mService.triggerBCMode();
     }
     Intent intent = new Intent(GestureActionMonitor.ACTION_GESTURE_ACTION_PERFORMED);
     intent.putExtra(GestureActionMonitor.EXTRA_SHORTCUT_GESTURE_ACTION, action);

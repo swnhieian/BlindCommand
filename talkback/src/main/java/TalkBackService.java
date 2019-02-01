@@ -1382,9 +1382,9 @@ public class TalkBackService extends AccessibilityService
 
     WindowManager.LayoutParams params = new WindowManager.LayoutParams(
             metrics.widthPixels,
-            metrics.heightPixels / 2,
+            metrics.heightPixels, // / 2,
             0,
-            metrics.heightPixels / 2,
+            0, //metrics.heightPixels / 2,
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT);

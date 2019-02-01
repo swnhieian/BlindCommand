@@ -730,7 +730,7 @@
     <string name="screen_dimming_exit_instruction_line2">Undo by pressing Volume Up and Volume Down keys together three times quickly</string>
     <string name="screen_dimming_exit_instruction_line3">Screen dim can be controlled from TalkBack Settings</string>
 
-
+    <string name="shortcut_trigger_BC_mode">Trigger BC Mode</string>
     <!-- Label for a shortcut that is not assigned and does nothing. [CHAR_LIMIT=40] -->
     <string name="shortcut_unassigned">Unassigned</string>
     <!-- Label for the shortcut that moves accessibility focus to the next item. [CHAR_LIMIT=40] -->
