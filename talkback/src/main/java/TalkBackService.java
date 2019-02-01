@@ -1355,10 +1355,12 @@ public class TalkBackService extends AccessibilityService
     if (kbdView.getVisibility() == View.VISIBLE) {
       kbdView.setVisibility(View.INVISIBLE);
       enableTouchExploration();
+      SoundPlayer.end();
       //disableAccessibilityServices();
     } else {
       kbdView.setVisibility(View.VISIBLE);
       disableTouchExploration();
+      SoundPlayer.start();
       //System.out.println("CTRL_ALT_Z start");
       //ALT_CTRL_Z();
       //System.out.println("CTRL_ALT_Z end");
