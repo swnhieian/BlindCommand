@@ -1880,7 +1880,8 @@ public class TalkBackService extends AccessibilityService
     setServiceState(ServiceStateListener.SERVICE_STATE_ACTIVE);
     stopForeground(true);
 
-    final AccessibilityServiceInfo info = new AccessibilityServiceInfo();
+    //final AccessibilityServiceInfo info = new AccessibilityServiceInfo();
+    final AccessibilityServiceInfo info = getServiceInfo();
     info.eventTypes = AccessibilityEvent.TYPES_ALL_MASK;
     info.feedbackType |= AccessibilityServiceInfo.FEEDBACK_SPOKEN;
     info.feedbackType |= AccessibilityServiceInfo.FEEDBACK_AUDIBLE;
@@ -1888,6 +1889,7 @@ public class TalkBackService extends AccessibilityService
     info.flags |= AccessibilityServiceInfo.DEFAULT;
     info.flags |= AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
     info.flags |= AccessibilityServiceInfo.FLAG_REQUEST_FILTER_KEY_EVENTS;
+    //info.flags |= AccessibilityServiceInfo.FLAG_INCLUDE_NOT_IMPORTANT_VIEWS;
     if (BuildVersionUtils.isAtLeastLMR1()) {
       info.flags |= AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
     }

@@ -21,19 +21,6 @@ public class Feature {
         nodeId = feature.nodeId;
         textReg = feature.textReg;
     }
-    private void traverse(AccessibilityNodeInfo node, int level) {
-        String space = "";
-        for (int i=0; i<level; i++)
-            space = space + "   ";
-        System.out.println(space + "=======in traverse======");
-        System.out.println(space + "---" + node.getClassName() + "," + node.getText() + "," + node.getContentDescription() + "---");
-        for (int i=0; i<node.getChildCount(); i++) {
-            System.out.println(space + "===child " + i + " ===");
-            traverse(node.getChild(i), level+1);
-        }
-        System.out.println(space + "=======out traverse======");
-
-    }
     public boolean correspondTo(AccessibilityWindowInfo window){
         // TODO
         return true;

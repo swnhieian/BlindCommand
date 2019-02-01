@@ -142,10 +142,6 @@ public class GestureControllerApp implements GestureController {
       case AccessibilityService.GESTURE_SWIPE_DOWN_AND_UP:
         {
           if (prefs.contains(mService.getString(R.string.pref_shortcut_down_and_up_key))) {
-            System.out.println("ssssswwwwwnnnnn");
-            System.out.println(prefs.getString(
-                    mService.getString(R.string.pref_shortcut_down_and_up_key),
-                    "AAAAAABBBBBCCCCC"));
             return prefs.getString(
                 mService.getString(R.string.pref_shortcut_down_and_up_key),
                 mService.getString(R.string.pref_shortcut_down_and_up_default));
