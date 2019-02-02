@@ -42,11 +42,11 @@
       Source: Title for the activity that manages TalkBack custom labels for a specific package.
       Description: This is presented to the user when managing TalkBack custom labels for a package. [CHAR LIMIT="NONE"]
     -->
-    <string name="label_manager_package_title">Manage Labels for <xliff:g id="applicationLabel" example="Gmail">%1$s</xliff:g></string>
+    <string name="label_manager_package_title">Manage Labels for <xliff:g example="Gmail" id="applicationLabel">%1$s</xliff:g></string>
     <!-- A message on the label manager package summary screen when there are no packages with labels. -->
     <string name="label_manager_no_packages_message">There are currently no custom labels. You can create one by navigating to an unlabeled image and then adding a label from the Local Context Menu.</string>
     <!-- A label for the timestamp of when a custom label was stored or last modified. -->
-    <string name="label_manager_timestamp_text">Last modified <xliff:g id="timestamp" example="1/1/11 11:11 AM">%1$s</xliff:g></string>
+    <string name="label_manager_timestamp_text">Last modified <xliff:g example="1/1/11 11:11 AM" id="timestamp">%1$s</xliff:g></string>
     <!-- Label for search dialog. Argument is search text. This is shown on screen in a popup window. [CHAR_LIMIT=15]-->
     <string name="search_dialog_label">Search: <xliff:g id="search_query">%1$s</xliff:g></string>
     <!-- Spoken when search mode is opened. -->
@@ -128,7 +128,7 @@
 
     <!-- TEMPLATES -->
     <!-- Spoken description for a menu. -->
-    <string name="template_menu"><xliff:g id="title" example="Change granularity">%1$s</xliff:g> menu</string>
+    <string name="template_menu"><xliff:g example="Change granularity" id="title">%1$s</xliff:g> menu</string>
     <!--
           Source: An utterance template for announcing no text is selected.
           Description: This is spoken to the user. [CHAR LIMIT="NONE"]
@@ -139,7 +139,7 @@
       Source: An utterance template for announcing that the system has recognized a long-click gesture on an item. The result of long-click varies from initiating drag-and-drop to opening a copy/paste menu.
       Description: This is spoken to the user. [CHAR LIMIT="NONE"]
     -->
-    <string name="template_long_clicked">Long-pressed <xliff:g id="title" example="Cancel button">%1$s</xliff:g></string>
+    <string name="template_long_clicked">Long-pressed <xliff:g example="Cancel button" id="title">%1$s</xliff:g></string>
     <!--
       Source: A notification for a battery charging event
       Description: This is spoken to the user. [CHAR LIMIT="NONE"]
@@ -149,7 +149,7 @@
       Source: A notification for a battery charging event without announcing the battery level.
       Description: This is spoken to the user. [CHAR LIMIT="NONE"]
     -->
-    <string name="template_charging_lite">Charging <xliff:g id="changing_status" example="Started">%1$s</xliff:g></string>
+    <string name="template_charging_lite">Charging <xliff:g example="Started" id="changing_status">%1$s</xliff:g></string>
 
   <!-- Template for language options menu item-->
   <string name="template_language_options_menu_item"><xliff:g id="language">%1$s</xliff:g> (<xliff:g id="country">%2$s</xliff:g>)</string>
@@ -411,7 +411,7 @@
     <!-- Verbosity preferences, description settings category title. [CHAR LIMIT=40] -->
     <string name="pref_verbosity_category_misc_settings_title">Miscellaneous</string>
     <!-- Verbosity preferences, announce selected preset. -->
-    <string name="pref_verbosity_preset_change"><xliff:g id="preset_name" example="High">%1$s</xliff:g> verbosity is now active.</string>
+    <string name="pref_verbosity_preset_change"><xliff:g example="High" id="preset_name">%1$s</xliff:g> verbosity is now active.</string>
 
     <!-- Keyboard key combination assignment dialog items -->
     <!-- Keymap group name title [CHAR LIMIT=40] -->
@@ -425,11 +425,11 @@
     <!-- Title of alert dialog to reset keymap for changing trigger modifier [CHAR LIMIT=60] -->
     <string name="keycombo_menu_alert_title_trigger_modifier">TalkBack will reset keymap</string>
     <!-- Message of alert dialog to reset keymap for changing trigger modifier [CHAR LIMIT=100] -->
-    <string name="keycombo_menu_alert_message_trigger_modifier">TalkBack will reset keymap and change modifier key to <xliff:g id="new_trigger_modifier" example="Alt">%1$s</xliff:g></string>
+    <string name="keycombo_menu_alert_message_trigger_modifier">TalkBack will reset keymap and change modifier key to <xliff:g example="Alt" id="new_trigger_modifier">%1$s</xliff:g></string>
     <!-- Announce that modifier key is changed -->
-    <string name="keycombo_menu_announce_new_trigger_modifier">Modifier key has been changed to <xliff:g id="new_trigger_modifier" example="Alt">%1$s</xliff:g>.</string>
+    <string name="keycombo_menu_announce_new_trigger_modifier">Modifier key has been changed to <xliff:g example="Alt" id="new_trigger_modifier">%1$s</xliff:g>.</string>
     <!-- Announce active keymap -->
-    <string name="keycombo_menu_announce_active_keymap"><xliff:g id="keymap_name" example="Default keymap">%1$s</xliff:g> is now active.</string>
+    <string name="keycombo_menu_announce_active_keymap"><xliff:g example="Default keymap" id="keymap_name">%1$s</xliff:g> is now active.</string>
     <!-- Announce reset the keymap -->
     <string name="keycombo_menu_announce_reset_keymap">The keymap has been reset.</string>
     <!-- Announce that pressed keyboard shortcut is not supported on the current focused item. -->
@@ -647,7 +647,7 @@
       Source: Description for the preference that causes TalkBack to decrease audio volume of other applications during speech output.
       Description: Hint text for this checkable user preference. [CHAR LIMIT=80]
      -->
-     <string name="summary_pref_use_audio_focus">Decrease other audio volume while speaking</string>
+  <string name="summary_pref_use_audio_focus">Decrease other audio volume while speaking</string>
     <!--
       Source: Preference for changing the volume of sound feedback.
       Description: Contains a list of volume settings. [CHAR LIMIT=25]
@@ -733,6 +733,7 @@
     <string name="screen_dimming_exit_instruction_line3">Screen dim can be controlled from TalkBack Settings</string>
 
 
+    <string name="shortcut_trigger_BC_mode">Trigger BC Mode</string>
     <!-- Label for a shortcut that is not assigned and does nothing. [CHAR_LIMIT=40] -->
     <string name="shortcut_unassigned">Unassigned</string>
     <!-- Label for the shortcut that moves accessibility focus to the next item. [CHAR_LIMIT=40] -->
@@ -979,7 +980,7 @@
     <!-- Label for preference specifying a volume that's the same as the system media volume. -->
     <string name="value_volume_100_percent" formatted="false">Match media volume</string>
     <!-- Label for preference specifying a volume that's 75% of the system media volume. -->
-    <string name="value_volume_75_percent" formatted="false" >75% of media volume</string>
+    <string name="value_volume_75_percent" formatted="false">75% of media volume</string>
     <!-- Label for preference specifying a volume that's 50% of the system media volume. -->
     <string name="value_volume_50_percent" formatted="false">50% of media volume</string>
     <!-- Label for preference specifying a volume that's 25% of the system media volume. -->
@@ -1067,9 +1068,9 @@
     <!-- Text that appears in the alert shown when a user adds or edits a custom label for an unlabeled view. -->
     <string name="label_dialog_text">Enter the text to be used as a label for this element\nInternal view name: <xliff:g id="view_resource_name">%1$s</xliff:g></string>
     <!-- Text that appears in the alert shown when a user removes a custom label for an unlabeled view. -->
-    <string name="label_remove_dialog_text">Are you sure you want to remove the \"<xliff:g id="label" example="profile picture">%1$s</xliff:g>\" label?</string>
+    <string name="label_remove_dialog_text">Are you sure you want to remove the \"<xliff:g example="profile picture" id="label">%1$s</xliff:g>\" label?</string>
     <!-- Text that appears in the alert shown when a user removes a custom label for an unlabeled view. -->
-    <string name="label_remove_dialog_text_app_name">Are you sure you want to remove the \"<xliff:g id="label" example="profile picture">%1$s</xliff:g>\" label within <xliff:g id="app_name" example="Google+">%2$s</xliff:g>?</string>
+    <string name="label_remove_dialog_text_app_name">Are you sure you want to remove the \"<xliff:g example="profile picture" id="label">%1$s</xliff:g>\" label within <xliff:g example="Google+" id="app_name">%2$s</xliff:g>?</string>
     <!-- Hint text that appears in the edit box within the alert shown when a user adds or edits a custom label for an unlabeled view. [CHAR_LIMIT=80] -->
     <string name="label_dialog_edit_hint">Label text</string>
     <!-- Text that appears in the label management menu item, that allow user to import custom labels to talkback -->
@@ -1083,8 +1084,7 @@
     <string name="label_export_failed">Label export failed</string>
     <string name="label_import_failed">Label import failed</string>
 
-    <plurals
-        name="label_import_succeeded">
+    <plurals name="label_import_succeeded">
         <item quantity="zero">No new labels</item>
         <item quantity="one">1 label updated</item>
         <item quantity="other">%d labels updated</item>
@@ -1141,7 +1141,7 @@
     <!-- Message for the dialog shown when a user attempts to disable Explore by Touch. -->
     <string name="dialog_message_disable_exploration">Are you sure you want to turn off Explore by touch?\n\nYour device will no longer respond to shortcut gestures or speak items when you touch the screen.</string>
 
-     <!-- Title for the dialog shown when a user attempts to enable node tree debugging.  -->
+  <!-- Title for the dialog shown when a user attempts to enable node tree debugging.  -->
     <string name="dialog_title_enable_tree_debug">Enable Node Tree Debugging?</string>
     <!-- Message for the dialog shown when a user attempts to enable node tree debugging. -->
     <string name="dialog_message_enable_tree_debug">Are you sure you want to turn on node tree debugging?\n\nNode tree debugging exposes the content of your screen to your device\'s logs, which may be read by other applications.</string>
@@ -1220,7 +1220,7 @@
     <string name="display_name_section">heading or landmark</string>
 
     <!-- Spoken out to indicate the index of a list item -->
-    <string name="item_index_template">Item <xliff:g id="item" example="1">%1$d</xliff:g></string>
+    <string name="item_index_template">Item <xliff:g example="1" id="item">%1$d</xliff:g></string>
 
     <string name="revert_imported_labels">Revert imported labels</string>
     <string name="imported_labels_reverted">Imported labels reverted</string>
@@ -1233,9 +1233,9 @@
     <string name="template_split_screen_mode_landscape_rtl"><xliff:g name="window_title_a" example="Application A">%1$s</xliff:g> on right, <xliff:g name="window_title_b" example="Application B">%2$s</xliff:g> on left</string>
 
     <!-- Spoken feedback for window switch to application window. e.g. In Application A window. -->
-    <string name="template_window_switch_application"><xliff:g id="application_window_title" example="Application A">%1$s</xliff:g></string>
+    <string name="template_window_switch_application"><xliff:g example="Application A" id="application_window_title">%1$s</xliff:g></string>
     <!-- Spoken feedback for window switch to system window. e.g. In Status bar. -->
-    <string name="template_window_switch_system"><xliff:g id="system_window_title" example="Status bar">%1$s</xliff:g></string>
+    <string name="template_window_switch_system"><xliff:g example="Status bar" id="system_window_title">%1$s</xliff:g></string>
     <!-- Window title used for announcing status bar. -->
     <string name="status_bar">status bar</string>
     <!-- Window title used for announcing navigation bar. -->
@@ -1247,7 +1247,7 @@
      -->
     <plurals name="template_dump_event_count">
         <item quantity="one">1 event selected</item>
-        <item quantity="other"><xliff:g id="total_count" example="2">%1$d</xliff:g> events selected</item>
+        <item quantity="other"><xliff:g example="2" id="total_count">%1$d</xliff:g> events selected</item>
     </plurals>
 
     <!--
@@ -1255,13 +1255,13 @@
       a special mode.
       Description: This is spoken to the user. [CHAR LIMIT="NONE"]
      -->
-    <string name="template_tv_remote_mode_started"><xliff:g id="remote_mode" example="Seek control mode">%1$s</xliff:g> started</string>
+    <string name="template_tv_remote_mode_started"><xliff:g example="Seek control mode" id="remote_mode">%1$s</xliff:g> started</string>
     <!--
       Source: String template for indicating that the Android TV remote control mode has exited a
       special mode and has returned to normal navigation mode.
       Description: This is spoken to the user. [CHAR LIMIT="NONE"]
      -->
-    <string name="template_tv_remote_mode_ended"><xliff:g id="remote_mode" example="Seek control mode">%1$s</xliff:g> ended</string>
+    <string name="template_tv_remote_mode_ended"><xliff:g example="Seek control mode" id="remote_mode">%1$s</xliff:g> ended</string>
     <!--
       Source: The Android TV remote control mode in which the arrow keys change the value of a
       seek control.
@@ -1291,13 +1291,12 @@
       by keyboard shortcut to see the list of shortcuts. This is spoken when user has focused into
       android window. [CHAR LIMIT="NONE"]
     -->
-    <string name="arc_open_manage_keyboard_shortcuts_hint">Press <xliff:g id="keyCombo" example="Search+K">%1$s</xliff:g> to see the list of shortcuts</string>
+    <string name="arc_open_manage_keyboard_shortcuts_hint">Press <xliff:g example="Search+K" id="keyCombo">%1$s</xliff:g> to see the list of shortcuts</string>
     <!--
       Arc: Hint to open TalkBack settings by using keyboard shortcut. This is spoken when focus has
       moved into Android window. [CHAR LIMIT="NONE"]
     -->
-    <string name="arc_open_talkback_settings_hint">Press <xliff:g id="keyCombo" example="Search+0">%1$s</xliff:g> to open TalkBack settings</string>
-
+    <string name="arc_open_talkback_settings_hint">Press <xliff:g example="Search+0" id="keyCombo">%1$s</xliff:g> to open TalkBack settings</string>
 
 
   <!-- Value used to reset the user language preference -->
@@ -1307,47 +1306,47 @@
   <!--Title of selector preference screen.-->
   <string name="title_pref_selector_settings">Selector</string>
   <!--
-  Source: Title of preference for activating the selector.
-  Description: The user can check or not check this. [CHAR LIMIT=40]
-  -->
+Source: Title of preference for activating the selector.
+Description: The user can check or not check this. [CHAR LIMIT=40]
+-->
   <string name="title_pref_selector_activation">Selector activation</string>
 
   <!--Title of preference for configuring the settings of the selector.-->
   <string name="title_pref_category_selector_settings_configuration">Setting configuration</string>
   <!--
-  Source: Title of preference for including speech rate in the selector setting list.
-  Description: The user can check or not check this. [CHAR LIMIT=40]
-  -->
+Source: Title of preference for including speech rate in the selector setting list.
+Description: The user can check or not check this. [CHAR LIMIT=40]
+-->
   <string name="title_pref_selector_speech_rate">Speech rate</string>
   <!--
-  Source: Title of preference for including verbosity in the selector setting list.
-  Description: The user can check or not check this. [CHAR LIMIT=40]
-  -->
+Source: Title of preference for including verbosity in the selector setting list.
+Description: The user can check or not check this. [CHAR LIMIT=40]
+-->
   <string name="title_pref_selector_verbosity">Verbosity</string>
   <!--
-  Source: Title of preference for including granularity in the selector setting list.
-  Description: The user can check or not check this. [CHAR LIMIT=40]
-  -->
+Source: Title of preference for including granularity in the selector setting list.
+Description: The user can check or not check this. [CHAR LIMIT=40]
+-->
   <string name="title_pref_selector_granularity">Navigation</string>
   <!--
-  Source: Title of preference for including audio ducking in the selector setting list.
-  Description: The user can check or not check this. [CHAR LIMIT=40]
-  -->
+Source: Title of preference for including audio ducking in the selector setting list.
+Description: The user can check or not check this. [CHAR LIMIT=40]
+-->
   <string name="title_pref_selector_audio_focus">Audio ducking</string>
   <!--
-  Source: Summary subtext for the Speak when the selector is switched on.
-  Description: Explains that the gestures will be reassigned to selector settings. [CHAR LIMIT="NONE"]
-  -->
+Source: Summary subtext for the Speak when the selector is switched on.
+Description: Explains that the gestures will be reassigned to selector settings. [CHAR LIMIT="NONE"]
+-->
   <string name="pref_selector_activation_summary">Swipe up and down on the fingerprint sensor to select a setting. Swipe up and down on the screen to change the setting value</string>
   <!--
-  Source: Title for the Speak passwords without headphones setting.
-  Description: The user can check or not check this. [CHAR+LIMIT="NONE"]
-  -->
+Source: Title for the Speak passwords without headphones setting.
+Description: The user can check or not check this. [CHAR+LIMIT="NONE"]
+-->
   <string name="title_pref_speak_passwords_without_headphones">Speak passwords</string>
   <!--
-  Source: Summary subtext for the Speak passwords setting when the setting is on.
-  Description: Explains that the passwords will always be spoken. [CHAR+LIMIT="NONE"]
-  -->
+Source: Summary subtext for the Speak passwords setting when the setting is on.
+Description: Explains that the passwords will always be spoken. [CHAR+LIMIT="NONE"]
+-->
   <string name="summaryOn_pref_speak_passwords_without_headphones">Passwords always spoken</string>
 
 </resources>

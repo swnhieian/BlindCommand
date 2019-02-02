@@ -26,6 +26,8 @@ public class SoundPlayer {
         soundPool.load(context, R.raw.click, 1);
         soundPool.load(context, R.raw.delete, 2);
         soundPool.load(context, R.raw.ding, 1);
+        soundPool.load(context, R.raw.start, 1);
+        soundPool.load(context, R.raw.end, 1);
 
         tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
             @Override
@@ -68,6 +70,8 @@ public class SoundPlayer {
     public static void ding() {
         soundPool.play(3,1,1,1,0,1.5f);
     }
+    public static void start() { soundPool.play(4,1,1,1,0,1.5f); }
+    public static void end() {soundPool.play(5,1,1,1,0,1.5f); }
     public static void tts(String text) {
         interrupt();
         System.out.println("tts: " + text +"   " + System.currentTimeMillis());

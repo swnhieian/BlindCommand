@@ -34,8 +34,12 @@ public class KbdView extends View {
 
 
     public enum SwipeAction { SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP_TWO_FINGERS,
-        SWIPE_DOWN_TWO_FINGERS, SWIPE_LEFT_TWO_FINGERS, SWIPE_RIGHT_TWO_FINGERS};
+        SWIPE_DOWN_TWO_FINGERS, SWIPE_LEFT_TWO_FINGERS, SWIPE_RIGHT_TWO_FINGERS, No_Action,
+        SWIPE_DOWN_UP, SWIPE_UP_DOWN, SWIPE_LEFT_RIGHT, SWIPE_RIGHT_LEFT, SWIPE_DOWN_LEFT,
+        SWIPE_DOWN_RIGHT, SWIPE_UP_LEFT, SWIPE_UP_RIGHT, SWIPE_LEFT_UP, SWIPE_LEFT_DOWN,
+        SWIPE_RIGHT_UP, SWIPE_RIGHT_DOWN};
     public void performAction(SwipeAction action) {
+        tempAction = SwipeAction.No_Action;
         System.out.println("Detect:" + action.toString());
         switch (action) {
             case SWIPE_LEFT:
@@ -56,13 +60,15 @@ public class KbdView extends View {
                 parser.clear();
                 SoundPlayer.ding();
                 break;
+            case SWIPE_DOWN_UP:
+                ((TalkBackService)getContext()).triggerBCMode();
             default:
                 break;
         }
     }
 
-    float downx, downy, downx2, downy2;
-    long downTime, downTime2;
+    float downx, downy, downx2, downy2, tempx, tempy;
+    long downTime, downTime2, tempTime;
     final int SWIPE_DIST = 40;
     final int SWIPE_TIME = 400;
     final int NO_FEEDBACK_TIME = 40;
@@ -78,6 +84,7 @@ public class KbdView extends View {
     }
     private char lastKey = ' ';
     float lastX, lastY;
+    SwipeAction tempAction = SwipeAction.No_Action;
     long lastTime;
     public void explore(MotionEvent event) {
 
@@ -94,6 +101,61 @@ public class KbdView extends View {
         lastY = event.getY();
         lastTime = event.getEventTime();
     }
+    private SwipeAction concatGesture(SwipeAction action1, SwipeAction action2) {
+        if (action1 == SwipeAction.No_Action) {
+            return action2;
+        }
+        switch (action1) {
+            case SWIPE_LEFT:
+                switch (action2) {
+                    case SWIPE_RIGHT:
+                        return SwipeAction.SWIPE_LEFT_RIGHT;
+                    case SWIPE_DOWN:
+                        return SwipeAction.SWIPE_LEFT_DOWN;
+                    case SWIPE_UP:
+                        return SwipeAction.SWIPE_LEFT_UP;
+                    default:
+                        return SwipeAction.No_Action;
+                }
+            case SWIPE_RIGHT:
+                switch (action2) {
+                    case SWIPE_LEFT:
+                        return SwipeAction.SWIPE_RIGHT_LEFT;
+                    case SWIPE_DOWN:
+                        return SwipeAction.SWIPE_RIGHT_DOWN;
+                    case SWIPE_UP:
+                        return SwipeAction.SWIPE_RIGHT_UP;
+                    default:
+                        return SwipeAction.No_Action;
+                }
+            case SWIPE_UP:
+                switch (action2) {
+                    case SWIPE_RIGHT:
+                        return SwipeAction.SWIPE_UP_RIGHT;
+                    case SWIPE_DOWN:
+                        return SwipeAction.SWIPE_UP_DOWN;
+                    case SWIPE_LEFT:
+                        return SwipeAction.SWIPE_UP_LEFT;
+                    default:
+                        return SwipeAction.No_Action;
+                }
+            case SWIPE_DOWN:
+                switch (action2) {
+                    case SWIPE_RIGHT:
+                        return SwipeAction.SWIPE_DOWN_RIGHT;
+                    case SWIPE_LEFT:
+                        return SwipeAction.SWIPE_DOWN_LEFT;
+                    case SWIPE_UP:
+                        return SwipeAction.SWIPE_DOWN_UP;
+                    default:
+                        return SwipeAction.No_Action;
+                }
+            default:
+                return SwipeAction.No_Action;
+        }
+    }
+
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float x = event.getX();
@@ -134,32 +196,74 @@ public class KbdView extends View {
                 case MotionEvent.ACTION_POINTER_DOWN:
                     downx = x;
                     downy = y;
+                    tempx = x;
+                    tempy = y;
+                    tempTime = time;
                     downTime = time;
                     break;
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_POINTER_UP:
-                    if (time < downTime + SWIPE_TIME) {
-                        if (y < downy - SWIPE_DIST &&
-                                Math.abs(y-downy) > Math.abs(x-downx)) {
-                            performAction(SwipeAction.SWIPE_UP);
-                        } else if (y > downy + SWIPE_DIST &&
-                                Math.abs(y-downy) > Math.abs(x-downx)) {
-                            performAction(SwipeAction.SWIPE_DOWN);
-                        } else if (x < downx - SWIPE_DIST &&
-                                Math.abs(x - downx) > Math.abs(y - downy)) {
-                            performAction(SwipeAction.SWIPE_LEFT);
-                        } else if (x > downx + SWIPE_DIST &&
-                                Math.abs(x - downx) > Math.abs(y - downy)) {
-                            performAction(SwipeAction.SWIPE_RIGHT);
+                    if (time < tempTime + SWIPE_TIME) {
+                        if (y < tempy - SWIPE_DIST &&
+                                Math.abs(y-tempy) > Math.abs(x-tempx)) {
+                                performAction(concatGesture(tempAction, SwipeAction.SWIPE_UP));
+                        } else if (y > tempy + SWIPE_DIST &&
+                                Math.abs(y-tempy) > Math.abs(x-tempx)) {
+                            performAction(concatGesture(tempAction, SwipeAction.SWIPE_DOWN));
+                        } else if (x < tempx - SWIPE_DIST &&
+                                Math.abs(x - tempx) > Math.abs(y - tempy)) {
+                            performAction(concatGesture(tempAction, SwipeAction.SWIPE_LEFT));
+                        } else if (x > tempx + SWIPE_DIST &&
+                                Math.abs(x - tempx) > Math.abs(y - tempy)) {
+                            performAction(concatGesture(tempAction, SwipeAction.SWIPE_RIGHT));
+                        } else if (tempAction != SwipeAction.No_Action) {
+                            performAction(concatGesture(SwipeAction.No_Action, tempAction));
                         } else {
                             upTouch(event);
                         }
+
                     } else {
                         upTouch(event);
                     }
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    explore(event);
+                    if (time < downTime + SWIPE_TIME && time > downTime + SWIPE_TIME / 2) {
+                        if (y < downy - SWIPE_DIST &&
+                                Math.abs(y - downy) > Math.abs(x - downx)) {
+                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_UP) {
+                                tempx = x;
+                                tempy = y;
+                                tempTime = time;
+                                tempAction = SwipeAction.SWIPE_UP;
+                            }
+                        } else if (y > downy + SWIPE_DIST &&
+                                Math.abs(y - downy) > Math.abs(x - downx)) {
+                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_DOWN) {
+                                tempx = x;
+                                tempy = y;
+                                tempTime = time;
+                                tempAction = SwipeAction.SWIPE_DOWN;
+                            }
+                        } else if (x < downx - SWIPE_DIST &&
+                                Math.abs(x - downx) > Math.abs(y - downy)) {
+                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_LEFT) {
+                                tempx = x;
+                                tempy = y;
+                                tempTime = time;
+                                tempAction = SwipeAction.SWIPE_LEFT;
+                            }
+                        } else if (x > downx + SWIPE_DIST &&
+                                Math.abs(x - downx) > Math.abs(y - downy)) {
+                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_RIGHT) {
+                                tempx = x;
+                                tempy = y;
+                                tempTime = time;
+                                tempAction = SwipeAction.SWIPE_RIGHT;
+                            }
+                        }
+                    } else {
+                            explore(event);
+                        }
                     break;
                 default:
                     break;
@@ -199,7 +303,7 @@ public class KbdView extends View {
 
         int keyWidth = Utility.getKeyboardWidth(getContext()) / 10;
         int keyHeight = Utility.getkeyboardHeight(getContext()) / 4;
-        int startY = Utility.getScreenHeight(getContext())/2 - Utility.getkeyboardHeight(getContext());
+        int startY = Utility.getScreenHeight(getContext()) - Utility.getkeyboardHeight(getContext());
         System.out.println("startY" + startY+","+getHeight());
         keys = new ArrayList<>();
         String line = "QWERTYUIOP";

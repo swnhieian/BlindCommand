@@ -342,6 +342,8 @@ public class GestureControllerApp implements GestureController {
     } else if (action.equals(
         mService.getString(R.string.shortcut_value_selected_setting_next_action))) {
       mSelectorController.performSelectedSettingAction(eventId, true);
+    } else if (action.equals(mService.getString(R.string.shortcut_value_trigger_BC_mode))) {
+      mService.triggerBCMode();
     }
     Intent intent = new Intent(GestureActionMonitor.ACTION_GESTURE_ACTION_PERFORMED);
     intent.putExtra(GestureActionMonitor.EXTRA_SHORTCUT_GESTURE_ACTION, action);

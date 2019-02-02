@@ -339,6 +339,7 @@
         <item>@string/shortcut_editing</item>
         <item>@string/shortcut_show_language_options</item>
         <item>@string/shortcut_perform_click_action</item>
+        <item>@string/shortcut_trigger_BC_mode</item>
     </string-array>
 
     <!-- Shortcut preference values -->
@@ -365,6 +366,7 @@
         <item>@string/shortcut_value_editing</item>
         <item>@string/shortcut_value_show_language_options</item>
         <item>@string/shortcut_value_perform_click_action</item>
+        <item>@string/shortcut_value_trigger_BC_mode</item>
     </string-array>
 
     <!-- Assignable shortcuts -->
@@ -379,6 +381,7 @@
     <string name="shortcut_value_scroll_back">SCROLL_BACK</string>
     <string name="shortcut_value_scroll_forward">SCROLL_FORWARD</string>
     <string name="shortcut_value_home">HOME</string>
+    <string name="shortcut_value_trigger_BC_mode">BC Mode</string>
     <string name="shortcut_value_overview">OVERVIEW</string>
     <string name="shortcut_value_notifications">NOTIFICATIONS</string>
     <string name="shortcut_value_quick_settings">QUICK_SETTINGS</string>
@@ -502,7 +505,8 @@
     <string name="pref_shortcut_left_and_right_default">@string/shortcut_value_scroll_back</string>
     <string name="pref_shortcut_right_and_left_default">@string/shortcut_value_scroll_forward</string>
     <string name="pref_shortcut_up_and_down_default">@string/shortcut_value_first_in_screen</string>
-    <string name="pref_shortcut_down_and_up_default">@string/shortcut_value_last_in_screen</string>
+    <!--<string name="pref_shortcut_down_and_up_default">@string/shortcut_value_last_in_screen</string>-->
+    <string name="pref_shortcut_down_and_up_default">@string/shortcut_value_trigger_BC_mode</string>
     <string name="pref_shortcut_up_and_left_default">@string/shortcut_value_home</string>
     <string name="pref_shortcut_up_and_right_default">@string/shortcut_value_local_breakout</string>
     <string name="pref_shortcut_down_and_left_default">@string/shortcut_value_back</string>

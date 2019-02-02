@@ -1355,10 +1355,12 @@ public class TalkBackService extends AccessibilityService
     if (kbdView.getVisibility() == View.VISIBLE) {
       kbdView.setVisibility(View.INVISIBLE);
       enableTouchExploration();
+      SoundPlayer.end();
       //disableAccessibilityServices();
     } else {
       kbdView.setVisibility(View.VISIBLE);
       disableTouchExploration();
+      SoundPlayer.start();
       //System.out.println("CTRL_ALT_Z start");
       //ALT_CTRL_Z();
       //System.out.println("CTRL_ALT_Z end");
@@ -1382,9 +1384,9 @@ public class TalkBackService extends AccessibilityService
 
     WindowManager.LayoutParams params = new WindowManager.LayoutParams(
             metrics.widthPixels,
-            metrics.heightPixels / 2,
+            metrics.heightPixels, // / 2,
             0,
-            metrics.heightPixels / 2,
+            0, //metrics.heightPixels / 2,
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT);
@@ -1878,7 +1880,8 @@ public class TalkBackService extends AccessibilityService
     setServiceState(ServiceStateListener.SERVICE_STATE_ACTIVE);
     stopForeground(true);
 
-    final AccessibilityServiceInfo info = new AccessibilityServiceInfo();
+    //final AccessibilityServiceInfo info = new AccessibilityServiceInfo();
+    final AccessibilityServiceInfo info = getServiceInfo();
     info.eventTypes = AccessibilityEvent.TYPES_ALL_MASK;
     info.feedbackType |= AccessibilityServiceInfo.FEEDBACK_SPOKEN;
     info.feedbackType |= AccessibilityServiceInfo.FEEDBACK_AUDIBLE;
@@ -1886,6 +1889,7 @@ public class TalkBackService extends AccessibilityService
     info.flags |= AccessibilityServiceInfo.DEFAULT;
     info.flags |= AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
     info.flags |= AccessibilityServiceInfo.FLAG_REQUEST_FILTER_KEY_EVENTS;
+    //info.flags |= AccessibilityServiceInfo.FLAG_INCLUDE_NOT_IMPORTANT_VIEWS;
     if (BuildVersionUtils.isAtLeastLMR1()) {
       info.flags |= AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
     }
