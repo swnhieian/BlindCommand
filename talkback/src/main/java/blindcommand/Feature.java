@@ -23,6 +23,7 @@ public class Feature {
     public boolean correspondTo(AccessibilityWindowInfo window){
         AccessibilityNodeInfo featureNode = NodeInfoFinder.find(window.getRoot(), nodeId);
         if(featureNode == null) return false;
+        System.out.println("feature found");
         CharSequence text = featureNode.getText();
         boolean match = true;
         if(text != null){
@@ -32,6 +33,7 @@ public class Feature {
         if(content != null){
             match = match && Pattern.matches(contentReg, content);
         }
+        System.out.println("match: " + match);
         return match;
     }
 }

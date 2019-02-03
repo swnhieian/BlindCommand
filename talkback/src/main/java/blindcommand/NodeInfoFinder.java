@@ -2,29 +2,49 @@ package blindcommand;
 
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import lombok.AllArgsConstructor;
+
 public class NodeInfoFinder {
     public static AccessibilityNodeInfo find(AccessibilityNodeInfo root, String path){
         String[] splitPath = path.split("\\s*;\\s*");
         AccessibilityNodeInfo cur = root;
-        System.out.println(root.getClassName());
-        int childCount = root.getChildCount();
-        for(int i = 0; i < childCount; i ++){
-            System.out.println("" + i + " " + root.getChild(i).getClassName());
-        }
-        for(String subPath: splitPath){
-            cur = next(cur, subPath);
-            if(cur == null) return null;
+        for(int i = 0; i < splitPath.length; i ++){
+            ReturnValue returnValue = next(cur, splitPath[i]);
+            if(!returnValue.matchClassName || returnValue.nextNode == null){
+                return null;
+            }
+            cur = returnValue.nextNode;
         }
         return cur;
     }
 
-    private static AccessibilityNodeInfo next(AccessibilityNodeInfo father, String path){
+    private static ReturnValue next(AccessibilityNodeInfo father, String path){
         String[] splitPath = path.split("\\|");
-        if(splitPath.length != 2) return null;
         System.out.println("split path: " + splitPath[0] + " " + splitPath[1]);
         int childCount = father.getChildCount();
         int childIndex = splitPath[1].equals("$") ? childCount - 1 : Integer.parseInt(splitPath[1]);
-        AccessibilityNodeInfo child = father.getChild(childIndex);
-        return child.getClassName().toString().equals(splitPath[0]) ? child : null;
+        System.out.println("" + childIndex + " " + childCount);
+        boolean childOutOfIndex = childIndex < 0 || childIndex >= childCount;
+        boolean matchClassName = false;
+        AccessibilityNodeInfo nextNode = null;
+        if(!childOutOfIndex) {
+            nextNode = father.getChild(childIndex);
+            System.out.println("actual " + nextNode.getClassName());
+            try {
+                Class nodeClass = Class.forName(nextNode.getClassName().toString());
+                Class thatClass = Class.forName(splitPath[0]);
+                matchClassName = nodeClass.equals(thatClass) || thatClass.isAssignableFrom(nodeClass);
+            } catch(ClassNotFoundException e){
+                e.printStackTrace();
+            }
+        }
+        return new ReturnValue(nextNode, matchClassName, childOutOfIndex);
+    }
+
+    @AllArgsConstructor
+    static class ReturnValue{
+        public AccessibilityNodeInfo nextNode;
+        public boolean matchClassName;
+        public boolean childOutOfIndex;
     }
 }
