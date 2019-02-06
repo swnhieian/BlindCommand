@@ -18,6 +18,13 @@ public class NodeGraph {
     public NodeGraph(){
         nodes = new ArrayList<>();
     }
+    public List<Instruction> getInstructions() {
+        List<Instruction> ret = new ArrayList<>();
+        for (Node node:nodes) {
+            ret.add(node.getInstruction());
+        }
+        return ret;
+    }
 
     public Node getCurrentWindowNode(AccessibilityWindowInfo activeWindow){
         System.out.println("node: " +  nodes.size());
@@ -31,7 +38,7 @@ public class NodeGraph {
     }
     public Node getTargetWindowNode(String name){
         for(Node node: nodes){
-            if(node.pageName.equals(name)){
+            if(node.pageId.equals(name)){
                 return node;
             }
         }
@@ -102,8 +109,8 @@ public class NodeGraph {
     public void loadGraph(List<JsonNode> jsonNodes){
         Map<String, Node> map = new Hashtable<>();
         for(JsonNode jsonNode: jsonNodes){
-            Node newNode = new Node(jsonNode);
-            map.put(newNode.pageName, newNode);
+            Node newNode = new Node(jsonNode, this.meta);
+            map.put(newNode.pageId, newNode);
             nodes.add(newNode);
         }
         int size = jsonNodes.size();
@@ -112,8 +119,8 @@ public class NodeGraph {
             for(JsonClickable button: jsonClickables){
                 Node targetNode = map.get(button.target);
                 if (targetNode == null) {
-                    Node newNode = new Node(button.target);
-                    map.put(newNode.pageName, newNode);
+                    Node newNode = new Node(button.target, button.name, button.pinyin, this.meta);
+                    map.put(newNode.pageId, newNode);
                     nodes.add(newNode);
                 }
                 targetNode = map.get(button.target);

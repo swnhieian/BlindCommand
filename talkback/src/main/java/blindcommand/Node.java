@@ -11,17 +11,31 @@ import java.util.Map;
 public class Node {
 
     public String pageName;
+    public String pageId;
+    public String pagePinyin;
+    public JsonAppInfo meta;
     public List<Feature> pageFeatures;
     public Map<Node, Edge> neighbours;
 
+    public Instruction getInstruction() {
+        return new Instruction(pageId, pageName, pagePinyin, meta);
+    }
+
     public Node pre;
-    public Node(String name) {
+    public Node(String id, String name, String pinyin, JsonAppInfo meta) {
+        pageId = id;
         pageName = name;
+        pagePinyin = pinyin;
+        this.meta = meta;
         pageFeatures = new ArrayList<>();
         neighbours = new Hashtable<>();
+        pre = null;
     }
-    public Node(JsonNode jsonNode){
-        pageName = jsonNode.pageId;
+    public Node(JsonNode jsonNode, JsonAppInfo meta){
+        pageId = jsonNode.pageId;
+        pageName = jsonNode.pageName;
+        pagePinyin = jsonNode.pagePinyin;
+        this.meta = meta;
         pageFeatures = new ArrayList<>();
         for(JsonFeature feature: jsonNode.features){
             pageFeatures.add(new Feature(feature));
@@ -42,7 +56,7 @@ public class Node {
 
     @Override
     public boolean equals(Object obj) {
-        return this.pageName.equals(((Node)obj).pageName);
+        return this.pageId.equals(((Node)obj).pageId);
     }
 
     public void addEdge(Edge edge){

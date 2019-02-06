@@ -37,7 +37,7 @@ public class SimpleParser {
     }
     public Instruction getCurrent() {
         if (candidateList.size() == 0) {
-            return new Instruction("null", "无结果");
+            return new Instruction("null", "无结果", "WuJieGuo", new JsonAppInfo());
         }
         return candidateList.get(currentIndex).instruction;
     }

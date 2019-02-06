@@ -76,47 +76,57 @@ public class InstructionSet {
     };
 
     private Executor executor;
-
     public InstructionSet(Context service) {
         this.service = service;
-        instructions = new HashMap<>();
-        String [][] iter = ins;
-        if (Utility.getLanguage().equals("CN")) {
-            iter = ins;
-        } else if (Utility.getLanguage().equals("US")) {
-            iter = ins_en;
-        }
-        for (String[] i:iter) {
-            String cmd = i[1].toLowerCase();
-            instructions.put(cmd, new Instruction(cmd, i[0]));
-            cmd = i[1].replaceAll("[a-z]+", "").toLowerCase();
-            if (cmd.length() >=2) {
-                instructions.put(cmd, new Instruction(cmd, i[0]));
-            }
-        }
-        //Set<String> keys = instructions.keySet();
-        this.dict = instructions.keySet().toArray(new String[] {});
-//        List<PackageInfo> packList = service.getPackageManager().getInstalledPackages(0);
-//        System.out.println("=========");
-//        PackageManager packageManager = null;
-//
-//
-//            packageManager = service.getPackageManager();
-//
-//        for (PackageInfo pkgInfo: packList) {
-//            System.out.println(pkgInfo.packageName);
-//            String applicationName =
-//                    (String) packageManager.getApplicationLabel(pkgInfo.applicationInfo);
-//            System.out.println(applicationName);
-//            System.out.println("----------");
-//
-//        }
-//        System.out.println("=========");
         this.executor = new Executor(Utility.service);
+        instructions = new HashMap<>();
+        List<Instruction> allInstructions = executor.getInstructions();
+        for (Instruction instruction:allInstructions) {
+            instructions.put(instruction.pinyin.toLowerCase(), instruction);
+        }
+        this.dict = instructions.keySet().toArray(new String[]{});
+
     }
-    public void execute(String commandName) {
+//    public void InstructionSet_ori(Context service) {
+//        this.service = service;
+//        instructions = new HashMap<>();
+//        String [][] iter = ins;
+//        if (Utility.getLanguage().equals("CN")) {
+//            iter = ins;
+//        } else if (Utility.getLanguage().equals("US")) {
+//            iter = ins_en;
+//        }
+//        for (String[] i:iter) {
+//            String cmd = i[1].toLowerCase();
+//            instructions.put(cmd, new Instruction(cmd, i[0]));
+//            cmd = i[1].replaceAll("[a-z]+", "").toLowerCase();
+//            if (cmd.length() >=2) {
+//                instructions.put(cmd, new Instruction(cmd, i[0]));
+//            }
+//        }
+//        //Set<String> keys = instructions.keySet();
+//        this.dict = instructions.keySet().toArray(new String[] {});
+////        List<PackageInfo> packList = service.getPackageManager().getInstalledPackages(0);
+////        System.out.println("=========");
+////        PackageManager packageManager = null;
+////
+////
+////            packageManager = service.getPackageManager();
+////
+////        for (PackageInfo pkgInfo: packList) {
+////            System.out.println(pkgInfo.packageName);
+////            String applicationName =
+////                    (String) packageManager.getApplicationLabel(pkgInfo.applicationInfo);
+////            System.out.println(applicationName);
+////            System.out.println("----------");
+////
+////        }
+////        System.out.println("=========");
+//        this.executor = new Executor(Utility.service);
+//    }
+    public void execute(Instruction ins) {
         final String SUBTAG = "execute";
-        executor.execute(commandName);
+        executor.execute(ins);
         /*
         switch (commandName) {
             case "Open Wechat":

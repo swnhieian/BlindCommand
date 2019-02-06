@@ -8,4 +8,6 @@ import lombok.Data;
 public class Instruction {
     String id;
     String name;
+    String pinyin;
+    JsonAppInfo meta;
 }

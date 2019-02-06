@@ -51,7 +51,7 @@ public class KbdView extends View {
                 SoundPlayer.tts(parser.getCurrent().name);
                 break;
             case SWIPE_DOWN: //confirm
-                instructionSet.execute(parser.getCurrent().name);
+                instructionSet.execute(parser.getCurrent());
                 SoundPlayer.execute(parser.getCurrent());
                 ((TalkBackService)getContext()).triggerBCMode();
                 parser.clear();

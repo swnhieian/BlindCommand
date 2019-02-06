@@ -18,6 +18,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,6 +29,13 @@ public class Executor {
         this.service = service;
         graphs = new HashMap<>();
         init();
+    }
+    public List<Instruction> getInstructions() {
+        List<Instruction> ret = new ArrayList<>();
+        for (NodeGraph nodeGraph:graphs.values()) {
+            ret.addAll(nodeGraph.getInstructions());
+        }
+        return ret;
     }
 
     public void singleStep(Edge edge) {
@@ -68,13 +76,13 @@ public class Executor {
             }
         }
     }
-    public void execute(final String commandName) {
+    public void execute(final Instruction instruction) {
         //TODO: find app graph
-        jumpToApp(graphs.get("微信").meta.packageName);
+        jumpToApp(instruction.meta.packageName);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                execute(commandName, graphs.get("微信"));
+                execute(instruction.id, graphs.get(instruction.meta.appName));
             }
         }, 1000);
     }
@@ -92,10 +100,9 @@ public class Executor {
             return null;
         }
     }
-    public void execute(String commandName, NodeGraph graph) {
+    public void execute(String commandId, NodeGraph graph) {
         //jumpToApp(graph.meta.packageName);
-        commandName = "朋友圈";
-        System.out.println("execute: " + commandName);
+        System.out.println("execute: " + commandId);
         List<AccessibilityWindowInfo> windows = service.getWindows();
         AccessibilityWindowInfo currentWindow = null;
         for (AccessibilityWindowInfo window : windows) {
@@ -106,15 +113,11 @@ public class Executor {
         }
         Node currentNode = graph.getCurrentWindowNode(currentWindow);
         // TODO ? 用 commandName 得出目标窗口的name
-        Node targetNode = graph.getTargetWindowNode(commandName);
-        System.out.println("Find currentNode and targetNode OK!");
+        Node targetNode = graph.getTargetWindowNode(commandId);
         if(currentNode == null || targetNode == null) return;
-        System.out.println("Find currentNode and targetNode not null!");
         edges = graph.findPath(currentNode, targetNode);
-        System.out.println("Get path OK!");
         // 起一个新线程
         if(edges != null) {
-            System.out.println("Find Path OK!, size: " + edges.size());
             for (int i=0; i<edges.size(); i++) {
                 //new ExecuteAsyncTask().execute(new Integer(i));
                 final Edge edge = edges.get(i);
