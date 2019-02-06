@@ -20,7 +20,28 @@ public class Feature {
         nodeId = feature.nodeId;
         textReg = feature.textReg;
     }
+    public String nodeId(AccessibilityNodeInfo node) {
+        if (node == null) return "not exist";
+        String ret = "";
+        AccessibilityNodeInfo pNode = node.getParent();
+        if (pNode == null) return (""+node.getClassName());
+        int num = 0;
+        for (int i=0; i<pNode.getChildCount(); i++) {
+            if (pNode.getChild(i).equals(node)) {
+                num = i;
+                break;
+            }
+        }
+        String pre = nodeId(pNode);
+        ret += (pre + "|" + num + ";" + node.getClassName());
+        return ret;
+    }
     public boolean correspondTo(AccessibilityWindowInfo window){
+        AccessibilityNodeInfo node = window.getRoot();
+        AccessibilityNodeInfo wnode = node.findAccessibilityNodeInfosByText("相册").get(0);
+        System.out.println("=========");
+        System.out.println(nodeId(wnode));
+
         AccessibilityNodeInfo featureNode = NodeInfoFinder.find(window.getRoot(), nodeId);
         if(featureNode == null) return false;
         System.out.println("feature found");

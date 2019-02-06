@@ -13,6 +13,7 @@ public class NodeGraph {
 
     // 存储结点列表，结点里存邻接表
     public List<Node> nodes;
+    public JsonAppInfo meta;
 
     public NodeGraph(){
         nodes = new ArrayList<>();
@@ -37,21 +38,22 @@ public class NodeGraph {
         return null;
     }
     public List<Edge> findPath(Node from, Node to){
+        System.out.println("in find path");
         List<Edge> path = new ArrayList<>();
-        if(from == to){
+        if(from.equals(to)){
             return path;
         }
         // bfs 找最短路
         LinkedList<Node> queue = new LinkedList<>();
         queue.offer(from);
+        boolean found = false;
         while(!queue.isEmpty()){
             Node first = queue.poll();
             if(first == null) continue;
-            boolean found = false;
             for(Node neighbour: first.neighbours.keySet()){
                 neighbour.pre = first;
                 queue.offer(neighbour);
-                if(neighbour == to){
+                if(neighbour.equals(to)){
                     found = true;
                     break;
                 }
@@ -60,18 +62,27 @@ public class NodeGraph {
                 break;
             }
         }
+        System.out.println("in find path: path found");
 
         // 从Node的pre结点信息生成一条路径
         Node currentFrom = to;
         Node currentTo = to;
-        while(currentTo != from){
+        System.out.println("in find path: start loop");
+        int count = 0;
+        while(!currentTo.equals(from)){
+            count ++;
+            System.out.println("in find path: in loop" + count);
             if(currentFrom == null){
                 return null;
             }
-            currentFrom = currentFrom.pre;
+            currentFrom = currentTo.pre;
+            if (currentFrom == null) {
+                return null;
+            }
             path.add(0, currentFrom.neighbours.get(currentTo));
             currentTo = currentTo.pre;
         }
+        System.out.println("in find path: out loop");
         return path;
     }
 
@@ -83,6 +94,10 @@ public class NodeGraph {
         features为页面的特征(JsonFeature)，用于判断当前在哪个页面
         buttons为页面上Clickable的元素(JsonClickable)，每个button对应图中一条有向边(Edge)
     */
+    public void loadGraph(JsonAppNode jsonAppNode){
+        this.meta = jsonAppNode.meta;
+        loadGraph(jsonAppNode.data);
+    }
 
     public void loadGraph(List<JsonNode> jsonNodes){
         Map<String, Node> map = new Hashtable<>();
@@ -96,9 +111,15 @@ public class NodeGraph {
             List<JsonClickable> jsonClickables = jsonNodes.get(i).buttons;
             for(JsonClickable button: jsonClickables){
                 Node targetNode = map.get(button.target);
-                if(targetNode != null) {
-                    nodes.get(i).addEdge(new Edge(nodes.get(i), targetNode, button));
+                if (targetNode == null) {
+                    Node newNode = new Node(button.target);
+                    map.put(newNode.pageName, newNode);
+                    nodes.add(newNode);
                 }
+                targetNode = map.get(button.target);
+                //if(targetNode != null) {
+                    nodes.get(i).addEdge(new Edge(nodes.get(i), targetNode, button));
+                //}
             }
         }
     }
