@@ -38,9 +38,9 @@ public class Feature {
     }
     public boolean correspondTo(AccessibilityWindowInfo window){
         AccessibilityNodeInfo node = window.getRoot();
-        AccessibilityNodeInfo wnode = node.findAccessibilityNodeInfosByText("相册").get(0);
-        System.out.println("=========");
-        System.out.println(nodeId(wnode));
+//        AccessibilityNodeInfo wnode = node.findAccessibilityNodeInfosByText("相册").get(0);
+//        System.out.println("=========");
+//        System.out.println(nodeId(wnode));
 
         AccessibilityNodeInfo featureNode = NodeInfoFinder.find(window.getRoot(), nodeId);
         if(featureNode == null) return false;
