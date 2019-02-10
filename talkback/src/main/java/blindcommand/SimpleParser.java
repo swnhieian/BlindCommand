@@ -35,20 +35,29 @@ public class SimpleParser {
         candidateList.clear();
         currentIndex = 0;
     }
-    public Instruction getCurrent() {
+    public ParseResult getCurrent() {
         if (candidateList.size() == 0) {
-            return new Instruction("null", "无结果", "WuJieGuo", new JsonAppInfo());
+            return new ParseResult(new Instruction("null", "无结果", "WuJieGuo", new JsonAppInfo()),
+                                    -1, 0, false);
         }
-        return candidateList.get(currentIndex).instruction;
+        ParseResult pr = new ParseResult(candidateList.get(currentIndex).instruction, currentIndex, candidateList.size(), false);
+        for(Entry candidate: candidateList){
+            if(candidate.instruction.hasSameCommand(pr.instruction) && !candidate.instruction.inSameApp(pr.instruction)){
+                pr.hasSameName = true;
+                break;
+            }
+        }
+        return pr;
     }
     private static double logGaussian(double x, double mu, double sigma) {
         return -Math.log(sigma*Math.sqrt(2*Math.PI)) - (x - mu)*(x-mu)/2/sigma/sigma;
     }
     public void parse() {
-        List<Entry> set =new ArrayList<>();
-        for (String ins:instructionSet.dict) {
-            if (ins.length() >= touchPoints.size()) {
-                set.add(new Entry(ins, instructionSet.instructions.get(ins), 0.0));
+        List<Entry> set = new ArrayList<>();
+        for (String ins : instructionSet.dict) {
+            String[] insArray = ins.split("\\|");
+            if (insArray[0].length() >= touchPoints.size()) {
+                set.add(new Entry(insArray[0], instructionSet.instructions.get(ins), 0.0));
             }
         }
         Key firstKey = allKeys.get('a');
@@ -101,10 +110,10 @@ public class SimpleParser {
 
         //remove duplicate commands
         candidateList.clear();
-        Set<String> commands = new HashSet<>();
+        Set<Instruction> instructions = new HashSet<>();
         for (Iterator<Entry> iter = set.iterator(); iter.hasNext();) {
             Entry element = iter.next();
-            if (commands.add(element.instruction.name))
+            if (instructions.add(element.instruction))
                 candidateList.add(element);
         }
         currentIndex = 0;

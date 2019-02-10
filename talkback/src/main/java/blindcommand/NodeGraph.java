@@ -45,6 +45,10 @@ public class NodeGraph {
         return null;
     }
     public List<Edge> findPath(Node from, Node to){
+        for(Node node: nodes){
+            node.pre = null;
+            node.visited = false;
+        }
         System.out.println("in find path");
         List<Edge> path = new ArrayList<>();
         if(from.equals(to)){
@@ -58,11 +62,14 @@ public class NodeGraph {
             Node first = queue.poll();
             if(first == null) continue;
             for(Node neighbour: first.neighbours.keySet()){
-                neighbour.pre = first;
-                queue.offer(neighbour);
-                if(neighbour.equals(to)){
-                    found = true;
-                    break;
+                if(!neighbour.visited) {
+                    neighbour.pre = first;
+                    neighbour.visited = true;
+                    queue.offer(neighbour);
+                    if (neighbour == to) {
+                        found = true;
+                        break;
+                    }
                 }
             }
             if(found){
@@ -74,11 +81,11 @@ public class NodeGraph {
         // 从Node的pre结点信息生成一条路径
         Node currentFrom = to;
         Node currentTo = to;
-        System.out.println("in find path: start loop");
-        int count = 0;
-        while(!currentTo.equals(from)){
-            count ++;
-            System.out.println("in find path: in loop" + count);
+//        System.out.println("in find path: start loop");
+//        int count = 0;
+        while(currentTo != from){
+//            count ++;
+//            System.out.println("in find path: in loop" + count);
             if(currentFrom == null){
                 return null;
             }
@@ -89,7 +96,7 @@ public class NodeGraph {
             path.add(0, currentFrom.neighbours.get(currentTo));
             currentTo = currentTo.pre;
         }
-        System.out.println("in find path: out loop");
+//        System.out.println("in find path: out loop");
         return path;
     }
 

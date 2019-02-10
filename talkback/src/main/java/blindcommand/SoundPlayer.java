@@ -75,7 +75,15 @@ public class SoundPlayer {
     public static void tts(String text) {
         interrupt();
         System.out.println("tts: " + text +"   " + System.currentTimeMillis());
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        String[] splitSpeech = text.split("\\.");
+        for (int i = 0; i < splitSpeech.length; i++) {
+            if (i == 0) { // Use for the first splited text to flush on audio stream
+                tts.speak(splitSpeech[i].toString().trim(),TextToSpeech.QUEUE_FLUSH, null);
+            } else { // add the new test on previous then play the TTS
+                tts.speak(splitSpeech[i].toString().trim(), TextToSpeech.QUEUE_ADD, null);
+            }
+            tts.playSilence(250, TextToSpeech.QUEUE_ADD, null);
+        }
     }
     public static void readKey(int speed, char key) {
         interrupt();
@@ -94,7 +102,7 @@ public class SoundPlayer {
         if (ins.name.equals("手电筒") || ins.name.equals("Flashlight")) return;
         interrupt();
         if (Utility.getLanguage().equals("CN")) {
-            SoundPlayer.tts("执行"+ins.name);
+            SoundPlayer.tts("执行" + ins.name);
         } else {
             SoundPlayer.tts("execute " + ins.name);
         }

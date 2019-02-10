@@ -82,10 +82,15 @@ public class InstructionSet {
         instructions = new HashMap<>();
         List<Instruction> allInstructions = executor.getInstructions();
         for (Instruction instruction:allInstructions) {
-            instructions.put(instruction.pinyin.toLowerCase(), instruction);
+            // 区分app名和全简拼
+            instructions.put(instruction.pinyin.toLowerCase() + "|" + instruction.meta.appName + "|0", instruction);
+            String cmd = instruction.pinyin.replaceAll("[a-z]+", "").toLowerCase();
+            if(cmd.length() >= 2) {
+                instructions.put(cmd + "|" + instruction.meta.appName + "|1", instruction);
+            }
         }
+        // instructions.put("wo|新浪微博|0", new Instruction("我","我","Wo",new JsonAppInfo("com.sina.weibo","新浪微博","XinLangWeiBo")));
         this.dict = instructions.keySet().toArray(new String[]{});
-
     }
 //    public void InstructionSet_ori(Context service) {
 //        this.service = service;

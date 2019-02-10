@@ -38,7 +38,7 @@ public class Feature {
     }
     public boolean correspondTo(AccessibilityWindowInfo window){
         AccessibilityNodeInfo node = window.getRoot();
-//        AccessibilityNodeInfo wnode = node.findAccessibilityNodeInfosByText("相册").get(0);
+//        AccessibilityNodeInfo wnode = node.findAccessibilityNodeInfosByText("设置").get(0);
 //        System.out.println("=========");
 //        System.out.println(nodeId(wnode));
 

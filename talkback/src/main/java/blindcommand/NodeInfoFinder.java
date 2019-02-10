@@ -20,16 +20,16 @@ public class NodeInfoFinder {
 
     private static ReturnValue next(AccessibilityNodeInfo father, String path){
         String[] splitPath = path.split("\\|");
-        System.out.println("split path: " + splitPath[0] + " " + splitPath[1]);
+//        System.out.println("split path: " + splitPath[0] + " " + splitPath[1]);
         int childCount = father.getChildCount();
         int childIndex = splitPath[1].equals("$") ? childCount - 1 : Integer.parseInt(splitPath[1]);
-        System.out.println("" + childIndex + " " + childCount);
+//        System.out.println("" + childIndex + " " + childCount);
         boolean childOutOfIndex = childIndex < 0 || childIndex >= childCount;
         boolean matchClassName = false;
         AccessibilityNodeInfo nextNode = null;
         if(!childOutOfIndex) {
             nextNode = father.getChild(childIndex);
-            System.out.println("actual " + father.getClassName());
+//            System.out.println("actual " + father.getClassName());
             if (father.getClassName().toString().equals(splitPath[0])) {
                 matchClassName = true;
             } else {

@@ -114,6 +114,8 @@ public class Executor {
         Node currentNode = graph.getCurrentWindowNode(currentWindow);
         // TODO ? 用 commandName 得出目标窗口的name
         Node targetNode = graph.getTargetWindowNode(commandId);
+        System.out.println("\tfrom: " + (currentNode == null ? "null" : currentNode.pageId));
+        System.out.println("\tto  : " + (targetNode == null ? "null" : targetNode.pageId));
         if(currentNode == null || targetNode == null) return;
         edges = graph.findPath(currentNode, targetNode);
         // 起一个新线程

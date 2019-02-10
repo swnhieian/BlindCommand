@@ -16,6 +16,7 @@ public class Node {
     public JsonAppInfo meta;
     public List<Feature> pageFeatures;
     public Map<Node, Edge> neighbours;
+    public boolean visited;
 
     public Instruction getInstruction() {
         return new Instruction(pageId, pageName, pagePinyin, meta);
@@ -30,6 +31,7 @@ public class Node {
         pageFeatures = new ArrayList<>();
         neighbours = new Hashtable<>();
         pre = null;
+        visited = false;
     }
     public Node(JsonNode jsonNode, JsonAppInfo meta){
         pageId = jsonNode.pageId;
@@ -42,6 +44,7 @@ public class Node {
         }
         neighbours = new Hashtable<>();
         pre = null;
+        visited = false;
     }
     public boolean represent(AccessibilityWindowInfo window){
         System.out.println(pageName + " :feature num: " + pageFeatures.size());

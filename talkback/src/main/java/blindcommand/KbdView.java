@@ -41,18 +41,20 @@ public class KbdView extends View {
     public void performAction(SwipeAction action) {
         tempAction = SwipeAction.No_Action;
         System.out.println("Detect:" + action.toString());
+        ParseResult parseResult;
         switch (action) {
             case SWIPE_LEFT:
                 parser.previous();
-                SoundPlayer.tts(parser.getCurrent().name);
+                readParseResult(parser.getCurrent());
                 break;
             case SWIPE_RIGHT:
                 parser.next();
-                SoundPlayer.tts(parser.getCurrent().name);
+                readParseResult(parser.getCurrent());
                 break;
             case SWIPE_DOWN: //confirm
-                instructionSet.execute(parser.getCurrent());
-                SoundPlayer.execute(parser.getCurrent());
+                parseResult = parser.getCurrent();
+                instructionSet.execute(parseResult.instruction);
+                SoundPlayer.execute(parseResult.instruction);
                 ((TalkBackService)getContext()).triggerBCMode();
                 parser.clear();
                 break;
@@ -80,7 +82,11 @@ public class KbdView extends View {
         if (event.getEventTime() - downTime < NO_FEEDBACK_TIME) {
             SoundPlayer.click();
         }
-        SoundPlayer.tts(parser.getCurrent().name);
+        readParseResult(parser.getCurrent());
+    }
+    private void readParseResult(ParseResult parseResult){
+        SoundPlayer.tts((parseResult.hasSameName ? parseResult.instruction.meta.appName : "" ) + parseResult.instruction.name +
+                ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
     }
     private char lastKey = ' ';
     float lastX, lastY;
