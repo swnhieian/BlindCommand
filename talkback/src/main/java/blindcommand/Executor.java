@@ -76,13 +76,14 @@ public class Executor {
             }
         }
     }
+    private int loopCount = 0; //to prevent dead loop
     public void execute(final Instruction instruction) {
         //TODO: find app graph
         jumpToApp(instruction.meta.packageName);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                execute(instruction.id, graphs.get(instruction.meta.appName));
+                execute(instruction, graphs.get(instruction.meta.appName));
             }
         }, 1000);
     }
@@ -100,7 +101,8 @@ public class Executor {
             return null;
         }
     }
-    public void execute(String commandId, NodeGraph graph) {
+    public void execute(Instruction ins, NodeGraph graph) {
+        String commandId = ins.id;
         //jumpToApp(graph.meta.packageName);
         System.out.println("execute: " + commandId);
         List<AccessibilityWindowInfo> windows = service.getWindows();
@@ -111,7 +113,33 @@ public class Executor {
                 break;
             }
         }
-        Node currentNode = graph.getCurrentWindowNode(currentWindow);
+        Node currentNode = graph.getCurrentWindowNode(currentWindow, service);
+        if (currentNode == null) {
+            loopCount += 1;
+            service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+            //service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
+            System.out.println("back action");
+            try {
+                System.out.println("sleeping for back action");
+                Thread.sleep(500);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+//            windows = service.getWindows();
+//            currentWindow = null;
+//            for (AccessibilityWindowInfo window : windows) {
+//                if (window.isActive()) {
+//                    currentWindow = window;
+//                    break;
+//                }
+//            }
+            if (loopCount < 3) {
+                execute(ins);
+            }
+            return;
+            //currentNode = graph.getCurrentWindowNode(currentWindow, service);
+        }
+        loopCount = 0;
         // TODO ? 用 commandName 得出目标窗口的name
         Node targetNode = graph.getTargetWindowNode(commandId);
         System.out.println("\tfrom: " + (currentNode == null ? "null" : currentNode.pageId));

@@ -1,5 +1,6 @@
 package blindcommand;
 
+import android.accessibilityservice.AccessibilityService;
 import android.content.res.AssetManager;
 import android.view.accessibility.AccessibilityWindowInfo;
 
@@ -26,10 +27,10 @@ public class NodeGraph {
         return ret;
     }
 
-    public Node getCurrentWindowNode(AccessibilityWindowInfo activeWindow){
+    public Node getCurrentWindowNode(AccessibilityWindowInfo activeWindow, AccessibilityService service){
         System.out.println("node: " +  nodes.size());
         for(Node node: nodes){
-            if(node.represent(activeWindow)){
+            if(node.represent(activeWindow, service)){
                 System.out.println("current window found!");
                 return node;
             }

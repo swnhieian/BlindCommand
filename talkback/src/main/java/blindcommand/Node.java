@@ -1,5 +1,6 @@
 package blindcommand;
 
+import android.accessibilityservice.AccessibilityService;
 import android.view.accessibility.AccessibilityWindowInfo;
 
 import java.util.ArrayList;
@@ -46,11 +47,11 @@ public class Node {
         pre = null;
         visited = false;
     }
-    public boolean represent(AccessibilityWindowInfo window){
+    public boolean represent(AccessibilityWindowInfo window, AccessibilityService service){
         System.out.println(pageName + " :feature num: " + pageFeatures.size());
         if (pageFeatures.size() == 0) return false;
         for(Feature feature: pageFeatures){
-            if(!feature.correspondTo(window)){
+            if(!feature.correspondTo(window, service)){
                 return false;
             }
         }

@@ -1,8 +1,11 @@
 package blindcommand;
 
+import android.accessibilityservice.AccessibilityService;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Feature {
@@ -36,13 +39,34 @@ public class Feature {
         ret += (pre + "|" + num + ";" + node.getClassName());
         return ret;
     }
-    public boolean correspondTo(AccessibilityWindowInfo window){
-        AccessibilityNodeInfo node = window.getRoot();
-//        AccessibilityNodeInfo wnode = node.findAccessibilityNodeInfosByText("设置").get(0);
-//        System.out.println("=========");
-//        System.out.println(nodeId(wnode));
+    List<AccessibilityNodeInfo> nodes = new ArrayList<>();
+    String idsss = "";
+    private void traverse(AccessibilityNodeInfo node) {
+        nodes.add(node);
+        if (node.getText() != null && node.getText().equals("微信")) {
+            idsss = nodeId(node);
+        }
+        for (int i=0; i<node.getChildCount(); i++) {
+            AccessibilityNodeInfo n = node.getChild(i);
+            traverse(n);
+        }
+        nodes.add(null);
 
-        AccessibilityNodeInfo featureNode = NodeInfoFinder.find(window.getRoot(), nodeId);
+    }
+    public boolean correspondTo(AccessibilityWindowInfo window, AccessibilityService service){
+        AccessibilityNodeInfo node = window.getRoot();
+        if (node == null) {
+            node = service.getRootInActiveWindow();
+        }
+        List<AccessibilityNodeInfo> wnode = node.findAccessibilityNodeInfosByText("设置");
+//        nodes.clear();
+//        traverse(node);
+        if (wnode.size() > 0) {
+            System.out.println("=========");
+            System.out.println(nodeId(wnode.get(0)));
+        }
+
+        AccessibilityNodeInfo featureNode = NodeInfoFinder.find(node, nodeId);
         if(featureNode == null) return false;
         System.out.println("feature found");
         CharSequence text = featureNode.getText();
