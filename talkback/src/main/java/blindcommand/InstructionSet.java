@@ -20,7 +20,6 @@ public class InstructionSet {
     private Context service;
     public String[] dict;
     //public static HashMap<String, String> instructions;
-    public boolean lightStatus = false;
     public HashMap<String, Instruction> instructions;
     public static String[][] ins = {
             {"截屏", "JiePing"},
@@ -76,11 +75,11 @@ public class InstructionSet {
     };
 
     private Executor executor;
-    public InstructionSet(Context service) {
-        this.service = service;
-        this.executor = new Executor(Utility.service);
+    public InstructionSet(List<Instruction> allInstructions) {
+        //this.service = service;
+        //this.executor = new Executor(Utility.service);
         instructions = new HashMap<>();
-        List<Instruction> allInstructions = executor.getInstructions();
+        //List<Instruction> allInstructions = executor.getInstructions();
         for (Instruction instruction:allInstructions) {
             // 区分app名和全简拼
             instructions.put(instruction.pinyin.toLowerCase() + "|" + instruction.meta.appName + "|0", instruction);

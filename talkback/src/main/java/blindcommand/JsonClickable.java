@@ -5,4 +5,6 @@ public class JsonClickable {
     public String target;
     public String name;
     public String pinyin;
+    public boolean needParameter = false;
+    public boolean canDirectReach = true;
 }

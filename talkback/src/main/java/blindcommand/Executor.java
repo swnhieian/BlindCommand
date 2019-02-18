@@ -6,11 +6,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
+import android.util.Pair;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
 
-import com.google.android.accessibility.talkback.R;
 import com.google.android.accessibility.talkback.TalkBackService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -19,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class Executor {
         return ret;
     }
 
-    public void singleStep(Edge edge) {
+    public AccessibilityNodeInfo getRoot() {
         List<AccessibilityWindowInfo> windows = service.getWindows();
         AccessibilityWindowInfo currentWindow = null;
         for (AccessibilityWindowInfo window : windows) {
@@ -48,11 +50,71 @@ public class Executor {
             }
         }
         if (currentWindow == null)
-            return;
+            return null;
         AccessibilityNodeInfo root = currentWindow.getRoot();
         if (root == null) {
             root = service.getRootInActiveWindow();
         }
+        return root;
+    }
+
+    HashMap<String, Parameter> parameterMap = new HashMap<>();
+    boolean executeForParameter = false;
+    List<Edge> parameterEdges = null;
+    int parameterEdgesIndex = -1;
+    AccessibilityNodeInfo continueNode = null;
+
+    public void continueSteps(String para) {
+        executeForParameter = false;
+        if (continueNode != null) {
+            if (continueNode.getActionList().contains(AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_TEXT)) {
+                Bundle arguments = new Bundle();
+                arguments.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, para);
+                continueNode.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments);
+                sleep(500);
+            }
+        } else {
+            AccessibilityNodeInfo node = parameterMap.get(para).node; //get node from para
+            node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+        }
+        singleSteps(parameterEdges, parameterEdgesIndex);
+    }
+
+    public void singleSteps(final List<Edge> edges, final int index) {
+        if (index >= edges.size()) return;
+        Edge edge = edges.get(index);
+        if (edge.needParameter) {
+            SoundPlayer.tts("请输入参数");
+//            List<Pair<String, AccessibilityNodeInfo>> validParameters = NodeInfoFinder.getParameterList(getRoot(), edge.path);
+//            parameterMap.clear();
+//            for (Pair<String, AccessibilityNodeInfo> pair: validParameters) {
+//                parameterMap.put(pair.first, new Parameter(pair.first, pair.first, pair.second));
+//                System.out.println("get:" + pair.first);
+//            }
+//            String[] dict = parameterMap.keySet().toArray(new String[] {});
+            //System.out.println(dict);
+            executeForParameter = true;
+            parameterEdges = edges;
+            parameterEdgesIndex = index + 1;
+            continueNode = NodeInfoFinder.find(getRoot(), edge.path);
+            continueSteps("swn");
+//            ((TalkBackService)(service)).triggerBCMode(dict);
+        } else {
+            singleStep(edge);
+            if (index < edges.size() - 1) {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        singleSteps(edges, index + 1);
+                    }
+                }, 500);
+            }
+        }
+    }
+
+    public void singleStep(Edge edge) {
+        AccessibilityNodeInfo root = getRoot();
+        ////
         AccessibilityNodeInfo operatedNode = NodeInfoFinder.find(root, edge.path);
         if (operatedNode != null) {
             //operatedNode.performAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS);
@@ -76,6 +138,14 @@ public class Executor {
             }
         }
     }
+    public void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     private int loopCount = 0; //to prevent dead loop
     public void execute(final Instruction instruction) {
         //TODO: find app graph
@@ -83,7 +153,11 @@ public class Executor {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                execute(instruction, graphs.get(instruction.meta.appName));
+                if (!executeForParameter) {
+                    execute(instruction, graphs.get(instruction.meta.appName));
+                } else {
+                    continueSteps(instruction.id);
+                }
             }
         }, 1000);
     }
@@ -148,7 +222,8 @@ public class Executor {
         edges = graph.findPath(currentNode, targetNode);
         // 起一个新线程
         if(edges != null) {
-            for (int i=0; i<edges.size(); i++) {
+            singleSteps(edges, 0);
+/*            for (int i=0; i<edges.size(); i++) {
                 //new ExecuteAsyncTask().execute(new Integer(i));
                 final Edge edge = edges.get(i);
                 Handler handler = new Handler();
@@ -159,7 +234,33 @@ public class Executor {
                 }, i*500);
                 //TODO: 是否可以不使用延时的方式处理
             }
+*/
+        } else {
+            loopCount += 1;
+            service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+            //service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
+            System.out.println("back action");
+            try {
+                System.out.println("sleeping for back action");
+                Thread.sleep(500);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+//            windows = service.getWindows();
+//            currentWindow = null;
+//            for (AccessibilityWindowInfo window : windows) {
+//                if (window.isActive()) {
+//                    currentWindow = window;
+//                    break;
+//                }
+//            }
+            if (loopCount < 3) {
+                execute(ins);
+            }
+            return;
+
         }
+        loopCount = 0;
 //        if(edges != null){
 //            Runnable runnable = new Runnable(){
 //                @Override

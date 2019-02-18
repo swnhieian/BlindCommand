@@ -14,6 +14,7 @@ public class Node {
     public String pageName;
     public String pageId;
     public String pagePinyin;
+    public boolean canDirectReach;
     public JsonAppInfo meta;
     public List<Feature> pageFeatures;
     public Map<Node, Edge> neighbours;
@@ -24,20 +25,26 @@ public class Node {
     }
 
     public Node pre;
-    public Node(String id, String name, String pinyin, JsonAppInfo meta) {
+
+    public Node(String id, String name, String pinyin, boolean directReach, JsonAppInfo meta) {
         pageId = id;
         pageName = name;
         pagePinyin = pinyin;
+        canDirectReach = directReach;
         this.meta = meta;
         pageFeatures = new ArrayList<>();
         neighbours = new Hashtable<>();
         pre = null;
         visited = false;
     }
+    public Node(String id, String name, String pinyin, JsonAppInfo meta) {
+        this(id, name, pinyin, true, meta);
+    }
     public Node(JsonNode jsonNode, JsonAppInfo meta){
         pageId = jsonNode.pageId;
         pageName = jsonNode.pageName;
         pagePinyin = jsonNode.pagePinyin;
+        canDirectReach = jsonNode.canDirectReach;
         this.meta = meta;
         pageFeatures = new ArrayList<>();
         for(JsonFeature feature: jsonNode.features){

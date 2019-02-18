@@ -1,5 +1,6 @@
 package blindcommand;
 
+import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -14,6 +15,7 @@ import com.google.android.accessibility.talkback.TalkBackService;
 import java.util.ArrayList;
 
 public class KbdView extends View {
+    Executor executor;
     public KbdView(Context context) {
         super(context);
         initKeyboard();
@@ -53,7 +55,7 @@ public class KbdView extends View {
                 break;
             case SWIPE_DOWN: //confirm
                 parseResult = parser.getCurrent();
-                instructionSet.execute(parseResult.instruction);
+                executor.execute(parseResult.instruction);
                 SoundPlayer.execute(parseResult.instruction);
                 ((TalkBackService)getContext()).triggerBCMode();
                 parser.clear();
@@ -286,6 +288,7 @@ public class KbdView extends View {
     Paint textPaint;
 
     public void initKeyboard() {
+        executor = new Executor(((AccessibilityService)(getContext())));
         //this.setBackgroundColor(Color.parseColor("#89cff0"));
         //this.setAlpha(0.4f);
 
@@ -326,9 +329,11 @@ public class KbdView extends View {
         }
 
         this.invalidate();
-        this.instructionSet = new InstructionSet(getContext());
+        this.instructionSet = new InstructionSet(executor.getInstructions());
         parser = new SimpleParser(keys, this.instructionSet);
+    }
 
+    public void setCurrentParser(SimpleParser parser) {
 
     }
 

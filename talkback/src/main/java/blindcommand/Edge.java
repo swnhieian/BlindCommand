@@ -11,11 +11,13 @@ public class Edge {
     public String path;
     // 对找到的AccessibilityNodeInfo执行何种操作能从from到to
     public int action;
+    public boolean needParameter = false;
 
     public Edge(Node from, Node to, JsonClickable jc){
         this.from = from;
         this.to = to;
         this.path = jc.path;
+        this.needParameter = jc.needParameter;
         this.action = AccessibilityNodeInfo.ACTION_CLICK;
     }
 

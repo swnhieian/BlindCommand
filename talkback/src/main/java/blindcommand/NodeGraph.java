@@ -22,7 +22,9 @@ public class NodeGraph {
     public List<Instruction> getInstructions() {
         List<Instruction> ret = new ArrayList<>();
         for (Node node:nodes) {
-            ret.add(node.getInstruction());
+            if (node.canDirectReach) {
+                ret.add(node.getInstruction());
+            }
         }
         return ret;
     }
@@ -127,7 +129,7 @@ public class NodeGraph {
             for(JsonClickable button: jsonClickables){
                 Node targetNode = map.get(button.target);
                 if (targetNode == null) {
-                    Node newNode = new Node(button.target, button.name, button.pinyin, this.meta);
+                    Node newNode = new Node(button.target, button.name, button.pinyin, button.canDirectReach, this.meta);
                     map.put(newNode.pageId, newNode);
                     nodes.add(newNode);
                 }

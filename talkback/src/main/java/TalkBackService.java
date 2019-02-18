@@ -137,6 +137,7 @@ import java.util.List;
 import java.util.Locale;
 
 import blindcommand.KbdView;
+import blindcommand.SimpleParser;
 import blindcommand.SoundPlayer;
 import blindcommand.Utility;
 
@@ -513,7 +514,6 @@ public class TalkBackService extends AccessibilityService
 
   @Override
   public void onAccessibilityEvent(AccessibilityEvent event) {
-
     // System.out.println("??????????????????????" + AccessibilityEvent.eventTypeToString(event.getEventType()) + ":" + event.getEventTime());
     if (event.getEventType() == AccessibilityEvent.TYPE_TOUCH_INTERACTION_START) {
       long time = event.getEventTime();
@@ -1361,11 +1361,12 @@ public class TalkBackService extends AccessibilityService
       kbdView.setVisibility(View.VISIBLE);
       disableTouchExploration();
       SoundPlayer.start();
-      //System.out.println("CTRL_ALT_Z start");
-      //ALT_CTRL_Z();
-      //System.out.println("CTRL_ALT_Z end");
-      //enableAccessibilityService(TALKBACK_SERVICE_NAME);
     }
+  }
+  /////////
+  public void triggerBCMode(String[] dict) {
+    //kbdView.setCurrentParser(new SimpleParser());
+    triggerBCMode();
   }
 
 

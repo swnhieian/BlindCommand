@@ -58,11 +58,11 @@ public class Feature {
         if (node == null) {
             node = service.getRootInActiveWindow();
         }
-        List<AccessibilityNodeInfo> wnode = node.findAccessibilityNodeInfosByText("设置");
+        List<AccessibilityNodeInfo> wnode = node.findAccessibilityNodeInfosByText("通讯录");
 //        nodes.clear();
 //        traverse(node);
         if (wnode.size() > 0) {
-            System.out.println("=========");
+            System.out.println("====wnodes=====");
             System.out.println(nodeId(wnode.get(0)));
         }
 

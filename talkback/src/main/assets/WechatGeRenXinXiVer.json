@@ -156,6 +156,13 @@
 					"target": "我",
 					"name": "我",
 					"pinyin": "Wo"
+				},
+				{
+					"path": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;com.tencent.mm.ui.mogic.WxViewPager|1;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.ListView|1*1;android.widget.LinearLayout|$;android.widget.LinearLayout",
+					"target": "个人信息",
+					"name": "个人信息",
+					"pinyin": "GeRenXinXi",
+					"needParameter": "true"
 				}
 			]
 		},
@@ -389,161 +396,6 @@
 					"target": "帮助与反馈",
 					"name": "帮助与反馈",
 					"pinyin": "BangZhuYuFanKui"
-				}
-			]
-		},
-		{
-			"pageId": "搜索",
-			"pageName": "搜索",
-			"pagePinyin": "SouSuo",
-			"features":[
-				{
-					"contentReg": "^$",
-					"mustBeVisible": false,
-					"mustLast": false,
-					"nodeId": "android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.TextView",
-					"textReg": "朋友圈"
-				},
-				{
-					"contentReg": "^$",
-					"mustBeVisible": false,
-					"mustLast": false,
-					"nodeId": "android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.LinearLayout|1;android.widget.TextView",
-					"textReg": "文章"
-				},
-				{
-					"contentReg": "^$",
-					"mustBeVisible": false,
-					"mustLast": false,
-					"nodeId": "android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.LinearLayout|2;android.widget.TextView",
-					"textReg": "公众号"
-				}
-			],
-			"buttons": [
-				{
-					"path": "android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.support.v7.widget.LinearLayoutCompat|0;android.widget.LinearLayout|0;android.widget.RelativeLayout|1;android.widget.RelativeLayout|0;android.widget.EditText",
-					"target": "搜索结果",
-					"name": "搜索结果",
-					"pinyin": "SouSuoJieGuo",
-					"needParameter": true,
-					"canDirectReach": false
-				}
-			]
-		},
-		{
-			"pageId": "搜索结果",
-			"pageName": "搜索结果",
-			"pagePinyin": "SouSuo",
-			"canDirectReach": false,
-			"features":[
-				{
-					"contentReg": "清除",
-					"mustBeVisible": false,
-					"mustLast": false,
-					"nodeId": "android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.support.v7.widget.LinearLayoutCompat|0;android.widget.LinearLayout|0;android.widget.RelativeLayout|2;android.widget.ImageButton",
-					"textReg": "^$"
-				},
-				{
-					"contentReg": "^$",
-					"mustBeVisible": false,
-					"mustLast": false,
-					"nodeId": "android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.ListView|$;android.widget.LinearLayout|1;android.widget.RelativeLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.TextView",
-					"textReg": "搜一搜.*"
-				}
-			],
-			"buttons": [
-				{
-					"path": "android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.ListView|1;android.widget.RelativeLayout",
-					"target": "聊天",
-					"name": "聊天",
-					"pinyin": "LiaoTian"
-				}
-			]
-		},
-		{
-			"pageId": "聊天",
-			"pageName": "聊天",
-			"pagePinyin": "LiaoTian",
-			"features":[
-				{
-					"contentReg": "返回",
-					"mustBeVisible": false,
-					"mustLast": false,
-					"nodeId": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.ImageView",
-					"textReg": "^$"
-				},
-				{
-					"contentReg": "^$",
-					"mustBeVisible": false,
-					"mustLast": false,
-					"nodeId": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.TextView",
-					"textReg": ".+"
-				},
-				{
-					"contentReg": "聊天信息",
-					"mustBeVisible": false,
-					"mustLast": false,
-					"nodeId": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.support.v7.widget.LinearLayoutCompat|0;android.widget.LinearLayout|0;android.widget.RelativeLayout|0;android.widget.ImageButton",
-					"textReg": "^$"
-				},
-				{
-					"contentReg": "更多功能按钮.*",
-					"mustBeVisible": false,
-					"mustLast": false,
-					"nodeId": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.LinearLayout|$;android.widget.LinearLayout|0;android.widget.LinearLayout|3;android.widget.LinearLayout|0;android.widget.RelativeLayout|0;android.widget.ImageButton",
-					"textReg": "^$"
-				}
-			],
-			"buttons": [
-				{
-					"path": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|3;android.widget.LinearLayout|0;android.widget.RelativeLayout|0;android.widget.ImageButton",
-					"target": "聊天更多功能",
-					"name": "聊天更多功能",
-					"pinyin": "LiaoTianGengDuoGongNeng",
-					"needParameter": false,
-					"canDirectReach": false
-				},
-				{
-					"path": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.ImageView",
-					"target": "搜索结果",
-					"pinyin": "SouSuoJieGuo",
-					"canDirectReach": false
-				}
-			]
-		},
-		{
-			"pageId": "聊天更多功能",
-			"pageName": "聊天更多功能",
-			"pagePinyin": "LiaoTianGengDuoGongNeng",
-			"canDirectReach": false,
-			"features":[
-				{
-					"contentReg": "^$",
-					"mustBeVisible": false,
-					"mustLast": false,
-					"nodeId": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.LinearLayout|1;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.view.ViewGroup|0;android.widget.GridView|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.TextView",
-					"textReg": "相册"
-				},
-				{
-					"contentReg": "^$",
-					"mustBeVisible": false,
-					"mustLast": false,
-					"nodeId": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.LinearLayout|1;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.view.ViewGroup|0;android.widget.GridView|1;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.TextView",
-					"textReg": "拍摄"
-				}
-			],
-			"buttons": [
-				{
-					"path": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.LinearLayout|1;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.view.ViewGroup|0;android.widget.GridView|0;android.widget.LinearLayout",
-					"target": "发送图片",
-					"name": "发送图片",
-					"pinyin": "FaSongTuPian"
-				},
-				{
-					"path": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.LinearLayout|1;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.view.ViewGroup|0;android.widget.GridView|4;android.widget.LinearLayout",
-					"target": "红包",
-					"name": "红包",
-					"pinyin": "HongBao"
 				}
 			]
 		}
