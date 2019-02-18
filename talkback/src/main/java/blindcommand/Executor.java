@@ -97,7 +97,7 @@ public class Executor {
             parameterEdges = edges;
             parameterEdgesIndex = index + 1;
             continueNode = NodeInfoFinder.find(getRoot(), edge.path);
-            continueSteps("swn");
+            continueSteps("sk");
 //            ((TalkBackService)(service)).triggerBCMode(dict);
         } else {
             singleStep(edge);
