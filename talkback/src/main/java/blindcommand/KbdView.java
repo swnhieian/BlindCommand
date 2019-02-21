@@ -13,9 +13,10 @@ import android.view.View;
 import com.google.android.accessibility.talkback.TalkBackService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class KbdView extends View {
-    Executor executor;
+    public Executor executor;
     public KbdView(Context context) {
         super(context);
         initKeyboard();
@@ -77,7 +78,8 @@ public class KbdView extends View {
     final int SWIPE_TIME = 400;
     final int NO_FEEDBACK_TIME = 40;
     boolean judgingTwoFingers = false;
-    SimpleParser parser;
+    SimpleParser defaultParser;
+    Parser parser;
     InstructionSet instructionSet;
     public void upTouch(MotionEvent event) { //confirm
         parser.addTouchPoint(event.getEventTime(), event.getX(), event.getY());
@@ -330,11 +332,21 @@ public class KbdView extends View {
 
         this.invalidate();
         this.instructionSet = new InstructionSet(executor.getInstructions());
-        parser = new SimpleParser(keys, this.instructionSet);
+        defaultParser = new SimpleParser(keys, this.instructionSet);
     }
-
-    public void setCurrentParser(SimpleParser parser) {
-
+    public void setParser(Parser.ParserType type, List<Instruction> paras) {
+        switch (type) {
+            case DEFAULT:
+                parser = defaultParser;
+                break;
+            case NO_DICT:
+                parser = new NoDictParser(keys);
+                break;
+            case LIST:
+                parser = new SimpleParser(keys, new InstructionSet(paras));
+            default:
+                break;
+        }
     }
 
 

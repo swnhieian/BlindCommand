@@ -136,7 +136,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import blindcommand.Instruction;
 import blindcommand.KbdView;
+import blindcommand.Parameter;
+import blindcommand.Parser;
 import blindcommand.SimpleParser;
 import blindcommand.SoundPlayer;
 import blindcommand.Utility;
@@ -1350,23 +1353,25 @@ public class TalkBackService extends AccessibilityService
     }
   }
   /////////////////////////////////////////
-  public void triggerBCMode() {
+  public void triggerBCMode(Parser.ParserType type, List<Instruction> paras) {
     Toast.makeText(this, "Trigger BC Mode", Toast.LENGTH_SHORT).show();
     if (kbdView.getVisibility() == View.VISIBLE) {
       kbdView.setVisibility(View.INVISIBLE);
       enableTouchExploration();
       SoundPlayer.end();
+      kbdView.setParser(Parser.ParserType.DEFAULT, null);
       //disableAccessibilityServices();
     } else {
+      kbdView.setParser(type, paras);
       kbdView.setVisibility(View.VISIBLE);
       disableTouchExploration();
       SoundPlayer.start();
     }
   }
   /////////
-  public void triggerBCMode(String[] dict) {
+  public void triggerBCMode() {
     //kbdView.setCurrentParser(new SimpleParser());
-    triggerBCMode();
+    triggerBCMode(Parser.ParserType.DEFAULT, null);
   }
 
 

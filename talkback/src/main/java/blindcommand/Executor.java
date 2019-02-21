@@ -8,7 +8,6 @@ import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Pair;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
 
@@ -20,7 +19,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -74,8 +73,7 @@ public class Executor {
                 sleep(500);
             }
         } else {
-            AccessibilityNodeInfo node = parameterMap.get(para).node; //get node from para
-            node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+          //
         }
         singleSteps(parameterEdges, parameterEdgesIndex);
     }
@@ -97,8 +95,18 @@ public class Executor {
             parameterEdges = edges;
             parameterEdgesIndex = index + 1;
             continueNode = NodeInfoFinder.find(getRoot(), edge.path);
-            continueSteps("sk");
-//            ((TalkBackService)(service)).triggerBCMode(dict);
+
+             Instruction[] names = new Instruction[]
+             {
+                     new Instruction("shiweinan", "石伟男", "ShiWeiNan", edge.from.meta),
+                     new Instruction("sunke", "孙科", "SunKe", edge.from.meta),
+                     new Instruction("weiyi", "唯一", "WeiYi",edge.from.meta),
+                     new Instruction("PenguinGG", "PenguinGG", "PenguinGG",edge.from.meta)
+             };
+            //((TalkBackService)(service)).triggerBCMode(Parser.ParserType.NO_DICT);
+            ((TalkBackService)(service)).triggerBCMode(Parser.ParserType.LIST, Arrays.asList(names));
+
+
         } else {
             singleStep(edge);
             if (index < edges.size() - 1) {
@@ -156,7 +164,7 @@ public class Executor {
                 if (!executeForParameter) {
                     execute(instruction, graphs.get(instruction.meta.appName));
                 } else {
-                    continueSteps(instruction.id);
+                    continueSteps(instruction.name);
                 }
             }
         }, 1000);
@@ -175,8 +183,14 @@ public class Executor {
             return null;
         }
     }
+    public void clearContinue() {
+        executeForParameter = false;
+    }
     public void execute(Instruction ins, NodeGraph graph) {
         String commandId = ins.id;
+        if (commandId == "null") {
+            return;
+        }
         //jumpToApp(graph.meta.packageName);
         System.out.println("execute: " + commandId);
         List<AccessibilityWindowInfo> windows = service.getWindows();

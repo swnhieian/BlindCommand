@@ -8,5 +8,4 @@ import lombok.AllArgsConstructor;
 public class Parameter {
     String id;
     String name;
-    AccessibilityNodeInfo node;
 }

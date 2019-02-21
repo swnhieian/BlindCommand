@@ -540,10 +540,52 @@
 					"pinyin": "FaSongTuPian"
 				},
 				{
+					"path": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.LinearLayout|1;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.view.ViewGroup|0;android.widget.GridView|2;android.widget.LinearLayout",
+					"target": "音视频通话",
+					"name": "音视频通话",
+					"pinyin": "YinShiPinTongHua"
+				},
+				{
 					"path": "android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|0;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.LinearLayout|1;android.widget.LinearLayout|0;android.widget.LinearLayout|1;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.view.ViewGroup|0;android.widget.GridView|4;android.widget.LinearLayout",
 					"target": "红包",
 					"name": "红包",
 					"pinyin": "HongBao"
+				}
+			]
+		},
+		{
+			"pageId": "音视频通话",
+			"pageName": "音视频通话",
+			"pagePinyin": "YinShiPinTongHua",
+			"canDirectReach": false,
+			"features":[
+				{
+					"contentReg": "^$",
+					"mustBeVisible": false,
+					"mustLast": false,
+					"nodeId": "android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.support.v7.widget.RecyclerView|0;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.TextView",
+					"textReg": "视频通话"
+				},
+				{
+					"contentReg": "^$",
+					"mustBeVisible": false,
+					"mustLast": false,
+					"nodeId": "android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.support.v7.widget.RecyclerView|1;android.widget.LinearLayout|0;android.widget.LinearLayout|0;android.widget.TextView",
+					"textReg": "语音通话"
+				}
+			],
+			"buttons": [
+				{
+					"path": "android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.support.v7.widget.RecyclerView|0;android.widget.LinearLayout",
+					"target": "视频通话",
+					"name": "视频通话",
+					"pinyin": "ShiPinTongHua"
+				},
+				{
+					"path": "android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.widget.FrameLayout|0;android.view.ViewGroup|1;android.widget.FrameLayout|0;android.widget.LinearLayout|0;android.support.v7.widget.RecyclerView|1;android.widget.LinearLayout",
+					"target": "语音通话",
+					"name": "语音通话",
+					"pinyin": "YuYinTongHua"
 				}
 			]
 		}

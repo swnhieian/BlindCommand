@@ -12,12 +12,12 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class InstructionSet {
     private static final String TAG = "InstructionSet.";
-    private Context service;
     public String[] dict;
     //public static HashMap<String, String> instructions;
     public HashMap<String, Instruction> instructions;
@@ -73,13 +73,8 @@ public class InstructionSet {
             {"Undo", "Undo"},
             {"Open Weibo", "Weibo"}
     };
-
-    private Executor executor;
     public InstructionSet(List<Instruction> allInstructions) {
-        //this.service = service;
-        //this.executor = new Executor(Utility.service);
         instructions = new HashMap<>();
-        //List<Instruction> allInstructions = executor.getInstructions();
         for (Instruction instruction:allInstructions) {
             // 区分app名和全简拼
             instructions.put(instruction.pinyin.toLowerCase() + "|" + instruction.meta.appName + "|0", instruction);
@@ -91,133 +86,21 @@ public class InstructionSet {
         // instructions.put("wo|新浪微博|0", new Instruction("我","我","Wo",new JsonAppInfo("com.sina.weibo","新浪微博","XinLangWeiBo")));
         this.dict = instructions.keySet().toArray(new String[]{});
     }
-//    public void InstructionSet_ori(Context service) {
-//        this.service = service;
-//        instructions = new HashMap<>();
-//        String [][] iter = ins;
-//        if (Utility.getLanguage().equals("CN")) {
-//            iter = ins;
-//        } else if (Utility.getLanguage().equals("US")) {
-//            iter = ins_en;
-//        }
-//        for (String[] i:iter) {
-//            String cmd = i[1].toLowerCase();
-//            instructions.put(cmd, new Instruction(cmd, i[0]));
-//            cmd = i[1].replaceAll("[a-z]+", "").toLowerCase();
-//            if (cmd.length() >=2) {
-//                instructions.put(cmd, new Instruction(cmd, i[0]));
-//            }
-//        }
-//        //Set<String> keys = instructions.keySet();
-//        this.dict = instructions.keySet().toArray(new String[] {});
-////        List<PackageInfo> packList = service.getPackageManager().getInstalledPackages(0);
-////        System.out.println("=========");
-////        PackageManager packageManager = null;
-////
-////
-////            packageManager = service.getPackageManager();
-////
-////        for (PackageInfo pkgInfo: packList) {
-////            System.out.println(pkgInfo.packageName);
-////            String applicationName =
-////                    (String) packageManager.getApplicationLabel(pkgInfo.applicationInfo);
-////            System.out.println(applicationName);
-////            System.out.println("----------");
-////
-////        }
-////        System.out.println("=========");
-//        this.executor = new Executor(Utility.service);
-//    }
-    public void execute(Instruction ins) {
-        final String SUBTAG = "execute";
-        executor.execute(ins);
-        /*
-        switch (commandName) {
-            case "Open Wechat":
-            case "打开微信":
-                Intent intent = new Intent();
-                ComponentName cmp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.LauncherUI");
-                intent.setAction(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setComponent(cmp);
-                this.service.startActivity(intent);
-                break;
-            case "Open Alipay":
-            case "打开支付宝":
-                intent = new Intent();
-                cmp = new ComponentName("com.eg.android.AlipayGphone", "com.eg.android.AlipayGphone.AlipayLogin");
-                intent.setAction(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setComponent(cmp);
-                this.service.startActivity(intent);
-                break;
-            case "Phone":
-            case "打电话":
-                intent =  new Intent(Intent.ACTION_CALL_BUTTON);//跳转到拨号界面
-                this.service.startActivity(intent);
-                break;
-            case "Open Camera":
-            case "打开相机":
-                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                this.service.startActivity(intent);
-                break;
-            case "Flashlight":
-            case "手电筒":
-                try {
-                    CameraManager manager = (CameraManager) this.service.getSystemService(Context.CAMERA_SERVICE);
-                    this.lightStatus = !this.lightStatus;
-                    manager.setTorchMode("0", this.lightStatus);
-                    SoundPlayer.tts("手电筒已"+ (this.lightStatus?"打开":"关闭"));
-                } catch (Exception e) {
-                    this.lightStatus = false;
-                }
-                break;
-            case "截屏":
-                break;
-            case "Home":
-            case "返回桌面":
-                intent =  new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                this.service.startActivity(intent);
-                break;
-            case "Open Settings":
-            case "打开设置":
-                intent =  new Intent(Settings.ACTION_SETTINGS);
-                this.service.startActivity(intent);
-                break;
-            case "Open TaoBao":
-            case "打开淘宝":
-                String pkgName = "com.taobao.taobao";
-                launchApp(pkgName);
-                break;
-            case "打开微博":
-            case "Open Weibo":
-                launchApp("com.sina.weibo");
-                break;
-            default:
-                Toast.makeText(service, commandName, Toast.LENGTH_SHORT).show();
-                break;
+    public InstructionSet(Parameter[] names) {
+        List<Instruction> allInstructions = new ArrayList<>();
+        for (int i=0; i<names.length; i++) {
+            allInstructions.add(new Instruction(names[i].id, names[i].name, names[i].id, new JsonAppInfo()));
         }
-        */
-    }
-    public void launchApp(String pkgName) {
-        PackageManager packageManager = service.getPackageManager();
-        PackageInfo packageInfo = null;
-        try {
-            packageInfo = packageManager.getPackageInfo(pkgName, 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            packageInfo = null;
-            e.printStackTrace();
-        }
-        if (packageInfo != null) {
-            Intent intent = packageManager.getLaunchIntentForPackage(pkgName);
-            if (intent != null) {
-                service.startActivity(intent);
+        instructions = new HashMap<>();
+        for (Instruction instruction:allInstructions) {
+            // 区分app名和全简拼
+            instructions.put(instruction.pinyin.toLowerCase() + "|" + instruction.meta.appName + "|0", instruction);
+            String cmd = instruction.pinyin.replaceAll("[a-z]+", "").toLowerCase();
+            if(cmd.length() >= 2) {
+                instructions.put(cmd + "|" + instruction.meta.appName + "|1", instruction);
             }
         }
+        // instructions.put("wo|新浪微博|0", new Instruction("我","我","Wo",new JsonAppInfo("com.sina.weibo","新浪微博","XinLangWeiBo")));
+        this.dict = instructions.keySet().toArray(new String[]{});
     }
-
 }
