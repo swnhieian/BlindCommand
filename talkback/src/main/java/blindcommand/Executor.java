@@ -186,11 +186,11 @@ public class Executor {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                if (!executeForParameter) {
+                //if (!executeForParameter) {
                     execute(instruction, graphs.get(instruction.meta.appName));
-                } else {
-                    continueSteps(instruction.name);
-                }
+//                } else {
+//                    continueSteps(instruction.name);
+//                }
             }
         }, 1000);
     }
