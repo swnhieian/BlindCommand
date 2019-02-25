@@ -4,7 +4,6 @@ import android.accessibilityservice.AccessibilityService;
 import android.view.accessibility.AccessibilityWindowInfo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,7 @@ public class Node {
     public String pagePinyin;
     public boolean canDirectReach;
     public JsonAppInfo meta;
-    public List<Feature> pageFeatures;
+    public List<NodePath> pageNodePaths;
     public Map<Node, Edge> neighbours;
     public boolean visited;
 
@@ -32,7 +31,7 @@ public class Node {
         pagePinyin = pinyin;
         canDirectReach = directReach;
         this.meta = meta;
-        pageFeatures = new ArrayList<>();
+        pageNodePaths = new ArrayList<>();
         neighbours = new Hashtable<>();
         pre = null;
         visited = false;
@@ -46,19 +45,19 @@ public class Node {
         pagePinyin = jsonNode.pagePinyin;
         canDirectReach = jsonNode.canDirectReach;
         this.meta = meta;
-        pageFeatures = new ArrayList<>();
-        for(JsonFeature feature: jsonNode.features){
-            pageFeatures.add(new Feature(feature));
+        pageNodePaths = new ArrayList<>();
+        for(JsonNodePath feature: jsonNode.features){
+            pageNodePaths.add(new NodePath(feature, meta));
         }
         neighbours = new Hashtable<>();
         pre = null;
         visited = false;
     }
     public boolean represent(AccessibilityWindowInfo window, AccessibilityService service){
-        System.out.println(pageName + " :feature num: " + pageFeatures.size());
-        if (pageFeatures.size() == 0) return false;
-        for(Feature feature: pageFeatures){
-            if(!feature.correspondTo(window, service)){
+        System.out.println(pageName + " :feature num: " + pageNodePaths.size());
+        if (pageNodePaths.size() == 0) return false;
+        for(NodePath nodePath : pageNodePaths){
+            if(!nodePath.correspondTo(window, service)){
                 return false;
             }
         }

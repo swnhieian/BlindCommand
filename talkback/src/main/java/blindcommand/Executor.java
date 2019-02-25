@@ -8,6 +8,7 @@ import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
 
@@ -62,6 +63,24 @@ public class Executor {
     List<Edge> parameterEdges = null;
     int parameterEdgesIndex = -1;
     AccessibilityNodeInfo continueNode = null;
+    Node parameterResumeNode = null;
+
+    public void onAccessibilityEvent(AccessibilityEvent event) {
+        if (executeForParameter) {
+            AccessibilityWindowInfo activeWindow = null;
+            for (AccessibilityWindowInfo window: service.getWindows()) {
+                if (window.isActive())  {
+                    activeWindow = window;
+                    break;
+                }
+            }
+            if (activeWindow != null) {
+                if (parameterResumeNode.represent(activeWindow, service)) {
+                    singleSteps(parameterEdges, parameterEdgesIndex);
+                }
+            }
+        }
+    }
 
     public void continueSteps(String para) {
         executeForParameter = false;
@@ -82,7 +101,7 @@ public class Executor {
         if (index >= edges.size()) return;
         Edge edge = edges.get(index);
         if (edge.needParameter) {
-            SoundPlayer.tts("请输入参数");
+            SoundPlayer.tts("请输入" + (edge.parameterName.length() == 0?"参数":edge.parameterName));
 //            List<Pair<String, AccessibilityNodeInfo>> validParameters = NodeInfoFinder.getParameterList(getRoot(), edge.path);
 //            parameterMap.clear();
 //            for (Pair<String, AccessibilityNodeInfo> pair: validParameters) {
@@ -92,19 +111,21 @@ public class Executor {
 //            String[] dict = parameterMap.keySet().toArray(new String[] {});
             //System.out.println(dict);
             executeForParameter = true;
+            parameterResumeNode = edge.to;
             parameterEdges = edges;
             parameterEdgesIndex = index + 1;
-            continueNode = NodeInfoFinder.find(getRoot(), edge.path);
+            //continueNode = NodeInfoFinder.find(getRoot(), edge.path);
 
-             Instruction[] names = new Instruction[]
-             {
-                     new Instruction("shiweinan", "石伟男", "ShiWeiNan", edge.from.meta),
-                     new Instruction("sunke", "孙科", "SunKe", edge.from.meta),
-                     new Instruction("weiyi", "唯一", "WeiYi",edge.from.meta),
-                     new Instruction("PenguinGG", "PenguinGG", "PenguinGG",edge.from.meta)
-             };
+
+//             Instruction[] names = new Instruction[]
+//             {
+//                     new Instruction("shiweinan", "石伟男", "ShiWeiNan", edge.from.meta),
+//                     new Instruction("sunke", "孙科", "SunKe", edge.from.meta),
+//                     new Instruction("weiyi", "唯一", "WeiYi",edge.from.meta),
+//                     new Instruction("PenguinGG", "PenguinGG", "PenguinGG",edge.from.meta)
+//             };
             //((TalkBackService)(service)).triggerBCMode(Parser.ParserType.NO_DICT);
-            ((TalkBackService)(service)).triggerBCMode(Parser.ParserType.LIST, Arrays.asList(names));
+            //((TalkBackService)(service)).triggerBCMode(Parser.ParserType.LIST, Arrays.asList(names));
 
 
         } else {
@@ -158,6 +179,9 @@ public class Executor {
     public void execute(final Instruction instruction) {
         //TODO: find app graph
         jumpToApp(instruction.meta.packageName);
+        AccessibilityNodeInfo rootNode = getRoot();
+        List<AccessibilityNodeInfo> nodes = rootNode.findAccessibilityNodeInfosByText("微信");
+        List<AccessibilityNodeInfo> nodes2 = rootNode.findAccessibilityNodeInfosByText("更多功能按钮");
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {

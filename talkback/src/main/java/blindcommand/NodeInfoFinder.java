@@ -12,6 +12,15 @@ import java.util.regex.Pattern;
 import lombok.AllArgsConstructor;
 
 public class NodeInfoFinder {
+    public static AccessibilityNodeInfo find(AccessibilityNodeInfo root, NodePath path) {
+        AccessibilityNodeInfo target = path.getNodeFromRoot(root);
+        if (target == null) return null;
+        while (!target.getActionList().contains(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK)) {
+            target = target.getParent();
+            if (target == null) return null;
+        }
+        return target;
+    }
     public static AccessibilityNodeInfo find(AccessibilityNodeInfo root, String path){
         String[] splitPath = path.split("\\s*;\\s*");
         AccessibilityNodeInfo cur = root;

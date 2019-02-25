@@ -7,6 +7,21 @@ import android.view.WindowManager;
 
 public class Utility {
     public static int speed = 80;
+    public static int screenHeight = -1;
+    public static int screenWidth = -1;
+    public static void init(Context service) {
+        WindowManager wm = (WindowManager)service.getSystemService(service.WINDOW_SERVICE);
+        DisplayMetrics metrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(metrics);
+        Utility.screenHeight = metrics.heightPixels;
+        Utility.screenWidth = metrics.widthPixels;
+    }
+    public static int getScreenHeight() {
+        return Utility.screenHeight;
+    }
+    public static int getScreenWidth() {
+        return Utility.screenWidth;
+    }
     public static int getkeyboardHeight(Context service) {
         return 680;
     }

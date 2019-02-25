@@ -990,17 +990,17 @@
     <!-- Label for preference specifying that TalkBack resumes from a suspended state only when the user manually turns it back on. -->
     <string name="value_resume_manual">From notification only</string>
 
-    <!-- Label for the preference specifying that the shake to read feature is disabled. -->
+    <!-- Label for the preference specifying that the shake to read nodePath is disabled. -->
     <string name="value_shake_to_read_disabled">Disabled</string>
-    <!-- Label for the preference specifying a very small amount of shake force is required to initiate the shake to read feature. -->
+    <!-- Label for the preference specifying a very small amount of shake force is required to initiate the shake to read nodePath. -->
     <string name="value_shake_to_read_threshold_very_light">Very light</string>
-    <!-- Label for the preference specifying a small amount of shake force is required to initiate the shake to read feature. -->
+    <!-- Label for the preference specifying a small amount of shake force is required to initiate the shake to read nodePath. -->
     <string name="value_shake_to_read_threshold_light">Light</string>
-    <!-- Label for the preference specifying a medium amount of shake force is required to initiate the shake to read feature. -->
+    <!-- Label for the preference specifying a medium amount of shake force is required to initiate the shake to read nodePath. -->
     <string name="value_shake_to_read_threshold_medium">Medium</string>
-    <!-- Label for the preference specifying a large amount of shake force is required to initiate the shake to read feature. -->
+    <!-- Label for the preference specifying a large amount of shake force is required to initiate the shake to read nodePath. -->
     <string name="value_shake_to_read_threshold_hard">Hard</string>
-    <!-- Label for the preference specifying a very large amount of shake force is required to initiate the shake to read feature. -->
+    <!-- Label for the preference specifying a very large amount of shake force is required to initiate the shake to read nodePath. -->
     <string name="value_shake_to_read_threshold_very_hard">Very hard</string>
 
     <!-- Label for preference specifying that TalkBack should always speak keys that the user types. -->
@@ -1043,7 +1043,7 @@
 
     <!-- Title for the alert shown when a user attempts to suspend TalkBack. -->
     <string name="dialog_title_suspend_talkback">Suspend TalkBack?</string>
-    <!-- Message for the alert shown when a user attempts to suspend TalkBack, which also disables the Explore by Touch feature. -->
+    <!-- Message for the alert shown when a user attempts to suspend TalkBack, which also disables the Explore by Touch nodePath. -->
     <string name="dialog_message_suspend_talkback">Are you sure you want to suspend TalkBack?\n\nWhile TalkBack is suspended, your device will not provide feedback and Explore by Touch will be disabled.</string>
     <!-- Instructions for resuming TalkBack from suspend in "manual" resume mode, where the user can only resume from the notifications shade. -->
     <string name="message_resume_manual">You can resume TalkBack from the notifications shade</string>

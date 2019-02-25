@@ -517,6 +517,9 @@ public class TalkBackService extends AccessibilityService
 
   @Override
   public void onAccessibilityEvent(AccessibilityEvent event) {
+    if (kbdView != null) {
+      kbdView.executor.onAccessibilityEvent(event);
+    }
     // System.out.println("??????????????????????" + AccessibilityEvent.eventTypeToString(event.getEventType()) + ":" + event.getEventTime());
     if (event.getEventType() == AccessibilityEvent.TYPE_TOUCH_INTERACTION_START) {
       long time = event.getEventTime();
@@ -1380,6 +1383,7 @@ public class TalkBackService extends AccessibilityService
   @Override
   protected void onServiceConnected() {
     Utility.service = this;
+    Utility.init(this);
     kbdView = new KbdView(this);
     SoundPlayer.setContext(this);
     enableTouchExploration();

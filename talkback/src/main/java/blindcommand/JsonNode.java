@@ -7,6 +7,6 @@ public class JsonNode {
     public String pageName;
     public String pagePinyin;
     public boolean canDirectReach = true;
-    public List<JsonFeature> features;
+    public List<JsonNodePath> features;
     public List<JsonClickable> buttons;
 }

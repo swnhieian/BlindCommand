@@ -108,7 +108,7 @@ public class NodeGraph {
         整个配置文件为一个列表
         列表中每项元素(JsonNode)表示一个页面，对应图中一个结点(Node)
         pageId为页面的名字，用于区分和查找页面
-        features为页面的特征(JsonFeature)，用于判断当前在哪个页面
+        features为页面的特征(JsonNodePath)，用于判断当前在哪个页面
         buttons为页面上Clickable的元素(JsonClickable)，每个button对应图中一条有向边(Edge)
     */
     public void loadGraph(JsonAppNode jsonAppNode){
@@ -135,7 +135,7 @@ public class NodeGraph {
                 }
                 targetNode = map.get(button.target);
                 //if(targetNode != null) {
-                    nodes.get(i).addEdge(new Edge(nodes.get(i), targetNode, button));
+                nodes.get(i).addEdge(new Edge(nodes.get(i), targetNode, button, meta));
                 //}
             }
         }
