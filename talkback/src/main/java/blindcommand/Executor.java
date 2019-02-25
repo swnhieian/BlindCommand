@@ -76,6 +76,7 @@ public class Executor {
             }
             if (activeWindow != null) {
                 if (parameterResumeNode.represent(activeWindow, service)) {
+                    executeForParameter = false;
                     singleSteps(parameterEdges, parameterEdgesIndex);
                 }
             }
