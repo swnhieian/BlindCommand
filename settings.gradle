@@ -1,6 +1,6 @@
 /* For building open-source release of accessibility services. */
 
-include ':talkback'
+include ':talkback', ':mscV5PlusDemo'
 project(':talkback').projectDir = new File(rootDir, 'talkback')
 
 include ':switchaccess'

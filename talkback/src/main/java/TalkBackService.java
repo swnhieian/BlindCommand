@@ -128,6 +128,8 @@ import com.google.android.accessibility.utils.output.FeedbackController;
 import com.google.android.accessibility.utils.output.SpeechController;
 import com.google.android.accessibility.utils.output.SpeechController.UtteranceCompleteRunnable;
 import com.google.android.accessibility.utils.output.SpeechControllerImpl;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 import com.intentfilter.androidpermissions.PermissionManager;
 
 import java.lang.Thread.UncaughtExceptionHandler;
@@ -1379,6 +1381,15 @@ public class TalkBackService extends AccessibilityService
   public KbdView kbdView;
   @Override
   protected void onServiceConnected() {
+    /*
+      init SpeechUtility
+     */
+    StringBuffer param = new StringBuffer();
+    param.append("appid=5c74d0c7");
+    param.append(",");
+    param.append(SpeechConstant.ENGINE_MODE + "=" + SpeechConstant.MODE_MSC);
+    SpeechUtility.createUtility(this, param.toString());
+
     Utility.service = this;
     kbdView = new KbdView(this);
     SoundPlayer.setContext(this);
