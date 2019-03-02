@@ -1,20 +1,24 @@
 package com.google.android.accessibility.talkback;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.Manifest;
 
 public class MainActivity extends AppCompatActivity {
-
     Button openSettingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        requestPermissions();
         openSettingsButton = findViewById(R.id.button);
         openSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -22,6 +26,29 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
             }
         });
+    }
+
+    private void requestPermissions(){
+//        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                int permission = ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                if(permission!= PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this,new String[] {
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.LOCATION_HARDWARE,Manifest.permission.READ_PHONE_STATE,
+                            Manifest.permission.WRITE_SETTINGS,Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.RECORD_AUDIO,Manifest.permission.READ_CONTACTS},0x0010);
+                }
+            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 }
