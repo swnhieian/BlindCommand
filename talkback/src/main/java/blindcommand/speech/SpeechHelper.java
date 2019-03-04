@@ -19,6 +19,7 @@ import com.iflytek.cloud.SpeechRecognizer;
 import com.iflytek.cloud.util.ResourceUtil;
 import com.iflytek.cloud.util.ResourceUtil.RESOURCE_TYPE;
 
+import blindcommand.SoundPlayer;
 import blindcommand.util.FucUtil;
 import blindcommand.util.JsonParser;
 import blindcommand.util.XmlParser;
@@ -46,7 +47,7 @@ public class SpeechHelper{
     public SpeechHelper(Context context, SpeechCallback speechCallBack, String bnfRule){
         this.context = context;
         mAsr = SpeechRecognizer.createRecognizer(this.context, mInitListener);
-        mToast = Toast.makeText(this.context,"",Toast.LENGTH_SHORT);
+//        mToast = Toast.makeText(this.context,"",Toast.LENGTH_SHORT);
         mSpeechCallBack = speechCallBack;
         buildGrammar(bnfRule);
     }
@@ -105,6 +106,7 @@ public class SpeechHelper{
         @Override
         public void onBuildFinish(String grammarId, SpeechError error) {
             if(error == null){
+                SoundPlayer.tts("语法构建成功");
                 showTip("语法构建成功：" + grammarId);
             }else{
                 showTip("语法构建失败,错误码：" + error.getErrorCode());
@@ -186,8 +188,8 @@ public class SpeechHelper{
 //        runOnUiThread(new Runnable() {
 //            @Override
 //            public void run() {
-        mToast.setText(str);
-        mToast.show();
+//        mToast.setText(str);
+//        mToast.show();
 //            }
 //        });
     }

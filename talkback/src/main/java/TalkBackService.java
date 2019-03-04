@@ -1364,10 +1364,10 @@ public class TalkBackService extends AccessibilityService
       kbdView.setVisibility(View.INVISIBLE);
       enableTouchExploration();
       SoundPlayer.end();
-//      kbdView.setParser(Parser.ParserType.DEFAULT, null);
+      kbdView.setParser(Parser.ParserType.DEFAULT, null);
       //disableAccessibilityServices();
     } else {
-//      kbdView.setParser(type, paras);
+      kbdView.setParser(type, paras);
       kbdView.setVisibility(View.VISIBLE);
       disableTouchExploration();
       SoundPlayer.start();
@@ -1376,7 +1376,9 @@ public class TalkBackService extends AccessibilityService
   /////////
   public void triggerBCMode() {
     //kbdView.setCurrentParser(new SimpleParser());
-    triggerBCMode(Parser.ParserType.DEFAULT, null);
+//    triggerBCMode(Parser.ParserType.DEFAULT, null);
+
+     triggerBCMode(Utility.parserType, null);
   }
 
 
@@ -1384,9 +1386,6 @@ public class TalkBackService extends AccessibilityService
   public KbdView kbdView;
   @Override
   protected void onServiceConnected() {
-    /*
-      init SpeechUtility
-     */
     StringBuffer param = new StringBuffer();
     param.append("appid=5c74d0c7");
     param.append(",");

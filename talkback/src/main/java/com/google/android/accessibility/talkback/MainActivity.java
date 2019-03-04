@@ -10,9 +10,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.Manifest;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+
+import blindcommand.Parser;
+import blindcommand.Utility;
 
 public class MainActivity extends AppCompatActivity {
     Button openSettingsButton;
+    Switch parserSwitcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
+            }
+        });
+        parserSwitcher = findViewById(R.id.switcher);
+        parserSwitcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                System.out.println(b);
+                Utility.parserType = b ? Parser.ParserType.SPEECH : Parser.ParserType.DEFAULT;
             }
         });
     }

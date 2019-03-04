@@ -17,11 +17,11 @@ import java.util.List;
 
 import blindcommand.speech.SpeechCallback;
 import blindcommand.speech.SpeechHelper;
+import blindcommand.speech.SpeechParser;
 import blindcommand.speech.SpeechResult;
 
-public class KbdView extends View implements SpeechCallback {
+public class KbdView extends View{
     public Executor executor;
-    public SpeechHelper speechHelper;
     public KbdView(Context context) {
         super(context);
         initKeyboard();
@@ -85,15 +85,24 @@ public class KbdView extends View implements SpeechCallback {
     boolean judgingTwoFingers = false;
     SimpleParser defaultParser;
     Parser parser;
+    Parser.ParserType parserType;
     InstructionSet instructionSet;
     public void upTouch(MotionEvent event) { //confirm
-        parser.addTouchPoint(event.getEventTime(), event.getX(), event.getY());
-        if (event.getEventTime() - downTime < NO_FEEDBACK_TIME) {
-            SoundPlayer.click();
+        if(parserType != Parser.ParserType.SPEECH) {
+            parser.addTouchPoint(event.getEventTime(), event.getX(), event.getY());
+            if (event.getEventTime() - downTime < NO_FEEDBACK_TIME) {
+                SoundPlayer.click();
+            }
+            readParseResult(parser.getCurrent());
         }
-        readParseResult(parser.getCurrent());
+        else{
+            if(parser instanceof  SpeechParser) {
+                ((SpeechParser)parser).startRecognizing();
+            }
+            System.out.println("uptouch end");
+        }
     }
-    private void readParseResult(ParseResult parseResult){
+    public void readParseResult(ParseResult parseResult){
         SoundPlayer.tts((parseResult.hasSameName ? parseResult.instruction.meta.appName : "" ) + parseResult.instruction.name +
                 ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
     }
@@ -102,19 +111,20 @@ public class KbdView extends View implements SpeechCallback {
     SwipeAction tempAction = SwipeAction.No_Action;
     long lastTime;
     public void explore(MotionEvent event) {
-
-        for (Key key: keys) {
-            if (key.contains(event.getX(), event.getY())) {
-                if (key.name != lastKey && (event.getEventTime() - downTime)>SWIPE_TIME) {
-                    SoundPlayer.readKey(Utility.speed, key.name);
-                    lastKey = key.name;
+        if(parserType != Parser.ParserType.SPEECH) {
+            for (Key key : keys) {
+                if (key.contains(event.getX(), event.getY())) {
+                    if (key.name != lastKey && (event.getEventTime() - downTime) > SWIPE_TIME) {
+                        SoundPlayer.readKey(Utility.speed, key.name);
+                        lastKey = key.name;
+                    }
+                    break;
                 }
-                break;
             }
+            lastX = event.getX();
+            lastY = event.getY();
+            lastTime = event.getEventTime();
         }
-        lastX = event.getX();
-        lastY = event.getY();
-        lastTime = event.getEventTime();
     }
     private SwipeAction concatGesture(SwipeAction action1, SwipeAction action2) {
         if (action1 == SwipeAction.No_Action) {
@@ -173,134 +183,134 @@ public class KbdView extends View implements SpeechCallback {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch(event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                System.out.println("down");
-                startRecognizing();
-                break;
-            case MotionEvent.ACTION_UP:
-                System.out.println("up");
-                stopRecognizing();
-                break;
-            case MotionEvent.ACTION_MOVE:
-                break;
-            default:
-                break;
+//        switch(event.getAction()){
+//            case MotionEvent.ACTION_DOWN:
+//                System.out.println("down");
+//                startRecognizing();
+//                break;
+//            case MotionEvent.ACTION_UP:
+//                System.out.println("up");
+//                stopRecognizing();
+//                break;
+//            case MotionEvent.ACTION_MOVE:
+//                break;
+//            default:
+//                break;
+//        }
+        float x = event.getX();
+        float y = event.getY();
+        long time = event.getEventTime();
+        if (event.getPointerCount() == 2) {
+            judgingTwoFingers = true;
+            switch (event.getActionMasked()) {
+                case MotionEvent.ACTION_POINTER_DOWN:
+                    downx2 = x;
+                    downy2 = y;
+                    downTime2 = time;
+                    break;
+                case MotionEvent.ACTION_POINTER_UP:
+                    if (time < downTime2 + SWIPE_TIME) {
+                        if (y < downy2 - SWIPE_DIST &&
+                                Math.abs(y-downy2) > Math.abs(x-downx2)) {
+                            performAction(SwipeAction.SWIPE_UP_TWO_FINGERS);
+                        } else if (y > downy2 + SWIPE_DIST &&
+                                Math.abs(y-downy2) > Math.abs(x-downx2)) {
+                            performAction(SwipeAction.SWIPE_DOWN_TWO_FINGERS);
+                        } else if (x < downx2 - SWIPE_DIST &&
+                                Math.abs(x - downx2) > Math.abs(y - downy2)) {
+                            performAction(SwipeAction.SWIPE_LEFT_TWO_FINGERS);
+                        } else if (x > downx2 + SWIPE_DIST &&
+                                Math.abs(x - downx2) > Math.abs(y - downy2)) {
+                            performAction(SwipeAction.SWIPE_RIGHT_TWO_FINGERS);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
-//        float x = event.getX();
-//        float y = event.getY();
-//        long time = event.getEventTime();
-//        if (event.getPointerCount() == 2) {
-//            judgingTwoFingers = true;
-//            switch (event.getActionMasked()) {
-//                case MotionEvent.ACTION_POINTER_DOWN:
-//                    downx2 = x;
-//                    downy2 = y;
-//                    downTime2 = time;
-//                    break;
-//                case MotionEvent.ACTION_POINTER_UP:
-//                    if (time < downTime2 + SWIPE_TIME) {
-//                        if (y < downy2 - SWIPE_DIST &&
-//                                Math.abs(y-downy2) > Math.abs(x-downx2)) {
-//                            performAction(SwipeAction.SWIPE_UP_TWO_FINGERS);
-//                        } else if (y > downy2 + SWIPE_DIST &&
-//                                Math.abs(y-downy2) > Math.abs(x-downx2)) {
-//                            performAction(SwipeAction.SWIPE_DOWN_TWO_FINGERS);
-//                        } else if (x < downx2 - SWIPE_DIST &&
-//                                Math.abs(x - downx2) > Math.abs(y - downy2)) {
-//                            performAction(SwipeAction.SWIPE_LEFT_TWO_FINGERS);
-//                        } else if (x > downx2 + SWIPE_DIST &&
-//                                Math.abs(x - downx2) > Math.abs(y - downy2)) {
-//                            performAction(SwipeAction.SWIPE_RIGHT_TWO_FINGERS);
-//                        }
-//                    }
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//        if (!judgingTwoFingers && event.getPointerCount() == 1) {
-//            switch (event.getActionMasked()) {
-//                case MotionEvent.ACTION_DOWN:
-//                case MotionEvent.ACTION_POINTER_DOWN:
-//                    downx = x;
-//                    downy = y;
-//                    tempx = x;
-//                    tempy = y;
-//                    tempTime = time;
-//                    downTime = time;
-//                    break;
-//                case MotionEvent.ACTION_UP:
-//                case MotionEvent.ACTION_POINTER_UP:
-//                    if (time < tempTime + SWIPE_TIME) {
-//                        if (y < tempy - SWIPE_DIST &&
-//                                Math.abs(y-tempy) > Math.abs(x-tempx)) {
-//                                performAction(concatGesture(tempAction, SwipeAction.SWIPE_UP));
-//                        } else if (y > tempy + SWIPE_DIST &&
-//                                Math.abs(y-tempy) > Math.abs(x-tempx)) {
-//                            performAction(concatGesture(tempAction, SwipeAction.SWIPE_DOWN));
-//                        } else if (x < tempx - SWIPE_DIST &&
-//                                Math.abs(x - tempx) > Math.abs(y - tempy)) {
-//                            performAction(concatGesture(tempAction, SwipeAction.SWIPE_LEFT));
-//                        } else if (x > tempx + SWIPE_DIST &&
-//                                Math.abs(x - tempx) > Math.abs(y - tempy)) {
-//                            performAction(concatGesture(tempAction, SwipeAction.SWIPE_RIGHT));
-//                        } else if (tempAction != SwipeAction.No_Action) {
-//                            performAction(concatGesture(SwipeAction.No_Action, tempAction));
-//                        } else {
-//                            upTouch(event);
-//                        }
-//
-//                    } else {
-//                        upTouch(event);
-//                    }
-//                    break;
-//                case MotionEvent.ACTION_MOVE:
-//                    if (time < downTime + SWIPE_TIME && time > downTime + SWIPE_TIME / 2) {
-//                        if (y < downy - SWIPE_DIST &&
-//                                Math.abs(y - downy) > Math.abs(x - downx)) {
-//                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_UP) {
-//                                tempx = x;
-//                                tempy = y;
-//                                tempTime = time;
-//                                tempAction = SwipeAction.SWIPE_UP;
-//                            }
-//                        } else if (y > downy + SWIPE_DIST &&
-//                                Math.abs(y - downy) > Math.abs(x - downx)) {
-//                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_DOWN) {
-//                                tempx = x;
-//                                tempy = y;
-//                                tempTime = time;
-//                                tempAction = SwipeAction.SWIPE_DOWN;
-//                            }
-//                        } else if (x < downx - SWIPE_DIST &&
-//                                Math.abs(x - downx) > Math.abs(y - downy)) {
-//                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_LEFT) {
-//                                tempx = x;
-//                                tempy = y;
-//                                tempTime = time;
-//                                tempAction = SwipeAction.SWIPE_LEFT;
-//                            }
-//                        } else if (x > downx + SWIPE_DIST &&
-//                                Math.abs(x - downx) > Math.abs(y - downy)) {
-//                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_RIGHT) {
-//                                tempx = x;
-//                                tempy = y;
-//                                tempTime = time;
-//                                tempAction = SwipeAction.SWIPE_RIGHT;
-//                            }
-//                        }
-//                    } else {
-//                            explore(event);
-//                        }
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//        if (event.getActionMasked() == MotionEvent.ACTION_UP) {
-//            judgingTwoFingers = false;
-//        }
+        if (!judgingTwoFingers && event.getPointerCount() == 1) {
+            switch (event.getActionMasked()) {
+                case MotionEvent.ACTION_DOWN:
+                case MotionEvent.ACTION_POINTER_DOWN:
+                    downx = x;
+                    downy = y;
+                    tempx = x;
+                    tempy = y;
+                    tempTime = time;
+                    downTime = time;
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_POINTER_UP:
+                    if (time < tempTime + SWIPE_TIME) {
+                        if (y < tempy - SWIPE_DIST &&
+                                Math.abs(y-tempy) > Math.abs(x-tempx)) {
+                                performAction(concatGesture(tempAction, SwipeAction.SWIPE_UP));
+                        } else if (y > tempy + SWIPE_DIST &&
+                                Math.abs(y-tempy) > Math.abs(x-tempx)) {
+                            performAction(concatGesture(tempAction, SwipeAction.SWIPE_DOWN));
+                        } else if (x < tempx - SWIPE_DIST &&
+                                Math.abs(x - tempx) > Math.abs(y - tempy)) {
+                            performAction(concatGesture(tempAction, SwipeAction.SWIPE_LEFT));
+                        } else if (x > tempx + SWIPE_DIST &&
+                                Math.abs(x - tempx) > Math.abs(y - tempy)) {
+                            performAction(concatGesture(tempAction, SwipeAction.SWIPE_RIGHT));
+                        } else if (tempAction != SwipeAction.No_Action) {
+                            performAction(concatGesture(SwipeAction.No_Action, tempAction));
+                        } else {
+                            upTouch(event);
+                        }
+
+                    } else {
+                        upTouch(event);
+                    }
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    if (time < downTime + SWIPE_TIME && time > downTime + SWIPE_TIME / 2) {
+                        if (y < downy - SWIPE_DIST &&
+                                Math.abs(y - downy) > Math.abs(x - downx)) {
+                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_UP) {
+                                tempx = x;
+                                tempy = y;
+                                tempTime = time;
+                                tempAction = SwipeAction.SWIPE_UP;
+                            }
+                        } else if (y > downy + SWIPE_DIST &&
+                                Math.abs(y - downy) > Math.abs(x - downx)) {
+                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_DOWN) {
+                                tempx = x;
+                                tempy = y;
+                                tempTime = time;
+                                tempAction = SwipeAction.SWIPE_DOWN;
+                            }
+                        } else if (x < downx - SWIPE_DIST &&
+                                Math.abs(x - downx) > Math.abs(y - downy)) {
+                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_LEFT) {
+                                tempx = x;
+                                tempy = y;
+                                tempTime = time;
+                                tempAction = SwipeAction.SWIPE_LEFT;
+                            }
+                        } else if (x > downx + SWIPE_DIST &&
+                                Math.abs(x - downx) > Math.abs(y - downy)) {
+                            if (tempAction == SwipeAction.No_Action || tempAction == SwipeAction.SWIPE_RIGHT) {
+                                tempx = x;
+                                tempy = y;
+                                tempTime = time;
+                                tempAction = SwipeAction.SWIPE_RIGHT;
+                            }
+                        }
+                    } else {
+                            explore(event);
+                        }
+                    break;
+                default:
+                    break;
+            }
+        }
+        if (event.getActionMasked() == MotionEvent.ACTION_UP) {
+            judgingTwoFingers = false;
+        }
         return super.onTouchEvent(event);
     }
 
@@ -311,23 +321,6 @@ public class KbdView extends View implements SpeechCallback {
 
     public void initKeyboard() {
         executor = new Executor(((AccessibilityService)(getContext())));
-        instructions = executor.getInstructions();
-        StringBuilder bnf = new StringBuilder();
-        bnf.append("#BNF+IAT 1.0 UTF-8;\n!grammar action;\n!start <command>;\n<command>:");
-        boolean flag = true;
-        for(Instruction instruction : instructions){
-            if(flag){
-                bnf.append(instruction.name);
-                flag = false;
-            }
-            else{
-                bnf.append("|");
-                bnf.append(instruction.name);
-            }
-        }
-        bnf.append(";\n");
-        System.out.println(bnf.toString());
-        speechHelper = new SpeechHelper(getContext(), this, bnf.toString());
         //this.setBackgroundColor(Color.parseColor("#89cff0"));
         //this.setAlpha(0.4f);
 
@@ -349,29 +342,30 @@ public class KbdView extends View implements SpeechCallback {
         this.textPaint.setStrokeCap(Paint.Cap.ROUND);
 
 
-//        int keyWidth = Utility.getKeyboardWidth(getContext()) / 10;
-//        int keyHeight = Utility.getkeyboardHeight(getContext()) / 4;
-//        int startY = Utility.getScreenHeight(getContext()) - Utility.getkeyboardHeight(getContext());
-//        System.out.println("startY" + startY+","+getHeight());
-//        keys = new ArrayList<>();
-//        String line = "QWERTYUIOP";
-//        for (int i=0; i<line.length(); i++) {
-//            keys.add(new Key(line.charAt(i), (i+0.5f)*keyWidth, startY+0.5f*keyHeight, keyWidth, keyHeight));
-//        }
-//        line = "ASDFGHJKL";
-//        for (int i=0; i<line.length(); i++) {
-//            keys.add(new Key(line.charAt(i), (i+1)*keyWidth, startY+1.5f*keyHeight, keyWidth, keyHeight));
-//        }
-//        line = "ZXCVBNM";
-//        for (int i=0; i<line.length(); i++) {
-//            keys.add(new Key(line.charAt(i), (i+2)*keyWidth, startY+2.5f*keyHeight, keyWidth, keyHeight));
-//        }
-//
-//        this.invalidate();
-//        this.instructionSet = new InstructionSet(executor.getInstructions());
-//        defaultParser = new SimpleParser(keys, this.instructionSet);
+        int keyWidth = Utility.getKeyboardWidth(getContext()) / 10;
+        int keyHeight = Utility.getkeyboardHeight(getContext()) / 4;
+        int startY = Utility.getScreenHeight(getContext()) - Utility.getkeyboardHeight(getContext());
+        System.out.println("startY" + startY+","+getHeight());
+        keys = new ArrayList<>();
+        String line = "QWERTYUIOP";
+        for (int i=0; i<line.length(); i++) {
+            keys.add(new Key(line.charAt(i), (i+0.5f)*keyWidth, startY+0.5f*keyHeight, keyWidth, keyHeight));
+        }
+        line = "ASDFGHJKL";
+        for (int i=0; i<line.length(); i++) {
+            keys.add(new Key(line.charAt(i), (i+1)*keyWidth, startY+1.5f*keyHeight, keyWidth, keyHeight));
+        }
+        line = "ZXCVBNM";
+        for (int i=0; i<line.length(); i++) {
+            keys.add(new Key(line.charAt(i), (i+2)*keyWidth, startY+2.5f*keyHeight, keyWidth, keyHeight));
+        }
+
+        this.invalidate();
+        this.instructionSet = new InstructionSet(executor.getInstructions());
+        defaultParser = new SimpleParser(keys, this.instructionSet);
     }
     public void setParser(Parser.ParserType type, List<Instruction> paras) {
+        this.parserType = type;
         switch (type) {
             case DEFAULT:
                 parser = defaultParser;
@@ -381,6 +375,8 @@ public class KbdView extends View implements SpeechCallback {
                 break;
             case LIST:
                 parser = new SimpleParser(keys, new InstructionSet(paras));
+            case SPEECH:
+                parser = new SpeechParser(this, this.instructionSet);
             default:
                 break;
         }
@@ -392,46 +388,15 @@ public class KbdView extends View implements SpeechCallback {
         System.out.println("ondraw");
         //this.setBackgroundColor(Color.parseColor("#89cff0"));
         canvas.drawARGB(100, 137, 207, 240);
-//        if (keys != null) {
-//            for (Key key : keys) {
-//                System.out.println("key:" + key.name + ",x:" + key.x + ",y:" + key.y);
-//                canvas.drawRect(key.getRect(), backgroundPaint);
-//                canvas.drawText(key.name+"", key.x, key.y, textPaint);
-//            }
-//        }
-
-        super.draw(canvas);
-    }
-
-    @Override
-    public void onResult(List<SpeechResult> result) {
-        if(result.size() > 0){
-            String instructionName = result.get(0).result;
-            SoundPlayer.tts("识别完成, " + result.get(0).result);
-            for(Instruction instruction: instructions){
-                if(instruction.name.equals(instructionName)){
-                    this.setVisibility(View.INVISIBLE);
-                    executor.execute(instruction);
+        if(parserType != Parser.ParserType.SPEECH) {
+            if (keys != null) {
+                for (Key key : keys) {
+                    System.out.println("key:" + key.name + ",x:" + key.x + ",y:" + key.y);
+                    canvas.drawRect(key.getRect(), backgroundPaint);
+                    canvas.drawText(key.name+"", key.x, key.y, textPaint);
                 }
             }
         }
-        else{
-            SoundPlayer.tts("无结果");
-        }
-    }
-    @Override
-    public void onBeginOfSpeech(){
-
-    }
-    @Override
-    public void onEndOfSpeech() {
-
-    }
-    public void startRecognizing() {
-        SoundPlayer.tts("开始说话");
-        speechHelper.startRecognizing();
-    }
-    public void stopRecognizing() {
-        speechHelper.stopRecognizing();
+        super.draw(canvas);
     }
 }
