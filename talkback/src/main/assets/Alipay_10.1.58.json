@@ -75,7 +75,7 @@
 				},
 				{
 					"path": {
-						"text": "^$", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [36,84,821,168]
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [36,84,821,168]
 					},
 					"target": "搜索",
 					"name": "搜索",

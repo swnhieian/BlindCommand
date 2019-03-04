@@ -85,17 +85,15 @@ public class NodePath {
                 Rect bounds = new Rect();
                 node.getBoundsInScreen(bounds);
                 CharSequence text = node.getText();
-                if (text != null && !Pattern.matches(this.textReg, text)) {
+                if (text != null && !Pattern.matches(this.textReg, text.toString().trim())) {
                     continue;
                 }
                 text = node.getContentDescription();
-                if (text != null && !Pattern.matches(this.contentReg, text)) {
+                if (text != null && !Pattern.matches(this.contentReg, text.toString().trim())) {
                     continue;
                 }
-                if (!isSameBound(bounds, Utility.getScreenWidth(), Utility.getScreenHeight())) {
-                    continue;
-                }
-                return node;
+                boolean bound = isSameBound(bounds, Utility.getScreenWidth(), Utility.getScreenHeight());
+                if (bound) { return node; }
             }
         } else {
             Rect bounds = new Rect();
@@ -103,9 +101,7 @@ public class NodePath {
             if (isSameBound(bounds, Utility.getScreenWidth(), Utility.getScreenHeight())) return root;
             for (int i=0; i<root.getChildCount(); i++) {
                 AccessibilityNodeInfo found = getNodeFromRoot(root.getChild(i));
-                if (found != null) {
-                    return found;
-                }
+                return found;
             }
         }
         return null;
