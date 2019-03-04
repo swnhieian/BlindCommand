@@ -1,6 +1,7 @@
 package blindcommand;
 
 import android.accessibilityservice.AccessibilityService;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -8,11 +9,12 @@ import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
 
-import com.google.android.accessibility.talkback.TalkBackService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -20,7 +22,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -99,7 +100,12 @@ public class Executor {
     }
 
     public void singleSteps(final List<Edge> edges, final int index) {
-        if (index >= edges.size()) return;
+        if (index >= edges.size()) {
+            SoundPlayer.interrupt();
+            SoundPlayer.success();
+            SoundPlayer.tts("执行完毕");
+            return;
+        }
         Edge edge = edges.get(index);
         if (edge.needParameter) {
             SoundPlayer.tts("请输入" + (edge.parameterName.length() == 0?"参数":edge.parameterName));
@@ -131,14 +137,13 @@ public class Executor {
 
         } else {
             singleStep(edge);
-            if (index < edges.size() - 1) {
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        singleSteps(edges, index + 1);
-                    }
-                }, 500);
-            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    singleSteps(edges, index + 1);
+                }
+            }, 500);
+
         }
     }
 
@@ -231,7 +236,7 @@ public class Executor {
             loopCount += 1;
             service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
             //service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
-            System.out.println("back action");
+            System.out.println("back action, loop:" + loopCount);
             try {
                 System.out.println("sleeping for back action");
                 Thread.sleep(500);
@@ -318,25 +323,30 @@ public class Executor {
     }
 
     public void init(){
+        String[] fileNames = new String[] {"Alipay_10.1.58.json", "Didi_V5.2.40_505.json", "Eleme_v8.12.0.json", "Wechat.json"};
         // 从asset读配置文件
-        StringBuilder stringBuilder = new StringBuilder();
-        try{
-            AssetManager assetManager = service.getAssets();
-            BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open("Wechat.json")));
-            String line;
-            while((line = bf.readLine()) != null){
-                stringBuilder.append(line);
+        for (String fileName:fileNames) {
+            System.out.println("Loading " + fileName);
+            StringBuilder stringBuilder = new StringBuilder();
+            try {
+                AssetManager assetManager = service.getAssets();
+                BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open(fileName)));
+                String line;
+                while ((line = bf.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch(IOException e){
-            e.printStackTrace();
+            // 反序列化
+            String jsonString = stringBuilder.toString();
+            Gson gson = new Gson();
+            JsonAppNode jsonappNode = gson.fromJson(jsonString, new TypeToken<JsonAppNode>() {
+            }.getType());
+            // 建图
+            NodeGraph graph = new NodeGraph();
+            graph.loadGraph(jsonappNode);
+            graphs.put(jsonappNode.meta.appName, graph);
         }
-        // 反序列化
-        String jsonString = stringBuilder.toString();
-        Gson gson = new Gson();
-        JsonAppNode jsonappNode = gson.fromJson(jsonString, new TypeToken<JsonAppNode>(){}.getType());
-        // 建图
-        NodeGraph graph = new NodeGraph();
-        graph.loadGraph(jsonappNode);
-        graphs.put(jsonappNode.meta.appName, graph);
     }
 }

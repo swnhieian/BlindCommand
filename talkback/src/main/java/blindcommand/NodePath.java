@@ -57,13 +57,26 @@ public class NodePath {
         nodes.add(null);
     }
     public boolean isSameBound(Rect target, int resx, int resy) {
-        final int THRESHOLD = 10;
-        int ratioX = meta.resolution[0] / resx;
-        int ratioY = meta.resolution[1] / resy;
-        return (Math.abs(this.boundsInScreen[0] - target.left * ratioX) < THRESHOLD) &&
-               (Math.abs(this.boundsInScreen[1] - target.top * ratioY) < THRESHOLD) &&
-               (Math.abs(this.boundsInScreen[2] - target.right * ratioX) < THRESHOLD) &&
-               (Math.abs(this.boundsInScreen[3] - target.bottom * ratioY) < THRESHOLD);
+        final int X_THRESHOLD = 20;
+        final int Y_THRESHOLD = 148;
+        double ratioX = ((double)meta.resolution[0]) / resx;
+        double ratioY = ((double)meta.resolution[1]) / resy;
+        if ((Math.abs(this.boundsInScreen[0] - target.left * ratioX) >= X_THRESHOLD) ||
+                (Math.abs(this.boundsInScreen[1] - target.top * ratioY) >= Y_THRESHOLD) ||
+                (Math.abs(this.boundsInScreen[2] - target.right * ratioX) >= X_THRESHOLD) ||
+                (Math.abs(this.boundsInScreen[3] - target.bottom * ratioY) >= Y_THRESHOLD))
+            return false;
+        double xRange = Math.abs(Math.abs(this.boundsInScreen[2] - this.boundsInScreen[0]) -
+                Math.abs(target.right * ratioX - target.left * ratioX));
+        double yRange = Math.abs(Math.abs(this.boundsInScreen[3] - this.boundsInScreen[1]) -
+                Math.abs(target.bottom * ratioY - target.top * ratioY));
+        return ((xRange < X_THRESHOLD) && (yRange < X_THRESHOLD));
+//        return (Math.abs(this.boundsInScreen[0] - target.left * ratioX) < X_THRESHOLD) &&
+//                (Math.abs(this.boundsInScreen[1] - target.top * ratioY) < Y_THRESHOLD) &&
+//                (Math.abs(this.boundsInScreen[2] - target.right * ratioX) < X_THRESHOLD) &&
+//                (Math.abs(this.boundsInScreen[3] - target.bottom * ratioY) < Y_THRESHOLD) &&
+//                ( < X_THRESHOLD)
+//                &&  < X_THRESHOLD);
     }
     public AccessibilityNodeInfo getNodeFromRoot(AccessibilityNodeInfo root) {
         if (this.text.length() != 0) {

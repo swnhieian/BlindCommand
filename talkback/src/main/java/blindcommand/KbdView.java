@@ -89,8 +89,9 @@ public class KbdView extends View {
         readParseResult(parser.getCurrent());
     }
     private void readParseResult(ParseResult parseResult){
-        SoundPlayer.tts((parseResult.hasSameName ? parseResult.instruction.meta.appName : "" ) + parseResult.instruction.name +
-                ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
+        SoundPlayer.tts(parseResult.instruction.name + parseResult.instruction.meta.appName + ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
+        //SoundPlayer.tts((parseResult.hasSameName ? parseResult.instruction.meta.appName : "" ) + parseResult.instruction.name +
+        //        ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
     }
     private char lastKey = ' ';
     float lastX, lastY;
