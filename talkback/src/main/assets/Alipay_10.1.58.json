@@ -718,6 +718,16 @@
 				},
 				{
 					"path": {
+						"text": "余额宝", "textReg": "余额宝", "contentReg": "^$", "boundsInScreen": [186,1154,330,1219]
+					},
+					"target": "余额宝",
+					"name": "余额宝",
+					"pinyin": "YuEBao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
 						"text": "花呗", "textReg": "花呗", "contentReg": "^$", "boundsInScreen": [186,1292,282,1357]
 					},
 					"target": "花呗",

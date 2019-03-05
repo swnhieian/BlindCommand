@@ -197,7 +197,7 @@ public class Executor {
 //                    continueSteps(instruction.name);
 //                }
             }
-        }, 1000);
+        }, 4000);
     }
     List<Edge> edges;
     class ExecuteAsyncTask extends AsyncTask<Integer, Void, Void> {

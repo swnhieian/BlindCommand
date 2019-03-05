@@ -57,8 +57,8 @@ public class NodePath {
         nodes.add(null);
     }
     public boolean isSameBound(Rect target, int resx, int resy) {
-        final int X_THRESHOLD = 20;
-        final int Y_THRESHOLD = 148;
+        final int X_THRESHOLD = 50;
+        final int Y_THRESHOLD = 178;
         double ratioX = ((double)meta.resolution[0]) / resx;
         double ratioY = ((double)meta.resolution[1]) / resy;
         if ((Math.abs(this.boundsInScreen[0] - target.left * ratioX) >= X_THRESHOLD) ||
@@ -81,9 +81,8 @@ public class NodePath {
     public AccessibilityNodeInfo getNodeFromRoot(AccessibilityNodeInfo root) {
         if (this.text.length() != 0) {
             List<AccessibilityNodeInfo> nodes = root.findAccessibilityNodeInfosByText(this.text);
+            List<AccessibilityNodeInfo> textMatchedNodes = new ArrayList<>();
             for (AccessibilityNodeInfo node: nodes) {
-                Rect bounds = new Rect();
-                node.getBoundsInScreen(bounds);
                 CharSequence text = node.getText();
                 if (text != null && !Pattern.matches(this.textReg, text.toString().trim())) {
                     continue;
@@ -92,8 +91,16 @@ public class NodePath {
                 if (text != null && !Pattern.matches(this.contentReg, text.toString().trim())) {
                     continue;
                 }
+                textMatchedNodes.add(node);
+            }
+            if (textMatchedNodes.size() == 1) return textMatchedNodes.get(0);
+            for (AccessibilityNodeInfo node:textMatchedNodes) {
+                Rect bounds = new Rect();
+                node.getBoundsInScreen(bounds);
                 boolean bound = isSameBound(bounds, Utility.getScreenWidth(), Utility.getScreenHeight());
-                if (bound) { return node; }
+                if (bound) {
+                    return node;
+                }
             }
         } else {
             Rect bounds = new Rect();
