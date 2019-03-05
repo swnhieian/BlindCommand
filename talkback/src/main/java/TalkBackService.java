@@ -128,13 +128,17 @@ import com.google.android.accessibility.utils.output.FeedbackController;
 import com.google.android.accessibility.utils.output.SpeechController;
 import com.google.android.accessibility.utils.output.SpeechController.UtteranceCompleteRunnable;
 import com.google.android.accessibility.utils.output.SpeechControllerImpl;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 import com.intentfilter.androidpermissions.PermissionManager;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import blindcommand.Instruction;
 import blindcommand.KbdView;
@@ -143,6 +147,7 @@ import blindcommand.Parser;
 import blindcommand.SimpleParser;
 import blindcommand.SoundPlayer;
 import blindcommand.Utility;
+import blindcommand.speech.SpeechHelper;
 
 /** An {@link AccessibilityService} that provides spoken, haptic, and audible feedback. */
 public class TalkBackService extends AccessibilityService
@@ -1374,7 +1379,9 @@ public class TalkBackService extends AccessibilityService
   /////////
   public void triggerBCMode() {
     //kbdView.setCurrentParser(new SimpleParser());
-    triggerBCMode(Parser.ParserType.DEFAULT, null);
+//    triggerBCMode(Parser.ParserType.DEFAULT, null);
+
+     triggerBCMode(Utility.parserType, null);
   }
 
 
@@ -1382,6 +1389,12 @@ public class TalkBackService extends AccessibilityService
   public KbdView kbdView;
   @Override
   protected void onServiceConnected() {
+    StringBuffer param = new StringBuffer();
+    param.append("appid=5c74d0c7");
+    param.append(",");
+    param.append(SpeechConstant.ENGINE_MODE + "=" + SpeechConstant.MODE_MSC);
+    SpeechUtility.createUtility(this, param.toString());
+
     Utility.service = this;
     Utility.init(this);
     kbdView = new KbdView(this);
@@ -1429,7 +1442,15 @@ public class TalkBackService extends AccessibilityService
 //
 //    SoundPlayer.setContext(this);
 
-    permissionManager.checkPermissions(singleton(Manifest.permission.WRITE_EXTERNAL_STORAGE), new PermissionManager.PermissionRequestListener() {
+    final String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                                  Manifest.permission.LOCATION_HARDWARE,
+//                                  Manifest.permission.READ_PHONE_STATE,
+//                                  Manifest.permission.WRITE_SETTINGS,
+//                                  Manifest.permission.READ_EXTERNAL_STORAGE,
+                                  Manifest.permission.RECORD_AUDIO,
+                                  Manifest.permission.READ_CONTACTS
+    };
+    permissionManager.checkPermissions(Arrays.asList(permissions), new PermissionManager.PermissionRequestListener() {
       @Override
       public void onPermissionGranted() {
         Toast.makeText(contextt, "Permissions Granted", Toast.LENGTH_SHORT).show();

@@ -36,6 +36,7 @@ public class Executor {
     public List<Instruction> getInstructions() {
         List<Instruction> ret = new ArrayList<>();
         for (NodeGraph nodeGraph:graphs.values()) {
+            ret.add(new Instruction(nodeGraph.meta.appName, nodeGraph.meta.appName, nodeGraph.meta.appPinyin, nodeGraph.meta));
             ret.addAll(nodeGraph.getInstructions());
         }
         return ret;
@@ -160,6 +161,9 @@ public class Executor {
     public void jumpToApp(String packageName) {
         PackageManager packageManager = service.getPackageManager();
         PackageInfo packageInfo = null;
+        if (getRoot().getPackageName().equals(packageName)) {
+            return;
+        }
         try {
             packageInfo = packageManager.getPackageInfo(packageName, 0);
         } catch (PackageManager.NameNotFoundException e) {
@@ -185,34 +189,22 @@ public class Executor {
     public void execute(final Instruction instruction) {
         //TODO: find app graph
         jumpToApp(instruction.meta.packageName);
-        AccessibilityNodeInfo rootNode = getRoot();
-        List<AccessibilityNodeInfo> nodes = rootNode.findAccessibilityNodeInfosByText("微信");
-        List<AccessibilityNodeInfo> nodes2 = rootNode.findAccessibilityNodeInfosByText("更多功能按钮");
+        final AccessibilityNodeInfo rootNode = getRoot();
+        List<AccessibilityNodeInfo> nodes = rootNode.findAccessibilityNodeInfosByText("跳过");
+        long delayTime = 4000;
+        if (nodes.size() == 1) {
+            nodes.get(0).performAction(AccessibilityNodeInfo.ACTION_CLICK);
+            delayTime = 1000;
+        }
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                //if (!executeForParameter) {
                     execute(instruction, graphs.get(instruction.meta.appName));
-//                } else {
-//                    continueSteps(instruction.name);
-//                }
             }
-        }, 4000);
+        }, delayTime);
     }
     List<Edge> edges;
-    class ExecuteAsyncTask extends AsyncTask<Integer, Void, Void> {
-        @Override
-        protected Void doInBackground(Integer... integers) {
-            System.out.println("ssssswwwwwnnnnn," + integers);
-            singleStep(edges.get(integers[0].intValue()));
-            try {
-                Thread.sleep(800);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
+
     public void clearContinue() {
         executeForParameter = false;
     }
@@ -221,7 +213,9 @@ public class Executor {
         if (commandId == "null") {
             return;
         }
-        //jumpToApp(graph.meta.packageName);
+        if (graph.meta.appName.equals(ins.id)) {
+            singleSteps(new ArrayList<Edge>(), 1);
+        }
         System.out.println("execute: " + commandId);
         List<AccessibilityWindowInfo> windows = service.getWindows();
         AccessibilityWindowInfo currentWindow = null;
@@ -237,89 +231,31 @@ public class Executor {
             service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
             //service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
             System.out.println("back action, loop:" + loopCount);
-            try {
-                System.out.println("sleeping for back action");
-                Thread.sleep(500);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-//            windows = service.getWindows();
-//            currentWindow = null;
-//            for (AccessibilityWindowInfo window : windows) {
-//                if (window.isActive()) {
-//                    currentWindow = window;
-//                    break;
-//                }
-//            }
+            sleep(500);
             if (loopCount < 3) {
                 execute(ins);
             }
             return;
-            //currentNode = graph.getCurrentWindowNode(currentWindow, service);
         }
-        loopCount = 0;
         // TODO ? 用 commandName 得出目标窗口的name
         Node targetNode = graph.getTargetWindowNode(commandId);
         System.out.println("\tfrom: " + (currentNode == null ? "null" : currentNode.pageId));
         System.out.println("\tto  : " + (targetNode == null ? "null" : targetNode.pageId));
         if(currentNode == null || targetNode == null) return;
         edges = graph.findPath(currentNode, targetNode);
-        // 起一个新线程
         if(edges != null) {
             singleSteps(edges, 0);
-/*            for (int i=0; i<edges.size(); i++) {
-                //new ExecuteAsyncTask().execute(new Integer(i));
-                final Edge edge = edges.get(i);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        singleStep(edge);
-                    }
-                }, i*500);
-                //TODO: 是否可以不使用延时的方式处理
-            }
-*/
         } else {
             loopCount += 1;
             service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
-            //service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
             System.out.println("back action");
-            try {
-                System.out.println("sleeping for back action");
-                Thread.sleep(500);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-//            windows = service.getWindows();
-//            currentWindow = null;
-//            for (AccessibilityWindowInfo window : windows) {
-//                if (window.isActive()) {
-//                    currentWindow = window;
-//                    break;
-//                }
-//            }
+            sleep(500);
             if (loopCount < 3) {
                 execute(ins);
             }
             return;
-
         }
         loopCount = 0;
-//        if(edges != null){
-//            Runnable runnable = new Runnable(){
-//                @Override
-//                public void run(){
-//
-//                    for(int i=0; i<edges.size(); i++){
-//                        final Edge edge = edges.get(i);
-//                        singleStep(edge);
-//                        //singleStep(edge);
-//                    }
-//                }
-//            };
-//            Thread thread = new Thread(runnable);
-//            thread.start();
-//        }
     }
 
     public void init(){

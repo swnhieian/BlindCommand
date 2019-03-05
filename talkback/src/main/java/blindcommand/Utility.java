@@ -41,4 +41,5 @@ public class Utility {
     public static String getLanguage() {
         return Utility.service.getResources().getConfiguration().locale.getCountry();
     }
+    public static Parser.ParserType parserType = Parser.ParserType.DEFAULT;
 }

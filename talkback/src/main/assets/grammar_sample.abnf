@@ -1,0 +1,8 @@
+#ABNF 1.0 UTF-8;
+language zh-CN; 
+mode voice;
+
+root $main;
+$main = $open $app;
+$open = 打开|关闭;
+$app = 微信|支付宝;

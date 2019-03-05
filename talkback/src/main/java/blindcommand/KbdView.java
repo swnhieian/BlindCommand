@@ -15,7 +15,12 @@ import com.google.android.accessibility.talkback.TalkBackService;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KbdView extends View {
+import blindcommand.speech.SpeechCallback;
+import blindcommand.speech.SpeechHelper;
+import blindcommand.speech.SpeechParser;
+import blindcommand.speech.SpeechResult;
+
+public class KbdView extends View{
     public Executor executor;
     public KbdView(Context context) {
         super(context);
@@ -40,7 +45,7 @@ public class KbdView extends View {
         SWIPE_DOWN_TWO_FINGERS, SWIPE_LEFT_TWO_FINGERS, SWIPE_RIGHT_TWO_FINGERS, No_Action,
         SWIPE_DOWN_UP, SWIPE_UP_DOWN, SWIPE_LEFT_RIGHT, SWIPE_RIGHT_LEFT, SWIPE_DOWN_LEFT,
         SWIPE_DOWN_RIGHT, SWIPE_UP_LEFT, SWIPE_UP_RIGHT, SWIPE_LEFT_UP, SWIPE_LEFT_DOWN,
-        SWIPE_RIGHT_UP, SWIPE_RIGHT_DOWN};
+        SWIPE_RIGHT_UP, SWIPE_RIGHT_DOWN}
     public void performAction(SwipeAction action) {
         tempAction = SwipeAction.No_Action;
         System.out.println("Detect:" + action.toString());
@@ -80,15 +85,24 @@ public class KbdView extends View {
     boolean judgingTwoFingers = false;
     SimpleParser defaultParser;
     Parser parser;
+    Parser.ParserType parserType;
     InstructionSet instructionSet;
     public void upTouch(MotionEvent event) { //confirm
-        parser.addTouchPoint(event.getEventTime(), event.getX(), event.getY());
-        if (event.getEventTime() - downTime < NO_FEEDBACK_TIME) {
-            SoundPlayer.click();
+        if(parserType != Parser.ParserType.SPEECH) {
+            parser.addTouchPoint(event.getEventTime(), event.getX(), event.getY());
+            if (event.getEventTime() - downTime < NO_FEEDBACK_TIME) {
+                SoundPlayer.click();
+            }
+            readParseResult(parser.getCurrent());
         }
-        readParseResult(parser.getCurrent());
+        else{
+            if(parser instanceof  SpeechParser) {
+                ((SpeechParser)parser).startRecognizing();
+            }
+            System.out.println("uptouch end");
+        }
     }
-    private void readParseResult(ParseResult parseResult){
+    public void readParseResult(ParseResult parseResult){
         SoundPlayer.tts(parseResult.instruction.name + parseResult.instruction.meta.appName + ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
         //SoundPlayer.tts((parseResult.hasSameName ? parseResult.instruction.meta.appName : "" ) + parseResult.instruction.name +
         //        ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
@@ -98,19 +112,20 @@ public class KbdView extends View {
     SwipeAction tempAction = SwipeAction.No_Action;
     long lastTime;
     public void explore(MotionEvent event) {
-
-        for (Key key: keys) {
-            if (key.contains(event.getX(), event.getY())) {
-                if (key.name != lastKey && (event.getEventTime() - downTime)>SWIPE_TIME) {
-                    SoundPlayer.readKey(Utility.speed, key.name);
-                    lastKey = key.name;
+        if(parserType != Parser.ParserType.SPEECH) {
+            for (Key key : keys) {
+                if (key.contains(event.getX(), event.getY())) {
+                    if (key.name != lastKey && (event.getEventTime() - downTime) > SWIPE_TIME) {
+                        SoundPlayer.readKey(Utility.speed, key.name);
+                        lastKey = key.name;
+                    }
+                    break;
                 }
-                break;
             }
+            lastX = event.getX();
+            lastY = event.getY();
+            lastTime = event.getEventTime();
         }
-        lastX = event.getX();
-        lastY = event.getY();
-        lastTime = event.getEventTime();
     }
     private SwipeAction concatGesture(SwipeAction action1, SwipeAction action2) {
         if (action1 == SwipeAction.No_Action) {
@@ -169,6 +184,20 @@ public class KbdView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+//        switch(event.getAction()){
+//            case MotionEvent.ACTION_DOWN:
+//                System.out.println("down");
+//                startRecognizing();
+//                break;
+//            case MotionEvent.ACTION_UP:
+//                System.out.println("up");
+//                stopRecognizing();
+//                break;
+//            case MotionEvent.ACTION_MOVE:
+//                break;
+//            default:
+//                break;
+//        }
         float x = event.getX();
         float y = event.getY();
         long time = event.getEventTime();
@@ -289,6 +318,7 @@ public class KbdView extends View {
     public ArrayList<Key> keys;
     Paint backgroundPaint;
     Paint textPaint;
+    private List<Instruction> instructions;
 
     public void initKeyboard() {
         executor = new Executor(((AccessibilityService)(getContext())));
@@ -336,6 +366,7 @@ public class KbdView extends View {
         defaultParser = new SimpleParser(keys, this.instructionSet);
     }
     public void setParser(Parser.ParserType type, List<Instruction> paras) {
+        this.parserType = type;
         switch (type) {
             case DEFAULT:
                 parser = defaultParser;
@@ -345,6 +376,8 @@ public class KbdView extends View {
                 break;
             case LIST:
                 parser = new SimpleParser(keys, new InstructionSet(paras));
+            case SPEECH:
+                parser = new SpeechParser(this, this.instructionSet);
             default:
                 break;
         }
@@ -356,14 +389,15 @@ public class KbdView extends View {
         System.out.println("ondraw");
         //this.setBackgroundColor(Color.parseColor("#89cff0"));
         canvas.drawARGB(100, 137, 207, 240);
-        if (keys != null) {
-            for (Key key : keys) {
-                System.out.println("key:" + key.name + ",x:" + key.x + ",y:" + key.y);
-                canvas.drawRect(key.getRect(), backgroundPaint);
-                canvas.drawText(key.name+"", key.x, key.y, textPaint);
+        if(parserType != Parser.ParserType.SPEECH) {
+            if (keys != null) {
+                for (Key key : keys) {
+                    System.out.println("key:" + key.name + ",x:" + key.x + ",y:" + key.y);
+                    canvas.drawRect(key.getRect(), backgroundPaint);
+                    canvas.drawText(key.name+"", key.x, key.y, textPaint);
+                }
             }
         }
-
         super.draw(canvas);
     }
 }

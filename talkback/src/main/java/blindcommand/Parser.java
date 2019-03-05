@@ -2,8 +2,8 @@ package blindcommand;
 
 public interface Parser {
     enum ParserType {
-        DEFAULT, NO_DICT, LIST
-    };
+        DEFAULT, NO_DICT, LIST, SPEECH
+    }
     ParseResult getCurrent();
     void next();
     void previous();

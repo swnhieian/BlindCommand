@@ -52,7 +52,6 @@ public class NodeGraph {
             node.pre = null;
             node.visited = false;
         }
-        System.out.println("in find path");
         List<Edge> path = new ArrayList<>();
         if(from.equals(to)){
             return path;
