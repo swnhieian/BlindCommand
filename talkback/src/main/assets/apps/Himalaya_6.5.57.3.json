@@ -1,0 +1,780 @@
+{
+	"meta": {
+		"packageName": "com.ximalaya.ting.android",
+		"appName": "喜马拉雅",
+		"appPinyin": "XiMaLaYa",
+		"resolution": [1080, 1920]
+	},
+	"data": [
+		{
+			"pageId": "首页",
+			"pageName": "首页",
+			"pagePinyin": "ShouYe",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "首页", "textReg": "首页", "contentReg": "^$", "boundsInScreen": [0,1787,216,1908]
+				},
+				{
+					"text": "经典必听", "textReg": "经典必听", "contentReg": "^$", "boundsInScreen": [5,932,215,981]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "首页", "textReg": "首页", "contentReg": "^$", "boundsInScreen": [0,1787,216,1908]
+					},
+					"target": "首页",
+					"name": "首页",
+					"pinyin": "ShouYe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "我听", "textReg": "我听", "contentReg": "^$", "boundsInScreen": [216,1787,432,1908]
+					},
+					"target": "我听",
+					"name": "我听",
+					"pinyin": "WoTing",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "开始播放并进入播放页面", "textReg": "^$", "contentReg": "开始播放并进入播放页面", "boundsInScreen": [483,1790,597,1904]
+					},
+					"target": "播放页面",
+					"name": "播放页面",
+					"pinyin": "BoFangYeMian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "发现", "textReg": "发现", "contentReg": "^$", "boundsInScreen": [648,1787,864,1908]
+					},
+					"target": "发现",
+					"name": "发现",
+					"pinyin": "FaXian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "账号", "textReg": "账号", "contentReg": "^$", "boundsInScreen": [864,1787,1080,1908]
+					},
+					"target": "账号",
+					"name": "账号",
+					"pinyin": "ZhangHao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "所有分类", "textReg": "^$", "contentReg": "所有分类", "boundsInScreen": [939,78,1080,150]
+					},
+					"target": "所有分类",
+					"name": "所有分类",
+					"pinyin": "SuoYouFenLei",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [45,204,789,294]
+					},
+					"target": "搜索",
+					"name": "搜索",
+					"pinyin": "SouSuo",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "播放历史", "textReg": "^$", "contentReg": "播放历史", "boundsInScreen": [837,204,927,294]
+					},
+					"target": "播放历史",
+					"name": "播放历史",
+					"pinyin": "BoFangLiShi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "更多", "textReg": "^$", "contentReg": "更多", "boundsInScreen": [957,204,1047,294]
+					},
+					"target": "更多",
+					"name": "更多",
+					"pinyin": "GengDuo",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "经典必听", "textReg": "经典必听", "contentReg": "^$", "boundsInScreen": [5,932,215,981]
+					},
+					"target": "经典必听",
+					"name": "经典必听",
+					"pinyin": "JingDianBiTing",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "每日必听", "textReg": "每日必听", "contentReg": "^$", "boundsInScreen": [220,932,430,981]
+					},
+					"target": "每日必听",
+					"name": "每日必听",
+					"pinyin": "MeiRiBiTing",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "喜马讲书", "textReg": "喜马讲书", "contentReg": "^$", "boundsInScreen": [5,1145,215,1194]
+					},
+					"target": "喜马讲书",
+					"name": "喜马讲书",
+					"pinyin": "XiMaJiangShu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "英语学习", "textReg": "英语学习", "contentReg": "^$", "boundsInScreen": [220,1145,430,1194]
+					},
+					"target": "英语学习",
+					"name": "英语学习",
+					"pinyin": "YingYuXueXi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "相声评书", "textReg": "相声评书", "contentReg": "^$", "boundsInScreen": [650,1145,860,1194]
+					},
+					"target": "相声评书",
+					"name": "相声评书",
+					"pinyin": "XiangShengPingShu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "分类",
+			"pageName": "分类",
+			"pagePinyin": "FenLei",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "编辑", "textReg": "编辑", "contentReg": "^$", "boundsInScreen": [960,96,1056,161]
+				},
+				{
+					"text": "我的分类", "textReg": "我的分类", "contentReg": "^$", "boundsInScreen": [45,264,261,337]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [24,54,114,204]
+					},
+					"target": "首页",
+					"name": "返回",
+					"pinyin": "FanHui",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "编辑", "textReg": "编辑", "contentReg": "^$", "boundsInScreen": [960,96,1056,161]
+					},
+					"target": "编辑",
+					"name": "编辑",
+					"pinyin": "BianJi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "推荐", "textReg": "推荐", "contentReg": "^$", "boundsInScreen": [45,1241,231,1361]
+					},
+					"target": "推荐",
+					"name": "推荐",
+					"pinyin": "TuiJian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "知识", "textReg": "知识", "contentReg": "^$", "boundsInScreen": [231,1241,417,1361]
+					},
+					"target": "知识",
+					"name": "知识",
+					"pinyin": "ZhiShi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "娱乐", "textReg": "娱乐", "contentReg": "^$", "boundsInScreen": [417,1241,603,1361]
+					},
+					"target": "娱乐",
+					"name": "娱乐",
+					"pinyin": "YuLe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "生活", "textReg": "生活", "contentReg": "^$", "boundsInScreen": [603,1241,789,1361]
+					},
+					"target": "生活",
+					"name": "生活",
+					"pinyin": "ShengHuo",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "更多",
+			"pageName": "更多",
+			"pagePinyin": "GengDuo",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "下载", "textReg": "下载", "contentReg": "^$", "boundsInScreen": [776,339,1024,429]
+				},
+				{
+					"text": "录音", "textReg": "录音", "contentReg": "^$", "boundsInScreen": [776,449,1024,539]
+				},
+				{
+					"text": "扫一扫", "textReg": "扫一扫", "contentReg": "^$", "boundsInScreen": [776,559,1024,652]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "下载", "textReg": "下载", "contentReg": "^$", "boundsInScreen": [776,339,1024,429]
+					},
+					"target": "下载",
+					"name": "下载",
+					"pinyin": "XiaZai",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "录音", "textReg": "录音", "contentReg": "^$", "boundsInScreen": [776,449,1024,539]
+					},
+					"target": "录音",
+					"name": "录音",
+					"pinyin": "LuYin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "扫一扫", "textReg": "扫一扫", "contentReg": "^$", "boundsInScreen": [776,559,1024,652]
+					},
+					"target": "扫一扫",
+					"name": "扫一扫",
+					"pinyin": "SaoYiSao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "经典必听",
+			"pageName": "经典必听",
+			"pagePinyin": "JingDianBiTing",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "免费榜", "textReg": "免费榜", "contentReg": "^$", "boundsInScreen": [0,198,246,318]
+				},
+				{
+					"text": "热门", "textReg": "热门", "contentReg": "^$", "boundsInScreen": [93,365,177,422]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "退出当前页面", "textReg": "^$", "contentReg": "退出当前页面", "boundsInScreen": [0,54,150,198]
+					},
+					"target": "首页",
+					"name": "返回",
+					"pinyin": "FanHui",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "免费榜", "textReg": "免费榜", "contentReg": "^$", "boundsInScreen": [0,198,246,318]
+					},
+					"target": "免费榜",
+					"name": "免费榜",
+					"pinyin": "MianFeiBang",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "飙升榜", "textReg": "飙升榜", "contentReg": "^$", "boundsInScreen": [246,198,465,318]
+					},
+					"target": "飙升榜",
+					"name": "飙升榜",
+					"pinyin": "BiaoShengBang",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "付费榜", "textReg": "付费榜", "contentReg": "^$", "boundsInScreen": [465,198,684,318]
+					},
+					"target": "付费榜",
+					"name": "付费榜",
+					"pinyin": "FuFeiBang",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "VIP 热听榜", "textReg": "VIP 热听榜", "contentReg": "^$", "boundsInScreen": [684,198,979,318]
+					},
+					"target": "VIP 热听榜",
+					"name": "VIP 热听榜",
+					"pinyin": "VIPReTingBang",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "我听",
+			"pageName": "我听",
+			"pagePinyin": "WoTing",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "下载", "textReg": "下载", "contentReg": "^$", "boundsInScreen": [138,423,222,480]
+				},
+				{
+					"text": "订阅", "textReg": "订阅", "contentReg": "^$", "boundsInScreen": [30,577,198,724]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "首页", "textReg": "首页", "contentReg": "^$", "boundsInScreen": [0,1787,216,1908]
+					},
+					"target": "首页",
+					"name": "首页",
+					"pinyin": "ShouYe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "我听", "textReg": "我听", "contentReg": "^$", "boundsInScreen": [216,1787,432,1908]
+					},
+					"target": "我听",
+					"name": "我听",
+					"pinyin": "WoTing",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "开始播放并进入播放页面", "textReg": "^$", "contentReg": "开始播放并进入播放页面", "boundsInScreen": [483,1790,597,1904]
+					},
+					"target": "播放页面",
+					"name": "播放页面",
+					"pinyin": "BoFangYeMian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "发现", "textReg": "发现", "contentReg": "^$", "boundsInScreen": [648,1787,864,1908]
+					},
+					"target": "发现",
+					"name": "发现",
+					"pinyin": "FaXian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "账号", "textReg": "账号", "contentReg": "^$", "boundsInScreen": [864,1787,1080,1908]
+					},
+					"target": "账号",
+					"name": "账号",
+					"pinyin": "ZhangHao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [930,54,1020,204]
+					},
+					"target": "搜索",
+					"name": "搜索",
+					"pinyin": "SouSuo",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "下载", "textReg": "下载", "contentReg": "^$", "boundsInScreen": [138,423,222,480]
+					},
+					"target": "下载",
+					"name": "下载",
+					"pinyin": "XiaZai",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "历史", "textReg": "历史", "contentReg": "^$", "boundsInScreen": [377,423,461,480]
+					},
+					"target": "历史",
+					"name": "历史",
+					"pinyin": "LiShi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "已购", "textReg": "已购", "contentReg": "^$", "boundsInScreen": [617,423,701,480]
+					},
+					"target": "已购",
+					"name": "已购",
+					"pinyin": "YiGou",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "听单", "textReg": "听单", "contentReg": "^$", "boundsInScreen": [840,423,924,480]
+					},
+					"target": "听单",
+					"name": "听单",
+					"pinyin": "TingDan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "发现",
+			"pageName": "发现",
+			"pagePinyin": "FaXian",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "关注", "textReg": "关注", "contentReg": "^$", "boundsInScreen": [166,748,268,880]
+				},
+				{
+					"text": "趣配音", "textReg": "趣配音", "contentReg": "^$", "boundsInScreen": [572,748,719,880]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "首页", "textReg": "首页", "contentReg": "^$", "boundsInScreen": [0,1787,216,1908]
+					},
+					"target": "首页",
+					"name": "首页",
+					"pinyin": "ShouYe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "我听", "textReg": "我听", "contentReg": "^$", "boundsInScreen": [216,1787,432,1908]
+					},
+					"target": "我听",
+					"name": "我听",
+					"pinyin": "WoTing",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "开始播放并进入播放页面", "textReg": "^$", "contentReg": "开始播放并进入播放页面", "boundsInScreen": [483,1790,597,1904]
+					},
+					"target": "播放页面",
+					"name": "播放页面",
+					"pinyin": "BoFangYeMian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "发现", "textReg": "发现", "contentReg": "^$", "boundsInScreen": [648,1787,864,1908]
+					},
+					"target": "发现",
+					"name": "发现",
+					"pinyin": "FaXian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "账号", "textReg": "账号", "contentReg": "^$", "boundsInScreen": [864,1787,1080,1908]
+					},
+					"target": "账号",
+					"name": "账号",
+					"pinyin": "ZhangHao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "关注", "textReg": "关注", "contentReg": "^$", "boundsInScreen": [166,748,268,880]
+					},
+					"target": "关注",
+					"name": "关注",
+					"pinyin": "GuanZhu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "推荐", "textReg": "推荐", "contentReg": "^$", "boundsInScreen": [360,748,480,880]
+					},
+					"target": "推荐",
+					"name": "推荐",
+					"pinyin": "TuiJian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "趣配音", "textReg": "趣配音", "contentReg": "^$", "boundsInScreen": [572,748,719,880]
+					},
+					"target": "趣配音",
+					"name": "趣配音",
+					"pinyin": "QuPeiYin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "圈子", "textReg": "圈子", "contentReg": "^$", "boundsInScreen": [811,748,913,880]
+					},
+					"target": "圈子",
+					"name": "圈子",
+					"pinyin": "QuanZi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "账号",
+			"pageName": "账号",
+			"pagePinyin": "ZhangHao",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "设置", "textReg": "^$", "contentReg": "设置", "boundsInScreen": [930,54,1020,204]
+				},
+				{
+					"text": "消息中心", "textReg": "^$", "contentReg": "消息中心", "boundsInScreen": [816,54,915,204]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "首页", "textReg": "首页", "contentReg": "^$", "boundsInScreen": [0,1787,216,1908]
+					},
+					"target": "首页",
+					"name": "首页",
+					"pinyin": "ShouYe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "我听", "textReg": "我听", "contentReg": "^$", "boundsInScreen": [216,1787,432,1908]
+					},
+					"target": "我听",
+					"name": "我听",
+					"pinyin": "WoTing",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "开始播放并进入播放页面", "textReg": "^$", "contentReg": "开始播放并进入播放页面", "boundsInScreen": [483,1790,597,1904]
+					},
+					"target": "播放页面",
+					"name": "播放页面",
+					"pinyin": "BoFangYeMian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "发现", "textReg": "发现", "contentReg": "^$", "boundsInScreen": [648,1787,864,1908]
+					},
+					"target": "发现",
+					"name": "发现",
+					"pinyin": "FaXian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "账号", "textReg": "账号", "contentReg": "^$", "boundsInScreen": [864,1787,1080,1908]
+					},
+					"target": "账号",
+					"name": "账号",
+					"pinyin": "ZhangHao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "消息中心", "textReg": "^$", "contentReg": "消息中心", "boundsInScreen": [816,54,915,204]
+					},
+					"target": "消息中心",
+					"name": "消息中心",
+					"pinyin": "XiaoXiZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "设置", "textReg": "^$", "contentReg": "设置", "boundsInScreen": [930,54,1020,204]
+					},
+					"target": "设置",
+					"name": "设置",
+					"pinyin": "SheZhi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "消息中心",
+			"pageName": "消息中心",
+			"pagePinyin": "XiaoXiZhongXin",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "消息中心", "textReg": "消息中心", "contentReg": "^$", "boundsInScreen": [432,92,648,165]
+				},
+				{
+					"text": "聊天", "textReg": "聊天", "contentReg": "^$", "boundsInScreen": [150,204,540,324]
+				},
+				{
+					"text": "通知", "textReg": "通知", "contentReg": "^$", "boundsInScreen": [540,204,930,324]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "聊天", "textReg": "聊天", "contentReg": "^$", "boundsInScreen": [150,204,540,324]
+					},
+					"target": "聊天",
+					"name": "聊天",
+					"pinyin": "LiaoTian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "通知", "textReg": "通知", "contentReg": "^$", "boundsInScreen": [540,204,930,324]
+					},
+					"target": "通知",
+					"name": "通知",
+					"pinyin": "TongZhi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "全部已读", "textReg": "全部已读", "contentReg": "^$", "boundsInScreen": [888,100,1056,157]
+					},
+					"target": "全部已读",
+					"name": "全部已读",
+					"pinyin": "QuanBuYiDu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [24,54,114,204]
+					},
+					"target": "账号",
+					"name": "返回",
+					"pinyin": "FanHui",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "设置",
+			"pageName": "设置",
+			"pagePinyin": "SheZhi",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "帐号与安全", "textReg": "帐号与安全", "contentReg": "^$", "boundsInScreen": [0,897,1080,1047]
+				},
+				{
+					"text": "退出应用", "textReg": "退出应用", "contentReg": "^$", "boundsInScreen": [888,100,1056,157]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [24,54,114,204]
+					},
+					"target": "账号",
+					"name": "返回",
+					"pinyin": "FanHui",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "帐号与安全", "textReg": "帐号与安全", "contentReg": "^$", "boundsInScreen": [0,897,1080,1047]
+					},
+					"target": "帐号与安全",
+					"name": "帐号与安全",
+					"pinyin": "ZhangHaoYuAnQuan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "推送设置", "textReg": "推送设置", "contentReg": "^$", "boundsInScreen": [45,1122,225,1183]
+					},
+					"target": "推送设置",
+					"name": "推送设置",
+					"pinyin": "TuiSongSheZhi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "隐私设置", "textReg": "隐私设置", "contentReg": "^$", "boundsInScreen": [0,1229,1080,1379]
+					},
+					"target": "隐私设置",
+					"name": "隐私设置",
+					"pinyin": "YinSiSheZhi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		}
+	]
+}

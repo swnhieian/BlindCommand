@@ -22,7 +22,7 @@
 			"buttons": [
 				{
 					"path": {
-						"text": "外卖", "textReg": "外卖", "contentReg": "^$", "boundsInScreen": [0,1866,270,1920]
+						"text": "外卖", "textReg": "^$", "contentReg": "外卖", "boundsInScreen": [60,1716,210,1866]
 					},
 					"target": "外卖",
 					"name": "外卖",
@@ -32,7 +32,7 @@
 				},
 				{
 					"path": {
-						"text": "超市", "textReg": "超市", "contentReg": "^$", "boundsInScreen": [270,1866,540,1920]
+						"text": "发现", "textReg": "^$", "contentReg": "发现", "boundsInScreen": [330,1716,480,1866]
 					},
 					"target": "超市",
 					"name": "超市",
@@ -42,7 +42,7 @@
 				},
 				{
 					"path": {
-						"text": "订单", "textReg": "订单", "contentReg": "^$", "boundsInScreen": [540,1866,810,1920]
+						"text": "订单", "textReg": "^$", "contentReg": "订单", "boundsInScreen": [600,1716,750,1866]
 					},
 					"target": "订单",
 					"name": "订单",
@@ -52,7 +52,7 @@
 				},
 				{
 					"path": {
-						"text": "我的", "textReg": "我的", "contentReg": "^$", "boundsInScreen": [810,1866,1080,1920]
+						"text": "我的", "textReg": "^$", "contentReg": "我的", "boundsInScreen": [870,1716,1020,1866]
 					},
 					"target": "我的",
 					"name": "我的",
@@ -108,7 +108,7 @@
 			"buttons": [
 				{
 					"path": {
-						"text": "外卖", "textReg": "外卖", "contentReg": "^$", "boundsInScreen": [0,1866,270,1920]
+						"text": "外卖", "textReg": "^$", "contentReg": "外卖", "boundsInScreen": [60,1716,210,1866]
 					},
 					"target": "外卖",
 					"name": "外卖",
@@ -118,7 +118,7 @@
 				},
 				{
 					"path": {
-						"text": "超市", "textReg": "超市", "contentReg": "^$", "boundsInScreen": [270,1866,540,1920]
+						"text": "发现", "textReg": "^$", "contentReg": "发现", "boundsInScreen": [330,1716,480,1866]
 					},
 					"target": "超市",
 					"name": "超市",
@@ -128,7 +128,7 @@
 				},
 				{
 					"path": {
-						"text": "订单", "textReg": "订单", "contentReg": "^$", "boundsInScreen": [540,1866,810,1920]
+						"text": "订单", "textReg": "^$", "contentReg": "订单", "boundsInScreen": [600,1716,750,1866]
 					},
 					"target": "订单",
 					"name": "订单",
@@ -138,7 +138,7 @@
 				},
 				{
 					"path": {
-						"text": "我的", "textReg": "我的", "contentReg": "^$", "boundsInScreen": [810,1866,1080,1920]
+						"text": "我的", "textReg": "^$", "contentReg": "我的", "boundsInScreen": [870,1716,1020,1866]
 					},
 					"target": "我的",
 					"name": "我的",
@@ -191,7 +191,7 @@
 			"buttons": [
 				{
 					"path": {
-						"text": "外卖", "textReg": "外卖", "contentReg": "^$", "boundsInScreen": [0,1866,270,1920]
+						"text": "外卖", "textReg": "^$", "contentReg": "外卖", "boundsInScreen": [60,1716,210,1866]
 					},
 					"target": "外卖",
 					"name": "外卖",
@@ -201,7 +201,7 @@
 				},
 				{
 					"path": {
-						"text": "超市", "textReg": "超市", "contentReg": "^$", "boundsInScreen": [270,1866,540,1920]
+						"text": "发现", "textReg": "^$", "contentReg": "发现", "boundsInScreen": [330,1716,480,1866]
 					},
 					"target": "超市",
 					"name": "超市",
@@ -211,7 +211,7 @@
 				},
 				{
 					"path": {
-						"text": "订单", "textReg": "订单", "contentReg": "^$", "boundsInScreen": [540,1866,810,1920]
+						"text": "订单", "textReg": "^$", "contentReg": "订单", "boundsInScreen": [600,1716,750,1866]
 					},
 					"target": "订单",
 					"name": "订单",
@@ -221,7 +221,7 @@
 				},
 				{
 					"path": {
-						"text": "我的", "textReg": "我的", "contentReg": "^$", "boundsInScreen": [810,1866,1080,1920]
+						"text": "我的", "textReg": "^$", "contentReg": "我的", "boundsInScreen": [870,1716,1020,1866]
 					},
 					"target": "我的",
 					"name": "我的",
@@ -257,7 +257,7 @@
 			"buttons": [
 				{
 					"path": {
-						"text": "外卖", "textReg": "外卖", "contentReg": "^$", "boundsInScreen": [0,1866,270,1920]
+						"text": "外卖", "textReg": "^$", "contentReg": "外卖", "boundsInScreen": [60,1716,210,1866]
 					},
 					"target": "外卖",
 					"name": "外卖",
@@ -267,7 +267,7 @@
 				},
 				{
 					"path": {
-						"text": "超市", "textReg": "超市", "contentReg": "^$", "boundsInScreen": [270,1866,540,1920]
+						"text": "发现", "textReg": "^$", "contentReg": "发现", "boundsInScreen": [330,1716,480,1866]
 					},
 					"target": "超市",
 					"name": "超市",
@@ -277,7 +277,7 @@
 				},
 				{
 					"path": {
-						"text": "订单", "textReg": "订单", "contentReg": "^$", "boundsInScreen": [540,1866,810,1920]
+						"text": "订单", "textReg": "^$", "contentReg": "订单", "boundsInScreen": [600,1716,750,1866]
 					},
 					"target": "订单",
 					"name": "订单",
@@ -287,7 +287,7 @@
 				},
 				{
 					"path": {
-						"text": "我的", "textReg": "我的", "contentReg": "^$", "boundsInScreen": [810,1866,1080,1920]
+						"text": "我的", "textReg": "^$", "contentReg": "我的", "boundsInScreen": [870,1716,1020,1866]
 					},
 					"target": "我的",
 					"name": "我的",

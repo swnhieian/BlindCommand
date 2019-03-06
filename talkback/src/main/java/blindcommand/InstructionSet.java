@@ -77,6 +77,7 @@ public class InstructionSet {
         instructions = new HashMap<>();
         for (Instruction instruction:allInstructions) {
             // 区分app名和全简拼
+            instruction.pinyin = instruction.pinyin.replaceAll("[^a-zA-Z]", "");
             instructions.put(instruction.pinyin.toLowerCase() + "|" + instruction.meta.appName + "|0", instruction);
             String cmd = instruction.pinyin.replaceAll("[a-z]+", "").toLowerCase();
             if(cmd.length() >= 2) {
