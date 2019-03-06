@@ -162,9 +162,6 @@ public class Executor {
     public void jumpToApp(String packageName) {
         PackageManager packageManager = service.getPackageManager();
         PackageInfo packageInfo = null;
-        if (getRoot().getPackageName().equals(packageName)) {
-            return;
-        }
         try {
             packageInfo = packageManager.getPackageInfo(packageName, 0);
         } catch (PackageManager.NameNotFoundException e) {
@@ -197,9 +194,13 @@ public class Executor {
             endExecute();
             return;
         }
-        //TODO: find app graph
-        jumpToApp(instruction.meta.packageName);
         final AccessibilityNodeInfo rootNode = getRoot();
+        if (rootNode.getPackageName().equals(instruction.meta.packageName)) {
+            execute(instruction, graphs.get(instruction.meta.appName));
+            return;
+        }
+        jumpToApp(instruction.meta.packageName);
+
         List<AccessibilityNodeInfo> nodes = rootNode.findAccessibilityNodeInfosByText("跳过");
         List<AccessibilityNodeInfo> snodes = rootNode.findAccessibilityNodeInfosByText("关爱出行");
         long delayTime = 4000;
