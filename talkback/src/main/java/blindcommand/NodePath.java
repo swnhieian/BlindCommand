@@ -65,6 +65,8 @@ public class NodePath {
                 (Math.abs(this.boundsInScreen[1] - target.top * ratioY) >= Y_THRESHOLD) ||
                 (Math.abs(this.boundsInScreen[2] - target.right * ratioX) >= X_THRESHOLD) ||
                 (Math.abs(this.boundsInScreen[3] - target.bottom * ratioY) >= Y_THRESHOLD))
+    /*        if ((Math.abs(this.boundsInScreen[0] - target.left * ratioX) >= X_THRESHOLD) ||
+                    (Math.abs(this.boundsInScreen[2] - target.right * ratioX) >= X_THRESHOLD))*/
             return false;
         double xRange = Math.abs(Math.abs(this.boundsInScreen[2] - this.boundsInScreen[0]) -
                 Math.abs(target.right * ratioX - target.left * ratioX));
@@ -105,10 +107,13 @@ public class NodePath {
         } else {
             Rect bounds = new Rect();
             root.getBoundsInScreen(bounds);
-            if (isSameBound(bounds, Utility.getScreenWidth(), Utility.getScreenHeight())) return root;
+            if (((root.getText() == null) || (root.getText().toString().length() == 0)) && ((root.getContentDescription() == null) || (root.getContentDescription().toString().length() == 0)) &&
+            isSameBound(bounds, Utility.getScreenWidth(), Utility.getScreenHeight())) {
+                return root;
+            }
             for (int i=0; i<root.getChildCount(); i++) {
                 AccessibilityNodeInfo found = getNodeFromRoot(root.getChild(i));
-                return found;
+                if (found!= null) return found;
             }
         }
         return null;

@@ -39,6 +39,7 @@ public class Executor {
             ret.add(new Instruction(nodeGraph.meta.appName, nodeGraph.meta.appName, nodeGraph.meta.appPinyin, nodeGraph.meta));
             ret.addAll(nodeGraph.getInstructions());
         }
+        ret.add(new Instruction("返回", "返回", "FanHui", new JsonAppInfo()));
         return ret;
     }
 
@@ -99,12 +100,15 @@ public class Executor {
         }
         singleSteps(parameterEdges, parameterEdgesIndex);
     }
+    private void endExecute() {
+        SoundPlayer.interrupt();
+        SoundPlayer.success();
+        SoundPlayer.tts("执行完毕");
+    }
 
     public void singleSteps(final List<Edge> edges, final int index) {
         if (index >= edges.size()) {
-            SoundPlayer.interrupt();
-            SoundPlayer.success();
-            SoundPlayer.tts("执行完毕");
+            endExecute();
             return;
         }
         Edge edge = edges.get(index);
@@ -187,10 +191,16 @@ public class Executor {
     }
     private int loopCount = 0; //to prevent dead loop
     public void execute(final Instruction instruction) {
+        if (instruction.id == "返回") {
+            service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+            endExecute();
+            return;
+        }
         //TODO: find app graph
         jumpToApp(instruction.meta.packageName);
         final AccessibilityNodeInfo rootNode = getRoot();
         List<AccessibilityNodeInfo> nodes = rootNode.findAccessibilityNodeInfosByText("跳过");
+        List<AccessibilityNodeInfo> snodes = rootNode.findAccessibilityNodeInfosByText("关爱出行");
         long delayTime = 4000;
         if (nodes.size() == 1) {
             nodes.get(0).performAction(AccessibilityNodeInfo.ACTION_CLICK);
