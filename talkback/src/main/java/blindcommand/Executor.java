@@ -1,16 +1,12 @@
 package blindcommand;
 
 import android.accessibilityservice.AccessibilityService;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
@@ -40,6 +36,7 @@ public class Executor {
             ret.addAll(nodeGraph.getInstructions());
         }
         ret.add(new Instruction("返回", "返回", "FanHui", new JsonAppInfo()));
+        ret.add(new Instruction("桌面", "桌面", "ZhuoMian", new JsonAppInfo()));
         return ret;
     }
 
@@ -191,8 +188,12 @@ public class Executor {
     }
     private int loopCount = 0; //to prevent dead loop
     public void execute(final Instruction instruction) {
-        if (instruction.id == "返回") {
+        if (instruction.id.equals("返回")) {
             service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+            endExecute();
+            return;
+        } else if (instruction.id.equals("桌面")) {
+            service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
             endExecute();
             return;
         }
@@ -269,14 +270,20 @@ public class Executor {
     }
 
     public void init(){
-        String[] fileNames = new String[] {"Alipay_10.1.58.json", "Didi_V5.2.40_505.json", "Eleme_v8.12.0.json", "Wechat.json"};
+        AssetManager assetManager = service.getAssets();
+        String[] fileNames = new String[] {"apps/Wechat.json"};
+        try {
+            fileNames = assetManager.list("apps/");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // 从asset读配置文件
         for (String fileName:fileNames) {
             System.out.println("Loading " + fileName);
             StringBuilder stringBuilder = new StringBuilder();
             try {
-                AssetManager assetManager = service.getAssets();
-                BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open(fileName)));
+
+                BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open("apps/"+fileName)));
                 String line;
                 while ((line = bf.readLine()) != null) {
                     stringBuilder.append(line);
