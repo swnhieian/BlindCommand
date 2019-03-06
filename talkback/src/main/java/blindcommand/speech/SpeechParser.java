@@ -117,7 +117,8 @@ public class SpeechParser implements Parser, SpeechCallback {
     }
 
     public void startRecognizing() {
-        SoundPlayer.tts("开始识别");
+        //SoundPlayer.tts("开始识别");
+        Utility.vibrate();
         speechHelper.startRecognizing();
     }
 

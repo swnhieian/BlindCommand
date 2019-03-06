@@ -32,8 +32,12 @@ public class Executor {
     public List<Instruction> getInstructions() {
         List<Instruction> ret = new ArrayList<>();
         for (NodeGraph nodeGraph:graphs.values()) {
-            ret.add(new Instruction(nodeGraph.meta.appName, nodeGraph.meta.appName, nodeGraph.meta.appPinyin, nodeGraph.meta));
             ret.addAll(nodeGraph.getInstructions());
+//            Instruction appIns = new Instruction(nodeGraph.meta.appName, nodeGraph.meta.appName, nodeGraph.meta.appPinyin, nodeGraph.meta);
+//            if (!ret.contains(appIns)) {
+//                ret.add(appIns);
+//            }
+
         }
         ret.add(new Instruction("返回", "返回", "FanHui", new JsonAppInfo()));
         ret.add(new Instruction("桌面", "桌面", "ZhuoMian", new JsonAppInfo()));
@@ -274,7 +278,7 @@ public class Executor {
         AssetManager assetManager = service.getAssets();
         String[] fileNames = new String[] {"apps/Wechat.json"};
         try {
-            fileNames = assetManager.list("apps/");
+            fileNames = assetManager.list("apps");
         } catch (Exception e) {
             e.printStackTrace();
         }

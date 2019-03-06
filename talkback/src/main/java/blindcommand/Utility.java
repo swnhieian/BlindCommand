@@ -2,6 +2,8 @@ package blindcommand;
 
 import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
@@ -21,6 +23,10 @@ public class Utility {
     }
     public static int getScreenWidth() {
         return Utility.screenWidth;
+    }
+    public static void vibrate() {
+        Vibrator vib = (Vibrator)service.getSystemService(Context.VIBRATOR_SERVICE);
+        vib.vibrate(200);
     }
     public static int getkeyboardHeight(Context service) {
         return 680;
