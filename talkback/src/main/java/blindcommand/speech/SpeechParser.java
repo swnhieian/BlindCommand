@@ -34,11 +34,14 @@ public class SpeechParser implements Parser, SpeechCallback {
             String insStr = entry.getKey();
             Instruction instruction = entry.getValue();
             String[] insArray = insStr.split("\\|");
-            if(insArray[2].equals("0")){
-                if(!nameToIns.containsKey(instruction.name)){
-                    nameToIns.put(instruction.name, new ArrayList<Instruction>());
+            System.out.println(insStr);
+            if(insArray.length == 3) {
+                if (insArray[2].equals("0")) {
+                    if (!nameToIns.containsKey(instruction.name)) {
+                        nameToIns.put(instruction.name, new ArrayList<Instruction>());
+                    }
+                    nameToIns.get(instruction.name).add(instruction);
                 }
-                nameToIns.get(instruction.name).add(instruction);
             }
         }
         candidateList = new ArrayList<>();
