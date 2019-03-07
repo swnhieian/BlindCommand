@@ -135,6 +135,9 @@ public class SpeechHelper{
 
         @Override
         public void onResult(final RecognizerResult result, boolean isLast) {
+            if(result == null){
+                System.out.println("null result");
+            }
             if (null != result && !TextUtils.isEmpty(result.getResultString())) {
                 Log.d(TAG, "recognizer result：" + result.getResultString());
                 String text = "";
@@ -200,6 +203,9 @@ public class SpeechHelper{
         mAsr.setParameter(ResourceUtil.ASR_RES_PATH, getResourcePath());
         mAsr.setParameter(ResourceUtil.GRM_BUILD_PATH, grmPath);
         mAsr.setParameter(SpeechConstant.RESULT_TYPE, mResultType);
+        mAsr.setParameter(SpeechConstant.ASR_NBEST, "1");
+        mAsr.setParameter(SpeechConstant.ASR_WBEST, "1");
+        mAsr.setParameter(SpeechConstant.ASR_THRESHOLD, "0");
         mAsr.setParameter(SpeechConstant.LOCAL_GRAMMAR, "action");
         // 设置识别的门限值
         mAsr.setParameter(SpeechConstant.MIXED_THRESHOLD, "30");

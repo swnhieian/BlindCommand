@@ -20,7 +20,8 @@ public class SpeechParser implements Parser, SpeechCallback {
     InstructionSet instructionSet;
     List<Instruction> candidateList;
     int currentIndex = 0;
-    SpeechHelper speechHelper;
+//    SpeechHelper speechHelper;
+    SpeechListener speechListener;
     HashMap<String, List<Instruction>> nameToIns;
     KbdView user;
     public SpeechParser(KbdView user, InstructionSet instructionSet){
@@ -42,22 +43,23 @@ public class SpeechParser implements Parser, SpeechCallback {
         }
         candidateList = new ArrayList<>();
 
-        StringBuilder bnf = new StringBuilder();
-        bnf.append("#BNF+IAT 1.0 UTF-8;\n!grammar action;\n!start <command>;\n<command>:");
-        boolean flag = true;
-        for(String instructionName : nameToIns.keySet()){
-            if(flag){
-                bnf.append(instructionName);
-                flag = false;
-            }
-            else{
-                bnf.append("|");
-                bnf.append(instructionName);
-            }
-        }
-        bnf.append(";\n");
-        System.out.println(bnf.toString());
-        speechHelper = new SpeechHelper(Utility.service, this, bnf.toString());
+//        StringBuilder bnf = new StringBuilder();
+//        bnf.append("#BNF+IAT 1.0 UTF-8;\n!grammar action;\n!start <command>;\n<command>:");
+//        boolean flag = true;
+//        for(String instructionName : nameToIns.keySet()){
+//            if(flag){
+//                bnf.append(instructionName);
+//                flag = false;
+//            }
+//            else{
+//                bnf.append("|");
+//                bnf.append(instructionName);
+//            }
+//        }
+//        bnf.append(";\n");
+//        System.out.println(bnf.toString());
+//        speechHelper = new SpeechHelper(Utility.service, this, bnf.toString());
+        speechListener = new SpeechListener(Utility.service, this);
     }
     public void onResult(List<SpeechResult> result){
         candidateList.clear();
@@ -125,11 +127,21 @@ public class SpeechParser implements Parser, SpeechCallback {
     public void startRecognizing() {
         //SoundPlayer.tts("开始识别");
         Utility.vibrate();
-        speechHelper.startRecognizing();
+//        speechHelper.startRecognizing();
+        speechListener.startRecognizing();
     }
-
     public void stopRecognizing() {
-        speechHelper.stopRecognizing();
+//        speechHelper.stopRecognizing();
+        speechListener.stopRecognizing();
     }
 
+    public void onStringResult(String result){
+        System.out.println("onResult");
+        System.out.println(result);
+        candidateList.clear();
+        if(nameToIns.containsKey(result))
+            candidateList.addAll(nameToIns.get(result));
+        currentIndex = 0;
+        user.readParseResult(this.getCurrent());
+    }
 }

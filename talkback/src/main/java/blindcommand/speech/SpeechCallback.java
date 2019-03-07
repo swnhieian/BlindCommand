@@ -8,4 +8,6 @@ public interface SpeechCallback {
     void onBeginOfSpeech();
 
     void onEndOfSpeech();
+
+    void onStringResult(String result);
 }
