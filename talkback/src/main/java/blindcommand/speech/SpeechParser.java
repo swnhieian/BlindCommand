@@ -108,6 +108,12 @@ public class SpeechParser implements Parser, SpeechCallback {
         if (candidateList.size() == 0) return;
             currentIndex = (currentIndex + candidateList.size() - 1) % candidateList.size();
     }
+    public void nextDiff() {
+        next();
+    }
+    public void previousDiff() {
+        previous();
+    }
     public void addTouchPoint(long time, float x, float y) {
 
     }

@@ -7,6 +7,8 @@ public interface Parser {
     ParseResult getCurrent();
     void next();
     void previous();
+    void nextDiff();
+    void previousDiff();
     void addTouchPoint(long time, float x, float y);
     void clear();
 }

@@ -52,11 +52,19 @@ public class KbdView extends View{
         ParseResult parseResult;
         switch (action) {
             case SWIPE_LEFT:
-                parser.previous();
+                if (Utility.useDiffNav) {
+                    parser.previousDiff();
+                } else {
+                    parser.previous();
+                }
                 readParseResult(parser.getCurrent());
                 break;
             case SWIPE_RIGHT:
-                parser.next();
+                if (Utility.useDiffNav) {
+                    parser.nextDiff();
+                } else {
+                    parser.next();
+                }
                 readParseResult(parser.getCurrent());
                 break;
             case SWIPE_DOWN: //confirm
@@ -69,6 +77,18 @@ public class KbdView extends View{
             case SWIPE_LEFT_TWO_FINGERS:
                 parser.clear();
                 SoundPlayer.ding();
+                break;
+            case SWIPE_UP_TWO_FINGERS:
+                if (Utility.useDiffNav) {
+                    parser.previous();
+                    readParseResult(parser.getCurrent());
+                }
+                break;
+            case SWIPE_DOWN_TWO_FINGERS:
+                if (Utility.useDiffNav) {
+                    parser.next();
+                    readParseResult(parser.getCurrent());
+                }
                 break;
             case SWIPE_DOWN_UP:
                 ((TalkBackService)getContext()).triggerBCMode();

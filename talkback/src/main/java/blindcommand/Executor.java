@@ -1,12 +1,16 @@
 package blindcommand;
 
 import android.accessibilityservice.AccessibilityService;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
@@ -39,8 +43,15 @@ public class Executor {
 //            }
 
         }
-        ret.add(new Instruction("返回", "返回", "FanHui", new JsonAppInfo()));
-        ret.add(new Instruction("桌面", "桌面", "ZhuoMian", new JsonAppInfo()));
+        JsonAppInfo sysInfo = new JsonAppInfo("System", "系统", "System", new Integer[]{});
+        ret.add(new Instruction("返回", "返回", "FanHui", sysInfo));
+        ret.add(new Instruction("桌面", "桌面", "ZhuoMian", sysInfo));
+        ret.add(new Instruction("手电筒", "手电筒", "ShouDianTong", sysInfo));
+        ret.add(new Instruction("相机", "相机", "XiangJi", sysInfo));
+        ret.add(new Instruction("截屏", "截屏", "JiePing", sysInfo));
+        ret.add(new Instruction("电话", "电话", "DianHua", sysInfo));
+        ret.add(new Instruction("设置", "设置", "SheZhi", sysInfo));
+
         return ret;
     }
 
@@ -187,17 +198,47 @@ public class Executor {
         }
 
     }
-    private int loopCount = 0; //to prevent dead loop
-    public void execute(final Instruction instruction) {
+    boolean lightStatus = false;
+    private void executeSystemFunctions(Instruction instruction) {
         if (instruction.id.equals("返回")) {
             service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
-            endExecute();
-            return;
+            SoundPlayer.success();
         } else if (instruction.id.equals("桌面")) {
             service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
-            endExecute();
+            SoundPlayer.success();
+        } else if (instruction.id.equals("电话")) {
+            Intent intent =  new Intent(Intent.ACTION_CALL_BUTTON);
+            this.service.startActivity(intent);
+            SoundPlayer.success();
+        } else if (instruction.id.equals("相机")) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            this.service.startActivity(intent);
+            SoundPlayer.success();
+        } else if (instruction.id.equals("手电筒")) {
+            try {
+                CameraManager manager = (CameraManager) this.service.getSystemService(Context.CAMERA_SERVICE);
+                this.lightStatus = !this.lightStatus;
+                manager.setTorchMode("0", this.lightStatus);
+                SoundPlayer.tts("手电筒已"+ (this.lightStatus?"打开":"关闭"));
+            } catch (Exception e) {
+                this.lightStatus = false;
+            }
+        } else if (instruction.id.equals("截屏")) {
+
+        } else if (instruction.id.equals("设置")) {
+            Intent intent =  new Intent(Settings.ACTION_SETTINGS);
+            this.service.startActivity(intent);
+            SoundPlayer.success();
+        }
+
+    }
+    private int loopCount = 0; //to prevent dead loop
+    public void execute(final Instruction instruction) {
+        if (instruction.meta.packageName.equals("System")) {
+            executeSystemFunctions(instruction);
             return;
         }
+
         final AccessibilityNodeInfo rootNode = getRoot();
         if (rootNode.getPackageName().equals(instruction.meta.packageName)) {
             execute(instruction, graphs.get(instruction.meta.appName));

@@ -78,6 +78,9 @@ public class InstructionSet {
         for (Instruction instruction:allInstructions) {
             // 区分app名和全简拼
             instruction.pinyin = instruction.pinyin.replaceAll("[^a-zA-Z]", "");
+            String pinyinWithApp = instruction.pinyin + instruction.meta.appPinyin;
+            instructions.put(pinyinWithApp.toLowerCase(), instruction);
+            instructions.put(pinyinWithApp.replaceAll("[a-z]+", "").toLowerCase(), instruction);
             instructions.put(instruction.pinyin.toLowerCase() + "|" + instruction.meta.appName + "|0", instruction);
             String cmd = instruction.pinyin.replaceAll("[a-z]+", "").toLowerCase();
             if(cmd.length() >= 2) {

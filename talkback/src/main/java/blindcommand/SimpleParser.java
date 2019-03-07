@@ -77,7 +77,7 @@ public class SimpleParser implements  Parser {
                 double relYExpected = allKeys.get(curChar).y - allKeys.get(lastChar).y;
                 e.poss += logGaussian(relX, relXExpected, 5.0* firstKey.width / 3);
                 e.poss += logGaussian(relY, relYExpected, 0.5* firstKey.height);
-                System.out.println(e.instruction + " " + e.poss);
+               // System.out.println(e.instruction + " " + e.poss);
                 maxPoss = Math.max(e.poss, maxPoss);
             }
             Iterator<Entry> it = set.iterator();
@@ -88,6 +88,7 @@ public class SimpleParser implements  Parser {
                 }
             }
         }
+        final String packageName = Utility.getPackageName();
         Collections.sort(set, new Comparator<Entry>() {
             @Override
             public int compare(Entry e1, Entry e2) {
@@ -103,6 +104,18 @@ public class SimpleParser implements  Parser {
                 if (e1.command.length() > e2.command.length()){
                     return 1;
                 }
+                if (e1.instruction.meta.packageName.equals("System")) {
+                    return -1;
+                }
+                if (e2.instruction.meta.packageName.equals("System")) {
+                    return 1;
+                }
+                if (e1.instruction.meta.packageName.equals(packageName)) {
+                    return -1;
+                }
+//                if (e2.instruction.meta.packageName.equals(Utility.getPackageName())) {
+//                    return 1;
+//                }
                 return 0;
             }
         });
@@ -118,11 +131,11 @@ public class SimpleParser implements  Parser {
         }
         currentIndex = 0;
 
-        System.out.println("Entry set size" +  "parse: " + set.size());
+        //System.out.println("Entry set size" +  "parse: " + set.size());
 
-        for(Entry e: set){
-            System.out.println("Entry Info" + "parse: " + e.info());
-        }
+//        for(Entry e: set){
+//            System.out.println("Entry Info" + "parse: " + e.info());
+//        }
         //candidateList = set;
     }
 
@@ -133,6 +146,28 @@ public class SimpleParser implements  Parser {
     public void next() {
         if (candidateList.size() == 0) return;
         currentIndex = (currentIndex + 1) % candidateList.size();
+    }
+
+    public void previousDiff() {
+        if (candidateList.size() == 0) return;
+        ParseResult pre = getCurrent();
+        previous();
+        while (getCurrent().instruction.id.equals(pre.instruction.id)) {
+            previous();
+        }
+        pre = getCurrent();
+        while (getCurrent().instruction.id.equals(pre.instruction.id)) {
+            previous();
+        }
+        next();
+    }
+    public void nextDiff() {
+        if (candidateList.size() == 0) return;
+        ParseResult pre = getCurrent();
+        next();
+        while (getCurrent().instruction.id.equals(pre.instruction.id)) {
+            next();
+        }
     }
 
 

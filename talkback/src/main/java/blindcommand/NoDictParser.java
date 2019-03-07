@@ -35,6 +35,12 @@ public class NoDictParser implements Parser {
     public void previous() {
         return;
     }
+    public void nextDiff() {
+        next();
+    }
+    public void previousDiff() {
+        previous();
+    }
 
     @Override
     public void clear() {
