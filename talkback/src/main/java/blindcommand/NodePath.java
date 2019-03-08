@@ -6,6 +6,8 @@ import android.graphics.Rect;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
 
+import com.google.common.primitives.Chars;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -61,7 +63,7 @@ public class NodePath {
             boolean flag = true;
         }
         final int X_THRESHOLD = 50;
-        final int Y_THRESHOLD = 178;
+        final int Y_THRESHOLD = Utility.getScreenHeight() / 3;//178;
         double ratioX = ((double)meta.resolution[0]) / resx;
         double ratioY = ((double)meta.resolution[1]) / resy;
         if ((Math.abs(this.boundsInScreen[0] - target.left * ratioX) >= X_THRESHOLD) ||
@@ -98,7 +100,7 @@ public class NodePath {
                 }
                 textMatchedNodes.add(node);
             }
-            if (textMatchedNodes.size() == 1) return textMatchedNodes.get(0);
+            //if (textMatchedNodes.size() == 1) return textMatchedNodes.get(0);
             for (AccessibilityNodeInfo node:textMatchedNodes) {
                 Rect bounds = new Rect();
                 node.getBoundsInScreen(bounds);
@@ -110,8 +112,11 @@ public class NodePath {
         } else {
             Rect bounds = new Rect();
             root.getBoundsInScreen(bounds);
-            if (((root.getText() == null) || (root.getText().toString().length() == 0)) && ((root.getContentDescription() == null) || (root.getContentDescription().toString().length() == 0)) &&
-            isSameBound(bounds, Utility.getScreenWidth(), Utility.getScreenHeight())) {
+            CharSequence text = root.getText();
+            CharSequence content = root.getContentDescription();
+            if ((text == null || Pattern.matches(this.textReg, text.toString().trim())) &&
+                (content == null || Pattern.matches(this.contentReg, content.toString().trim())) &&
+                isSameBound(bounds, Utility.getScreenWidth(), Utility.getScreenHeight())) {
                 return root;
             }
             for (int i=0; i<root.getChildCount(); i++) {

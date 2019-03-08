@@ -7,7 +7,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.hardware.camera2.CameraManager;
-import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -276,9 +275,9 @@ public class Executor {
         if (commandId == "null") {
             return;
         }
-        if (graph.meta.appName.equals(ins.id)) {
-            singleSteps(new ArrayList<Edge>(), 1);
-        }
+//        if (graph.meta.appName.equals(ins.id)) {
+//            singleSteps(new ArrayList<Edge>(), 1);
+//        }
         System.out.println("execute: " + commandId);
         List<AccessibilityWindowInfo> windows = service.getWindows();
         AccessibilityWindowInfo currentWindow = null;
@@ -323,7 +322,7 @@ public class Executor {
 
     public void init(){
         AssetManager assetManager = service.getAssets();
-        String[] fileNames = new String[] {"apps/Wechat.json"};
+        String[] fileNames = new String[] {"apps/Wechat_7.0.3.json"};
         try {
             fileNames = assetManager.list("apps");
         } catch (Exception e) {

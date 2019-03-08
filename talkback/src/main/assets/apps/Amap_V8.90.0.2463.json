@@ -13,7 +13,7 @@
 			"canDirectReach": true,
 			"features": [
 				{
-					"text": "查找地点、公交、地铁", "textReg": "查找地点、公交、地铁", "contentReg": "^$", "boundsInScreen": [154,76,842,212]
+					"text": "查找地点、公交、地铁", "textReg": "查找地点、公交、地铁", "contentReg": "搜索框", "boundsInScreen": [154,76,842,212]
 				},
 				{
 					"text": "路线", "textReg": "路线", "contentReg": "^$", "boundsInScreen": [527,1632,623,1697]
@@ -32,7 +32,7 @@
 				},
 				{
 					"path": {
-						"text": "查找地点、公交、地铁", "textReg": "查找地点、公交、地铁", "contentReg": "^$", "boundsInScreen": [154,76,842,212]
+						"text": "查找地点、公交、地铁", "textReg": "查找地点、公交、地铁", "contentReg": "搜索框", "boundsInScreen": [154,76,842,212]
 					},
 					"target": "搜索",
 					"name": "搜索",
