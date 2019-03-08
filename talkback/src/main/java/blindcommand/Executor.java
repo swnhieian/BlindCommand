@@ -21,6 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -98,20 +99,7 @@ public class Executor {
         }
     }
 
-    public void continueSteps(String para) {
-        executeForParameter = false;
-        if (continueNode != null) {
-            if (continueNode.getActionList().contains(AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_TEXT)) {
-                Bundle arguments = new Bundle();
-                arguments.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, para);
-                continueNode.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments);
-                sleep(500);
-            }
-        } else {
-          //
-        }
-        singleSteps(parameterEdges, parameterEdgesIndex);
-    }
+
     private void endExecute() {
         SoundPlayer.interrupt();
         SoundPlayer.success();
@@ -138,20 +126,6 @@ public class Executor {
             parameterResumeNode = edge.to;
             parameterEdges = edges;
             parameterEdgesIndex = index + 1;
-            //continueNode = NodeInfoFinder.find(getRoot(), edge.path);
-
-
-//             Instruction[] names = new Instruction[]
-//             {
-//                     new Instruction("shiweinan", "石伟男", "ShiWeiNan", edge.from.meta),
-//                     new Instruction("sunke", "孙科", "SunKe", edge.from.meta),
-//                     new Instruction("weiyi", "唯一", "WeiYi",edge.from.meta),
-//                     new Instruction("PenguinGG", "PenguinGG", "PenguinGG",edge.from.meta)
-//             };
-            //((TalkBackService)(service)).triggerBCMode(Parser.ParserType.NO_DICT);
-            //((TalkBackService)(service)).triggerBCMode(Parser.ParserType.LIST, Arrays.asList(names));
-
-
         } else {
             singleStep(edge);
             Handler handler = new Handler();
@@ -198,6 +172,27 @@ public class Executor {
         }
 
     }
+    //reference: https://blog.csdn.net/xiongwei3673605/article/details/42875017
+    public void expandStatusBar() {
+        Object ser = service.getSystemService("statusbar");
+        if (ser == null) {
+            return;
+        }
+        try {
+            Class<?> clazz = Class.forName("android.app.StatusBarManager");
+            int sdkVersion = android.os.Build.VERSION.SDK_INT;
+            Method expand = null;
+            if (sdkVersion <= 16) {
+                expand = clazz.getMethod("expand");
+            } else {
+                expand = clazz.getMethod("expandSettingsPanel");
+            }
+            expand.setAccessible(true);
+            expand.invoke(ser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     boolean lightStatus = false;
     private void executeSystemFunctions(Instruction instruction) {
         if (instruction.id.equals("返回")) {
@@ -224,7 +219,18 @@ public class Executor {
                 this.lightStatus = false;
             }
         } else if (instruction.id.equals("截屏")) {
-
+            expandStatusBar();
+            sleep(500);
+            List<AccessibilityNodeInfo> nodes = getRoot().findAccessibilityNodeInfosByText("截屏");
+            if (nodes.size() == 1) {
+                AccessibilityNodeInfo target = nodes.get(0);
+                while (!target.getActionList().contains(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK)) {
+                    target = target.getParent();
+                    if (target == null) return;
+                }
+                target.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                SoundPlayer.success();
+            }
         } else if (instruction.id.equals("设置")) {
             Intent intent =  new Intent(Settings.ACTION_SETTINGS);
             this.service.startActivity(intent);
