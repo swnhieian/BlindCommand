@@ -200,6 +200,7 @@ public class Executor {
     }
     public void jumpToApp(String packageName) {
         PackageManager packageManager = service.getPackageManager();
+        System.out.println("package:" + packageName);
         PackageInfo packageInfo = null;
         try {
             packageInfo = packageManager.getPackageInfo(packageName, 0);
