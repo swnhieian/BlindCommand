@@ -93,7 +93,7 @@ public class SpeechParser implements Parser, SpeechCallback {
 
     public ParseResult getCurrent() {
         if (candidateList.size() == 0) {
-            return new ParseResult(new Instruction("null", "无结果", "WuJieGuo", new JsonAppInfo()),
+            return new ParseResult(new Instruction("null", "无结果", "WuJieGuo", new JsonAppInfo(), 0),
                     -1, 0, false, false);
         }
         ParseResult pr = new ParseResult(candidateList.get(currentIndex), currentIndex, candidateList.size(), false, false);

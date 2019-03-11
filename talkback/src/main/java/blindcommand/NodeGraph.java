@@ -128,7 +128,7 @@ public class NodeGraph {
             for(JsonClickable button: jsonClickables){
                 Node targetNode = map.get(button.target);
                 if (targetNode == null) {
-                    Node newNode = new Node(button.target, button.name, button.pinyin, button.canDirectReach, this.meta);
+                    Node newNode = new Node(button.target, button.name, button.pinyin, button.canDirectReach, this.meta, button.frequency);
                     map.put(newNode.pageId, newNode);
                     nodes.add(newNode);
                 }

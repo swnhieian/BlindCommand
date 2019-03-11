@@ -23,7 +23,7 @@ public class NoDictParser implements Parser {
 
     @Override
     public ParseResult getCurrent() {
-        return new ParseResult(new Instruction(candidate, candidate, candidate, new JsonAppInfo()), -1, 0, false, false);
+        return new ParseResult(new Instruction(candidate, candidate, candidate, new JsonAppInfo(), 0), -1, 0, false, false);
     }
 
     @Override
