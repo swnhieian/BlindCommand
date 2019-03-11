@@ -68,10 +68,9 @@ public class KbdView extends View{
                 readParseResult(parser.getCurrent());
                 break;
             case SWIPE_DOWN: //confirm
+                ((TalkBackService)getContext()).triggerBCMode();
                 parseResult = parser.getCurrent();
                 executor.execute(parseResult.instruction);
-                SoundPlayer.execute(parseResult.instruction);
-                ((TalkBackService)getContext()).triggerBCMode();
                 parser.clear();
                 break;
             case SWIPE_LEFT_TWO_FINGERS:

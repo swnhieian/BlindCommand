@@ -101,15 +101,6 @@ public class SoundPlayer {
         current.start();
 
     }
-    public static void execute(Instruction ins) {
-        if (ins.name.equals("手电筒") || ins.name.equals("Flashlight")) return;
-        interrupt();
-        if (Utility.getLanguage().equals("CN")) {
-            SoundPlayer.tts("执行" + ins.name);
-        } else {
-            SoundPlayer.tts("execute " + ins.name);
-        }
-    }
 
     public static void initVoice() {
         voice.put("ios11_50", new int[26]);

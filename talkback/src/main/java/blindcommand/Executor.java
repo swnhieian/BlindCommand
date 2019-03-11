@@ -1,6 +1,8 @@
 package blindcommand;
 
 import android.accessibilityservice.AccessibilityService;
+import android.app.ActivityManager;
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -25,6 +27,11 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND;
+import static android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_VISIBLE;
+import static android.content.Context.ACTIVITY_SERVICE;
+import static android.content.Context.KEYGUARD_SERVICE;
 
 public class Executor {
     private AccessibilityService service;
@@ -283,35 +290,68 @@ public class Executor {
 
     }
     private int loopCount = 0; //to prevent dead loop
+    private boolean isBackgroundRunning(String processName) {
+        ActivityManager activityManager = (ActivityManager) service.getSystemService(ACTIVITY_SERVICE);
+        KeyguardManager keyguardManager = (KeyguardManager) service.getSystemService(KEYGUARD_SERVICE);
+
+        if (activityManager == null) return false;
+        // get running application processes
+        List<ActivityManager.RunningAppProcessInfo> processList = activityManager.getRunningAppProcesses();
+        for (ActivityManager.RunningAppProcessInfo process : processList) {
+            if (process.processName.startsWith(processName)) {
+                boolean isBackground = process.importance != IMPORTANCE_FOREGROUND && process.importance != IMPORTANCE_VISIBLE;
+                boolean isLockedState = keyguardManager.inKeyguardRestrictedInputMode();
+                if (isBackground || isLockedState) return true;
+                else return false;
+            }
+        }
+        return false;
+    }
     public void execute(final Instruction instruction) {
         if (instruction.meta.packageName.equals("System")) {
             executeSystemFunctions(instruction);
             return;
         }
 
-        final AccessibilityNodeInfo rootNode = getRoot();
+        AccessibilityNodeInfo rootNode = getRoot();
         final NodeGraph appGraph = graphs.get(instruction.meta.appName);
         if (rootNode.getPackageName().equals(instruction.meta.packageName)) {
             execute(instruction, appGraph);
             return;
         }
+        final boolean isBackground = isBackgroundRunning(instruction.meta.packageName);
         jumpToApp(instruction.meta.packageName);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                long lastTime = System.currentTimeMillis();
-                outer:
-                while (System.currentTimeMillis() - lastTime < 5000) {
-                    if (System.currentTimeMillis() - lastTime >= 5000) break outer;
-                    if (appGraph.nodes.get(0).represent(getCurrentWindow(), service)) {
-                        System.out.println("break outer" + (System.currentTimeMillis() - lastTime));
-                        break outer;
-                    }
-                }
                 execute(instruction, appGraph);
             }
-        }, 0);
+        }, 4000);
+//        long lastTime = System.currentTimeMillis();
+//        while (System.currentTimeMillis() - lastTime <= 4000) {
+//            if (rootNode != null && rootNode.getPackageName().equals(instruction.meta.packageName)) {
+//                break;
+//            }
+//            rootNode = getRoot();
+//            System.out.println("app loop:" + (System.currentTimeMillis() - lastTime));
+//        }
+//        execute(instruction, appGraph);
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                long lastTime = System.currentTimeMillis();
+//                long delayTime = isBackground?200:5000;
+//                outer:
+//                while (System.currentTimeMillis() - lastTime < delayTime) {
+//                    if (appGraph.nodes.get(0).represent(getCurrentWindow(), service)) {
+//                        break outer;
+//                    }
+//                }
+//                execute(instruction, appGraph);
+//            }
+//        }, 0);
 
     }
     List<Edge> edges;
@@ -340,6 +380,7 @@ public class Executor {
         Node currentNode = graph.getCurrentWindowNode(currentWindow, service);
         if (currentNode == null) {
             loopCount += 1;
+            System.out.println("in back loop, loopCount:" + loopCount);
             service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
             sleep(500);
             if (loopCount < 3) {
