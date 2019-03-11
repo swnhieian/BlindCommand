@@ -38,9 +38,9 @@ public class SimpleParser implements  Parser {
     public ParseResult getCurrent() {
         if (candidateList.size() == 0) {
             return new ParseResult(new Instruction("null", "无结果", "WuJieGuo", new JsonAppInfo()),
-                                    -1, 0, false);
+                                    -1, 0, false, false);
         }
-        ParseResult pr = new ParseResult(candidateList.get(currentIndex).instruction, currentIndex, candidateList.size(), false);
+        ParseResult pr = new ParseResult(candidateList.get(currentIndex).instruction, currentIndex, candidateList.size(), false, candidateList.get(currentIndex).appFirst);
         for(Entry candidate: candidateList){
             if(candidate.instruction.hasSameCommand(pr.instruction) && !candidate.instruction.inSameApp(pr.instruction)){
                 pr.hasSameName = true;
@@ -56,8 +56,12 @@ public class SimpleParser implements  Parser {
         List<Entry> set = new ArrayList<>();
         for (String ins : instructionSet.dict) {
             String[] insArray = ins.split("\\|");
+            for(String s: insArray){
+                System.out.print(s);
+            }
+            System.out.println("");
             if (insArray[0].length() >= touchPoints.size()) {
-                set.add(new Entry(insArray[0], instructionSet.instructions.get(ins), 0.0));
+                set.add(new Entry(insArray[0], instructionSet.instructions.get(ins), 0.0, insArray[1].equals("2") || insArray[1].equals("3")));
             }
         }
         Key firstKey = allKeys.get('a');
@@ -104,18 +108,14 @@ public class SimpleParser implements  Parser {
                 if (e1.command.length() > e2.command.length()){
                     return 1;
                 }
-                if (e1.instruction.meta.packageName.equals("System")) {
-                    return -1;
-                }
-                if (e2.instruction.meta.packageName.equals("System")) {
-                    return 1;
-                }
-                if (e1.instruction.meta.packageName.equals(packageName)) {
-                    return -1;
-                }
-//                if (e2.instruction.meta.packageName.equals(Utility.getPackageName())) {
-//                    return 1;
-//                }
+                boolean isSystem1 = e1.instruction.meta.packageName.equals("System");
+                boolean isSystem2 = e2.instruction.meta.packageName.equals("System");
+                if(isSystem1 && !isSystem2) return -1;
+                if(isSystem2 && !isSystem1) return 1;
+                boolean isCurrent1 = e1.instruction.meta.packageName.equals(packageName);
+                boolean isCurrent2 = e2.instruction.meta.packageName.equals(packageName);
+                if(isCurrent1 && ! isCurrent2) return -1;
+                if(isCurrent2 && ! isCurrent1) return 1;
                 return 0;
             }
         });
@@ -133,9 +133,13 @@ public class SimpleParser implements  Parser {
 
         //System.out.println("Entry set size" +  "parse: " + set.size());
 
-//        for(Entry e: set){
-//            System.out.println("Entry Info" + "parse: " + e.info());
-//        }
+        int cnt = 0;
+        for(Entry e: set){
+            System.out.println("Entry Info" + "parse: " + e.info());
+            if(cnt >= 20)
+                break;
+            cnt ++;
+        }
         //candidateList = set;
     }
 

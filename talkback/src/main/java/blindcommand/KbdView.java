@@ -123,7 +123,7 @@ public class KbdView extends View{
         }
     }
     public void readParseResult(ParseResult parseResult){
-        SoundPlayer.tts(parseResult.instruction.name + parseResult.instruction.meta.appName + ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
+        SoundPlayer.tts((parseResult.readAppFirst ? parseResult.instruction.meta.appName + parseResult.instruction.name : parseResult.instruction.name + parseResult.instruction.meta.appName) + ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
         //SoundPlayer.tts((parseResult.hasSameName ? parseResult.instruction.meta.appName : "" ) + parseResult.instruction.name +
         //        ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
     }

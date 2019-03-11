@@ -8,4 +8,5 @@ public class ParseResult {
     public int index;
     public int size;
     public boolean hasSameName;
+    boolean readAppFirst;
 }

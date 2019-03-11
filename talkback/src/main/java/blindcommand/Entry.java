@@ -9,8 +9,9 @@ public class Entry {
     String command;
     Instruction instruction;
     double poss;
+    boolean appFirst;
 
     public String info(){
-        return String.format(Locale.ENGLISH,"(%s, %f)", instruction, poss);
+        return String.format(Locale.ENGLISH,"(%s, %s, %f)", command, instruction.pinyin, poss);
     }
 }
