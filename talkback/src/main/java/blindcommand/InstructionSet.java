@@ -79,15 +79,12 @@ public class InstructionSet {
             // 区分app名和全简拼
             instruction.pinyin = instruction.pinyin.replaceAll("[^a-zA-Z]", "");
             String pinyinWithApp = instruction.pinyin + instruction.meta.appPinyin;
-            instructions.put(pinyinWithApp.toLowerCase(), instruction);
-            instructions.put(pinyinWithApp.replaceAll("[a-z]+", "").toLowerCase(), instruction);
-            instructions.put(instruction.pinyin.toLowerCase() + "|" + instruction.meta.appName + "|0", instruction);
-            String cmd = instruction.pinyin.replaceAll("[a-z]+", "").toLowerCase();
-            if(cmd.length() >= 2) {
-                instructions.put(cmd + "|" + instruction.meta.appName + "|1", instruction);
-            }
+            String appWithPinyin = instruction.meta.appPinyin + instruction.pinyin;
+            instructions.put(pinyinWithApp.toLowerCase() + "|0", instruction);  // saoyisaoweixin
+            instructions.put(pinyinWithApp.replaceAll("[a-z]+", "").toLowerCase() + "|1", instruction); // syswx
+            instructions.put(appWithPinyin.toLowerCase() + "|2", instruction);  // weixinsaoyisao
+            instructions.put(appWithPinyin.replaceAll("[a-z]+", "").toLowerCase() + "|3", instruction); // wxsys
         }
-        // instructions.put("wo|新浪微博|0", new Instruction("我","我","Wo",new JsonAppInfo("com.sina.weibo","新浪微博","XinLangWeiBo")));
         this.dict = instructions.keySet().toArray(new String[]{});
     }
     public InstructionSet(Parameter[] names) {

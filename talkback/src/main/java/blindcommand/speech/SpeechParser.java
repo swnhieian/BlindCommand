@@ -35,8 +35,8 @@ public class SpeechParser implements Parser, SpeechCallback {
             Instruction instruction = entry.getValue();
             String[] insArray = insStr.split("\\|");
             System.out.println(insStr);
-            if(insArray.length == 3) {
-                if (insArray[2].equals("0")) {
+            if(insArray.length == 2) {
+                if (insArray[1].equals("0")) {
                     if (!nameToIns.containsKey(instruction.name)) {
                         nameToIns.put(instruction.name, new ArrayList<Instruction>());
                     }
@@ -94,9 +94,9 @@ public class SpeechParser implements Parser, SpeechCallback {
     public ParseResult getCurrent() {
         if (candidateList.size() == 0) {
             return new ParseResult(new Instruction("null", "无结果", "WuJieGuo", new JsonAppInfo()),
-                    -1, 0, false);
+                    -1, 0, false, false);
         }
-        ParseResult pr = new ParseResult(candidateList.get(currentIndex), currentIndex, candidateList.size(), false);
+        ParseResult pr = new ParseResult(candidateList.get(currentIndex), currentIndex, candidateList.size(), false, false);
         for(Instruction candidate: candidateList){
             if(candidate.hasSameCommand(pr.instruction) && !candidate.inSameApp(pr.instruction)){
                 pr.hasSameName = true;
