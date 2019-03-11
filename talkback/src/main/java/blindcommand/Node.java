@@ -18,14 +18,16 @@ public class Node {
     public List<NodePath> pageNodePaths;
     public Map<Node, Edge> neighbours;
     public boolean visited;
+    public int frequency;
+    private static int DEFAULT_FREQUENCY = 4;
 
     public Instruction getInstruction() {
-        return new Instruction(pageId, pageName, pagePinyin, meta);
+        return new Instruction(pageId, pageName, pagePinyin, meta, frequency);
     }
 
     public Node pre;
 
-    public Node(String id, String name, String pinyin, boolean directReach, JsonAppInfo meta) {
+    public Node(String id, String name, String pinyin, boolean directReach, JsonAppInfo meta, int frequency) {
         pageId = id;
         pageName = name;
         pagePinyin = pinyin;
@@ -35,15 +37,23 @@ public class Node {
         neighbours = new Hashtable<>();
         pre = null;
         visited = false;
+        if(frequency == 0)
+            this.frequency = DEFAULT_FREQUENCY;
+        else
+            this.frequency = frequency;
     }
-    public Node(String id, String name, String pinyin, JsonAppInfo meta) {
-        this(id, name, pinyin, true, meta);
+    public Node(String id, String name, String pinyin, JsonAppInfo meta, int frequency) {
+        this(id, name, pinyin, true, meta, frequency);
     }
     public Node(JsonNode jsonNode, JsonAppInfo meta){
         pageId = jsonNode.pageId;
         pageName = jsonNode.pageName;
         pagePinyin = jsonNode.pagePinyin;
         canDirectReach = jsonNode.canDirectReach;
+        if(jsonNode.frequency == 0)
+            frequency = DEFAULT_FREQUENCY;
+        else
+            frequency = jsonNode.frequency;
         this.meta = meta;
         pageNodePaths = new ArrayList<>();
         for(JsonNodePath feature: jsonNode.features){

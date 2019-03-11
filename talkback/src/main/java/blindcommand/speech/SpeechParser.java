@@ -40,7 +40,15 @@ public class SpeechParser implements Parser, SpeechCallback {
                     if (!nameToIns.containsKey(instruction.name)) {
                         nameToIns.put(instruction.name, new ArrayList<Instruction>());
                     }
+                    if (!nameToIns.containsKey(instruction.name + instruction.meta.appName)) {
+                        nameToIns.put(instruction.name + instruction.meta.appName, new ArrayList<Instruction>());
+                    }
+                    if (!nameToIns.containsKey(instruction.meta.appName + instruction.name)) {
+                        nameToIns.put(instruction.meta.appName + instruction.name, new ArrayList<Instruction>());
+                    }
                     nameToIns.get(instruction.name).add(instruction);
+                    nameToIns.get(instruction.name + instruction.meta.appName).add(instruction);
+                    nameToIns.get(instruction.meta.appName + instruction.name).add(instruction);
                 }
             }
         }
@@ -93,7 +101,7 @@ public class SpeechParser implements Parser, SpeechCallback {
 
     public ParseResult getCurrent() {
         if (candidateList.size() == 0) {
-            return new ParseResult(new Instruction("null", "无结果", "WuJieGuo", new JsonAppInfo()),
+            return new ParseResult(new Instruction("null", "无结果", "WuJieGuo", new JsonAppInfo(), 0),
                     -1, 0, false, false);
         }
         ParseResult pr = new ParseResult(candidateList.get(currentIndex), currentIndex, candidateList.size(), false, false);

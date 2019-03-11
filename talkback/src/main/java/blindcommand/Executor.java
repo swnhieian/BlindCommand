@@ -51,15 +51,14 @@ public class Executor {
 //            }
 
         }
-        JsonAppInfo sysInfo = new JsonAppInfo("System", "系统", "System", new Integer[]{});
-        ret.add(new Instruction("返回", "返回", "FanHui", sysInfo));
-        ret.add(new Instruction("桌面", "桌面", "ZhuoMian", sysInfo));
-        ret.add(new Instruction("手电筒", "手电筒", "ShouDianTong", sysInfo));
-        ret.add(new Instruction("相机", "相机", "XiangJi", sysInfo));
-        ret.add(new Instruction("截屏", "截屏", "JiePing", sysInfo));
-        ret.add(new Instruction("电话", "电话", "DianHua", sysInfo));
-        ret.add(new Instruction("设置", "设置", "SheZhi", sysInfo));
-
+        JsonAppInfo sysInfo = new JsonAppInfo("System", "系统", "xitong", new Integer[]{});
+        ret.add(new Instruction("返回", "返回", "FanHui", sysInfo, 1));
+        ret.add(new Instruction("桌面", "桌面", "ZhuoMian", sysInfo, 1));
+        ret.add(new Instruction("手电筒", "手电筒", "ShouDianTong", sysInfo, 2));
+        ret.add(new Instruction("相机", "相机", "XiangJi", sysInfo, 2));
+        ret.add(new Instruction("截屏", "截屏", "JiePing", sysInfo, 2));
+        ret.add(new Instruction("电话", "电话", "DianHua", sysInfo, 1));
+        ret.add(new Instruction("设置", "设置", "SheZhi", sysInfo, 2));
         return ret;
     }
 

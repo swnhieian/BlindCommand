@@ -90,7 +90,7 @@ public class InstructionSet {
     public InstructionSet(Parameter[] names) {
         List<Instruction> allInstructions = new ArrayList<>();
         for (int i=0; i<names.length; i++) {
-            allInstructions.add(new Instruction(names[i].id, names[i].name, names[i].id, new JsonAppInfo()));
+            allInstructions.add(new Instruction(names[i].id, names[i].name, names[i].id, new JsonAppInfo(), 0));
         }
         instructions = new HashMap<>();
         for (Instruction instruction:allInstructions) {

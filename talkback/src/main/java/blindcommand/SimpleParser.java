@@ -37,7 +37,7 @@ public class SimpleParser implements  Parser {
     }
     public ParseResult getCurrent() {
         if (candidateList.size() == 0) {
-            return new ParseResult(new Instruction("null", "无结果", "WuJieGuo", new JsonAppInfo()),
+            return new ParseResult(new Instruction("null", "无结果", "WuJieGuo", new JsonAppInfo(), 4),
                                     -1, 0, false, false);
         }
         ParseResult pr = new ParseResult(candidateList.get(currentIndex).instruction, currentIndex, candidateList.size(), false, candidateList.get(currentIndex).appFirst);
@@ -102,20 +102,26 @@ public class SimpleParser implements  Parser {
                 if (e1.poss < e2.poss) {
                     return 1;
                 }
+                if(e1.instruction.frequency < e2.instruction.frequency) {
+                    return -1;
+                }
+                if(e1.instruction.frequency > e2.instruction.frequency) {
+                    return 1;
+                }
                 if (e1.command.length() < e2.command.length()){
                     return -1;
                 }
                 if (e1.command.length() > e2.command.length()){
                     return 1;
                 }
-                boolean isSystem1 = e1.instruction.meta.packageName.equals("System");
-                boolean isSystem2 = e2.instruction.meta.packageName.equals("System");
-                if(isSystem1 && !isSystem2) return -1;
-                if(isSystem2 && !isSystem1) return 1;
-                boolean isCurrent1 = e1.instruction.meta.packageName.equals(packageName);
-                boolean isCurrent2 = e2.instruction.meta.packageName.equals(packageName);
-                if(isCurrent1 && ! isCurrent2) return -1;
-                if(isCurrent2 && ! isCurrent1) return 1;
+//                boolean isSystem1 = e1.instruction.meta.packageName.equals("System");
+//                boolean isSystem2 = e2.instruction.meta.packageName.equals("System");
+//                if(isSystem1 && !isSystem2) return -1;
+//                if(isSystem2 && !isSystem1) return 1;
+//                boolean isCurrent1 = e1.instruction.meta.packageName.equals(packageName);
+//                boolean isCurrent2 = e2.instruction.meta.packageName.equals(packageName);
+//                if(isCurrent1 && ! isCurrent2) return -1;
+//                if(isCurrent2 && ! isCurrent1) return 1;
                 return 0;
             }
         });

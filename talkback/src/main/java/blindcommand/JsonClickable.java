@@ -8,4 +8,5 @@ public class JsonClickable {
     public boolean needParameter = false;
     public String parameterName = "";
     public boolean canDirectReach = true;
+    public int frequency;
 }

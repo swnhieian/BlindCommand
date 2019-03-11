@@ -12,6 +12,6 @@ public class Entry {
     boolean appFirst;
 
     public String info(){
-        return String.format(Locale.ENGLISH,"(%s, %s, %f)", command, instruction.pinyin, poss);
+        return String.format(Locale.ENGLISH,"(%s, %s, %f, %d)", command, instruction.pinyin, poss, instruction.frequency);
     }
 }
