@@ -1362,7 +1362,7 @@ public class TalkBackService extends AccessibilityService
   }
   /////////////////////////////////////////
   public void triggerBCMode(Parser.ParserType type, List<Instruction> paras) {
-    Toast.makeText(this, "Trigger BC Mode", Toast.LENGTH_SHORT).show();
+    //Toast.makeText(this, "Trigger BC Mode", Toast.LENGTH_SHORT).show();
     if (kbdView.getVisibility() == View.VISIBLE) {
       kbdView.setVisibility(View.INVISIBLE);
       enableTouchExploration();
