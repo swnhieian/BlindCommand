@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"appName"})
 public class JsonAppInfo {
-    String packageName = "";
-    String appName = "";
-    String appPinyin = "";
-    Integer[] resolution;
+    public String packageName = "";
+    public String appName = "";
+    public String appPinyin = "";
+    public Integer[] resolution;
 }
