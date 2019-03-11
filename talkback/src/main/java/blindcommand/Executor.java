@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.hardware.camera2.CameraManager;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityEvent;
@@ -92,7 +93,8 @@ public class Executor {
             if (activeWindow != null) {
                 if (parameterResumeNode.represent(activeWindow, service)) {
                     executeForParameter = false;
-                    singleSteps(parameterEdges, parameterEdgesIndex);
+                    executeSteps(edges.subList(parameterEdgesIndex, edges.size()));
+                    //singleSteps(parameterEdges, parameterEdgesIndex);
                 }
             }
         }
@@ -103,6 +105,49 @@ public class Executor {
         SoundPlayer.interrupt();
         SoundPlayer.success();
         SoundPlayer.tts("执行完毕");
+    }
+
+    public void executeSteps(final List<Edge> edges) {
+        if (edges == null) {
+            endExecute();
+            return;
+        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int index = 0;
+                while (index < edges.size()) {
+                    long lastTime = System.currentTimeMillis();
+                    Edge edge = edges.get(index);
+                    while (System.currentTimeMillis() - lastTime < 1000) {
+                        if (edge.from.represent(getCurrentWindow(), service)) {
+                            executeStep(edge, index);
+                        }
+                    }
+                    index ++;
+                }
+                if (index == edges.size()) {
+                    endExecute();
+                }
+            }
+        }, 0);
+    }
+    public void executeStep(Edge edge, int index) {
+        if (edge.needParameter) {
+            SoundPlayer.tts("请输入" + (edge.parameterName.length() == 0 ? "参数" : edge.parameterName));
+            executeForParameter = true;
+            parameterResumeNode = edge.to;
+            parameterEdges = edges;
+            parameterEdgesIndex = index + 1;
+        } else {
+            AccessibilityNodeInfo root = getRoot();
+            AccessibilityNodeInfo operatedNode = NodeInfoFinder.find(root, edge.path);
+            if (operatedNode != null) {
+                operatedNode.performAction(edge.action);
+            }
+        }
+
     }
 
     public void singleSteps(final List<Edge> edges, final int index) {
@@ -133,7 +178,7 @@ public class Executor {
                     singleSteps(edges, index + 1);
                 }
             }, 500);
-
+            edge.to.represent(getCurrentWindow(), service);
         }
     }
 
@@ -245,40 +290,36 @@ public class Executor {
         }
 
         final AccessibilityNodeInfo rootNode = getRoot();
+        final NodeGraph appGraph = graphs.get(instruction.meta.appName);
         if (rootNode.getPackageName().equals(instruction.meta.packageName)) {
-            execute(instruction, graphs.get(instruction.meta.appName));
+            execute(instruction, appGraph);
             return;
         }
         jumpToApp(instruction.meta.packageName);
-
-        List<AccessibilityNodeInfo> nodes = rootNode.findAccessibilityNodeInfosByText("跳过");
-        List<AccessibilityNodeInfo> snodes = rootNode.findAccessibilityNodeInfosByText("关爱出行");
-        long delayTime = 4000;
-        if (nodes.size() == 1) {
-            nodes.get(0).performAction(AccessibilityNodeInfo.ACTION_CLICK);
-            delayTime = 1000;
-        }
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
+            @Override
             public void run() {
-                    execute(instruction, graphs.get(instruction.meta.appName));
+                long lastTime = System.currentTimeMillis();
+                outer:
+                while (System.currentTimeMillis() - lastTime < 5000) {
+                    if (System.currentTimeMillis() - lastTime >= 5000) break outer;
+                    if (appGraph.nodes.get(0).represent(getCurrentWindow(), service)) {
+                        System.out.println("break outer" + (System.currentTimeMillis() - lastTime));
+                        break outer;
+                    }
+                }
+                execute(instruction, appGraph);
             }
-        }, delayTime);
+        }, 0);
+
     }
     List<Edge> edges;
 
     public void clearContinue() {
         executeForParameter = false;
     }
-    public void execute(Instruction ins, NodeGraph graph) {
-        String commandId = ins.id;
-        if (commandId == "null") {
-            return;
-        }
-//        if (graph.meta.appName.equals(ins.id)) {
-//            singleSteps(new ArrayList<Edge>(), 1);
-//        }
-        System.out.println("execute: " + commandId);
+    private AccessibilityWindowInfo getCurrentWindow() {
         List<AccessibilityWindowInfo> windows = service.getWindows();
         AccessibilityWindowInfo currentWindow = null;
         for (AccessibilityWindowInfo window : windows) {
@@ -287,26 +328,33 @@ public class Executor {
                 break;
             }
         }
+        return currentWindow;
+    }
+    public void execute(Instruction ins, NodeGraph graph) {
+        String commandId = ins.id;
+        if (commandId == "null") {
+            return;
+        }
+        System.out.println("execute: " + commandId);
+        AccessibilityWindowInfo currentWindow = getCurrentWindow();
         Node currentNode = graph.getCurrentWindowNode(currentWindow, service);
         if (currentNode == null) {
             loopCount += 1;
             service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
-            //service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
-            System.out.println("back action, loop:" + loopCount);
             sleep(500);
             if (loopCount < 3) {
                 execute(ins);
             }
             return;
         }
-        // TODO ? 用 commandName 得出目标窗口的name
         Node targetNode = graph.getTargetWindowNode(commandId);
         System.out.println("\tfrom: " + (currentNode == null ? "null" : currentNode.pageId));
         System.out.println("\tto  : " + (targetNode == null ? "null" : targetNode.pageId));
         if(currentNode == null || targetNode == null) return;
         edges = graph.findPath(currentNode, targetNode);
         if(edges != null) {
-            singleSteps(edges, 0);
+            //singleSteps(edges, 0);
+            executeSteps(edges);
         } else {
             loopCount += 1;
             service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);

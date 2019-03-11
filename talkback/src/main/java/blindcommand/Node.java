@@ -54,7 +54,6 @@ public class Node {
         visited = false;
     }
     public boolean represent(AccessibilityWindowInfo window, AccessibilityService service){
-        System.out.println(pageName + " :feature num: " + pageNodePaths.size());
         if (pageNodePaths.size() == 0) return false;
         for(NodePath nodePath : pageNodePaths){
             if(!nodePath.correspondTo(window, service)){

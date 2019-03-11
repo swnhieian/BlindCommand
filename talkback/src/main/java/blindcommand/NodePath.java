@@ -86,6 +86,7 @@ public class NodePath {
 //                &&  < X_THRESHOLD);
     }
     public AccessibilityNodeInfo getNodeFromRoot(AccessibilityNodeInfo root) {
+        if (root == null) return null;
         if (this.text.length() != 0) {
             List<AccessibilityNodeInfo> nodes = root.findAccessibilityNodeInfosByText(this.text);
             List<AccessibilityNodeInfo> textMatchedNodes = new ArrayList<>();

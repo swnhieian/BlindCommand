@@ -78,7 +78,6 @@ public class NodeGraph {
                 break;
             }
         }
-        System.out.println("in find path: path found");
 
         // 从Node的pre结点信息生成一条路径
         Node currentFrom = to;
