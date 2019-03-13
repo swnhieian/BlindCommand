@@ -12,4 +12,9 @@ public class JsonAppInfo {
     public String appName = "";
     public String appPinyin = "";
     public Integer[] resolution;
+
+    @Override
+    public String toString() {
+        return appName;
+    }
 }

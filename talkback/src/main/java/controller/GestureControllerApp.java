@@ -41,6 +41,8 @@ import com.google.android.accessibility.utils.input.CursorController;
 import com.google.android.accessibility.utils.input.InputModeManager;
 import com.google.android.accessibility.utils.output.FeedbackController;
 
+import blindcommand.Log;
+
 /**
  * Class to handle incoming gestures to TalkBack. TODO: Remove Shortcut gesture action TODO:
  * Make sure tutorial still works TODO: Map actions to ints, and store in a map that changes
@@ -343,6 +345,7 @@ public class GestureControllerApp implements GestureController {
         mService.getString(R.string.shortcut_value_selected_setting_next_action))) {
       mSelectorController.performSelectedSettingAction(eventId, true);
     } else if (action.equals(mService.getString(R.string.shortcut_value_trigger_BC_mode))) {
+      Log.i("Gesture", "globalGesture");
       mService.triggerBCMode();
     }
     Intent intent = new Intent(GestureActionMonitor.ACTION_GESTURE_ACTION_PERFORMED);

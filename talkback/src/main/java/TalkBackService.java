@@ -1311,6 +1311,7 @@ public class TalkBackService extends AccessibilityService
 
   private void doublePress(int keycode) {
     //Log.i(TAG, "---doublePress 双击事件--" + keycode);
+    blindcommand.Log.i(LOGTAG, "doublePress");
     triggerBCMode();
   }
 
@@ -1365,6 +1366,7 @@ public class TalkBackService extends AccessibilityService
     //Toast.makeText(this, "Trigger BC Mode", Toast.LENGTH_SHORT).show();
     if (kbdView.getVisibility() == View.VISIBLE) {
       kbdView.setVisibility(View.INVISIBLE);
+      blindcommand.Log.i(LOGTAG, "BCOff");
       enableTouchExploration();
       SoundPlayer.end();
       //kbdView.setParser(Utility.parserType, null);
@@ -1372,6 +1374,7 @@ public class TalkBackService extends AccessibilityService
     } else {
       kbdView.setParser(Utility.parserType, paras);
       kbdView.setVisibility(View.VISIBLE);
+      blindcommand.Log.i(LOGTAG, "BCOn");
       disableTouchExploration();
       SoundPlayer.start();
     }

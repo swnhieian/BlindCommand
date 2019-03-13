@@ -1,0 +1,945 @@
+{
+	"meta": {
+		"packageName": "com.sdu.didi.psnger",
+		"appName": "滴滴出行",
+		"appPinyin": "DiDiChuXing",
+		"resolution": [1080, 1920]
+	},
+	"data": [
+		{
+			"pageId": "快车",
+			"pageName": "快车",
+			"pagePinyin": "KuaiChe",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "现在", "textReg": "现在", "contentReg": "^$", "boundsInScreen": [276,1355,432,1445]
+				},
+				{
+					"text": "预约", "textReg": "预约", "contentReg": "^$", "boundsInScreen": [462,1355,618,1445]
+				},
+				{
+					"text": "代叫", "textReg": "代叫", "contentReg": "^$", "boundsInScreen": [648,1355,804,1445]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "个人中心", "textReg": "^$", "contentReg": "个人中心", "boundsInScreen": [33,78,117,162]
+					},
+					"target": "个人中心",
+					"name": "个人中心",
+					"pinyin": "GeRenZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "消息中心按钮", "textReg": "^$", "contentReg": "消息中心按钮", "boundsInScreen": [843,54,945,186]
+					},
+					"target": "消息中心",
+					"name": "消息中心",
+					"pinyin": "XiaoXiZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [945,54,1080,186]
+					},
+					"target": "扫一扫",
+					"name": "扫一扫",
+					"pinyin": "SaoYiSao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "单车", "textReg": "单车", "contentReg": "^$", "boundsInScreen": [39,223,132,280]
+					},
+					"target": "单车",
+					"name": "单车",
+					"pinyin": "DanChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "公众评议", "textReg": "公众评议", "contentReg": "^$", "boundsInScreen": [216,223,402,280]
+					},
+					"target": "公众评议",
+					"name": "公众评议",
+					"pinyin": "GongZhongPingYi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "快车", "textReg": "快车", "contentReg": "^$", "boundsInScreen": [486,223,588,280]
+					},
+					"target": "快车",
+					"name": "快车",
+					"pinyin": "KuaiChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "豪华车", "textReg": "豪华车", "contentReg": "^$", "boundsInScreen": [672,223,816,280]
+					},
+					"target": "豪华车",
+					"name": "豪华车",
+					"pinyin": "HaoHuaChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "全部服务", "textReg": "^$", "contentReg": "全部服务", "boundsInScreen": [960,198,1068,306]
+					},
+					"target": "全部服务",
+					"name": "全部服务",
+					"pinyin": "QuanBuFuWu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "现在", "textReg": "现在", "contentReg": "^$", "boundsInScreen": [276,1355,432,1445]
+					},
+					"target": "现在",
+					"name": "现在",
+					"pinyin": "XianZai",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "预约", "textReg": "预约", "contentReg": "^$", "boundsInScreen": [462,1355,618,1445]
+					},
+					"target": "预约",
+					"name": "预约",
+					"pinyin": "YuYue",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "代叫", "textReg": "代叫", "contentReg": "^$", "boundsInScreen": [648,1355,804,1445]
+					},
+					"target": "代叫",
+					"name": "代叫",
+					"pinyin": "DaiJiao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "个人中心",
+			"pageName": "个人中心",
+			"pagePinyin": "GeRenZhongXin",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "订单", "textReg": "订单", "contentReg": "^$", "boundsInScreen": [135,587,255,648]
+				},
+				{
+					"text": "安全", "textReg": "安全", "contentReg": "^$", "boundsInScreen": [135,708,255,769]
+				},
+				{
+					"text": "钱包", "textReg": "钱包", "contentReg": "^$", "boundsInScreen": [135,829,255,890]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "订单", "textReg": "订单", "contentReg": "^$", "boundsInScreen": [135,587,255,648]
+					},
+					"target": "订单",
+					"name": "订单",
+					"pinyin": "DingDan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "安全", "textReg": "安全", "contentReg": "^$", "boundsInScreen": [135,708,255,769]
+					},
+					"target": "安全",
+					"name": "安全",
+					"pinyin": "AnQuan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "钱包", "textReg": "钱包", "contentReg": "^$", "boundsInScreen": [135,829,255,890]
+					},
+					"target": "钱包",
+					"name": "钱包",
+					"pinyin": "QianBao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "客服", "textReg": "客服", "contentReg": "^$", "boundsInScreen": [135,950,255,1011]
+					},
+					"target": "客服",
+					"name": "客服",
+					"pinyin": "KeFu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "设置", "textReg": "设置", "contentReg": "^$", "boundsInScreen": [135,1071,255,1132]
+					},
+					"target": "设置",
+					"name": "设置",
+					"pinyin": "SheZhi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "钱包",
+			"pageName": "钱包",
+			"pagePinyin": "QianBao",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "我的钱包", "textReg": "我的钱包", "contentReg": "^$", "boundsInScreen": [432,83,648,156]
+				},
+				{
+					"text": "我的资产", "textReg": "我的资产", "contentReg": "^$", "boundsInScreen": [48,270,276,347]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "账户余额", "textReg": "账户余额", "contentReg": "^$", "boundsInScreen": [126,435,282,481]
+					},
+					"target": "账户余额",
+					"name": "账户余额",
+					"pinyin": "ZhangHuYuE",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "我的积分", "textReg": "我的积分", "contentReg": "^$", "boundsInScreen": [126,797,282,843]
+					},
+					"target": "我的积分",
+					"name": "我的积分",
+					"pinyin": "WoDeJiFen",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "修改", "textReg": "修改", "contentReg": "^$", "boundsInScreen": [912,1340,984,1382]
+					},
+					"target": "修改支付方式",
+					"name": "修改支付方式",
+					"pinyin": "XiuGaiZhiFuFangShi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "消息中心",
+			"pageName": "消息中心",
+			"pagePinyin": "XiaoXiZhongXin",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "消息中心", "textReg": "消息中心", "contentReg": "^$", "boundsInScreen": [193,83,886,156]
+				},
+				{
+					"text": "服务号", "textReg": "服务号", "contentReg": "^$", "boundsInScreen": [291,223,417,280]
+				},
+				{
+					"text": "对话", "textReg": "对话", "contentReg": "^$", "boundsInScreen": [663,223,747,280]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "服务号", "textReg": "服务号", "contentReg": "^$", "boundsInScreen": [291,223,417,280]
+					},
+					"target": "服务号",
+					"name": "服务号",
+					"pinyin": "FuWuHao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "对话", "textReg": "对话", "contentReg": "^$", "boundsInScreen": [663,223,747,280]
+					},
+					"target": "对话",
+					"name": "对话",
+					"pinyin": "DuiHua",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [978,91,1032,145]
+					},
+					"target": "消息设置",
+					"name": "消息设置",
+					"pinyin": "XiaoXiSheZhi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "单车",
+			"pageName": "单车",
+			"pagePinyin": "DanChe",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "正确用车规范【运营区域】", "textReg": "正确用车规范【运营区域】", "contentReg": "^$", "boundsInScreen": [360,1417,936,1482]
+				},
+				{
+					"text": "扫码用车", "textReg": "扫码用车", "contentReg": "^$", "boundsInScreen": [30,1797,1050,1920]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "个人中心", "textReg": "^$", "contentReg": "个人中心", "boundsInScreen": [33,78,117,162]
+					},
+					"target": "个人中心",
+					"name": "个人中心",
+					"pinyin": "GeRenZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "消息中心按钮", "textReg": "^$", "contentReg": "消息中心按钮", "boundsInScreen": [843,54,945,186]
+					},
+					"target": "消息中心",
+					"name": "消息中心",
+					"pinyin": "XiaoXiZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [945,54,1080,186]
+					},
+					"target": "扫一扫",
+					"name": "扫一扫",
+					"pinyin": "SaoYiSao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "单车", "textReg": "单车", "contentReg": "^$", "boundsInScreen": [39,223,132,280]
+					},
+					"target": "单车",
+					"name": "单车",
+					"pinyin": "DanChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "公众评议", "textReg": "公众评议", "contentReg": "^$", "boundsInScreen": [216,223,402,280]
+					},
+					"target": "公众评议",
+					"name": "公众评议",
+					"pinyin": "GongZhongPingYi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "快车", "textReg": "快车", "contentReg": "^$", "boundsInScreen": [486,223,588,280]
+					},
+					"target": "快车",
+					"name": "快车",
+					"pinyin": "KuaiChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "豪华车", "textReg": "豪华车", "contentReg": "^$", "boundsInScreen": [672,223,816,280]
+					},
+					"target": "豪华车",
+					"name": "豪华车",
+					"pinyin": "HaoHuaChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "全部服务", "textReg": "^$", "contentReg": "全部服务", "boundsInScreen": [960,198,1068,306]
+					},
+					"target": "全部服务",
+					"name": "全部服务",
+					"pinyin": "QuanBuFuWu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "扫码用车", "textReg": "扫码用车", "contentReg": "^$", "boundsInScreen": [30,1797,1050,1920]
+					},
+					"target": "扫码用车",
+					"name": "扫码用车",
+					"pinyin": "SaoMaYongChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "豪华车",
+			"pageName": "豪华车",
+			"pagePinyin": "HaoHuaChe",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "尽快出发", "textReg": "尽快出发", "contentReg": "^$", "boundsInScreen": [36,1355,264,1445]
+				},
+				{
+					"text": "接送机", "textReg": "接送机", "contentReg": "^$", "boundsInScreen": [666,1355,858,1445]
+				},
+				{
+					"text": "包车", "textReg": "包车", "contentReg": "^$", "boundsInScreen": [888,1355,1044,1445]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "个人中心", "textReg": "^$", "contentReg": "个人中心", "boundsInScreen": [33,78,117,162]
+					},
+					"target": "个人中心",
+					"name": "个人中心",
+					"pinyin": "GeRenZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "消息中心按钮", "textReg": "^$", "contentReg": "消息中心按钮", "boundsInScreen": [843,54,945,186]
+					},
+					"target": "消息中心",
+					"name": "消息中心",
+					"pinyin": "XiaoXiZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [945,54,1080,186]
+					},
+					"target": "扫一扫",
+					"name": "扫一扫",
+					"pinyin": "SaoYiSao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "单车", "textReg": "单车", "contentReg": "^$", "boundsInScreen": [39,223,132,280]
+					},
+					"target": "单车",
+					"name": "单车",
+					"pinyin": "DanChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "公众评议", "textReg": "公众评议", "contentReg": "^$", "boundsInScreen": [216,223,402,280]
+					},
+					"target": "公众评议",
+					"name": "公众评议",
+					"pinyin": "GongZhongPingYi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "快车", "textReg": "快车", "contentReg": "^$", "boundsInScreen": [486,223,588,280]
+					},
+					"target": "快车",
+					"name": "快车",
+					"pinyin": "KuaiChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "豪华车", "textReg": "豪华车", "contentReg": "^$", "boundsInScreen": [672,223,816,280]
+					},
+					"target": "豪华车",
+					"name": "豪华车",
+					"pinyin": "HaoHuaChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "全部服务", "textReg": "^$", "contentReg": "全部服务", "boundsInScreen": [960,198,1068,306]
+					},
+					"target": "全部服务",
+					"name": "全部服务",
+					"pinyin": "QuanBuFuWu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "尽快出发", "textReg": "尽快出发", "contentReg": "^$", "boundsInScreen": [36,1355,264,1445]
+					},
+					"target": "尽快出发",
+					"name": "尽快出发",
+					"pinyin": "JinKuaiChuFa",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "预约", "textReg": "预约", "contentReg": "^$", "boundsInScreen": [294,1355,450,1445]
+					},
+					"target": "预约",
+					"name": "预约",
+					"pinyin": "YuYue",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "代叫", "textReg": "代叫", "contentReg": "^$", "boundsInScreen": [480,1355,636,1445]
+					},
+					"target": "代叫",
+					"name": "代叫",
+					"pinyin": "DaiJiao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "接送机", "textReg": "接送机", "contentReg": "^$", "boundsInScreen": [666,1355,858,1445]
+					},
+					"target": "接送机",
+					"name": "接送机",
+					"pinyin": "JieSongJi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "包车", "textReg": "包车", "contentReg": "^$", "boundsInScreen": [888,1355,1044,1445]
+					},
+					"target": "包车",
+					"name": "包车",
+					"pinyin": "BaoChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "全部服务",
+			"pageName": "全部服务",
+			"pagePinyin": "XiaoXiZhongXin",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "关闭", "textReg": "^$", "contentReg": "关闭", "boundsInScreen": [966,213,1044,291]
+				},
+				{
+					"text": "金融服务", "textReg": "金融服务", "contentReg": "^$", "boundsInScreen": [108,1777,252,1826]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "个人中心", "textReg": "^$", "contentReg": "个人中心", "boundsInScreen": [33,78,117,162]
+					},
+					"target": "个人中心",
+					"name": "个人中心",
+					"pinyin": "GeRenZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "消息中心按钮", "textReg": "^$", "contentReg": "消息中心按钮", "boundsInScreen": [843,54,945,186]
+					},
+					"target": "消息中心",
+					"name": "消息中心",
+					"pinyin": "XiaoXiZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [945,54,1080,186]
+					},
+					"target": "扫一扫",
+					"name": "扫一扫",
+					"pinyin": "SaoYiSao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "单车", "textReg": "单车", "contentReg": "^$", "boundsInScreen": [144,517,216,566]
+					},
+					"target": "单车",
+					"name": "单车",
+					"pinyin": "DanChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "快车", "textReg": "快车", "contentReg": "^$", "boundsInScreen": [864,517,936,566]
+					},
+					"target": "快车",
+					"name": "快车",
+					"pinyin": "KuaiChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "豪华车", "textReg": "豪华车", "contentReg": "^$", "boundsInScreen": [126,832,234,881]
+					},
+					"target": "豪华车",
+					"name": "豪华车",
+					"pinyin": "HaoHuaChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "出租车", "textReg": "出租车", "contentReg": "^$", "boundsInScreen": [846,832,954,881]
+					},
+					"target": "出租车",
+					"name": "出租车",
+					"pinyin": "ChuZuChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "代驾", "textReg": "代驾", "contentReg": "^$", "boundsInScreen": [144,1147,216,1196]
+					},
+					"target": "代驾",
+					"name": "代驾",
+					"pinyin": "DaiJia",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "公交", "textReg": "公交", "contentReg": "^$", "boundsInScreen": [504,1147,576,1196]
+					},
+					"target": "公交",
+					"name": "公交",
+					"pinyin": "GongJiao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "顺风车", "textReg": "顺风车", "contentReg": "^$", "boundsInScreen": [846,1147,954,1196]
+					},
+					"target": "顺风车",
+					"name": "顺风车",
+					"pinyin": "ShunFengChe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "出租车",
+			"pageName": "出租车",
+			"pagePinyin": "ChuZuChe",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "现在", "textReg": "现在", "contentReg": "^$", "boundsInScreen": [369,1355,525,1445]
+				},
+				{
+					"text": "预约", "textReg": "预约", "contentReg": "^$", "boundsInScreen": [555,1355,711,1445]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "个人中心", "textReg": "^$", "contentReg": "个人中心", "boundsInScreen": [33,78,117,162]
+					},
+					"target": "个人中心",
+					"name": "个人中心",
+					"pinyin": "GeRenZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "消息中心按钮", "textReg": "^$", "contentReg": "消息中心按钮", "boundsInScreen": [843,54,945,186]
+					},
+					"target": "消息中心",
+					"name": "消息中心",
+					"pinyin": "XiaoXiZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [945,54,1080,186]
+					},
+					"target": "扫一扫",
+					"name": "扫一扫",
+					"pinyin": "SaoYiSao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "全部服务", "textReg": "^$", "contentReg": "全部服务", "boundsInScreen": [960,198,1068,306]
+					},
+					"target": "全部服务",
+					"name": "全部服务",
+					"pinyin": "QuanBuFuWu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "现在", "textReg": "现在", "contentReg": "^$", "boundsInScreen": [369,1355,525,1445]
+					},
+					"target": "现在",
+					"name": "现在",
+					"pinyin": "XianZai",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "预约", "textReg": "预约", "contentReg": "^$", "boundsInScreen": [555,1355,711,1445]
+					},
+					"target": "预约",
+					"name": "预约",
+					"pinyin": "YuYue",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "代驾",
+			"pageName": "代驾",
+			"pagePinyin": "DaiJia",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "日常代驾", "textReg": "日常代驾", "contentReg": "^$", "boundsInScreen": [168,1355,396,1445]
+				},
+				{
+					"text": "包时代驾", "textReg": "包时代驾", "contentReg": "^$", "boundsInScreen": [426,1355,654,1445]
+				},
+				{
+					"text": "车主服务", "textReg": "车主服务", "contentReg": "^$", "boundsInScreen": [684,1355,912,1445]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "个人中心", "textReg": "^$", "contentReg": "个人中心", "boundsInScreen": [33,78,117,162]
+					},
+					"target": "个人中心",
+					"name": "个人中心",
+					"pinyin": "GeRenZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "消息中心按钮", "textReg": "^$", "contentReg": "消息中心按钮", "boundsInScreen": [843,54,945,186]
+					},
+					"target": "消息中心",
+					"name": "消息中心",
+					"pinyin": "XiaoXiZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [945,54,1080,186]
+					},
+					"target": "扫一扫",
+					"name": "扫一扫",
+					"pinyin": "SaoYiSao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "全部服务", "textReg": "^$", "contentReg": "全部服务", "boundsInScreen": [960,198,1068,306]
+					},
+					"target": "全部服务",
+					"name": "全部服务",
+					"pinyin": "QuanBuFuWu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "日常代驾", "textReg": "日常代驾", "contentReg": "^$", "boundsInScreen": [168,1355,396,1445]
+					},
+					"target": "日常代驾",
+					"name": "日常代驾",
+					"pinyin": "RiChangDaiJia",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "包时代驾", "textReg": "包时代驾", "contentReg": "^$", "boundsInScreen": [426,1355,654,1445]
+					},
+					"target": "包时代驾",
+					"name": "包时代驾",
+					"pinyin": "BaoShiDaiJia",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "车主服务", "textReg": "车主服务", "contentReg": "^$", "boundsInScreen": [684,1355,912,1445]
+					},
+					"target": "车主服务",
+					"name": "车主服务",
+					"pinyin": "CheZhuFuWu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "公交",
+			"pageName": "公交",
+			"pagePinyin": "GongJiao",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "搜路线", "textReg": "搜路线", "contentReg": "^$", "boundsInScreen": [66,347,174,396]
+				},
+				{
+					"text": "定制公交", "textReg": "定制公交", "contentReg": "^$", "boundsInScreen": [288,347,432,396]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "个人中心", "textReg": "^$", "contentReg": "个人中心", "boundsInScreen": [33,78,117,162]
+					},
+					"target": "个人中心",
+					"name": "个人中心",
+					"pinyin": "GeRenZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "消息中心按钮", "textReg": "^$", "contentReg": "消息中心按钮", "boundsInScreen": [843,54,945,186]
+					},
+					"target": "消息中心",
+					"name": "消息中心",
+					"pinyin": "XiaoXiZhongXin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [945,54,1080,186]
+					},
+					"target": "扫一扫",
+					"name": "扫一扫",
+					"pinyin": "SaoYiSao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "全部服务", "textReg": "^$", "contentReg": "全部服务", "boundsInScreen": [960,198,1068,306]
+					},
+					"target": "全部服务",
+					"name": "全部服务",
+					"pinyin": "QuanBuFuWu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "查公交", "textReg": "查公交", "contentReg": "^$", "boundsInScreen": [79,821,187,936]
+					},
+					"target": "查公交",
+					"name": "查公交",
+					"pinyin": "ChaGongJiao",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "拥堵路况", "textReg": "拥堵路况", "contentReg": "^$", "boundsInScreen": [264,821,408,936]
+					},
+					"target": "拥堵路况",
+					"name": "拥堵路况",
+					"pinyin": "YongDuLuKuang",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "地铁图", "textReg": "地铁图", "contentReg": "^$", "boundsInScreen": [485,821,593,936]
+					},
+					"target": "地铁图",
+					"name": "地铁图",
+					"pinyin": "DiTieTu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "回家", "textReg": "回家", "contentReg": "^$", "boundsInScreen": [706,821,778,936]
+					},
+					"target": "回家",
+					"name": "回家",
+					"pinyin": "HuiJia",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "去公司", "textReg": "去公司", "contentReg": "^$", "boundsInScreen": [892,821,1000,936]
+					},
+					"target": "去公司",
+					"name": "去公司",
+					"pinyin": "QuGongSi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		}
+	]
+}

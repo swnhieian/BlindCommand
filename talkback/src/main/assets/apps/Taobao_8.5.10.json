@@ -1,755 +1,1444 @@
 {
-	"meta": {
-		"packageName": "com.taobao.taobao",
-		"appName": "手机淘宝",
-		"appPinyin": "ShouJiTaoBao",
-		"resolution": [1080, 1920]
-	},
-	"data": [
-		{
-			"pageId": "淘",
-			"pageName": "淘",
-			"pagePinyin": "Tao",
-			"canDirectReach": true,
-			"features": [
-				{
-					"text": "扫一扫", "textReg": "扫一扫", "contentReg": "^$", "boundsInScreen": [33,141,123,182]
-				},
-				{
-					"text": "会员码", "textReg": "会员码", "contentReg": "^$", "boundsInScreen": [957,141,1047,182]
-				}
-			],
-			"buttons": [
-				{
-					"path": {
-						"text": "跳转到猜你喜欢", "textReg": "^$", "contentReg": "跳转到猜你喜欢", "boundsInScreen": [48,1788,168,1908]
-					},
-					"target": "淘",
-					"name": "淘",
-					"pinyin": "Tao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "微淘", "textReg": "^$", "contentReg": "微淘", "boundsInScreen": [216,1752,432,1920]
-					},
-					"target": "微淘",
-					"name": "微淘",
-					"pinyin": "WeiTao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "消息", "textReg": "^$", "contentReg": "消息", "boundsInScreen": [432,1752,648,1920]
-					},
-					"target": "消息",
-					"name": "消息",
-					"pinyin": "XiaoXi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "购物车", "textReg": "^$", "contentReg": "购物车", "boundsInScreen": [648,1752,864,1920]
-					},
-					"target": "购物车",
-					"name": "购物车",
-					"pinyin": "GouWuChe",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "我的淘宝", "textReg": "^$", "contentReg": "我的淘宝", "boundsInScreen": [864,1752,1080,1920]
-					},
-					"target": "我的淘宝",
-					"name": "我的淘宝",
-					"pinyin": "WoDeTaoBao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "扫一扫", "textReg": "扫一扫", "contentReg": "^$", "boundsInScreen": [33,141,123,182]
-					},
-					"target": "扫一扫",
-					"name": "扫一扫",
-					"pinyin": "SaoYiSao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "끽", "textReg": "끽", "contentReg": "搜索", "boundsInScreen": [180,76,246,175]
-					},
-					"target": "搜索",
-					"name": "搜索",
-					"pinyin": "SouSuo",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "天猫", "textReg": "天猫", "contentReg": "天猫", "boundsInScreen": [29,777,205,820]
-					},
-					"target": "天猫",
-					"name": "天猫",
-					"pinyin": "TianMao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "聚划算", "textReg": "聚划算", "contentReg": "聚划算", "boundsInScreen": [241,777,417,820]
-					},
-					"target": "聚划算",
-					"name": "聚划算",
-					"pinyin": "JuHuaSuan",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "天猫国际", "textReg": "天猫国际", "contentReg": "天猫国际", "boundsInScreen": [453,777,629,820]
-					},
-					"target": "天猫国际",
-					"name": "天猫国际",
-					"pinyin": "TianMaoGuoJi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "饿了么", "textReg": "饿了么", "contentReg": "饿了么", "boundsInScreen": [665,777,841,820]
-					},
-					"target": "饿了么",
-					"name": "饿了么",
-					"pinyin": "ELeMe",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "天猫超市", "textReg": "天猫超市", "contentReg": "天猫超市", "boundsInScreen": [877,777,1053,820]
-					},
-					"target": "天猫超市",
-					"name": "天猫超市",
-					"pinyin": "TianMaoChaoShi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				}
-			]
-		},
-		{
-			"pageId": "扫一扫",
-			"pageName": "扫一扫",
-			"pagePinyin": "SaoYiSao",
-			"canDirectReach": true,
-			"features": [
-				{
-					"text": "扫一扫", "textReg": "扫一扫", "contentReg": "^$", "boundsInScreen": [418,1499,663,1649]
-				},
-				{
-					"text": "拍立淘", "textReg": "拍立淘", "contentReg": "^$", "boundsInScreen": [663,1499,908,1649]
-				}
-			],
-			"buttons": [
-				{
-					"path": {
-						"text": "AR BUY+", "textReg": "AR BUY+", "contentReg": "^$", "boundsInScreen": [173,1499,418,1649]
-					},
-					"target": "AR BUY+",
-					"name": "AR BUY+",
-					"pinyin": "AR BUY+",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "扫一扫", "textReg": "扫一扫", "contentReg": "^$", "boundsInScreen": [418,1499,663,1649]
-					},
-					"target": "扫一扫",
-					"name": "扫一扫",
-					"pinyin": "SaoYiSao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "拍立淘", "textReg": "拍立淘", "contentReg": "^$", "boundsInScreen": [663,1499,908,1649]
-					},
-					"target": "拍立淘",
-					"name": "拍立淘",
-					"pinyin": "PaiLiTao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				}
-			]
-		},
-		{
-			"pageId": "商品信息",
-			"pageName": "商品信息",
-			"pagePinyin": "ShangPinXinXi",
-			"canDirectReach": true,
-			"features": [
-				{
-					"text": "加入购物车", "textReg": "加入购物车", "contentReg": "^$", "boundsInScreen": [395,1788,719,1908]
-				},
-				{
-					"text": "立即购买", "textReg": "立即购买", "contentReg": "^$", "boundsInScreen": [719,1788,1043,1908]
-				}
-			],
-			"buttons": [
-				{
-					"path": {
-						"text": "加入购物车", "textReg": "加入购物车", "contentReg": "^$", "boundsInScreen": [395,1788,719,1908]
-					},
-					"target": "加入购物车",
-					"name": "加入购物车",
-					"pinyin": "JiaRuGouWuChe",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "立即购买", "textReg": "立即购买", "contentReg": "^$", "boundsInScreen": [719,1788,1043,1908]
-					},
-					"target": "立即购买",
-					"name": "立即购买",
-					"pinyin": "LiJiGouMai",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "店铺", "textReg": "店铺", "contentReg": "店铺", "boundsInScreen": [35,1865,95,1900]
-					},
-					"target": "店铺",
-					"name": "店铺",
-					"pinyin": "DianPu",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "客服", "textReg": "客服", "contentReg": "客服", "boundsInScreen": [167,1865,227,1900]
-					},
-					"target": "客服",
-					"name": "客服",
-					"pinyin": "KeFu",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "收藏", "textReg": "收藏", "contentReg": "^$", "boundsInScreen": [299,1865,359,1900]
-					},
-					"target": "收藏",
-					"name": "收藏",
-					"pinyin": "ShouCang",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				}
-			]
-		},
-		{
-			"pageId": "微淘",
-			"pageName": "微淘",
-			"pagePinyin": "WeiTao",
-			"canDirectReach": true,
-			"features": [
-				{
-					"text": "끽", "textReg": "끽", "contentReg": "끽", "boundsInScreen": [862,77,931,146]
-				}
-			],
-			"buttons": [
-				{
-					"path": {
-						"text": "跳转到猜你喜欢", "textReg": "^$", "contentReg": "跳转到猜你喜欢", "boundsInScreen": [48,1788,168,1908]
-					},
-					"target": "淘",
-					"name": "淘",
-					"pinyin": "Tao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "微淘", "textReg": "^$", "contentReg": "微淘", "boundsInScreen": [216,1752,432,1920]
-					},
-					"target": "微淘",
-					"name": "微淘",
-					"pinyin": "WeiTao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "消息", "textReg": "^$", "contentReg": "消息", "boundsInScreen": [432,1752,648,1920]
-					},
-					"target": "消息",
-					"name": "消息",
-					"pinyin": "XiaoXi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "购物车", "textReg": "^$", "contentReg": "购物车", "boundsInScreen": [648,1752,864,1920]
-					},
-					"target": "购物车",
-					"name": "购物车",
-					"pinyin": "GouWuChe",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "我的淘宝", "textReg": "^$", "contentReg": "我的淘宝", "boundsInScreen": [864,1752,1080,1920]
-					},
-					"target": "我的淘宝",
-					"name": "我的淘宝",
-					"pinyin": "WoDeTaoBao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [0,169,154,267]
-					},
-					"target": "关注",
-					"name": "关注",
-					"pinyin": "GuanZhu",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				}
-			]
-		},
-		{
-			"pageId": "消息",
-			"pageName": "消息",
-			"pagePinyin": "XiaoXi",
-			"canDirectReach": true,
-			"features": [
-				{
-					"text": "消息", "textReg": "消息", "contentReg": "^$", "boundsInScreen": [38,85,158,166]
-				},
-				{
-					"text": "交易物流", "textReg": "交易物流", "contentReg": "^$", "boundsInScreen": [156,521,300,570]
-				}
-			],
-			"buttons": [
-				{
-					"path": {
-						"text": "跳转到猜你喜欢", "textReg": "^$", "contentReg": "跳转到猜你喜欢", "boundsInScreen": [48,1788,168,1908]
-					},
-					"target": "淘",
-					"name": "淘",
-					"pinyin": "Tao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "微淘", "textReg": "^$", "contentReg": "微淘", "boundsInScreen": [216,1752,432,1920]
-					},
-					"target": "微淘",
-					"name": "微淘",
-					"pinyin": "WeiTao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "消息", "textReg": "^$", "contentReg": "消息", "boundsInScreen": [432,1752,648,1920]
-					},
-					"target": "消息",
-					"name": "消息",
-					"pinyin": "XiaoXi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "购物车", "textReg": "^$", "contentReg": "购物车", "boundsInScreen": [648,1752,864,1920]
-					},
-					"target": "购物车",
-					"name": "购物车",
-					"pinyin": "GouWuChe",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "我的淘宝", "textReg": "^$", "contentReg": "我的淘宝", "boundsInScreen": [864,1752,1080,1920]
-					},
-					"target": "我的淘宝",
-					"name": "我的淘宝",
-					"pinyin": "WoDeTaoBao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "交易物流", "textReg": "交易物流", "contentReg": "^$", "boundsInScreen": [156,521,300,570]
-					},
-					"target": "交易物流",
-					"name": "交易物流",
-					"pinyin": "JiaoYiWuLiu",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "通知消息", "textReg": "通知消息", "contentReg": "^$", "boundsInScreen": [468,521,612,570]
-					},
-					"target": "通知消息",
-					"name": "通知消息",
-					"pinyin": "TongZhiXiaoXi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "互动消息", "textReg": "互动消息", "contentReg": "^$", "boundsInScreen": [780,521,924,570]
-					},
-					"target": "互动消息",
-					"name": "互动消息",
-					"pinyin": "HuDongXiaoXi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				}
-			]
-		},
-		{
-			"pageId": "购物车",
-			"pageName": "购物车",
-			"pagePinyin": "GouWuChe",
-			"canDirectReach": true,
-			"features": [
-				{
-					"text": "购物车", "textReg": "购物车", "contentReg": "^$", "boundsInScreen": [36,84,216,165]
-				},
-				{
-					"text": "管理", "textReg": "管理", "contentReg": "^$", "boundsInScreen": [924,87,1044,195]
-				}
-			],
-			"buttons": [
-				{
-					"path": {
-						"text": "跳转到猜你喜欢", "textReg": "^$", "contentReg": "跳转到猜你喜欢", "boundsInScreen": [48,1788,168,1908]
-					},
-					"target": "淘",
-					"name": "淘",
-					"pinyin": "Tao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "微淘", "textReg": "^$", "contentReg": "微淘", "boundsInScreen": [216,1752,432,1920]
-					},
-					"target": "微淘",
-					"name": "微淘",
-					"pinyin": "WeiTao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "消息", "textReg": "^$", "contentReg": "消息", "boundsInScreen": [432,1752,648,1920]
-					},
-					"target": "消息",
-					"name": "消息",
-					"pinyin": "XiaoXi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "购物车", "textReg": "^$", "contentReg": "购物车", "boundsInScreen": [648,1752,864,1920]
-					},
-					"target": "购物车",
-					"name": "购物车",
-					"pinyin": "GouWuChe",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "我的淘宝", "textReg": "^$", "contentReg": "我的淘宝", "boundsInScreen": [864,1752,1080,1920]
-					},
-					"target": "我的淘宝",
-					"name": "我的淘宝",
-					"pinyin": "WoDeTaoBao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "管理", "textReg": "管理", "contentReg": "^$", "boundsInScreen": [924,87,1044,195]
-					},
-					"target": "管理",
-					"name": "管理",
-					"pinyin": "GuanLi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				}
-			]
-		},
-		{
-			"pageId": "我的淘宝",
-			"pageName": "我的淘宝",
-			"pagePinyin": "WoDeTaoBao",
-			"canDirectReach": true,
-			"features": [
-				{
-					"text": "收藏夹", "textReg": "收藏夹", "contentReg": "^$", "boundsInScreen": [14,396,276,443]
-				},
-				{
-					"text": "我的订单", "textReg": "我的订单", "contentReg": "我的订单", "boundsInScreen": [68,716,228,774]
-				}
-			],
-			"buttons": [
-				{
-					"path": {
-						"text": "跳转到猜你喜欢", "textReg": "^$", "contentReg": "跳转到猜你喜欢", "boundsInScreen": [48,1788,168,1908]
-					},
-					"target": "淘",
-					"name": "淘",
-					"pinyin": "Tao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "微淘", "textReg": "^$", "contentReg": "微淘", "boundsInScreen": [216,1752,432,1920]
-					},
-					"target": "微淘",
-					"name": "微淘",
-					"pinyin": "WeiTao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "消息", "textReg": "^$", "contentReg": "消息", "boundsInScreen": [432,1752,648,1920]
-					},
-					"target": "消息",
-					"name": "消息",
-					"pinyin": "XiaoXi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "购物车", "textReg": "^$", "contentReg": "购物车", "boundsInScreen": [648,1752,864,1920]
-					},
-					"target": "购物车",
-					"name": "购物车",
-					"pinyin": "GouWuChe",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "我的淘宝", "textReg": "^$", "contentReg": "我的淘宝", "boundsInScreen": [864,1752,1080,1920]
-					},
-					"target": "我的淘宝",
-					"name": "我的淘宝",
-					"pinyin": "WoDeTaoBao",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [980,130,1038,188]
-					},
-					"target": "设置",
-					"name": "设置",
-					"pinyin": "SheZhi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "收藏夹", "textReg": "收藏夹", "contentReg": "^$", "boundsInScreen": [14,396,276,443]
-					},
-					"target": "收藏夹",
-					"name": "收藏夹",
-					"pinyin": "ShouCangJia",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "关注店铺", "textReg": "关注店铺", "contentReg": "^$", "boundsInScreen": [276,396,538,443]
-					},
-					"target": "关注店铺",
-					"name": "关注店铺",
-					"pinyin": "GuanZhuDianPu",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "足迹", "textReg": "足迹", "contentReg": "^$", "boundsInScreen": [539,396,801,443]
-					},
-					"target": "足迹",
-					"name": "足迹",
-					"pinyin": "ZuJi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "红包卡券", "textReg": "红包卡券", "contentReg": "^$", "boundsInScreen": [862,396,1002,439]
-					},
-					"target": "红包卡券",
-					"name": "红包卡券",
-					"pinyin": "HongBaoKaQuan",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "待付款", "textReg": "待付款", "contentReg": "^$", "boundsInScreen": [106,951,211,998]
-					},
-					"target": "待付款",
-					"name": "待付款",
-					"pinyin": "DaiFuKuan",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "待发货", "textReg": "待发货", "contentReg": "^$", "boundsInScreen": [297,951,1046,998]
-					},
-					"target": "待发货",
-					"name": "待发货",
-					"pinyin": "DaiFaHuo",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "待收货", "textReg": "待收货", "contentReg": "^$", "boundsInScreen": [493,951,1046,998]
-					},
-					"target": "待收货",
-					"name": "待收货",
-					"pinyin": "DaiShouHuo",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "评价", "textReg": "评价", "contentReg": "^$", "boundsInScreen": [684,951,1046,998]
-					},
-					"target": "评价",
-					"name": "评价",
-					"pinyin": "PingJia",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "退款/售后", "textReg": "退款/售后", "contentReg": "^$", "boundsInScreen": [859,951,1011,998]
-					},
-					"target": "退款/售后",
-					"name": "退款/售后",
-					"pinyin": "GuanLi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				}
-			]
-		},
-		{
-			"pageId": "设置",
-			"pageName": "设置",
-			"pagePinyin": "SheZhi",
-			"canDirectReach": true,
-			"features": [
-				{
-					"text": "设置", "textReg": "设置", "contentReg": "^$", "boundsInScreen": [168,89,276,162]
-				},
-				{
-					"text": "我的收货地址", "textReg": "我的收货地址", "contentReg": "^$", "boundsInScreen": [36,485,324,550]
-				}
-			],
-			"buttons": [
-				{
-					"path": {
-						"text": "我的收货地址", "textReg": "我的收货地址", "contentReg": "^$", "boundsInScreen": [36,485,324,550]
-					},
-					"target": "我的收货地址",
-					"name": "我的收货地址",
-					"pinyin": "WoDeShouHuoDiZhi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "账户与安全", "textReg": "账户与安全", "contentReg": "^$", "boundsInScreen": [36,650,276,715]
-					},
-					"target": "账号与安全",
-					"name": "账号与安全",
-					"pinyin": "ZhangHuYuAnQuan",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "地区设置", "textReg": "地区设置", "contentReg": "^$", "boundsInScreen": [36,815,228,880]
-					},
-					"target": "地区设置",
-					"name": "地区设置",
-					"pinyin": "XiaoXi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "音效与通知", "textReg": "音效与通知", "contentReg": "^$", "boundsInScreen": [36,950,276,1015]
-					},
-					"target": "音效与通知",
-					"name": "音效与通知",
-					"pinyin": "YinXiaoTongZhi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "隐私", "textReg": "隐私", "contentReg": "^$", "boundsInScreen": [36,1085,132,1150]
-					},
-					"target": "隐私",
-					"name": "隐私",
-					"pinyin": "YinSi",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "通用", "textReg": "通用", "contentReg": "^$", "boundsInScreen": [36,1220,132,1285]
-					},
-					"target": "通用",
-					"name": "通用",
-					"pinyin": "TongYong",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				},
-				{
-					"path": {
-						"text": "退出当前账户", "textReg": "退出当前账户", "contentReg": "^$", "boundsInScreen": [0,1776,1080,1920]
-					},
-					"target": "退出当前账户",
-					"name": "退出当前账户",
-					"pinyin": "TuiChuDangQianZhangHu",
-					"needParameter": "false",
-					"canDirectReach": "true"
-				}
-			]
-		}
-	]
+  "meta": {
+    "packageName": "com.taobao.taobao",
+    "appName": "手机淘宝",
+    "appPinyin": "ShouJiTaoBao",
+    "resolution": [
+      1080,
+      1920
+    ]
+  },
+  "data": [
+    {
+      "pageId": "淘",
+      "pageName": "淘",
+      "pagePinyin": "Tao",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "扫一扫",
+          "textReg": "扫一扫",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            33,
+            141,
+            123,
+            182
+          ]
+        },
+        {
+          "text": "会员码",
+          "textReg": "会员码",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            957,
+            141,
+            1047,
+            182
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "跳转到猜你喜欢",
+            "textReg": "^$",
+            "contentReg": "跳转到猜你喜欢",
+            "boundsInScreen": [
+              48,
+              1788,
+              168,
+              1908
+            ]
+          },
+          "target": "淘",
+          "name": "淘",
+          "pinyin": "Tao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "微淘",
+            "textReg": "^$",
+            "contentReg": "微淘",
+            "boundsInScreen": [
+              216,
+              1752,
+              432,
+              1920
+            ]
+          },
+          "target": "微淘",
+          "name": "微淘",
+          "pinyin": "WeiTao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "消息",
+            "textReg": "^$",
+            "contentReg": "消息",
+            "boundsInScreen": [
+              432,
+              1752,
+              648,
+              1920
+            ]
+          },
+          "target": "消息",
+          "name": "消息",
+          "pinyin": "XiaoXi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "购物车",
+            "textReg": "^$",
+            "contentReg": "购物车",
+            "boundsInScreen": [
+              648,
+              1752,
+              864,
+              1920
+            ]
+          },
+          "target": "购物车",
+          "name": "购物车",
+          "pinyin": "GouWuChe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "我的淘宝",
+            "textReg": "^$",
+            "contentReg": "我的淘宝",
+            "boundsInScreen": [
+              864,
+              1752,
+              1080,
+              1920
+            ]
+          },
+          "target": "我的淘宝",
+          "name": "我的淘宝",
+          "pinyin": "WoDeTaoBao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "扫一扫",
+            "textReg": "扫一扫",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              33,
+              141,
+              123,
+              182
+            ]
+          },
+          "target": "扫一扫",
+          "name": "扫一扫",
+          "pinyin": "SaoYiSao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "끽",
+            "textReg": "끽",
+            "contentReg": "搜索",
+            "boundsInScreen": [
+              180,
+              76,
+              246,
+              175
+            ]
+          },
+          "target": "搜索",
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "天猫",
+            "textReg": "天猫",
+            "contentReg": "天猫",
+            "boundsInScreen": [
+              29,
+              777,
+              205,
+              820
+            ]
+          },
+          "target": "天猫",
+          "name": "天猫",
+          "pinyin": "TianMao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "聚划算",
+            "textReg": "聚划算",
+            "contentReg": "聚划算",
+            "boundsInScreen": [
+              241,
+              777,
+              417,
+              820
+            ]
+          },
+          "target": "聚划算",
+          "name": "聚划算",
+          "pinyin": "JuHuaSuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "天猫国际",
+            "textReg": "天猫国际",
+            "contentReg": "天猫国际",
+            "boundsInScreen": [
+              453,
+              777,
+              629,
+              820
+            ]
+          },
+          "target": "天猫国际",
+          "name": "天猫国际",
+          "pinyin": "TianMaoGuoJi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "饿了么",
+            "textReg": "饿了么",
+            "contentReg": "饿了么",
+            "boundsInScreen": [
+              665,
+              777,
+              841,
+              820
+            ]
+          },
+          "target": "饿了么",
+          "name": "饿了么",
+          "pinyin": "ELeMe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "天猫超市",
+            "textReg": "天猫超市",
+            "contentReg": "天猫超市",
+            "boundsInScreen": [
+              877,
+              777,
+              1053,
+              820
+            ]
+          },
+          "target": "天猫超市",
+          "name": "天猫超市",
+          "pinyin": "TianMaoChaoShi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "4"
+    },
+    {
+      "pageId": "扫一扫",
+      "pageName": "扫一扫",
+      "pagePinyin": "SaoYiSao",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "扫一扫",
+          "textReg": "扫一扫",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            418,
+            1499,
+            663,
+            1649
+          ]
+        },
+        {
+          "text": "拍立淘",
+          "textReg": "拍立淘",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            663,
+            1499,
+            908,
+            1649
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "AR BUY+",
+            "textReg": "AR BUY+",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              173,
+              1499,
+              418,
+              1649
+            ]
+          },
+          "target": "AR BUY+",
+          "name": "AR BUY+",
+          "pinyin": "AR BUY+",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "扫一扫",
+            "textReg": "扫一扫",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              418,
+              1499,
+              663,
+              1649
+            ]
+          },
+          "target": "扫一扫",
+          "name": "扫一扫",
+          "pinyin": "SaoYiSao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "拍立淘",
+            "textReg": "拍立淘",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              663,
+              1499,
+              908,
+              1649
+            ]
+          },
+          "target": "拍立淘",
+          "name": "拍立淘",
+          "pinyin": "PaiLiTao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "4"
+    },
+    {
+      "pageId": "商品信息",
+      "pageName": "商品信息",
+      "pagePinyin": "ShangPinXinXi",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "加入购物车",
+          "textReg": "加入购物车",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            395,
+            1788,
+            719,
+            1908
+          ]
+        },
+        {
+          "text": "立即购买",
+          "textReg": "立即购买",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            719,
+            1788,
+            1043,
+            1908
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "加入购物车",
+            "textReg": "加入购物车",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              395,
+              1788,
+              719,
+              1908
+            ]
+          },
+          "target": "加入购物车",
+          "name": "加入购物车",
+          "pinyin": "JiaRuGouWuChe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "立即购买",
+            "textReg": "立即购买",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              719,
+              1788,
+              1043,
+              1908
+            ]
+          },
+          "target": "立即购买",
+          "name": "立即购买",
+          "pinyin": "LiJiGouMai",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "店铺",
+            "textReg": "店铺",
+            "contentReg": "店铺",
+            "boundsInScreen": [
+              35,
+              1865,
+              95,
+              1900
+            ]
+          },
+          "target": "店铺",
+          "name": "店铺",
+          "pinyin": "DianPu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "客服",
+            "textReg": "客服",
+            "contentReg": "客服",
+            "boundsInScreen": [
+              167,
+              1865,
+              227,
+              1900
+            ]
+          },
+          "target": "客服",
+          "name": "客服",
+          "pinyin": "KeFu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "收藏",
+            "textReg": "收藏",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              299,
+              1865,
+              359,
+              1900
+            ]
+          },
+          "target": "收藏",
+          "name": "收藏",
+          "pinyin": "ShouCang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        }
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "微淘",
+      "pageName": "微淘",
+      "pagePinyin": "WeiTao",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "끽",
+          "textReg": "끽",
+          "contentReg": "끽",
+          "boundsInScreen": [
+            862,
+            77,
+            931,
+            146
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "跳转到猜你喜欢",
+            "textReg": "^$",
+            "contentReg": "跳转到猜你喜欢",
+            "boundsInScreen": [
+              48,
+              1788,
+              168,
+              1908
+            ]
+          },
+          "target": "淘",
+          "name": "淘",
+          "pinyin": "Tao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "微淘",
+            "textReg": "^$",
+            "contentReg": "微淘",
+            "boundsInScreen": [
+              216,
+              1752,
+              432,
+              1920
+            ]
+          },
+          "target": "微淘",
+          "name": "微淘",
+          "pinyin": "WeiTao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "消息",
+            "textReg": "^$",
+            "contentReg": "消息",
+            "boundsInScreen": [
+              432,
+              1752,
+              648,
+              1920
+            ]
+          },
+          "target": "消息",
+          "name": "消息",
+          "pinyin": "XiaoXi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "购物车",
+            "textReg": "^$",
+            "contentReg": "购物车",
+            "boundsInScreen": [
+              648,
+              1752,
+              864,
+              1920
+            ]
+          },
+          "target": "购物车",
+          "name": "购物车",
+          "pinyin": "GouWuChe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "我的淘宝",
+            "textReg": "^$",
+            "contentReg": "我的淘宝",
+            "boundsInScreen": [
+              864,
+              1752,
+              1080,
+              1920
+            ]
+          },
+          "target": "我的淘宝",
+          "name": "我的淘宝",
+          "pinyin": "WoDeTaoBao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "",
+            "textReg": "^$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              0,
+              169,
+              154,
+              267
+            ]
+          },
+          "target": "关注",
+          "name": "关注",
+          "pinyin": "GuanZhu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        }
+      ],
+      "frequency": "3"
+    },
+    {
+      "pageId": "消息",
+      "pageName": "消息",
+      "pagePinyin": "XiaoXi",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "消息",
+          "textReg": "消息",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            38,
+            85,
+            158,
+            166
+          ]
+        },
+        {
+          "text": "交易物流",
+          "textReg": "交易物流",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            156,
+            521,
+            300,
+            570
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "跳转到猜你喜欢",
+            "textReg": "^$",
+            "contentReg": "跳转到猜你喜欢",
+            "boundsInScreen": [
+              48,
+              1788,
+              168,
+              1908
+            ]
+          },
+          "target": "淘",
+          "name": "淘",
+          "pinyin": "Tao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "微淘",
+            "textReg": "^$",
+            "contentReg": "微淘",
+            "boundsInScreen": [
+              216,
+              1752,
+              432,
+              1920
+            ]
+          },
+          "target": "微淘",
+          "name": "微淘",
+          "pinyin": "WeiTao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "消息",
+            "textReg": "^$",
+            "contentReg": "消息",
+            "boundsInScreen": [
+              432,
+              1752,
+              648,
+              1920
+            ]
+          },
+          "target": "消息",
+          "name": "消息",
+          "pinyin": "XiaoXi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "购物车",
+            "textReg": "^$",
+            "contentReg": "购物车",
+            "boundsInScreen": [
+              648,
+              1752,
+              864,
+              1920
+            ]
+          },
+          "target": "购物车",
+          "name": "购物车",
+          "pinyin": "GouWuChe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "我的淘宝",
+            "textReg": "^$",
+            "contentReg": "我的淘宝",
+            "boundsInScreen": [
+              864,
+              1752,
+              1080,
+              1920
+            ]
+          },
+          "target": "我的淘宝",
+          "name": "我的淘宝",
+          "pinyin": "WoDeTaoBao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "交易物流",
+            "textReg": "交易物流",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              156,
+              521,
+              300,
+              570
+            ]
+          },
+          "target": "交易物流",
+          "name": "交易物流",
+          "pinyin": "JiaoYiWuLiu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "通知消息",
+            "textReg": "通知消息",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              468,
+              521,
+              612,
+              570
+            ]
+          },
+          "target": "通知消息",
+          "name": "通知消息",
+          "pinyin": "TongZhiXiaoXi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "互动消息",
+            "textReg": "互动消息",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              780,
+              521,
+              924,
+              570
+            ]
+          },
+          "target": "互动消息",
+          "name": "互动消息",
+          "pinyin": "HuDongXiaoXi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "购物车",
+      "pageName": "购物车",
+      "pagePinyin": "GouWuChe",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "购物车",
+          "textReg": "购物车",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            36,
+            84,
+            216,
+            165
+          ]
+        },
+        {
+          "text": "管理",
+          "textReg": "管理",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            924,
+            87,
+            1044,
+            195
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "跳转到猜你喜欢",
+            "textReg": "^$",
+            "contentReg": "跳转到猜你喜欢",
+            "boundsInScreen": [
+              48,
+              1788,
+              168,
+              1908
+            ]
+          },
+          "target": "淘",
+          "name": "淘",
+          "pinyin": "Tao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "微淘",
+            "textReg": "^$",
+            "contentReg": "微淘",
+            "boundsInScreen": [
+              216,
+              1752,
+              432,
+              1920
+            ]
+          },
+          "target": "微淘",
+          "name": "微淘",
+          "pinyin": "WeiTao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "消息",
+            "textReg": "^$",
+            "contentReg": "消息",
+            "boundsInScreen": [
+              432,
+              1752,
+              648,
+              1920
+            ]
+          },
+          "target": "消息",
+          "name": "消息",
+          "pinyin": "XiaoXi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "购物车",
+            "textReg": "^$",
+            "contentReg": "购物车",
+            "boundsInScreen": [
+              648,
+              1752,
+              864,
+              1920
+            ]
+          },
+          "target": "购物车",
+          "name": "购物车",
+          "pinyin": "GouWuChe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "我的淘宝",
+            "textReg": "^$",
+            "contentReg": "我的淘宝",
+            "boundsInScreen": [
+              864,
+              1752,
+              1080,
+              1920
+            ]
+          },
+          "target": "我的淘宝",
+          "name": "我的淘宝",
+          "pinyin": "WoDeTaoBao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "管理",
+            "textReg": "管理",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              924,
+              87,
+              1044,
+              195
+            ]
+          },
+          "target": "管理",
+          "name": "管理",
+          "pinyin": "GuanLi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        }
+      ],
+      "frequency": "2"
+    },
+    {
+      "pageId": "我的淘宝",
+      "pageName": "我的淘宝",
+      "pagePinyin": "WoDeTaoBao",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "收藏夹",
+          "textReg": "收藏夹",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            14,
+            396,
+            276,
+            443
+          ]
+        },
+        {
+          "text": "我的订单",
+          "textReg": "我的订单",
+          "contentReg": "我的订单",
+          "boundsInScreen": [
+            68,
+            716,
+            228,
+            774
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "跳转到猜你喜欢",
+            "textReg": "^$",
+            "contentReg": "跳转到猜你喜欢",
+            "boundsInScreen": [
+              48,
+              1788,
+              168,
+              1908
+            ]
+          },
+          "target": "淘",
+          "name": "淘",
+          "pinyin": "Tao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "微淘",
+            "textReg": "^$",
+            "contentReg": "微淘",
+            "boundsInScreen": [
+              216,
+              1752,
+              432,
+              1920
+            ]
+          },
+          "target": "微淘",
+          "name": "微淘",
+          "pinyin": "WeiTao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "消息",
+            "textReg": "^$",
+            "contentReg": "消息",
+            "boundsInScreen": [
+              432,
+              1752,
+              648,
+              1920
+            ]
+          },
+          "target": "消息",
+          "name": "消息",
+          "pinyin": "XiaoXi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "购物车",
+            "textReg": "^$",
+            "contentReg": "购物车",
+            "boundsInScreen": [
+              648,
+              1752,
+              864,
+              1920
+            ]
+          },
+          "target": "购物车",
+          "name": "购物车",
+          "pinyin": "GouWuChe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "我的淘宝",
+            "textReg": "^$",
+            "contentReg": "我的淘宝",
+            "boundsInScreen": [
+              864,
+              1752,
+              1080,
+              1920
+            ]
+          },
+          "target": "我的淘宝",
+          "name": "我的淘宝",
+          "pinyin": "WoDeTaoBao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "",
+            "textReg": "^$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              980,
+              130,
+              1038,
+              188
+            ]
+          },
+          "target": "设置",
+          "name": "设置",
+          "pinyin": "SheZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "收藏夹",
+            "textReg": "收藏夹",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              14,
+              396,
+              276,
+              443
+            ]
+          },
+          "target": "收藏夹",
+          "name": "收藏夹",
+          "pinyin": "ShouCangJia",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "关注店铺",
+            "textReg": "关注店铺",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              276,
+              396,
+              538,
+              443
+            ]
+          },
+          "target": "关注店铺",
+          "name": "关注店铺",
+          "pinyin": "GuanZhuDianPu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "足迹",
+            "textReg": "足迹",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              539,
+              396,
+              801,
+              443
+            ]
+          },
+          "target": "足迹",
+          "name": "足迹",
+          "pinyin": "ZuJi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "红包卡券",
+            "textReg": "红包卡券",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              862,
+              396,
+              1002,
+              439
+            ]
+          },
+          "target": "红包卡券",
+          "name": "红包卡券",
+          "pinyin": "HongBaoKaQuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "待付款",
+            "textReg": "待付款",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              106,
+              951,
+              211,
+              998
+            ]
+          },
+          "target": "待付款",
+          "name": "待付款",
+          "pinyin": "DaiFuKuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "待发货",
+            "textReg": "待发货",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              297,
+              951,
+              1046,
+              998
+            ]
+          },
+          "target": "待发货",
+          "name": "待发货",
+          "pinyin": "DaiFaHuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "待收货",
+            "textReg": "待收货",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              493,
+              951,
+              1046,
+              998
+            ]
+          },
+          "target": "待收货",
+          "name": "待收货",
+          "pinyin": "DaiShouHuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "评价",
+            "textReg": "评价",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              684,
+              951,
+              1046,
+              998
+            ]
+          },
+          "target": "评价",
+          "name": "评价",
+          "pinyin": "PingJia",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "退款/售后",
+            "textReg": "退款/售后",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              859,
+              951,
+              1011,
+              998
+            ]
+          },
+          "target": "退款/售后",
+          "name": "退款/售后",
+          "pinyin": "GuanLi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        }
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "设置",
+      "pageName": "设置",
+      "pagePinyin": "SheZhi",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "设置",
+          "textReg": "设置",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            168,
+            89,
+            276,
+            162
+          ]
+        },
+        {
+          "text": "我的收货地址",
+          "textReg": "我的收货地址",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            36,
+            485,
+            324,
+            550
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "我的收货地址",
+            "textReg": "我的收货地址",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              36,
+              485,
+              324,
+              550
+            ]
+          },
+          "target": "我的收货地址",
+          "name": "我的收货地址",
+          "pinyin": "WoDeShouHuoDiZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "账户与安全",
+            "textReg": "账户与安全",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              36,
+              650,
+              276,
+              715
+            ]
+          },
+          "target": "账号与安全",
+          "name": "账号与安全",
+          "pinyin": "ZhangHuYuAnQuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "地区设置",
+            "textReg": "地区设置",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              36,
+              815,
+              228,
+              880
+            ]
+          },
+          "target": "地区设置",
+          "name": "地区设置",
+          "pinyin": "XiaoXi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "音效与通知",
+            "textReg": "音效与通知",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              36,
+              950,
+              276,
+              1015
+            ]
+          },
+          "target": "音效与通知",
+          "name": "音效与通知",
+          "pinyin": "YinXiaoTongZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "隐私",
+            "textReg": "隐私",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              36,
+              1085,
+              132,
+              1150
+            ]
+          },
+          "target": "隐私",
+          "name": "隐私",
+          "pinyin": "YinSi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "通用",
+            "textReg": "通用",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              36,
+              1220,
+              132,
+              1285
+            ]
+          },
+          "target": "通用",
+          "name": "通用",
+          "pinyin": "TongYong",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "退出当前账户",
+            "textReg": "退出当前账户",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              0,
+              1776,
+              1080,
+              1920
+            ]
+          },
+          "target": "退出当前账户",
+          "name": "退出当前账户",
+          "pinyin": "TuiChuDangQianZhangHu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "4"
+    }
+  ]
 }

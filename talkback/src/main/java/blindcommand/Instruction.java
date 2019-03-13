@@ -20,4 +20,9 @@ public class Instruction {
     public boolean hasSameCommand(Instruction ins){
         return this.pinyin.equals(ins.pinyin);
     }
+
+    @Override
+    public String toString() {
+        return id+","+name+","+pinyin+","+frequency+","+meta.toString();
+    }
 }

@@ -44,7 +44,7 @@ public class Log4jConfigure {
             //以下为通用配置
             logConfigurator.setImmediateFlush(true);
             logConfigurator.setRootLevel(Level.DEBUG);
-            logConfigurator.setFilePattern("%d\t%p/%c:\t%m%n");
+            logConfigurator.setFilePattern("%d{ABSOLUTE}\t%p\t%c\t%m%n");
             logConfigurator.configure();
             android.util.Log.e(TAG, "Log4j config finish");
             System.out.println(222);

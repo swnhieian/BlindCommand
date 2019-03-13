@@ -34,6 +34,7 @@ import static android.content.Context.ACTIVITY_SERVICE;
 import static android.content.Context.KEYGUARD_SERVICE;
 
 public class Executor {
+    final String LOGTAG = "Executor";
     private AccessibilityService service;
     private HashMap<String, NodeGraph> graphs;
     public Executor(AccessibilityService service){
@@ -116,6 +117,7 @@ public class Executor {
     public void executeSteps(final List<Edge> edges) {
         if (edges == null) {
             endExecute();
+            Log.i(LOGTAG, "endExecute");
             return;
         }
         Handler handler = new Handler();
@@ -135,6 +137,7 @@ public class Executor {
                 }
                 if (index == edges.size()) {
                     endExecute();
+                    Log.i(LOGTAG, "endExecute");
                 }
             }
         }, 0);
@@ -308,8 +311,10 @@ public class Executor {
         return false;
     }
     public void execute(final Instruction instruction) {
+        Log.i(LOGTAG, "startExecute:"+instruction.toString());
         if (instruction.meta.packageName.equals("System")) {
             executeSystemFunctions(instruction);
+            Log.i(LOGTAG, "endExecute:" + "system function");
             return;
         }
 
@@ -373,6 +378,7 @@ public class Executor {
     public void execute(Instruction ins, NodeGraph graph) {
         String commandId = ins.id;
         if (commandId == "null") {
+            Log.i(LOGTAG, "endExecute:null command");
             return;
         }
         System.out.println("execute: " + commandId);

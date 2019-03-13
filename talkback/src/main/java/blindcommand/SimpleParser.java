@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 public class SimpleParser implements  Parser {
+    final String LOGTAG = "SimpleParser";
     HashMap<Character, Key> allKeys;
     ArrayList<TouchPoint> touchPoints;
     List<Entry> candidateList;
@@ -27,6 +28,7 @@ public class SimpleParser implements  Parser {
         candidateList = new ArrayList<>();
     }
     public void addTouchPoint(long time, float x, float y) {
+        Log.i(LOGTAG, "touchPoint:"+x+"," +y);
         touchPoints.add(new TouchPoint(time, x, y));
         parse();
     }
@@ -56,10 +58,10 @@ public class SimpleParser implements  Parser {
         List<Entry> set = new ArrayList<>();
         for (String ins : instructionSet.dict) {
             String[] insArray = ins.split("\\|");
-            for(String s: insArray){
-                System.out.print(s);
-            }
-            System.out.println("");
+//            for(String s: insArray){
+//                System.out.print(s);
+//            }
+//            System.out.println("");
             if (insArray[0].length() >= touchPoints.size()) {
                 set.add(new Entry(insArray[0], instructionSet.instructions.get(ins), 0.0, insArray[1].equals("2") || insArray[1].equals("3")));
             }

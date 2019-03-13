@@ -1,0 +1,654 @@
+{
+	"meta": {
+		"packageName": "me.ele",
+		"appName": "饿了么",
+		"appPinyin": "ELeMe",
+		"resolution": [1080, 1920]
+	},
+	"data": [
+		{
+			"pageId": "外卖",
+			"pageName": "外卖",
+			"pagePinyin": "WaiMai",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "外卖", "textReg": "外卖", "contentReg": "^$", "boundsInScreen": [0,1866,270,1920]
+				},
+				{
+					"text": "扫码", "textReg": "扫码", "contentReg": "^$", "boundsInScreen": [702,149,861,210]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "外卖", "textReg": "^$", "contentReg": "外卖", "boundsInScreen": [60,1716,210,1866]
+					},
+					"target": "外卖",
+					"name": "外卖",
+					"pinyin": "WaiMai",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "发现", "textReg": "^$", "contentReg": "发现", "boundsInScreen": [330,1716,480,1866]
+					},
+					"target": "超市",
+					"name": "超市",
+					"pinyin": "ChaoShi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "订单", "textReg": "^$", "contentReg": "订单", "boundsInScreen": [600,1716,750,1866]
+					},
+					"target": "订单",
+					"name": "订单",
+					"pinyin": "DingDan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "我的", "textReg": "^$", "contentReg": "我的", "boundsInScreen": [870,1716,1020,1866]
+					},
+					"target": "我的",
+					"name": "我的",
+					"pinyin": "WoDe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "扫码", "textReg": "扫码", "contentReg": "^$", "boundsInScreen": [702,149,861,210]
+					},
+					"target": "扫码",
+					"name": "扫码",
+					"pinyin": "SaoMa",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "搜索商家、商品名称", "textReg": "搜索商家、商品名称", "contentReg": "^$", "boundsInScreen": [406,276,730,384]
+					},
+					"target": "搜索",
+					"name": "搜索",
+					"pinyin": "SouSuo",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "美食", "textReg": "美食", "contentReg": "^$", "boundsInScreen": [84,897,156,946]
+					},
+					"target": "美食",
+					"name": "美食",
+					"pinyin": "MeiShi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "超市",
+			"pageName": "超市",
+			"pagePinyin": "ChaoShi",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "要啥有啥 好货速达", "textReg": "^$", "contentReg": "要啥有啥 好货速达", "boundsInScreen": [33,189,1047,231]
+				},
+				{
+					"text": "超市优选", "textReg": "^$", "contentReg": "超市优选", "boundsInScreen": [825,102,1035,174]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "外卖", "textReg": "^$", "contentReg": "外卖", "boundsInScreen": [60,1716,210,1866]
+					},
+					"target": "外卖",
+					"name": "外卖",
+					"pinyin": "WaiMai",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "发现", "textReg": "^$", "contentReg": "发现", "boundsInScreen": [330,1716,480,1866]
+					},
+					"target": "超市",
+					"name": "超市",
+					"pinyin": "ChaoShi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "订单", "textReg": "^$", "contentReg": "订单", "boundsInScreen": [600,1716,750,1866]
+					},
+					"target": "订单",
+					"name": "订单",
+					"pinyin": "DingDan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "我的", "textReg": "^$", "contentReg": "我的", "boundsInScreen": [870,1716,1020,1866]
+					},
+					"target": "我的",
+					"name": "我的",
+					"pinyin": "WoDe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "输入商家、商品名称", "textReg": "^$", "contentReg": "输入商家、商品名称", "boundsInScreen": [411,294,726,342]
+					},
+					"target": "搜索",
+					"name": "搜索",
+					"pinyin": "SouSuo",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "超市便利", "textReg": "^$", "contentReg": "超市便利", "boundsInScreen": [54,978,195,1020]
+					},
+					"target": "超市便利",
+					"name": "超市便利",
+					"pinyin": "ChaoShiBianLi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "蔬菜生鲜", "textReg": "^$", "contentReg": "蔬菜生鲜", "boundsInScreen": [468,978,609,1020]
+					},
+					"target": "蔬菜生鲜",
+					"name": "蔬菜生鲜",
+					"pinyin": "ShuCaiShengXian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "订单",
+			"pageName": "订单",
+			"pagePinyin": "DingDan",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "其他", "textReg": "其他", "contentReg": "^$", "boundsInScreen": [924,105,1044,170]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "外卖", "textReg": "^$", "contentReg": "外卖", "boundsInScreen": [60,1716,210,1866]
+					},
+					"target": "外卖",
+					"name": "外卖",
+					"pinyin": "WaiMai",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "发现", "textReg": "^$", "contentReg": "发现", "boundsInScreen": [330,1716,480,1866]
+					},
+					"target": "超市",
+					"name": "超市",
+					"pinyin": "ChaoShi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "订单", "textReg": "^$", "contentReg": "订单", "boundsInScreen": [600,1716,750,1866]
+					},
+					"target": "订单",
+					"name": "订单",
+					"pinyin": "DingDan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "我的", "textReg": "^$", "contentReg": "我的", "boundsInScreen": [870,1716,1020,1866]
+					},
+					"target": "我的",
+					"name": "我的",
+					"pinyin": "WoDe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "其他", "textReg": "其他", "contentReg": "^$", "boundsInScreen": [924,105,1044,170]
+					},
+					"target": "其他",
+					"name": "其他",
+					"pinyin": "QiTa",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "我的",
+			"pageName": "我的",
+			"pagePinyin": "WoDe",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "我的", "textReg": "我的", "contentReg": "^$", "boundsInScreen": [48,101,156,174]
+				},
+				{
+					"text": "我的收藏", "textReg": "我的收藏", "contentReg": "^$", "boundsInScreen": [150,1129,342,1194]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "外卖", "textReg": "^$", "contentReg": "外卖", "boundsInScreen": [60,1716,210,1866]
+					},
+					"target": "外卖",
+					"name": "外卖",
+					"pinyin": "WaiMai",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "发现", "textReg": "^$", "contentReg": "发现", "boundsInScreen": [330,1716,480,1866]
+					},
+					"target": "超市",
+					"name": "超市",
+					"pinyin": "ChaoShi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "订单", "textReg": "^$", "contentReg": "订单", "boundsInScreen": [600,1716,750,1866]
+					},
+					"target": "订单",
+					"name": "订单",
+					"pinyin": "DingDan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "我的", "textReg": "^$", "contentReg": "我的", "boundsInScreen": [870,1716,1020,1866]
+					},
+					"target": "我的",
+					"name": "我的",
+					"pinyin": "WoDe",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "设置", "textReg": "^$", "contentReg": "设置", "boundsInScreen": [936,66,1080,210]
+					},
+					"target": "设置",
+					"name": "设置",
+					"pinyin": "SheZhi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "美食",
+			"pageName": "美食",
+			"pagePinyin": "MeiShi",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "美食", "textReg": "美食", "contentReg": "^$", "boundsInScreen": [216,101,324,174]
+				},
+				{
+					"text": "综合排序", "textReg": "综合排序", "contentReg": "^$", "boundsInScreen": [30,370,255,427]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "转到上一层级", "textReg": "^$", "contentReg": "转到上一层级", "boundsInScreen": [0,54,168,222]
+					},
+					"target": "外卖",
+					"name": "返回",
+					"pinyin": "FanHui",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "全部", "textReg": "全部", "contentReg": "^$", "boundsInScreen": [66,253,150,310]
+					},
+					"target": "全部",
+					"name": "全部",
+					"pinyin": "QuanBu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "综合排序", "textReg": "综合排序", "contentReg": "^$", "boundsInScreen": [30,370,255,427]
+					},
+					"target": "综合排序",
+					"name": "综合排序",
+					"pinyin": "ZongHePaiXu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "距离", "textReg": "距离", "contentReg": "^$", "boundsInScreen": [327,342,459,456]
+					},
+					"target": "距离",
+					"name": "距离",
+					"pinyin": "JuLi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "销量", "textReg": "销量", "contentReg": "^$", "boundsInScreen": [507,342,639,456]
+					},
+					"target": "销量",
+					"name": "销量",
+					"pinyin": "XiaoLiang",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "筛选", "textReg": "筛选", "contentReg": "^$", "boundsInScreen": [897,370,981,427]
+					},
+					"target": "筛选",
+					"name": "筛选",
+					"pinyin": "ShaiXuan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "卖场便利",
+			"pageName": "卖场便利",
+			"pagePinyin": "MaiChangBianLi",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "卖场便利", "textReg": "^$", "contentReg": "卖场便利", "boundsInScreen": [0,105,1080,168]
+				},
+				{
+					"text": "为你精选", "textReg": "^$", "contentReg": "为你精选", "boundsInScreen": [42,336,207,393]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "为你精选", "textReg": "^$", "contentReg": "为你精选", "boundsInScreen": [42,336,207,393]
+					},
+					"target": "为你精选",
+					"name": "为你精选",
+					"pinyin": "WeiNiJingXuan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "超市", "textReg": "^$", "contentReg": "超市", "boundsInScreen": [258,336,342,393]
+					},
+					"target": "超市",
+					"name": "超市",
+					"pinyin": "ChaoShi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "便利店", "textReg": "^$", "contentReg": "便利店", "boundsInScreen": [396,336,519,393]
+					},
+					"target": "便利店",
+					"name": "便利店",
+					"pinyin": "BianLiDian",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "水果",
+			"pageName": "水果",
+			"pagePinyin": "ShuiGuo",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "水果", "textReg": "^$", "contentReg": "水果", "boundsInScreen": [0,105,1080,168]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "为你精选", "textReg": "^$", "contentReg": "为你精选", "boundsInScreen": [42,336,207,393]
+					},
+					"target": "为你精选",
+					"name": "为你精选",
+					"pinyin": "WeiNiJingXuan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "草莓", "textReg": "^$", "contentReg": "草莓", "boundsInScreen": [438,336,519,393]
+					},
+					"target": "草莓",
+					"name": "草莓",
+					"pinyin": "CaoMei",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "苹果", "textReg": "^$", "contentReg": "苹果", "boundsInScreen": [849,336,930,393]
+					},
+					"target": "苹果",
+					"name": "苹果",
+					"pinyin": "PingGuo",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "甜品饮品",
+			"pageName": "甜品饮品",
+			"pagePinyin": "TianPinYinPin",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "甜品饮品", "textReg": "甜品饮品", "contentReg": "^$", "boundsInScreen": [216,101,432,174]
+				},
+				{
+					"text": "奶茶果汁", "textReg": "奶茶果汁", "contentReg": "^$", "boundsInScreen": [252,253,420,310]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "转到上一层级", "textReg": "^$", "contentReg": "转到上一层级", "boundsInScreen": [0,54,168,222]
+					},
+					"target": "外卖",
+					"name": "返回",
+					"pinyin": "FanHui",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "全部", "textReg": "全部", "contentReg": "^$", "boundsInScreen": [66,253,150,310]
+					},
+					"target": "全部",
+					"name": "全部",
+					"pinyin": "QuanBu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "奶茶果汁", "textReg": "奶茶果汁", "contentReg": "^$", "boundsInScreen": [252,253,420,310]
+					},
+					"target": "奶茶果汁",
+					"name": "奶茶果汁",
+					"pinyin": "NaiChaGuoZhi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "甜品", "textReg": "甜品", "contentReg": "^$", "boundsInScreen": [522,253,606,310]
+					},
+					"target": "甜品",
+					"name": "甜品",
+					"pinyin": "TianPin",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "咖啡", "textReg": "咖啡", "contentReg": "^$", "boundsInScreen": [738,253,822,310]
+					},
+					"target": "咖啡",
+					"name": "咖啡",
+					"pinyin": "KaFei",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		},
+		{
+			"pageId": "商家",
+			"pageName": "商家",
+			"pagePinyin": "ShangJia",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "点餐", "textReg": "点餐", "contentReg": "^$", "boundsInScreen": [192,810,282,863]
+				},
+				{
+					"text": "商家", "textReg": "商家", "contentReg": "^$", "boundsInScreen": [798,810,888,863]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "点餐", "textReg": "点餐", "contentReg": "^$", "boundsInScreen": [192,810,282,863]
+					},
+					"target": "点餐",
+					"name": "点餐",
+					"pinyin": "DianCan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "评价", "textReg": "评价", "contentReg": "^$", "boundsInScreen": [495,810,585,863]
+					},
+					"target": "评价",
+					"name": "评价",
+					"pinyin": "PingJia",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "商家", "textReg": "商家", "contentReg": "^$", "boundsInScreen": [798,810,888,863]
+					},
+					"target": "商家",
+					"name": "商家",
+					"pinyin": "ShangJia",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}		
+			]
+		},
+		{
+			"pageId": "设置",
+			"pageName": "设置",
+			"pagePinyin": "SheZhi",
+			"canDirectReach": true,
+			"features": [
+				{
+					"text": "设置", "textReg": "设置", "contentReg": "^$", "boundsInScreen": [489,104,591,172]
+				},
+				{
+					"text": "账户安全", "textReg": "账户安全", "contentReg": "^$", "boundsInScreen": [39,309,633,374]
+				}
+			],
+			"buttons": [
+				{
+					"path": {
+						"text": "转到上一层级", "textReg": "^$", "contentReg": "转到上一层级", "boundsInScreen": [0,54,168,222]
+					},
+					"target": "我的",
+					"name": "返回",
+					"pinyin": "FanHui",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "账户安全", "textReg": "账户安全", "contentReg": "^$", "boundsInScreen": [39,309,633,374]
+					},
+					"target": "账户安全",
+					"name": "账户安全",
+					"pinyin": "ZhangHuAnQuan",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "通用", "textReg": "通用", "contentReg": "^$", "boundsInScreen": [0,440,1080,632]
+					},
+					"target": "通用",
+					"name": "通用",
+					"pinyin": "TongYong",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "隐私", "textReg": "隐私", "contentReg": "^$", "boundsInScreen": [0,1022,1080,1214]
+					},
+					"target": "隐私",
+					"name": "隐私",
+					"pinyin": "YinSi",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				},
+				{
+					"path": {
+						"text": "退出登录", "textReg": "退出登录", "contentReg": "^$", "boundsInScreen": [0,1410,1080,1602]
+					},
+					"target": "退出登录",
+					"name": "退出登录",
+					"pinyin": "TuiChuDengLu",
+					"needParameter": "false",
+					"canDirectReach": "true"
+				}
+			]
+		}
+	]
+}

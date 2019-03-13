@@ -21,6 +21,7 @@ import blindcommand.speech.SpeechParser;
 import blindcommand.speech.SpeechResult;
 
 public class KbdView extends View{
+    final String LOGTAG = "KbdView";
     public Executor executor;
     public KbdView(Context context) {
         super(context);
@@ -49,6 +50,7 @@ public class KbdView extends View{
     public void performAction(SwipeAction action) {
         tempAction = SwipeAction.No_Action;
         System.out.println("Detect:" + action.toString());
+        Log.i(LOGTAG, "detectAction:" + action.toString());
         ParseResult parseResult;
         switch (action) {
             case SWIPE_LEFT:
@@ -122,6 +124,7 @@ public class KbdView extends View{
         }
     }
     public void readParseResult(ParseResult parseResult){
+        Log.d(LOGTAG, "currentResult:" + parseResult.instruction.toString());
         SoundPlayer.tts((parseResult.readAppFirst ? parseResult.instruction.meta.appName + parseResult.instruction.name : parseResult.instruction.name + parseResult.instruction.meta.appName) + ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
         //SoundPlayer.tts((parseResult.hasSameName ? parseResult.instruction.meta.appName : "" ) + parseResult.instruction.name +
         //        ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
@@ -220,6 +223,7 @@ public class KbdView extends View{
         float x = event.getX();
         float y = event.getY();
         long time = event.getEventTime();
+        Log.d(LOGTAG, "ontouchevent:" + event.toString());
         if (event.getPointerCount() == 2) {
             judgingTwoFingers = true;
             switch (event.getActionMasked()) {
