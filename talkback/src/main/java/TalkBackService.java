@@ -1367,7 +1367,7 @@ public class TalkBackService extends AccessibilityService
       kbdView.setVisibility(View.INVISIBLE);
       enableTouchExploration();
       SoundPlayer.end();
-      kbdView.setParser(Utility.parserType, null);
+      //kbdView.setParser(Utility.parserType, null);
       //disableAccessibilityServices();
     } else {
       kbdView.setParser(Utility.parserType, paras);
