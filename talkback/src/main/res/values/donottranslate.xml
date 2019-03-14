@@ -371,6 +371,8 @@
 
     <!-- Assignable shortcuts -->
     <string name="shortcut_value_unassigned">UNASSIGNED</string>
+    <string name="shortcut_value_start">TALKBACK_START</string>
+    <string name="shortcut_value_end">TALKBACK_END</string>
     <string name="shortcut_value_previous">PREVIOUS</string>
     <string name="shortcut_value_next">NEXT</string>
     <string name="shortcut_value_back">BACK</string>
@@ -512,8 +514,8 @@
     <string name="pref_shortcut_down_and_left_default">@string/shortcut_value_back</string>
     <string name="pref_shortcut_down_and_right_default">@string/shortcut_value_talkback_breakout</string>
     <string name="pref_shortcut_right_and_down_default">@string/shortcut_value_notifications</string>
-    <string name="pref_shortcut_right_and_up_default">@string/shortcut_value_unassigned</string>
-    <string name="pref_shortcut_left_and_down_default">@string/shortcut_value_unassigned</string>
+    <string name="pref_shortcut_right_and_up_default">@string/shortcut_value_start</string>
+    <string name="pref_shortcut_left_and_down_default">@string/shortcut_value_end</string>
     <string name="pref_shortcut_left_and_up_default">@string/shortcut_value_overview</string>
 
     <!-- Fingerprint gesture shortcut default values -->

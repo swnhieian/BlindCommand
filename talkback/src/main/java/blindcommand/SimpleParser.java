@@ -55,6 +55,7 @@ public class SimpleParser implements  Parser {
         return -Math.log(sigma*Math.sqrt(2*Math.PI)) - (x - mu)*(x-mu)/2/sigma/sigma;
     }
     public void parse() {
+        final String packageName = Utility.getPackageName();
         List<Entry> set = new ArrayList<>();
         for (String ins : instructionSet.dict) {
             String[] insArray = ins.split("\\|");
@@ -63,14 +64,22 @@ public class SimpleParser implements  Parser {
 //            }
 //            System.out.println("");
             if (insArray[0].length() >= touchPoints.size()) {
-                set.add(new Entry(insArray[0], instructionSet.instructions.get(ins), 0.0, insArray[1].equals("2") || insArray[1].equals("3")));
+                Instruction instruction = instructionSet.instructions.get(ins);
+                double initial_poss = 0.0;
+                if(instruction.meta.packageName.equals(packageName)){
+                    initial_poss += 6;
+                }
+                if(instruction.meta.packageName.equals("System")){
+                    initial_poss += 2;
+                }
+                set.add(new Entry(insArray[0], instruction, initial_poss, insArray[1].equals("2") || insArray[1].equals("3")));
             }
         }
         Key firstKey = allKeys.get('a');
         for (Entry entry: set) {
             firstKey = allKeys.get(Character.toLowerCase(entry.command.charAt(0)));
-            entry.poss += logGaussian(firstKey.x, touchPoints.get(0).x, 5*firstKey.width/3.0);
-            entry.poss += logGaussian(firstKey.y, touchPoints.get(0).y, 0.5*firstKey.height);
+            entry.poss += logGaussian(firstKey.x, touchPoints.get(0).x, firstKey.width);
+            entry.poss += logGaussian(firstKey.y, touchPoints.get(0).y, firstKey.height);
         }
         double maxPoss = Double.NEGATIVE_INFINITY;
         for (int i=1; i<touchPoints.size(); i++) {
@@ -81,8 +90,8 @@ public class SimpleParser implements  Parser {
                 char lastChar = e.command.charAt(i-1);
                 double relXExpected = allKeys.get(curChar).x - allKeys.get(lastChar).x;
                 double relYExpected = allKeys.get(curChar).y - allKeys.get(lastChar).y;
-                e.poss += logGaussian(relX, relXExpected, 5.0* firstKey.width / 3);
-                e.poss += logGaussian(relY, relYExpected, 0.5* firstKey.height);
+                e.poss += logGaussian(relX, relXExpected, firstKey.width);
+                e.poss += logGaussian(relY, relYExpected, firstKey.height);
                // System.out.println(e.instruction + " " + e.poss);
                 maxPoss = Math.max(e.poss, maxPoss);
             }
@@ -94,22 +103,25 @@ public class SimpleParser implements  Parser {
                 }
             }
         }
-        final String packageName = Utility.getPackageName();
+        System.out.println(packageName);
         Collections.sort(set, new Comparator<Entry>() {
             @Override
             public int compare(Entry e1, Entry e2) {
-                if (e1.poss > e2.poss) {
+                if (e1.poss - 2 *  e1.instruction.frequency > e2.poss - 2 * e2.instruction.frequency) {
                     return -1;
                 }
-                if (e1.poss < e2.poss) {
+                if (e1.poss - 2 * e1.instruction.frequency < e2.poss - 2 * e2.instruction.frequency) {
                     return 1;
                 }
-                if(e1.instruction.frequency < e2.instruction.frequency) {
-                    return -1;
-                }
-                if(e1.instruction.frequency > e2.instruction.frequency) {
-                    return 1;
-                }
+//                if (e1.poss < e2.poss) {
+//                    return 1;
+//                }
+//                if(e1.instruction.frequency < e2.instruction.frequency) {
+//                    return -1;
+//                }
+//                if(e1.instruction.frequency > e2.instruction.frequency) {
+//                    return 1;
+//                }
                 if (e1.command.length() < e2.command.length()){
                     return -1;
                 }
@@ -127,8 +139,6 @@ public class SimpleParser implements  Parser {
                 return 0;
             }
         });
-
-
         //remove duplicate commands
         candidateList.clear();
         Set<Instruction> instructions = new HashSet<>();
@@ -143,8 +153,8 @@ public class SimpleParser implements  Parser {
 
         int cnt = 0;
         for(Entry e: set){
-            //System.out.println("Entry Info" + "parse: " + e.info());
-            if(cnt >= 20)
+            System.out.println("Entry Info" + "parse: " + e.info());
+            if(cnt >= 30)
                 break;
             cnt ++;
         }

@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.accessibility.talkback.TalkBackService;
 
@@ -93,6 +94,7 @@ public class KbdView extends View{
                 break;
             case SWIPE_DOWN_UP:
                 ((TalkBackService)getContext()).triggerBCMode();
+                break;
             default:
                 break;
         }

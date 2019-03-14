@@ -193,13 +193,15 @@ public class GestureControllerApp implements GestureController {
             mService.getString(R.string.pref_shortcut_right_and_down_key),
             mService.getString(R.string.pref_shortcut_right_and_down_default));
       case AccessibilityService.GESTURE_SWIPE_RIGHT_AND_UP:
-        return prefs.getString(
-            mService.getString(R.string.pref_shortcut_right_and_up_key),
-            mService.getString(R.string.pref_shortcut_right_and_up_default));
+//        return prefs.getString(
+//            mService.getString(R.string.pref_shortcut_right_and_up_key),
+//            mService.getString(R.string.pref_shortcut_right_and_up_default));
+          return mService.getString(R.string.pref_shortcut_right_and_up_default);
       case AccessibilityService.GESTURE_SWIPE_LEFT_AND_DOWN:
-        return prefs.getString(
-            mService.getString(R.string.pref_shortcut_left_and_down_key),
-            mService.getString(R.string.pref_shortcut_left_and_down_default));
+        return mService.getString(R.string.pref_shortcut_left_and_down_default);
+//        return prefs.getString(
+//            mService.getString(R.string.pref_shortcut_left_and_down_key),
+//            mService.getString(R.string.pref_shortcut_left_and_down_default));
       case AccessibilityService.GESTURE_SWIPE_LEFT_AND_UP:
         return prefs.getString(
             mService.getString(R.string.pref_shortcut_left_and_up_key),
@@ -347,6 +349,12 @@ public class GestureControllerApp implements GestureController {
     } else if (action.equals(mService.getString(R.string.shortcut_value_trigger_BC_mode))) {
       Log.i("Gesture", "globalGesture");
       mService.triggerBCMode();
+    }
+    else if (action.equals(mService.getString(R.string.shortcut_value_start))){
+      Log.i("TalkBackService", "start");
+    }
+    else if (action.equals(mService.getString(R.string.shortcut_value_end))){
+      Log.i("TalkBackService", "end");
     }
     Intent intent = new Intent(GestureActionMonitor.ACTION_GESTURE_ACTION_PERFORMED);
     intent.putExtra(GestureActionMonitor.EXTRA_SHORTCUT_GESTURE_ACTION, action);
