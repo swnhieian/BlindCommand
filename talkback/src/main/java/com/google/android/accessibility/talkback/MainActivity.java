@@ -15,10 +15,12 @@ import android.widget.Switch;
 
 import blindcommand.Parser;
 import blindcommand.Utility;
+import blindcommand.Log;
 
 public class MainActivity extends AppCompatActivity {
     Button openSettingsButton;
     Switch parserSwitcher;
+    static final String LOGTAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +37,10 @@ public class MainActivity extends AppCompatActivity {
         parserSwitcher = findViewById(R.id.switcher);
         parserSwitcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                System.out.println(b);
-                Utility.parserType = b ? Parser.ParserType.SPEECH : Parser.ParserType.DEFAULT;
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+//                System.out.println(isChecked);
+                Utility.parserType = isChecked ? Parser.ParserType.SPEECH : Parser.ParserType.DEFAULT;
+                Log.i(LOGTAG, "parserSwitcher: " + (isChecked ? "speech" : "default"));
             }
         });
         Switch naviSwitcher = findViewById(R.id.navigation_switcher);
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Utility.useDiffNav = isChecked;
+                Log.i(LOGTAG, "useDiffNav: " + isChecked);
             }
         });
     }

@@ -120,7 +120,6 @@ public class KbdView extends View{
             if(parser instanceof  SpeechParser) {
                 ((SpeechParser)parser).startRecognizing();
             }
-            System.out.println("uptouch end");
         }
     }
     public void readParseResult(ParseResult parseResult){
@@ -409,7 +408,6 @@ public class KbdView extends View{
 
     @Override
     public void draw(Canvas canvas) {
-        System.out.println("ondraw");
         //this.setBackgroundColor(Color.parseColor("#89cff0"));
         canvas.drawARGB(100, 137, 207, 240);
         if(parserType != Parser.ParserType.SPEECH) {

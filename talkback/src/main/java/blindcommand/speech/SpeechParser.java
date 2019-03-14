@@ -15,8 +15,10 @@ import blindcommand.Parser;
 import blindcommand.SoundPlayer;
 import blindcommand.Utility;
 import blindcommand.speech.SpeechCallback;
+import blindcommand.Log;
 
 public class SpeechParser implements Parser, SpeechCallback {
+    static final String LOGTAG = "SpeechParser";
     InstructionSet instructionSet;
     List<Instruction> candidateList;
     int currentIndex = 0;
@@ -77,19 +79,12 @@ public class SpeechParser implements Parser, SpeechCallback {
         for(SpeechResult sr : result){
             if(nameToIns.containsKey(sr.result))
                 candidateList.addAll(nameToIns.get(sr.result));
-            else{
-                System.out.println("************ candidate error ***************");
-            }
         }
         currentIndex = 0;
-        System.out.println("onresult");
-        System.out.println("begin");
         for(Instruction candidate: candidateList){
             System.out.println(candidate.name);
         }
-        System.out.println("end");
         user.readParseResult(this.getCurrent());
-        System.out.println("end of speech");
     }
 
     public void onBeginOfSpeech(){
@@ -139,6 +134,7 @@ public class SpeechParser implements Parser, SpeechCallback {
         //SoundPlayer.tts("开始识别");
         Utility.vibrate();
 //        speechHelper.startRecognizing();
+        Log.d(LOGTAG, "startRecognizing");
         speechListener.startRecognizing();
     }
     public void stopRecognizing() {
@@ -147,7 +143,7 @@ public class SpeechParser implements Parser, SpeechCallback {
     }
 
     public void onStringResult(String result){
-        System.out.println("onResult");
+        Log.d(LOGTAG, "result:" + result);
         System.out.println(result);
         candidateList.clear();
         if(nameToIns.containsKey(result))
