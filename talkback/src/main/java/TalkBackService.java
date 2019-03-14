@@ -525,7 +525,6 @@ public class TalkBackService extends AccessibilityService
     if (kbdView != null) {
       kbdView.executor.onAccessibilityEvent(event);
     }
-    // System.out.println("??????????????????????" + AccessibilityEvent.eventTypeToString(event.getEventType()) + ":" + event.getEventTime());
     if (event.getEventType() == AccessibilityEvent.TYPE_TOUCH_INTERACTION_START) {
       long time = event.getEventTime();
 //      if (time - lastTouchStartTime < QUICK_TYPE_TIMEOUT) {
@@ -1459,7 +1458,6 @@ public class TalkBackService extends AccessibilityService
         Toast.makeText(contextt, "Permissions Granted", Toast.LENGTH_SHORT).show();
         System.out.println("**********************");
         blindcommand.Log4jConfigure.configure();
-        System.out.println("here+++++++++++++++" + "window view added!");
 //        kbdView = new KbdView(contextt, params);
 //        wm.addView(kbdView, params);
       }

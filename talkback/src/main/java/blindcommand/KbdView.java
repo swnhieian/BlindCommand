@@ -368,7 +368,7 @@ public class KbdView extends View{
         int keyWidth = Utility.getKeyboardWidth(getContext()) / 10;
         int keyHeight = Utility.getkeyboardHeight(getContext()) / 4;
         int startY = Utility.getScreenHeight(getContext()) - Utility.getkeyboardHeight(getContext());
-        System.out.println("startY" + startY+","+getHeight());
+        //System.out.println("startY" + startY+","+getHeight());
         keys = new ArrayList<>();
         String line = "QWERTYUIOP";
         for (int i=0; i<line.length(); i++) {
@@ -413,7 +413,7 @@ public class KbdView extends View{
         if(parserType != Parser.ParserType.SPEECH) {
             if (keys != null) {
                 for (Key key : keys) {
-                    System.out.println("key:" + key.name + ",x:" + key.x + ",y:" + key.y);
+                    //System.out.println("key:" + key.name + ",x:" + key.x + ",y:" + key.y);
                     canvas.drawRect(key.getRect(), backgroundPaint);
                     canvas.drawText(key.name+"", key.x, key.y, textPaint);
                 }

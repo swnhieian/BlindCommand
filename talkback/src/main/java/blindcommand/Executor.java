@@ -131,6 +131,7 @@ public class Executor {
                     while (System.currentTimeMillis() - lastTime < 1000) {
                         if (edge.from.represent(getCurrentWindow(), service)) {
                             executeStep(edge, index);
+                            break;
                         }
                     }
                     index ++;
@@ -143,6 +144,7 @@ public class Executor {
         }, 0);
     }
     public void executeStep(Edge edge, int index) {
+        Log.i(LOGTAG, "execute:"+index+","+edge.toString());
         if (edge.needParameter) {
             SoundPlayer.tts("请输入" + (edge.parameterName.length() == 0 ? "参数" : edge.parameterName));
             executeForParameter = true;
@@ -193,13 +195,10 @@ public class Executor {
 
     public void singleStep(Edge edge) {
         AccessibilityNodeInfo root = getRoot();
-        ////
         AccessibilityNodeInfo operatedNode = NodeInfoFinder.find(root, edge.path);
         if (operatedNode != null) {
-            //operatedNode.performAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS);
             operatedNode.performAction(edge.action);
         }
-
     }
     public void jumpToApp(String packageName) {
         PackageManager packageManager = service.getPackageManager();
@@ -321,18 +320,34 @@ public class Executor {
         AccessibilityNodeInfo rootNode = getRoot();
         final NodeGraph appGraph = graphs.get(instruction.meta.appName);
         if (rootNode.getPackageName().equals(instruction.meta.packageName)) {
-            execute(instruction, appGraph);
+            execute(instruction, appGraph, null);
             return;
         }
-        final boolean isBackground = isBackgroundRunning(instruction.meta.packageName);
         jumpToApp(instruction.meta.packageName);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                execute(instruction, appGraph);
+        long lastTime = System.currentTimeMillis();
+        Node startNode = null;
+        int loopTime = 0;
+        outer:
+        while (System.currentTimeMillis() - lastTime < 4000) {
+            loopTime += 1;
+            //System.out.println("while loop time:" + loopTime);
+            for (Node node:appGraph.nodes) {
+                if (node.represent(getCurrentWindow(), service)) {
+                    startNode = node;
+                    //System.out.println("breakTime:"+ (System.currentTimeMillis() - lastTime));
+                    break outer;
+                }
             }
-        }, 4000);
+        }
+        execute(instruction, appGraph, startNode);
+
+        //Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                execute(instruction, appGraph);
+//            }
+//        }, 4000);
 //        long lastTime = System.currentTimeMillis();
 //        while (System.currentTimeMillis() - lastTime <= 4000) {
 //            if (rootNode != null && rootNode.getPackageName().equals(instruction.meta.packageName)) {
@@ -375,22 +390,34 @@ public class Executor {
         }
         return currentWindow;
     }
-    public void execute(Instruction ins, NodeGraph graph) {
+    public void execute(final Instruction ins, NodeGraph graph, Node currentNode) {
         String commandId = ins.id;
         if (commandId == "null") {
             Log.i(LOGTAG, "endExecute:null command");
             return;
         }
         System.out.println("execute: " + commandId);
-        AccessibilityWindowInfo currentWindow = getCurrentWindow();
-        Node currentNode = graph.getCurrentWindowNode(currentWindow, service);
+//        AccessibilityWindowInfo currentWindow = getCurrentWindow();
+//        Node currentNode = graph.getCurrentWindowNode(currentWindow, service);
         if (currentNode == null) {
-            loopCount += 1;
-            System.out.println("in back loop, loopCount:" + loopCount);
-            service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
-            sleep(500);
-            if (loopCount < 3) {
-                execute(ins);
+            Node node = graph.getCurrentWindowNode(getCurrentWindow(), service);
+            if (node != null) {
+                execute(ins, graph, node);
+                return;
+            } else {
+                loopCount += 1;
+                System.out.println("in back loop, loopCount:" + loopCount);
+                service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (loopCount < 3) {
+                            execute(ins);
+                        }
+                    }
+                }, 500);
+
             }
             return;
         }

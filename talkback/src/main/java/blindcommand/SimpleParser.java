@@ -143,7 +143,7 @@ public class SimpleParser implements  Parser {
 
         int cnt = 0;
         for(Entry e: set){
-            System.out.println("Entry Info" + "parse: " + e.info());
+            //System.out.println("Entry Info" + "parse: " + e.info());
             if(cnt >= 20)
                 break;
             cnt ++;

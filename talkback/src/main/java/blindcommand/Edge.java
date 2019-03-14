@@ -25,4 +25,8 @@ public class Edge {
         this.meta = meta;
     }
 
+    @Override
+    public String toString() {
+        return (this.from.pageId + "->" + this.to.pageId);
+    }
 }
