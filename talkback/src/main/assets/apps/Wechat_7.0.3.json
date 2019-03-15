@@ -634,7 +634,28 @@
           "needParameter": "false",
           "canDirectReach": "true",
           "frequency": "3"
+        },
+
+        {
+          "path": {
+            "text": "微信号",
+            "textReg": "微信号：.+",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              312,
+              408,
+              867,
+              469
+            ]
+          },
+          "target": "个人信息",
+          "name": "个人信息",
+          "pinyin": "GeRenXinXi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
         }
+
       ],
       "frequency": "3"
     },
@@ -1174,6 +1195,107 @@
         }
       ],
       "frequency": "4"
+    },
+
+    {
+      "pageId": "扫一扫",
+      "pageName": "扫一扫",
+      "pagePinyin": "SaoYiSao",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "二维码/条码", "textReg": "二维码/条码", "contentReg": "^$", "boundsInScreen": [120,123,396,191]
+        },
+        {
+          "text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [912,85,1080,229]
+        }
+      ],
+      "buttons": [
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "个人信息",
+      "pageName": "个人信息",
+      "pagePinyin": "GeRenXinXi",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "个人信息", "textReg": "个人信息", "contentReg": "^$", "boundsInScreen": [120,123,324,191]
+        },
+        {
+          "text": "返回", "textReg": "^$", "contentReg": "返回", "boundsInScreen": [24,85,96,229]
+        },
+        {
+          "text": "头像", "textReg": "头像", "contentReg": "^$", "boundsInScreen": [48,315,150,383]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "二维码名片", "textReg": "二维码名片", "contentReg": "^$", "boundsInScreen": [48,855,915,923]
+          },
+          "target": "二维码名片",
+          "name": "二维码名片",
+          "pinyin": "ErWeiMaMingPian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "二维码名片", "textReg": "二维码名片", "contentReg": "^$", "boundsInScreen": [48,855,915,923]
+          },
+          "target": "我的二维码",
+          "name": "我的二维码",
+          "pinyin": "WoDeErWeiMa",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        }
+      ],
+      "frequency": "4"
+    },
+    {
+      "pageId": "朋友圈",
+      "pageName": "朋友圈",
+      "pagePinyin": "PengYouQuan",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "拍照分享", "textReg": "^$", "contentReg": "拍照分享", "boundsInScreen": [912,85,1080,229]
+        },
+        {
+          "text": "返回", "textReg": "^$", "contentReg": "返回", "boundsInScreen": [24,85,96,229]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "拍照分享", "textReg": "^$", "contentReg": "拍照分享", "boundsInScreen": [912,85,1080,229]
+          },
+          "target": "拍照分享",
+          "name": "拍照分享",
+          "pinyin": "PaiZhaoFenXiang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "拍照分享", "textReg": "^$", "contentReg": "拍照分享", "boundsInScreen": [912,85,1080,229]
+          },
+          "target": "发朋友圈",
+          "name": "发朋友圈",
+          "pinyin": "FaPengYouQuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        }
+      ],
+      "frequency": "1"
     }
+
+
   ]
 }
