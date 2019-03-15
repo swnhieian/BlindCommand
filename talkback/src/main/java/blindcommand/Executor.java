@@ -52,7 +52,7 @@ public class Executor {
 //            }
 
         }
-        JsonAppInfo sysInfo = new JsonAppInfo("System", "系统", "xitong", new Integer[]{});
+        JsonAppInfo sysInfo = new JsonAppInfo("System", "系统", "XiTong", new Integer[]{});
         ret.add(new Instruction("返回", "返回", "FanHui", sysInfo, 1));
         ret.add(new Instruction("桌面", "桌面", "ZhuoMian", sysInfo, 1));
         ret.add(new Instruction("手电筒", "手电筒", "ShouDianTong", sysInfo, 2));

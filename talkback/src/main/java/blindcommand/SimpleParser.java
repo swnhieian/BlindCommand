@@ -13,6 +13,10 @@ import java.util.Set;
 
 public class SimpleParser implements  Parser {
     final String LOGTAG = "SimpleParser";
+    final static double IN_SAME_APP_BONUS = 6.0;
+    final static double IN_SYSTEM_BONUS = 4.0;
+    final static double FREQUENCY_WEIGHT = 2.0;
+    final static double LENGTH_WEIGHT = 1.0;
     HashMap<Character, Key> allKeys;
     ArrayList<TouchPoint> touchPoints;
     List<Entry> candidateList;
@@ -67,15 +71,25 @@ public class SimpleParser implements  Parser {
                 Instruction instruction = instructionSet.instructions.get(ins);
                 double initial_poss = 0.0;
                 if(instruction.meta.packageName.equals(packageName)){
-                    initial_poss += 6;
+                    initial_poss += IN_SAME_APP_BONUS;
                 }
                 if(instruction.meta.packageName.equals("System")){
-                    initial_poss += 2;
+                    initial_poss += IN_SYSTEM_BONUS;
                 }
-                if (insArray[0].length() - touchPoints.size() > 0) {
-                    initial_poss -= (insArray[0].length() - touchPoints.size());
+                if(instruction.meta.packageName.equals(packageName)){
+                    if(insArray[1].equals("0")){
+                        if(instruction.pinyin.length() >= touchPoints.size())
+                            set.add(new Entry(instruction.pinyin.toLowerCase(), instruction, initial_poss, false));
+                    }
+                    else if(insArray[1].equals("1")){
+                        String cmd = instruction.pinyin.replaceAll("[a-z]+", "").toLowerCase();
+                        if(cmd.length() >= touchPoints.size())
+                            set.add(new Entry(cmd, instruction, initial_poss, false));
+                    }
                 }
-                set.add(new Entry(insArray[0], instruction, initial_poss, insArray[1].equals("2") || insArray[1].equals("3")));
+                else {
+                    set.add(new Entry(insArray[0], instruction, initial_poss, insArray[1].equals("2") || insArray[1].equals("3")));
+                }
             }
         }
         Key firstKey = allKeys.get('a');
@@ -98,48 +112,21 @@ public class SimpleParser implements  Parser {
                // System.out.println(e.instruction + " " + e.poss);
                 maxPoss = Math.max(e.poss, maxPoss);
             }
-            Iterator<Entry> it = set.iterator();
-            while (it.hasNext()) {
-                Entry e = it.next();
-                if (e.poss < maxPoss * 100) {
-                    it.remove();
-                }
-            }
+//            Iterator<Entry> it = set.iterator();
+//            while (it.hasNext()) {
+//                Entry e = it.next();
+//                if (e.poss < maxPoss * 100) {
+//                    it.remove();
+//                }
+//            }
         }
         System.out.println(packageName);
         Collections.sort(set, new Comparator<Entry>() {
             @Override
             public int compare(Entry e1, Entry e2) {
-                if (e1.poss - 2 *  e1.instruction.frequency > e2.poss - 2 * e2.instruction.frequency) {
-                    return -1;
-                }
-                if (e1.poss - 2 * e1.instruction.frequency < e2.poss - 2 * e2.instruction.frequency) {
-                    return 1;
-                }
-//                if (e1.poss < e2.poss) {
-//                    return 1;
-//                }
-//                if(e1.instruction.frequency < e2.instruction.frequency) {
-//                    return -1;
-//                }
-//                if(e1.instruction.frequency > e2.instruction.frequency) {
-//                    return 1;
-//                }
-                if (e1.command.length() < e2.command.length()){
-                    return -1;
-                }
-                if (e1.command.length() > e2.command.length()){
-                    return 1;
-                }
-//                boolean isSystem1 = e1.instruction.meta.packageName.equals("System");
-//                boolean isSystem2 = e2.instruction.meta.packageName.equals("System");
-//                if(isSystem1 && !isSystem2) return -1;
-//                if(isSystem2 && !isSystem1) return 1;
-//                boolean isCurrent1 = e1.instruction.meta.packageName.equals(packageName);
-//                boolean isCurrent2 = e2.instruction.meta.packageName.equals(packageName);
-//                if(isCurrent1 && ! isCurrent2) return -1;
-//                if(isCurrent2 && ! isCurrent1) return 1;
-                return 0;
+                double p1 =  e1.poss - FREQUENCY_WEIGHT *  e1.instruction.frequency - LENGTH_WEIGHT * e1.command.length() ;
+                double p2 =  e2.poss - FREQUENCY_WEIGHT *  e2.instruction.frequency - LENGTH_WEIGHT * e2.command.length() ;
+                return - Double.compare(p1, p2);
             }
         });
         //remove duplicate commands
@@ -155,13 +142,12 @@ public class SimpleParser implements  Parser {
         //System.out.println("Entry set size" +  "parse: " + set.size());
 
         int cnt = 0;
-        for(Entry e: set){
-            System.out.println("Entry Info" + "parse: " + e.info());
+        for(Entry e: candidateList){
+            System.out.println(e.info());
             if(cnt >= 30)
                 break;
             cnt ++;
         }
-        //candidateList = set;
     }
 
     public void previous() {

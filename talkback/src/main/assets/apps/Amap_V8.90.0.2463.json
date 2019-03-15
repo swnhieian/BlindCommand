@@ -72,7 +72,7 @@
           },
           "target": "搜索",
           "name": "搜索",
-          "pinyin": "Sousuo",
+          "pinyin": "SouSuo",
           "needParameter": "false",
           "canDirectReach": "true",
           "frequency": "1"
