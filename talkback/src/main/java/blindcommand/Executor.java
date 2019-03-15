@@ -109,8 +109,8 @@ public class Executor {
         SoundPlayer.tts("执行完毕");
     }
 
-    public void executeSteps(final List<Edge> edges) {
-        if (edges == null) {
+    public void executeSteps(final List<Edge> allEdges) {
+        if (allEdges == null) {
             endExecute();
             Log.i(LOGTAG, "endExecute");
             return;
@@ -121,19 +121,22 @@ public class Executor {
             public void run() {
                 int index = 0;
                 boolean needContinue = true;
-                while (index < edges.size()) {
+                while (index < allEdges.size()) {
                     long lastTime = System.currentTimeMillis();
-                    Edge edge = edges.get(index);
+                    Edge edge = allEdges.get(index);
+                    boolean executed = false;
                     while (System.currentTimeMillis() - lastTime < 2000) {
                         if (edge.from.represent(getCurrentWindow(), service)) {
                             needContinue = executeStep(edge, index);
+                            executed = true;
                             break;
                         }
                     }
+                    if (!executed) needContinue = executeStep(edge, index);
                     if (!needContinue) break;
                     index ++;
                 }
-                if (index == edges.size()) {
+                if (index == allEdges.size()) {
                     endExecute();
                     Log.i(LOGTAG, "endExecute");
                 }
@@ -425,6 +428,7 @@ public class Executor {
         edges = graph.findPath(currentNode, targetNode);
         if(edges != null) {
             //singleSteps(edges, 0);
+            System.out.println("edges size:" + edges.size());
             executeSteps(edges);
         } else {
             loopCount += 1;

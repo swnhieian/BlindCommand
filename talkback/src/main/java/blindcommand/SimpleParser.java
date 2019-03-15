@@ -14,7 +14,7 @@ import java.util.Set;
 public class SimpleParser implements  Parser {
     final String LOGTAG = "SimpleParser";
     final static double IN_SAME_APP_BONUS = 6.0;
-    final static double IN_SYSTEM_BONUS = 4.0;
+    final static double IN_SYSTEM_BONUS = 3.0;
     final static double FREQUENCY_WEIGHT = 2.0;
     final static double LENGTH_WEIGHT = 1.0;
     HashMap<Character, Key> allKeys;
