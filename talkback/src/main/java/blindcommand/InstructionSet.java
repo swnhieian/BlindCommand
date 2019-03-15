@@ -80,10 +80,23 @@ public class InstructionSet {
             instruction.pinyin = instruction.pinyin.replaceAll("[^a-zA-Z]", "");
             String pinyinWithApp = instruction.pinyin + instruction.meta.appPinyin;
             String appWithPinyin = instruction.meta.appPinyin + instruction.pinyin;
-            instructions.put(pinyinWithApp.toLowerCase() + "|0", instruction);  // saoyisaoweixin
-            instructions.put(pinyinWithApp.replaceAll("[a-z]+", "").toLowerCase() + "|1", instruction); // syswx
-            instructions.put(appWithPinyin.toLowerCase() + "|2", instruction);  // weixinsaoyisao
-            instructions.put(appWithPinyin.replaceAll("[a-z]+", "").toLowerCase() + "|3", instruction); // wxsys
+            String insJP = instruction.pinyin.replaceAll("[a-z]+", "").toLowerCase();
+            String insQP = instruction.pinyin.toLowerCase();
+            String appQP = instruction.meta.appPinyin.toLowerCase();
+            String appJP = instruction.meta.appPinyin.replaceAll("[a-z]+", "").toLowerCase();
+
+            instructions.put(insQP + appQP + "|0", instruction);  // saoyisaoweixin
+            instructions.put(insJP + appJP + "|1", instruction); // syswx
+            instructions.put(appQP + insQP + "|2", instruction);  // weixinsaoyisao
+            instructions.put(appJP + insJP + "|3", instruction); // wxsys
+
+            instructions.put(insQP + appJP + "|4", instruction);  // saoyisaowx
+            instructions.put(insJP + appQP + "|5", instruction); // syswweixin
+            instructions.put(appJP + insQP + "|6", instruction); // wxsaoyisao
+            instructions.put(appQP + insJP + "|7", instruction);  // weixinsys
+
+            instructions.put(insQP + "|9|" + appQP, instruction);  // saoyisao
+            instructions.put(insJP + "|10|" + appQP, instruction); // sys
         }
         this.dict = instructions.keySet().toArray(new String[]{});
     }
