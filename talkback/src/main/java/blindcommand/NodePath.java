@@ -87,6 +87,7 @@ public class NodePath {
     }
     public AccessibilityNodeInfo getNodeFromRoot(AccessibilityNodeInfo root) {
         if (root == null) return null;
+        boolean traverse = false;
         if (this.text.length() != 0) {
             List<AccessibilityNodeInfo> nodes = root.findAccessibilityNodeInfosByText(this.text);
             List<AccessibilityNodeInfo> textMatchedNodes = new ArrayList<>();
@@ -110,7 +111,10 @@ public class NodePath {
                     return node;
                 }
             }
-        } else {
+            if (textMatchedNodes.size() == 0) traverse = true;
+        }
+        if (this.text.length() == 0 || traverse)
+        {
             Rect bounds = new Rect();
             root.getBoundsInScreen(bounds);
             CharSequence text = root.getText();

@@ -72,6 +72,9 @@ public class SimpleParser implements  Parser {
                 if(instruction.meta.packageName.equals("System")){
                     initial_poss += 2;
                 }
+                if (insArray[0].length() - touchPoints.size() > 0) {
+                    initial_poss -= (insArray[0].length() - touchPoints.size());
+                }
                 set.add(new Entry(insArray[0], instruction, initial_poss, insArray[1].equals("2") || insArray[1].equals("3")));
             }
         }

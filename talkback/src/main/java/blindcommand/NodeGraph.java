@@ -30,10 +30,9 @@ public class NodeGraph {
     }
 
     public Node getCurrentWindowNode(AccessibilityWindowInfo activeWindow, AccessibilityService service){
-        System.out.println("node: " +  nodes.size());
         for(Node node: nodes){
             if(node.represent(activeWindow, service)){
-                System.out.println("current window found!");
+                System.out.println("current window found!" + node.pageId);
                 return node;
             }
         }

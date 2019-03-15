@@ -90,17 +90,12 @@ public class Executor {
 
     public void onAccessibilityEvent(AccessibilityEvent event) {
         if (executeForParameter) {
-            AccessibilityWindowInfo activeWindow = null;
-            for (AccessibilityWindowInfo window: service.getWindows()) {
-                if (window.isActive())  {
-                    activeWindow = window;
-                    break;
-                }
-            }
+            AccessibilityWindowInfo activeWindow = getCurrentWindow();
             if (activeWindow != null) {
                 if (parameterResumeNode.represent(activeWindow, service)) {
                     executeForParameter = false;
-                    executeSteps(edges.subList(parameterEdgesIndex, edges.size()));
+                    Log.i(LOGTAG, "continueExecute");
+                    executeSteps(parameterEdges.subList(parameterEdgesIndex, parameterEdges.size()));
                     //singleSteps(parameterEdges, parameterEdgesIndex);
                 }
             }
@@ -125,15 +120,17 @@ public class Executor {
             @Override
             public void run() {
                 int index = 0;
+                boolean needContinue = true;
                 while (index < edges.size()) {
                     long lastTime = System.currentTimeMillis();
                     Edge edge = edges.get(index);
-                    while (System.currentTimeMillis() - lastTime < 1000) {
+                    while (System.currentTimeMillis() - lastTime < 2000) {
                         if (edge.from.represent(getCurrentWindow(), service)) {
-                            executeStep(edge, index);
+                            needContinue = executeStep(edge, index);
                             break;
                         }
                     }
+                    if (!needContinue) break;
                     index ++;
                 }
                 if (index == edges.size()) {
@@ -143,14 +140,16 @@ public class Executor {
             }
         }, 0);
     }
-    public void executeStep(Edge edge, int index) {
+    public boolean executeStep(Edge edge, int index) {
         Log.i(LOGTAG, "execute:"+index+","+edge.toString());
+        boolean needContinue = true;
         if (edge.needParameter) {
             SoundPlayer.tts("请输入" + (edge.parameterName.length() == 0 ? "参数" : edge.parameterName));
             executeForParameter = true;
             parameterResumeNode = edge.to;
             parameterEdges = edges;
             parameterEdgesIndex = index + 1;
+            needContinue = false;
         } else {
             AccessibilityNodeInfo root = getRoot();
             AccessibilityNodeInfo operatedNode = NodeInfoFinder.find(root, edge.path);
@@ -158,7 +157,7 @@ public class Executor {
                 operatedNode.performAction(edge.action);
             }
         }
-
+        return needContinue;
     }
 
     public void singleSteps(final List<Edge> edges, final int index) {
@@ -292,6 +291,7 @@ public class Executor {
 
     }
     private int loopCount = 0; //to prevent dead loop
+    private final int LOOP_COUNT_MAX = 5;
     private boolean isBackgroundRunning(String processName) {
         ActivityManager activityManager = (ActivityManager) service.getSystemService(ACTIVITY_SERVICE);
         KeyguardManager keyguardManager = (KeyguardManager) service.getSystemService(KEYGUARD_SERVICE);
@@ -326,11 +326,8 @@ public class Executor {
         jumpToApp(instruction.meta.packageName);
         long lastTime = System.currentTimeMillis();
         Node startNode = null;
-        int loopTime = 0;
         outer:
         while (System.currentTimeMillis() - lastTime < 4000) {
-            loopTime += 1;
-            //System.out.println("while loop time:" + loopTime);
             for (Node node:appGraph.nodes) {
                 if (node.represent(getCurrentWindow(), service)) {
                     startNode = node;
@@ -412,7 +409,7 @@ public class Executor {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (loopCount < 3) {
+                        if (loopCount < LOOP_COUNT_MAX) {
                             execute(ins);
                         }
                     }
@@ -432,10 +429,15 @@ public class Executor {
         } else {
             loopCount += 1;
             service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
-            System.out.println("back action");
-            sleep(500);
-            if (loopCount < 3) {
-                execute(ins);
+            System.out.println("back action, loop" + loopCount);
+            if (loopCount < LOOP_COUNT_MAX) {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        execute(ins);
+                    }
+                }, 500);
             }
             return;
         }
