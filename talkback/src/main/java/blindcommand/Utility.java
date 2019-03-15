@@ -15,12 +15,14 @@ public class Utility {
     public static int speed = 80;
     public static int screenHeight = -1;
     public static int screenWidth = -1;
+    public static int dpi = 0;
     public static void init(Context service) {
         WindowManager wm = (WindowManager)service.getSystemService(service.WINDOW_SERVICE);
         DisplayMetrics metrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(metrics);
         Utility.screenHeight = metrics.heightPixels;
         Utility.screenWidth = metrics.widthPixels;
+        Utility.dpi = metrics.densityDpi;
     }
     public static int getScreenHeight() {
         return Utility.screenHeight;
@@ -33,7 +35,7 @@ public class Utility {
         vib.vibrate(200);
     }
     public static int getkeyboardHeight(Context service) {
-        return 680;
+        return(int)((double)getScreenHeight() / 3.5);//return 680;
     }
     public static int getKeyboardWidth(Context service) {
         WindowManager wm = (WindowManager)service.getSystemService(service.WINDOW_SERVICE);
