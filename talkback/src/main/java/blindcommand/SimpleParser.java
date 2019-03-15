@@ -13,8 +13,8 @@ import java.util.Set;
 
 public class SimpleParser implements  Parser {
     final String LOGTAG = "SimpleParser";
-    final static double IN_SAME_APP_BONUS = 6.0;
-    final static double IN_SYSTEM_BONUS = 4.0;
+    final static double IN_SAME_APP_BONUS = Math.log(4.0);
+    final static double IN_SYSTEM_BONUS = Math.log(2.0);
     final static double FREQUENCY_WEIGHT = 2.0;
     final static double LENGTH_WEIGHT = 1.0;
     HashMap<Character, Key> allKeys;
@@ -67,7 +67,7 @@ public class SimpleParser implements  Parser {
 //                System.out.print(s);
 //            }
 //            System.out.println("");
-            if (insArray[0].length() >= touchPoints.size()) {
+            if (insArray[0].length() == touchPoints.size()) {
                 Instruction instruction = instructionSet.instructions.get(ins);
                 double initial_poss = 0.0;
                 if(instruction.meta.packageName.equals(packageName)){
@@ -77,14 +77,8 @@ public class SimpleParser implements  Parser {
                     initial_poss += IN_SYSTEM_BONUS;
                 }
                 if(instruction.meta.packageName.equals(packageName)){
-                    if(insArray[1].equals("0")){
-                        if(instruction.pinyin.length() >= touchPoints.size())
-                            set.add(new Entry(instruction.pinyin.toLowerCase(), instruction, initial_poss, false));
-                    }
-                    else if(insArray[1].equals("1")){
-                        String cmd = instruction.pinyin.replaceAll("[a-z]+", "").toLowerCase();
-                        if(cmd.length() >= touchPoints.size())
-                            set.add(new Entry(cmd, instruction, initial_poss, false));
+                    if(insArray[1].equals("9") || insArray[1].equals("10")){
+                        set.add(new Entry(insArray[0], instruction, initial_poss, false));
                     }
                 }
                 else {
@@ -95,8 +89,8 @@ public class SimpleParser implements  Parser {
         Key firstKey = allKeys.get('a');
         for (Entry entry: set) {
             firstKey = allKeys.get(Character.toLowerCase(entry.command.charAt(0)));
-            entry.poss += logGaussian(firstKey.x, touchPoints.get(0).x, firstKey.width);
-            entry.poss += logGaussian(firstKey.y, touchPoints.get(0).y, firstKey.height);
+            entry.poss += logGaussian(firstKey.x, touchPoints.get(0).x, 5.0 / 3 * firstKey.width);
+            entry.poss += logGaussian(firstKey.y, touchPoints.get(0).y, 0.5 * firstKey.height);
         }
         double maxPoss = Double.NEGATIVE_INFINITY;
         for (int i=1; i<touchPoints.size(); i++) {
@@ -107,8 +101,8 @@ public class SimpleParser implements  Parser {
                 char lastChar = e.command.charAt(i-1);
                 double relXExpected = allKeys.get(curChar).x - allKeys.get(lastChar).x;
                 double relYExpected = allKeys.get(curChar).y - allKeys.get(lastChar).y;
-                e.poss += logGaussian(relX, relXExpected, firstKey.width);
-                e.poss += logGaussian(relY, relYExpected, firstKey.height);
+                e.poss += logGaussian(relX, relXExpected, 5.0 / 3 * firstKey.width);
+                e.poss += logGaussian(relY, relYExpected, 0.5 * firstKey.height);
                // System.out.println(e.instruction + " " + e.poss);
                 maxPoss = Math.max(e.poss, maxPoss);
             }
@@ -124,8 +118,8 @@ public class SimpleParser implements  Parser {
         Collections.sort(set, new Comparator<Entry>() {
             @Override
             public int compare(Entry e1, Entry e2) {
-                double p1 =  e1.poss - FREQUENCY_WEIGHT *  e1.instruction.frequency - LENGTH_WEIGHT * e1.command.length() ;
-                double p2 =  e2.poss - FREQUENCY_WEIGHT *  e2.instruction.frequency - LENGTH_WEIGHT * e2.command.length() ;
+                double p1 =  e1.poss - FREQUENCY_WEIGHT *  e1.instruction.frequency - LENGTH_WEIGHT * e1.command.length();
+                double p2 =  e2.poss - FREQUENCY_WEIGHT *  e2.instruction.frequency - LENGTH_WEIGHT * e2.command.length();
                 return - Double.compare(p1, p2);
             }
         });
