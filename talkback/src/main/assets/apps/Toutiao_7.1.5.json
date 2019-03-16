@@ -27,15 +27,7 @@
           ]
         },
         {
-          "text": "热点",
-          "textReg": "^$",
-          "contentReg": "热点",
-          "boundsInScreen": [
-            329,
-            204,
-            480,
-            315
-          ]
+          "text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [882,225,1080,333]
         }
       ],
       "buttons": [

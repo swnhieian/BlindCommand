@@ -59,9 +59,6 @@ public class NodePath {
         nodes.add(null);
     }
     public boolean isSameBound(Rect target, int resx, int resy) {
-        if (this.text.equals("地铁图")) {
-            boolean flag = true;
-        }
         final int X_THRESHOLD = 100;
         final int Y_THRESHOLD = Utility.getScreenHeight() / 3;//178;
         double ratioX = ((double)meta.resolution[0]) / resx;

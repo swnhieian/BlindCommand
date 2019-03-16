@@ -9,55 +9,55 @@ public class Log {
     public static void d(String tag, String message) {
         if (SWITCH_LOG) {
             Logger LOGGER = getLogger(tag);
-            LOGGER.debug(message);
+            LOGGER.debug(System.currentTimeMillis()+"\t" + message);
         }
     }
 
     public static void d(String tag, String message, Throwable exception) {
         if (SWITCH_LOG) {
             Logger LOGGER = getLogger(tag);
-            LOGGER.debug(message, exception);}
+            LOGGER.debug(System.currentTimeMillis()+"\t" + message, exception);}
     }
 
     public static void i(String tag, String message) {
         if (SWITCH_LOG) {
             Logger LOGGER = getLogger(tag);
-            LOGGER.info(message);
+            LOGGER.info(System.currentTimeMillis()+"\t" + message);
         }
     }
 
     public static void i(String tag, String message, Throwable exception) {
         if (SWITCH_LOG) {
             Logger LOGGER = getLogger(tag);
-            LOGGER.info(message, exception);
+            LOGGER.info(System.currentTimeMillis()+"\t" + message, exception);
         }
     }
 
     public static void w(String tag, String message) {
         if (SWITCH_LOG) {
             Logger LOGGER = getLogger(tag);
-            LOGGER.warn(message);
+            LOGGER.warn(System.currentTimeMillis()+"\t" + message);
         }
     }
 
     public static void w(String tag, String message, Throwable exception) {
         if (SWITCH_LOG) {
             Logger LOGGER = getLogger(tag);
-            LOGGER.warn(message, exception);
+            LOGGER.warn(System.currentTimeMillis()+"\t" + message, exception);
         }
     }
 
     public static void e(String tag, String message) {
         if (SWITCH_LOG) {
             Logger LOGGER = getLogger(tag);
-            LOGGER.error(message);
+            LOGGER.error(System.currentTimeMillis()+"\t" + message);
         }
     }
 
     public static void e(String tag, String message, Throwable exception) {
         if (SWITCH_LOG) {
             Logger LOGGER = getLogger(tag);
-            LOGGER.error(message, exception);
+            LOGGER.error(System.currentTimeMillis()+"\t" + message, exception);
         }
     }
 
