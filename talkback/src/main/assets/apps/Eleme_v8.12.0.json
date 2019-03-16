@@ -136,8 +136,8 @@
         },
         {
           "path": {
-            "text": "搜索商家、商品名称",
-            "textReg": "搜索商家、商品名称",
+            "text": "",
+            "textReg": ".*",
             "contentReg": "^$",
             "boundsInScreen": [
               406,
@@ -283,9 +283,9 @@
         },
         {
           "path": {
-            "text": "输入商家、商品名称",
+            "text": "",
             "textReg": "^$",
-            "contentReg": "输入商家、商品名称",
+            "contentReg": ".*",
             "boundsInScreen": [
               411,
               294,

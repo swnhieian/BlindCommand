@@ -125,8 +125,10 @@ public class Executor {
                     long lastTime = System.currentTimeMillis();
                     Edge edge = allEdges.get(index);
                     boolean executed = false;
-                    while (System.currentTimeMillis() - lastTime < 2000) {
+                    while (System.currentTimeMillis() - lastTime < 200) {
+                        System.out.println("time:" + (System.currentTimeMillis() - lastTime));
                         if (edge.from.represent(getCurrentWindow(), service)) {
+                            System.out.println("in while execute");
                             needContinue = executeStep(edge, index);
                             executed = true;
                             break;
@@ -330,7 +332,7 @@ public class Executor {
         long lastTime = System.currentTimeMillis();
         Node startNode = null;
         outer:
-        while (System.currentTimeMillis() - lastTime < 4000) {
+        while (System.currentTimeMillis() - lastTime < 6000) {
             for (Node node:appGraph.nodes) {
                 if (node.represent(getCurrentWindow(), service)) {
                     startNode = node;
