@@ -1,6 +1,16 @@
 {
+  "meta": {
+    "packageName": "com.ss.android.article.news",
+    "appName": "今日头条",
+    "appPinyin": "JinRiTouTiao",
+    "resolution": [
+      1080,
+      1920
+    ]
+  },
   "data": [
     {
+      "pageId": "首页",
       "pageName": "首页",
       "pagePinyin": "ShouYe",
       "canDirectReach": true,
@@ -17,1098 +27,1070 @@
           ]
         },
         {
-          "text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [882,225,1080,333]
-        }
-      ],
-      "buttons": [
-        {
-          "target": "首页",
-          "needParameter": "false",
-          "path": {
-            "textReg": "首页",
-            "text": "首页",
-            "boundsInScreen": [
-              108,
-              1870,
-              162,
-              1907
-            ],
-            "contentReg": "^$"
-          },
-          "name": "首页",
-          "frequency": 1.0,
-          "canDirectReach": "true",
-          "pinyin": "ShouYe"
-        },
-        {
-          "target": "西瓜视频",
-          "needParameter": "false",
-          "path": {
-            "textReg": "西瓜视频",
-            "text": "西瓜视频",
-            "boundsInScreen": [
-              351,
-              1870,
-              459,
-              1907
-            ],
-            "contentReg": "^$"
-          },
-          "name": "西瓜视频",
-          "frequency": 1.0,
-          "canDirectReach": "true",
-          "pinyin": "XiGuaShiPin"
-        },
-        {
-          "target": "小视频",
-          "needParameter": "false",
-          "path": {
-            "textReg": "小视频",
-            "text": "小视频",
-            "boundsInScreen": [
-              634,
-              1870,
-              715,
-              1907
-            ],
-            "contentReg": "^$"
-          },
-          "name": "小视频",
-          "frequency": 1.0,
-          "canDirectReach": "true",
-          "pinyin": "XiaoShiPin"
-        },
-        {
-          "target": "我的",
-          "needParameter": "false",
-          "path": {
-            "textReg": "我的",
-            "text": "我的",
-            "boundsInScreen": [
-              918,
-              1870,
-              972,
-              1907
-            ],
-            "contentReg": "^$"
-          },
-          "name": "我的",
-          "frequency": 0.8,
-          "canDirectReach": "true",
-          "pinyin": "WoDe"
-        },
-        {
-          "target": "搜索",
-          "needParameter": "false",
-          "path": {
-            "textReg": "^$",
-            "text": "",
-            "boundsInScreen": [
-              45,
-              72,
-              900,
-              186
-            ],
-            "contentReg": "^$"
-          },
-          "name": "搜索",
-          "frequency": 0.8,
-          "canDirectReach": "true",
-          "pinyin": "SouSuo"
-        },
-        {
-          "target": "发布",
-          "needParameter": "false",
-          "path": {
-            "textReg": "发布",
-            "text": "发布",
-            "boundsInScreen": [
-              930,
-              154,
-              1050,
-              189
-            ],
-            "contentReg": "^$"
-          },
-          "name": "发布",
-          "frequency": 0.4,
-          "canDirectReach": "true",
-          "pinyin": "FaBu"
-        },
-        {
-          "target": "关注",
-          "needParameter": "false",
-          "path": {
-            "textReg": "^$",
-            "text": "关注",
-            "boundsInScreen": [
-              18,
-              204,
-              170,
-              315
-            ],
-            "contentReg": "关注"
-          },
-          "name": "关注",
-          "frequency": 0.6,
-          "canDirectReach": "true",
-          "pinyin": "GuanZhu"
-        },
-        {
-          "target": "推荐",
-          "needParameter": "false",
-          "path": {
-            "textReg": "^$",
-            "text": "推荐",
-            "boundsInScreen": [
-              170,
-              204,
-              329,
-              315
-            ],
-            "contentReg": "推荐"
-          },
-          "name": "推荐",
-          "frequency": 0.5,
-          "canDirectReach": "true",
-          "pinyin": "TuiJian"
-        }
-      ],
-      "frequency": 1.0,
-      "pagePinyin": "ShouYe",
-      "pageId": "首页",
-      "features": [
-        {
-          "textReg": "^$",
-          "text": "关注",
-          "boundsInScreen": [
-            18,
-            204,
-            170,
-            315
-          ],
-          "contentReg": "关注"
-        },
-        {
-          "textReg": "^$",
           "text": "热点",
+          "textReg": "^$",
+          "contentReg": "热点",
           "boundsInScreen": [
             329,
             204,
             480,
             315
-          ],
-          "contentReg": "热点"
+          ]
         }
       ],
-      "canDirectReach": true
-    },
-    {
-      "pageName": "发布",
       "buttons": [
         {
-          "target": "发图文",
-          "needParameter": "false",
           "path": {
-            "textReg": "发图文",
-            "text": "发图文",
-            "boundsInScreen": [
-              816,
-              263,
-              951,
-              324
-            ],
-            "contentReg": "^$"
-          },
-          "name": "发图文",
-          "frequency": 0.1,
-          "canDirectReach": "true",
-          "pinyin": "FaTuWen"
-        },
-        {
-          "target": "拍小视频",
-          "needParameter": "false",
-          "path": {
-            "textReg": "拍小视频",
-            "text": "拍小视频",
-            "boundsInScreen": [
-              816,
-              385,
-              996,
-              446
-            ],
-            "contentReg": "^$"
-          },
-          "name": "拍小视频",
-          "frequency": 0.1,
-          "canDirectReach": "true",
-          "pinyin": "PaiXiaoShiPin"
-        },
-        {
-          "target": "发视频",
-          "needParameter": "false",
-          "path": {
-            "textReg": "发视频",
-            "text": "发视频",
-            "boundsInScreen": [
-              816,
-              507,
-              951,
-              568
-            ],
-            "contentReg": "^$"
-          },
-          "name": "发视频",
-          "frequency": 0.1,
-          "canDirectReach": "true",
-          "pinyin": "FaShiPin"
-        },
-        {
-          "target": "提问",
-          "needParameter": "false",
-          "path": {
-            "textReg": "提问",
-            "text": "提问",
-            "boundsInScreen": [
-              816,
-              629,
-              906,
-              690
-            ],
-            "contentReg": "^$"
-          },
-          "name": "提问",
-          "frequency": 0.1,
-          "canDirectReach": "true",
-          "pinyin": "TiWen"
-        },
-        {
-          "target": "开直播",
-          "needParameter": "false",
-          "path": {
-            "textReg": "开直播",
-            "text": "开直播",
-            "boundsInScreen": [
-              816,
-              751,
-              951,
-              812
-            ],
-            "contentReg": "^$"
-          },
-          "name": "开直播",
-          "frequency": 0.1,
-          "canDirectReach": "true",
-          "pinyin": "KaiZhiBo"
-        }
-      ],
-      "frequency": 0.4,
-      "pagePinyin": "FaBu",
-      "pageId": "发布",
-      "features": [
-        {
-          "textReg": "发图文",
-          "text": "发图文",
-          "boundsInScreen": [
-            816,
-            263,
-            951,
-            324
-          ],
-          "contentReg": "^$"
-        },
-        {
-          "textReg": "拍小视频",
-          "text": "拍小视频",
-          "boundsInScreen": [
-            816,
-            385,
-            996,
-            446
-          ],
-          "contentReg": "^$"
-        }
-      ],
-      "canDirectReach": true
-    },
-    {
-      "pageName": "西瓜视频",
-      "buttons": [
-        {
-          "target": "首页",
-          "needParameter": "false",
-          "path": {
-            "textReg": "首页",
             "text": "首页",
+            "textReg": "首页",
+            "contentReg": "^$",
             "boundsInScreen": [
               108,
               1870,
               162,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "首页",
           "name": "首页",
-          "frequency": 1.0,
+          "pinyin": "ShouYe",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "ShouYe"
+          "frequency": "1"
         },
         {
-          "target": "西瓜视频",
-          "needParameter": "false",
           "path": {
-            "textReg": "西瓜视频",
             "text": "西瓜视频",
+            "textReg": "西瓜视频",
+            "contentReg": "^$",
             "boundsInScreen": [
               351,
               1870,
               459,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "西瓜视频",
           "name": "西瓜视频",
-          "frequency": 1.0,
+          "pinyin": "XiGuaShiPin",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "XiGuaShiPin"
+          "frequency": "1"
         },
         {
-          "target": "小视频",
-          "needParameter": "false",
           "path": {
-            "textReg": "小视频",
             "text": "小视频",
+            "textReg": "小视频",
+            "contentReg": "^$",
             "boundsInScreen": [
               634,
               1870,
               715,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "小视频",
           "name": "小视频",
-          "frequency": 1.0,
+          "pinyin": "XiaoShiPin",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "XiaoShiPin"
+          "frequency": "1"
         },
         {
-          "target": "我的",
-          "needParameter": "false",
           "path": {
-            "textReg": "我的",
             "text": "我的",
+            "textReg": "我的",
+            "contentReg": "^$",
             "boundsInScreen": [
               918,
               1870,
               972,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "我的",
           "name": "我的",
-          "frequency": 0.8,
+          "pinyin": "WoDe",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "WoDe"
+          "frequency": "3"
         },
         {
-          "target": "搜索",
-          "needParameter": "false",
           "path": {
-            "textReg": "^$",
             "text": "",
+            "textReg": "^$",
+            "contentReg": "^$",
             "boundsInScreen": [
               45,
               72,
               900,
               186
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "搜索",
           "name": "搜索",
-          "frequency": 0.8,
+          "pinyin": "SouSuo",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "SouSuo"
+          "frequency": "1"
         },
         {
-          "target": "发布",
-          "needParameter": "false",
           "path": {
-            "textReg": "发布",
             "text": "发布",
+            "textReg": "发布",
+            "contentReg": "^$",
             "boundsInScreen": [
               930,
               154,
               1050,
               189
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "发布",
           "name": "发布",
-          "frequency": 0.4,
+          "pinyin": "FaBu",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "FaBu"
+          "frequency": "1"
         },
         {
-          "target": "关注",
-          "needParameter": "false",
           "path": {
-            "textReg": "^$",
             "text": "关注",
+            "textReg": "^$",
+            "contentReg": "关注",
             "boundsInScreen": [
               18,
               204,
               170,
-              312
-            ],
-            "contentReg": "关注"
+              315
+            ]
           },
+          "target": "关注",
           "name": "关注",
-          "frequency": 0.6,
+          "pinyin": "GuanZhu",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "GuanZhu"
+          "frequency": "1"
         },
         {
-          "target": "直播",
-          "needParameter": "false",
           "path": {
+            "text": "推荐",
             "textReg": "^$",
-            "text": "直播",
+            "contentReg": "推荐",
             "boundsInScreen": [
-              534,
+              170,
               204,
-              687,
-              312
-            ],
-            "contentReg": "直播"
+              329,
+              315
+            ]
           },
-          "name": "直播",
-          "frequency": 0.3,
+          "target": "推荐",
+          "name": "推荐",
+          "pinyin": "TuiJian",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "ZhiBo"
+          "frequency": "1"
         }
       ],
-      "frequency": 1.0,
-      "pagePinyin": "XiGuaShiPin",
-      "pageId": "西瓜视频",
+      "frequency": "1"
+    },
+    {
+      "pageId": "发布",
+      "pageName": "发布",
+      "pagePinyin": "FaBu",
+      "canDirectReach": true,
       "features": [
         {
-          "textReg": "^$",
+          "text": "发图文",
+          "textReg": "发图文",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            816,
+            263,
+            951,
+            324
+          ]
+        },
+        {
+          "text": "拍小视频",
+          "textReg": "拍小视频",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            816,
+            385,
+            996,
+            446
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "发图文",
+            "textReg": "发图文",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              816,
+              263,
+              951,
+              324
+            ]
+          },
+          "target": "发图文",
+          "name": "发图文",
+          "pinyin": "FaTuWen",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "拍小视频",
+            "textReg": "拍小视频",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              816,
+              385,
+              996,
+              446
+            ]
+          },
+          "target": "拍小视频",
+          "name": "拍小视频",
+          "pinyin": "PaiXiaoShiPin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "发视频",
+            "textReg": "发视频",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              816,
+              507,
+              951,
+              568
+            ]
+          },
+          "target": "发视频",
+          "name": "发视频",
+          "pinyin": "FaShiPin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "提问",
+            "textReg": "提问",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              816,
+              629,
+              906,
+              690
+            ]
+          },
+          "target": "提问",
+          "name": "提问",
+          "pinyin": "TiWen",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "开直播",
+            "textReg": "开直播",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              816,
+              751,
+              951,
+              812
+            ]
+          },
+          "target": "开直播",
+          "name": "开直播",
+          "pinyin": "KaiZhiBo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "西瓜视频",
+      "pageName": "西瓜视频",
+      "pagePinyin": "XiGuaShiPin",
+      "canDirectReach": true,
+      "features": [
+        {
           "text": "考得好",
+          "textReg": "^$",
+          "contentReg": "考得好",
           "boundsInScreen": [
             329,
             204,
             534,
             312
-          ],
-          "contentReg": "考得好"
+          ]
         },
         {
-          "textReg": "^$",
           "text": "直播",
+          "textReg": "^$",
+          "contentReg": "直播",
           "boundsInScreen": [
             534,
             204,
             687,
             312
-          ],
-          "contentReg": "直播"
+          ]
         }
       ],
-      "canDirectReach": true
-    },
-    {
-      "pageName": "小视频",
       "buttons": [
         {
-          "target": "首页",
-          "needParameter": "false",
           "path": {
-            "textReg": "首页",
             "text": "首页",
+            "textReg": "首页",
+            "contentReg": "^$",
             "boundsInScreen": [
               108,
               1870,
               162,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "首页",
           "name": "首页",
-          "frequency": 1.0,
+          "pinyin": "ShouYe",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "ShouYe"
+          "frequency": "1"
         },
         {
-          "target": "西瓜视频",
-          "needParameter": "false",
           "path": {
-            "textReg": "西瓜视频",
             "text": "西瓜视频",
+            "textReg": "西瓜视频",
+            "contentReg": "^$",
             "boundsInScreen": [
               351,
               1870,
               459,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "西瓜视频",
           "name": "西瓜视频",
-          "frequency": 1.0,
+          "pinyin": "XiGuaShiPin",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "XiGuaShiPin"
+          "frequency": "1"
         },
         {
-          "target": "小视频",
-          "needParameter": "false",
           "path": {
-            "textReg": "小视频",
             "text": "小视频",
+            "textReg": "小视频",
+            "contentReg": "^$",
             "boundsInScreen": [
               634,
               1870,
               715,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "小视频",
           "name": "小视频",
-          "frequency": 1.0,
+          "pinyin": "XiaoShiPin",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "XiaoShiPin"
+          "frequency": "1"
         },
         {
-          "target": "我的",
-          "needParameter": "false",
           "path": {
-            "textReg": "我的",
             "text": "我的",
+            "textReg": "我的",
+            "contentReg": "^$",
             "boundsInScreen": [
               918,
               1870,
               972,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "我的",
           "name": "我的",
-          "frequency": 0.8,
+          "pinyin": "WoDe",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "WoDe"
+          "frequency": "3"
         },
         {
-          "target": "关注",
-          "needParameter": "false",
           "path": {
+            "text": "",
             "textReg": "^$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              45,
+              72,
+              900,
+              186
+            ]
+          },
+          "target": "搜索",
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "发布",
+            "textReg": "发布",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              930,
+              154,
+              1050,
+              189
+            ]
+          },
+          "target": "发布",
+          "name": "发布",
+          "pinyin": "FaBu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
             "text": "关注",
+            "textReg": "^$",
+            "contentReg": "关注",
             "boundsInScreen": [
               18,
-              54,
+              204,
               170,
-              186
-            ],
-            "contentReg": "关注"
+              312
+            ]
           },
+          "target": "关注",
           "name": "关注",
-          "frequency": 0.6,
+          "pinyin": "GuanZhu",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "GuanZhu"
+          "frequency": "1"
         },
         {
-          "target": "推荐",
-          "needParameter": "false",
           "path": {
+            "text": "直播",
             "textReg": "^$",
-            "text": "推荐",
+            "contentReg": "直播",
             "boundsInScreen": [
-              170,
-              54,
-              329,
-              186
-            ],
-            "contentReg": "推荐"
+              534,
+              204,
+              687,
+              312
+            ]
           },
-          "name": "推荐",
-          "frequency": 0.5,
-          "canDirectReach": "true",
-          "pinyin": "TuiJian"
-        },
-        {
-          "target": "附近",
+          "target": "直播",
+          "name": "直播",
+          "pinyin": "ZhiBo",
           "needParameter": "false",
-          "path": {
-            "textReg": "^$",
-            "text": "附近",
-            "boundsInScreen": [
-              329,
-              54,
-              479,
-              186
-            ],
-            "contentReg": "附近"
-          },
-          "name": "附近",
-          "frequency": 0.3,
           "canDirectReach": "true",
-          "pinyin": "FuJin"
-        },
-        {
-          "target": "发布",
-          "needParameter": "false",
-          "path": {
-            "textReg": "发布",
-            "text": "发布",
-            "boundsInScreen": [
-              975,
-              91,
-              1059,
-              148
-            ],
-            "contentReg": "^$"
-          },
-          "name": "发布",
-          "frequency": 0.4,
-          "canDirectReach": "true",
-          "pinyin": "FaBu"
+          "frequency": "1"
         }
       ],
-      "frequency": 1.0,
-      "pagePinyin": "XiaoShiPin",
+      "frequency": "1"
+    },
+    {
       "pageId": "小视频",
+      "pageName": "小视频",
+      "pagePinyin": "XiaoShiPin",
+      "canDirectReach": true,
       "features": [
         {
-          "textReg": "^$",
           "text": "附近",
+          "textReg": "^$",
+          "contentReg": "附近",
           "boundsInScreen": [
             329,
             54,
             479,
             186
-          ],
-          "contentReg": "附近"
+          ]
         },
         {
-          "textReg": "^$",
           "text": "活动",
+          "textReg": "^$",
+          "contentReg": "活动",
           "boundsInScreen": [
             479,
             54,
             630,
             186
-          ],
-          "contentReg": "活动"
+          ]
         }
       ],
-      "canDirectReach": true
-    },
-    {
-      "pageName": "我的",
       "buttons": [
         {
-          "target": "首页",
-          "needParameter": "false",
           "path": {
-            "textReg": "首页",
             "text": "首页",
+            "textReg": "首页",
+            "contentReg": "^$",
             "boundsInScreen": [
               108,
               1870,
               162,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "首页",
           "name": "首页",
-          "frequency": 1.0,
+          "pinyin": "ShouYe",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "ShouYe"
+          "frequency": "1"
         },
         {
-          "target": "西瓜视频",
-          "needParameter": "false",
           "path": {
-            "textReg": "西瓜视频",
             "text": "西瓜视频",
+            "textReg": "西瓜视频",
+            "contentReg": "^$",
             "boundsInScreen": [
               351,
               1870,
               459,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "西瓜视频",
           "name": "西瓜视频",
-          "frequency": 1.0,
+          "pinyin": "XiGuaShiPin",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "XiGuaShiPin"
+          "frequency": "1"
         },
         {
-          "target": "小视频",
-          "needParameter": "false",
           "path": {
-            "textReg": "小视频",
             "text": "小视频",
+            "textReg": "小视频",
+            "contentReg": "^$",
             "boundsInScreen": [
               634,
               1870,
               715,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "小视频",
           "name": "小视频",
-          "frequency": 1.0,
+          "pinyin": "XiaoShiPin",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "XiaoShiPin"
+          "frequency": "1"
         },
         {
-          "target": "我的",
-          "needParameter": "false",
           "path": {
-            "textReg": "我的",
             "text": "我的",
+            "textReg": "我的",
+            "contentReg": "^$",
             "boundsInScreen": [
               918,
               1870,
               972,
               1907
-            ],
-            "contentReg": "^$"
+            ]
           },
+          "target": "我的",
           "name": "我的",
-          "frequency": 0.8,
+          "pinyin": "WoDe",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "WoDe"
+          "frequency": "3"
         },
         {
-          "target": "头条",
-          "needParameter": "false",
           "path": {
-            "textReg": "头条",
-            "text": "头条",
-            "boundsInScreen": [
-              120,
-              438,
-              192,
-              480
-            ],
-            "contentReg": "^$"
-          },
-          "name": "头条",
-          "frequency": 0.1,
-          "canDirectReach": "true",
-          "pinyin": "TouTiao"
-        },
-        {
-          "target": "我的收藏",
-          "needParameter": "false",
-          "path": {
+            "text": "关注",
             "textReg": "^$",
-            "text": "我的收藏",
+            "contentReg": "关注",
             "boundsInScreen": [
-              0,
-              552,
-              270,
-              793
-            ],
-            "contentReg": "我的收藏"
+              18,
+              54,
+              170,
+              186
+            ]
           },
-          "name": "我的收藏",
-          "frequency": 0.1,
+          "target": "关注",
+          "name": "关注",
+          "pinyin": "GuanZhu",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "WoDeShouCang"
+          "frequency": "1"
         },
         {
-          "target": "浏览历史",
-          "needParameter": "false",
           "path": {
+            "text": "推荐",
             "textReg": "^$",
-            "text": "浏览历史",
+            "contentReg": "推荐",
             "boundsInScreen": [
-              810,
-              552,
-              1080,
-              793
-            ],
-            "contentReg": "浏览历史"
+              170,
+              54,
+              329,
+              186
+            ]
           },
-          "name": "浏览历史",
-          "frequency": 0.5,
+          "target": "推荐",
+          "name": "推荐",
+          "pinyin": "TuiJian",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "LiuLanLiShi"
+          "frequency": "1"
         },
         {
-          "target": "我的钱包",
-          "needParameter": "false",
           "path": {
-            "textReg": "我的钱包",
-            "text": "我的钱包",
+            "text": "附近",
+            "textReg": "^$",
+            "contentReg": "附近",
             "boundsInScreen": [
-              45,
-              849,
-              237,
-              914
-            ],
-            "contentReg": "^$"
+              329,
+              54,
+              479,
+              186
+            ]
           },
-          "name": "我的钱包",
-          "frequency": 0.2,
+          "target": "附近",
+          "name": "附近",
+          "pinyin": "FuJin",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "WoDeQianBao"
+          "frequency": "2"
         },
         {
-          "target": "消息通知",
-          "needParameter": "false",
           "path": {
-            "textReg": "消息通知",
-            "text": "消息通知",
+            "text": "发布",
+            "textReg": "发布",
+            "contentReg": "^$",
             "boundsInScreen": [
-              45,
-              992,
-              237,
-              1057
-            ],
-            "contentReg": "^$"
+              975,
+              91,
+              1059,
+              148
+            ]
           },
-          "name": "消息通知",
-          "frequency": 0.1,
-          "canDirectReach": "true",
-          "pinyin": "XiaoXiTongZhi"
-        },
-        {
-          "target": "小程序",
+          "target": "发布",
+          "name": "发布",
+          "pinyin": "FaBu",
           "needParameter": "false",
-          "path": {
-            "textReg": "小程序",
-            "text": "小程序",
-            "boundsInScreen": [
-              45,
-              1135,
-              189,
-              1200
-            ],
-            "contentReg": "^$"
-          },
-          "name": "小程序",
-          "frequency": 0.2,
           "canDirectReach": "true",
-          "pinyin": "XiaoChengXu"
-        },
-        {
-          "target": "扫一扫",
-          "needParameter": "false",
-          "path": {
-            "textReg": "扫一扫",
-            "text": "扫一扫",
-            "boundsInScreen": [
-              45,
-              1294,
-              189,
-              1359
-            ],
-            "contentReg": "^$"
-          },
-          "name": "扫一扫",
-          "frequency": 0.1,
-          "canDirectReach": "true",
-          "pinyin": "SaoYiSao"
+          "frequency": "1"
         }
       ],
-      "frequency": 0.8,
-      "pagePinyin": "WoDe",
+      "frequency": "1"
+    },
+    {
       "pageId": "我的",
+      "pageName": "我的",
+      "pagePinyin": "WoDe",
+      "canDirectReach": true,
       "features": [
         {
-          "textReg": "关注",
           "text": "关注",
+          "textReg": "关注",
+          "contentReg": "^$",
           "boundsInScreen": [
             375,
             438,
             447,
             480
-          ],
-          "contentReg": "^$"
+          ]
         },
         {
-          "textReg": "^$",
           "text": "我的评论",
+          "textReg": "^$",
+          "contentReg": "我的评论",
           "boundsInScreen": [
             270,
             552,
             540,
             793
-          ],
-          "contentReg": "我的评论"
+          ]
         }
       ],
-      "canDirectReach": true
-    },
-    {
-      "pageName": "设置",
       "buttons": [
         {
-          "target": "编辑资料",
-          "needParameter": "false",
           "path": {
-            "textReg": "编辑资料",
-            "text": "编辑资料",
+            "text": "首页",
+            "textReg": "首页",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              108,
+              1870,
+              162,
+              1907
+            ]
+          },
+          "target": "首页",
+          "name": "首页",
+          "pinyin": "ShouYe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "西瓜视频",
+            "textReg": "西瓜视频",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              351,
+              1870,
+              459,
+              1907
+            ]
+          },
+          "target": "西瓜视频",
+          "name": "西瓜视频",
+          "pinyin": "XiGuaShiPin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "小视频",
+            "textReg": "小视频",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              634,
+              1870,
+              715,
+              1907
+            ]
+          },
+          "target": "小视频",
+          "name": "小视频",
+          "pinyin": "XiaoShiPin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "我的",
+            "textReg": "我的",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              918,
+              1870,
+              972,
+              1907
+            ]
+          },
+          "target": "我的",
+          "name": "我的",
+          "pinyin": "WoDe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "头条",
+            "textReg": "头条",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              120,
+              438,
+              192,
+              480
+            ]
+          },
+          "target": "头条",
+          "name": "头条",
+          "pinyin": "TouTiao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "我的收藏",
+            "textReg": "^$",
+            "contentReg": "我的收藏",
+            "boundsInScreen": [
+              0,
+              552,
+              270,
+              793
+            ]
+          },
+          "target": "我的收藏",
+          "name": "我的收藏",
+          "pinyin": "WoDeShouCang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "浏览历史",
+            "textReg": "^$",
+            "contentReg": "浏览历史",
+            "boundsInScreen": [
+              810,
+              552,
+              1080,
+              793
+            ]
+          },
+          "target": "浏览历史",
+          "name": "浏览历史",
+          "pinyin": "LiuLanLiShi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "我的钱包",
+            "textReg": "我的钱包",
+            "contentReg": "^$",
             "boundsInScreen": [
               45,
-              257,
+              849,
               237,
-              322
-            ],
-            "contentReg": "^$"
+              914
+            ]
           },
-          "name": "编辑资料",
-          "frequency": 0.1,
+          "target": "我的钱包",
+          "name": "我的钱包",
+          "pinyin": "WoDeQianBao",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "BianJiZiLiao"
+          "frequency": "3"
         },
         {
-          "target": "账号和隐私设置",
-          "needParameter": "false",
           "path": {
-            "textReg": "账号和隐私设置",
-            "text": "账号和隐私设置",
+            "text": "消息通知",
+            "textReg": "消息通知",
+            "contentReg": "^$",
             "boundsInScreen": [
               45,
-              407,
-              381,
-              472
-            ],
-            "contentReg": "^$"
+              992,
+              237,
+              1057
+            ]
           },
-          "name": "账号和隐私设置",
-          "frequency": 0.05,
+          "target": "消息通知",
+          "name": "消息通知",
+          "pinyin": "XiaoXiTongZhi",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "ZhangHaoHeYinSiSheZhi"
+          "frequency": "3"
         },
         {
-          "target": "黑名单",
-          "needParameter": "false",
           "path": {
-            "textReg": "黑名单",
-            "text": "黑名单",
+            "text": "小程序",
+            "textReg": "小程序",
+            "contentReg": "^$",
             "boundsInScreen": [
               45,
-              557,
+              1135,
               189,
-              622
-            ],
-            "contentReg": "^$"
+              1200
+            ]
           },
-          "name": "黑名单",
-          "frequency": 0.02,
+          "target": "小程序",
+          "name": "小程序",
+          "pinyin": "XiaoChengXu",
+          "needParameter": "false",
           "canDirectReach": "true",
-          "pinyin": "HeiMingDan"
+          "frequency": "3"
         },
         {
-          "target": "清除缓存",
-          "needParameter": "false",
           "path": {
-            "textReg": "清除缓存",
-            "text": "清除缓存",
+            "text": "扫一扫",
+            "textReg": "扫一扫",
+            "contentReg": "^$",
             "boundsInScreen": [
               45,
-              888,
-              237,
-              953
-            ],
-            "contentReg": "^$"
+              1294,
+              189,
+              1359
+            ]
           },
-          "name": "清除缓存",
-          "frequency": 0.01,
-          "canDirectReach": "true",
-          "pinyin": "QingChuHuanCun"
-        },
-        {
-          "target": "非WiFi网络流量",
+          "target": "扫一扫",
+          "name": "扫一扫",
+          "pinyin": "SaoYiSao",
           "needParameter": "false",
-          "path": {
-            "textReg": "非WiFi网络流量",
-            "text": "非WiFi网络流量",
-            "boundsInScreen": [
-              45,
-              1338,
-              379,
-              1403
-            ],
-            "contentReg": "^$"
-          },
-          "name": "非WiFi网络流量",
-          "frequency": 0.03,
           "canDirectReach": "true",
-          "pinyin": "FeiWiFiWangLuoLiuLiang"
-        },
-        {
-          "target": "非WiFi网络播放提醒",
-          "needParameter": "false",
-          "path": {
-            "textReg": "非WiFi网络播放提醒",
-            "text": "非WiFi网络播放提醒",
-            "boundsInScreen": [
-              45,
-              1488,
-              475,
-              1553
-            ],
-            "contentReg": "^$"
-          },
-          "name": "非WiFi网络播放提醒",
-          "frequency": 0.03,
-          "canDirectReach": "true",
-          "pinyin": "FeiWiFiWangLuoBoFangTiXing"
+          "frequency": "4"
         }
       ],
-      "frequency": 0.2,
-      "pagePinyin": "SheZhi",
+      "frequency": "3"
+    },
+    {
       "pageId": "设置",
+      "pageName": "设置",
+      "pagePinyin": "SheZhi",
+      "canDirectReach": true,
       "features": [
         {
-          "textReg": "设置",
           "text": "设置",
+          "textReg": "设置",
+          "contentReg": "^$",
           "boundsInScreen": [
             486,
             86,
             594,
             154
-          ],
-          "contentReg": "^$"
+          ]
         },
         {
-          "textReg": "编辑资料",
           "text": "编辑资料",
+          "textReg": "编辑资料",
+          "contentReg": "^$",
           "boundsInScreen": [
             45,
             257,
             237,
             322
-          ],
-          "contentReg": "^$"
+          ]
         },
         {
-          "textReg": "账号和隐私设置",
           "text": "账号和隐私设置",
+          "textReg": "账号和隐私设置",
+          "contentReg": "^$",
           "boundsInScreen": [
             45,
             407,
             381,
             472
-          ],
-          "contentReg": "^$"
+          ]
         }
       ],
-      "canDirectReach": true
+      "buttons": [
+        {
+          "path": {
+            "text": "编辑资料",
+            "textReg": "编辑资料",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              45,
+              257,
+              237,
+              322
+            ]
+          },
+          "target": "编辑资料",
+          "name": "编辑资料",
+          "pinyin": "BianJiZiLiao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "账号和隐私设置",
+            "textReg": "账号和隐私设置",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              45,
+              407,
+              381,
+              472
+            ]
+          },
+          "target": "账号和隐私设置",
+          "name": "账号和隐私设置",
+          "pinyin": "ZhangHaoHeYinSiSheZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "黑名单",
+            "textReg": "黑名单",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              45,
+              557,
+              189,
+              622
+            ]
+          },
+          "target": "黑名单",
+          "name": "黑名单",
+          "pinyin": "HeiMingDan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "清除缓存",
+            "textReg": "清除缓存",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              45,
+              888,
+              237,
+              953
+            ]
+          },
+          "target": "清除缓存",
+          "name": "清除缓存",
+          "pinyin": "QingChuHuanCun",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "非WiFi网络流量",
+            "textReg": "非WiFi网络流量",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              45,
+              1338,
+              379,
+              1403
+            ]
+          },
+          "target": "非WiFi网络流量",
+          "name": "非WiFi网络流量",
+          "pinyin": "FeiWiFiWangLuoLiuLiang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "非WiFi网络播放提醒",
+            "textReg": "非WiFi网络播放提醒",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              45,
+              1488,
+              475,
+              1553
+            ]
+          },
+          "target": "非WiFi网络播放提醒",
+          "name": "非WiFi网络播放提醒",
+          "pinyin": "FeiWiFiWangLuoBoFangTiXing",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "3"
     }
-  ],
-  "meta": {
-    "appPinyin": "JinRiTouTiao",
-    "packageName": "com.ss.android.article.news",
-    "resolution": [
-      1080,
-      1920
-    ],
-    "appName": "今日头条"
-  }
+  ]
 }

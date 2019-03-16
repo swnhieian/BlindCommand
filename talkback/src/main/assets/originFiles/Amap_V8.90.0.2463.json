@@ -1,0 +1,1189 @@
+{
+  "meta": {
+    "packageName": "com.autonavi.minimap",
+    "appName": "高德地图",
+    "appPinyin": "GaoDeDiTu",
+    "resolution": [
+      1080,
+      1920
+    ]
+  },
+  "data": [
+    {
+      "pageId": "首页",
+      "pageName": "首页",
+      "pagePinyin": "ShouYe",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "查找地点、公交、地铁",
+          "textReg": "查找地点、公交、地铁",
+          "contentReg": "搜索框",
+          "boundsInScreen": [
+            154,
+            76,
+            842,
+            212
+          ]
+        },
+        {
+          "text": "路线",
+          "textReg": "路线",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            527,
+            1632,
+            623,
+            1697
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "个人中心",
+            "textReg": "^$",
+            "contentReg": "个人中心",
+            "boundsInScreen": [
+              45,
+              101,
+              131,
+              187
+            ]
+          },
+          "target": "个人中心",
+          "name": "个人中心",
+          "pinyin": "GeRenZhongXin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "查找地点、公交、地铁",
+            "textReg": "查找地点、公交、地铁",
+            "contentReg": "搜索框",
+            "boundsInScreen": [
+              154,
+              76,
+              842,
+              212
+            ]
+          },
+          "target": "搜索",
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "语音输入",
+            "textReg": "^$",
+            "contentReg": "语音输入",
+            "boundsInScreen": [
+              842,
+              102,
+              926,
+              186
+            ]
+          },
+          "target": "语音输入",
+          "name": "语音输入",
+          "pinyin": "YuYinShuRu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "高德扫码页,该功能不适合盲人使用",
+            "textReg": "^$",
+            "contentReg": "高德扫码页,该功能不适合盲人使用",
+            "boundsInScreen": [
+              968,
+              76,
+              1028,
+              212
+            ]
+          },
+          "target": "扫描二维码",
+          "name": "扫描二维码",
+          "pinyin": "SaoMiaoEWeiMa",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "消息中心，该功能不适合盲人使用",
+            "textReg": "^$",
+            "contentReg": "消息中心，该功能不适合盲人使用",
+            "boundsInScreen": [
+              24,
+              234,
+              131,
+              341
+            ]
+          },
+          "target": "消息中心",
+          "name": "消息中心",
+          "pinyin": "XiaoXiZhongXin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "路线",
+            "textReg": "路线",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              527,
+              1632,
+              623,
+              1697
+            ]
+          },
+          "target": "路线",
+          "name": "路线",
+          "pinyin": "LuXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "常去地点",
+            "textReg": "^$",
+            "contentReg": "常去地点",
+            "boundsInScreen": [
+              936,
+              1600,
+              1068,
+              1732
+            ]
+          },
+          "target": "常去地点",
+          "name": "常去地点",
+          "pinyin": "ChangQuDiDian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "探索附近",
+            "textReg": "探索附近",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              60,
+              1797,
+              346,
+              1863
+            ]
+          },
+          "target": "探索附近",
+          "name": "探索附近",
+          "pinyin": "TanSuoFuJin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        }
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "个人中心",
+      "pageName": "个人中心",
+      "pagePinyin": "GeRenZhongXin",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "我的成就",
+          "textReg": "我的成就",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            60,
+            909,
+            924,
+            993
+          ]
+        },
+        {
+          "text": "数据贡献",
+          "textReg": "数据贡献",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            60,
+            1629,
+            672,
+            1713
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "设置",
+            "textReg": "^$",
+            "contentReg": "设置",
+            "boundsInScreen": [
+              948,
+              66,
+              1056,
+              174
+            ]
+          },
+          "target": "设置",
+          "name": "设置",
+          "pinyin": "SheZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        }
+      ],
+      "frequency": "3"
+    },
+    {
+      "pageId": "设置",
+      "pageName": "设置",
+      "pagePinyin": "SheZhi",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "设置",
+          "textReg": "设置",
+          "contentReg": "设置页面",
+          "boundsInScreen": [
+            486,
+            89,
+            594,
+            162
+          ]
+        },
+        {
+          "text": "账号与安全",
+          "textReg": "账号与安全",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            0,
+            198,
+            1080,
+            323
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "账号与安全",
+            "textReg": "账号与安全",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              0,
+              198,
+              1080,
+              323
+            ]
+          },
+          "target": "账号与安全",
+          "name": "账号与安全",
+          "pinyin": "ZhangHaoYuAnQuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "地图设置",
+            "textReg": "地图设置",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              0,
+              323,
+              939,
+              460
+            ]
+          },
+          "target": "地图设置",
+          "name": "地图设置",
+          "pinyin": "DiTuSheZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "导航设置",
+            "textReg": "导航设置",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              45,
+              460,
+              1080,
+              597
+            ]
+          },
+          "target": "导航设置",
+          "name": "导航设置",
+          "pinyin": "DaoHangSheZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "通勤设置",
+            "textReg": "通勤设置",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              45,
+              597,
+              1080,
+              734
+            ]
+          },
+          "target": "通勤设置",
+          "name": "通勤设置",
+          "pinyin": "TongQinSheZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "消息推送",
+            "textReg": "消息推送",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              45,
+              905,
+              867,
+              1036
+            ]
+          },
+          "target": "消息推送",
+          "name": "消息推送",
+          "pinyin": "XiaoXiTuiSong",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "清空缓存",
+            "textReg": "清空缓存",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              45,
+              1173,
+              1011,
+              1310
+            ]
+          },
+          "target": "清空缓存",
+          "name": "清空缓存",
+          "pinyin": "QingKongHuanCun",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "退出登录",
+            "textReg": "退出登录",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              0,
+              1785,
+              1080,
+              1920
+            ]
+          },
+          "target": "退出登录",
+          "name": "退出登录",
+          "pinyin": "TuiChuDengLu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "3"
+    },
+    {
+      "pageId": "路线",
+      "pageName": "路线",
+      "pagePinyin": "LuXian",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "我的位置",
+          "textReg": "我的位置",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            246,
+            103,
+            885,
+            168
+          ]
+        },
+        {
+          "text": "输入终点",
+          "textReg": "输入终点",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            246,
+            211,
+            885,
+            276
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "我的位置",
+            "textReg": "我的位置",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              246,
+              103,
+              885,
+              168
+            ]
+          },
+          "target": "输入起点",
+          "name": "输入起点",
+          "pinyin": "ShuRuQiDian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "输入终点",
+            "textReg": "输入终点",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              246,
+              211,
+              885,
+              276
+            ]
+          },
+          "target": "输入终点",
+          "name": "输入终点",
+          "pinyin": "ShuRuZhongDian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "打车",
+            "textReg": "打车",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              101,
+              356,
+              185,
+              413
+            ]
+          },
+          "target": "打车",
+          "name": "打车",
+          "pinyin": "DaChe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "驾车",
+            "textReg": "驾车",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              275,
+              356,
+              359,
+              413
+            ]
+          },
+          "target": "驾车",
+          "name": "驾车",
+          "pinyin": "JiaChe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "公交",
+            "textReg": "公交",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              533,
+              356,
+              617,
+              413
+            ]
+          },
+          "target": "公交",
+          "name": "公交",
+          "pinyin": "GongJiao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "骑行",
+            "textReg": "骑行",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              722,
+              356,
+              806,
+              413
+            ]
+          },
+          "target": "骑行",
+          "name": "骑行",
+          "pinyin": "QiXing",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "",
+            "textReg": "^$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              960,
+              316,
+              1080,
+              454
+            ]
+          },
+          "target": "更多",
+          "name": "更多",
+          "pinyin": "GengDuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "打车",
+      "pageName": "打车",
+      "pagePinyin": "DaChe",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "现在",
+          "textReg": "现在",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            84,
+            1605,
+            162,
+            1659
+          ]
+        },
+        {
+          "text": "预约",
+          "textReg": "预约",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            252,
+            1605,
+            330,
+            1659
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "现在",
+            "textReg": "现在",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              84,
+              1605,
+              162,
+              1659
+            ]
+          },
+          "target": "现在",
+          "name": "现在",
+          "pinyin": "XianZai",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "预约",
+            "textReg": "预约",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              252,
+              1605,
+              330,
+              1659
+            ]
+          },
+          "target": "预约",
+          "name": "预约",
+          "pinyin": "YuYue",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "",
+            "textReg": "^$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              960,
+              316,
+              1080,
+              454
+            ]
+          },
+          "target": "更多",
+          "name": "更多",
+          "pinyin": "GengDuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "驾车",
+      "pageName": "驾车",
+      "pagePinyin": "JiaChe",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "导航设置",
+          "textReg": "导航设置",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            72,
+            873,
+            264,
+            939
+          ]
+        },
+        {
+          "text": "车辆设置",
+          "textReg": "车辆设置",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            72,
+            1059,
+            264,
+            1125
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "我的位置",
+            "textReg": "我的位置",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              246,
+              103,
+              885,
+              168
+            ]
+          },
+          "target": "输入起点",
+          "name": "输入起点",
+          "pinyin": "ShuRuQiDian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "输入终点",
+            "textReg": "输入终点",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              246,
+              211,
+              885,
+              276
+            ]
+          },
+          "target": "输入终点",
+          "name": "输入终点",
+          "pinyin": "ShuRuZhongDian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "",
+            "textReg": "^$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              960,
+              316,
+              1080,
+              454
+            ]
+          },
+          "target": "更多",
+          "name": "更多",
+          "pinyin": "GengDuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "导航设置",
+            "textReg": "导航设置",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              72,
+              873,
+              264,
+              939
+            ]
+          },
+          "target": "导航设置",
+          "name": "导航设置",
+          "pinyin": "DaoHangSheZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "车辆设置",
+            "textReg": "车辆设置",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              72,
+              1059,
+              264,
+              1125
+            ]
+          },
+          "target": "车辆设置",
+          "name": "车辆设置",
+          "pinyin": "CheLiangSheZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "电子狗",
+            "textReg": "电子狗",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              74,
+              1385,
+              200,
+              1442
+            ]
+          },
+          "target": "电子狗",
+          "name": "电子狗",
+          "pinyin": "DianZiGou",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "导航语音",
+            "textReg": "导航语音",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              300,
+              1385,
+              468,
+              1442
+            ]
+          },
+          "target": "导航语音",
+          "name": "导航语音",
+          "pinyin": "DaoHangYuYin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "4"
+    },
+    {
+      "pageId": "公交",
+      "pageName": "公交",
+      "pagePinyin": "GongJiao",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "实时公交",
+          "textReg": "实时公交",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            72,
+            873,
+            264,
+            939
+          ]
+        },
+        {
+          "text": "查公交",
+          "textReg": "查公交",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            126,
+            1310,
+            252,
+            1367
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "我的位置",
+            "textReg": "我的位置",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              246,
+              103,
+              885,
+              168
+            ]
+          },
+          "target": "输入起点",
+          "name": "输入起点",
+          "pinyin": "ShuRuQiDian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "输入终点",
+            "textReg": "输入终点",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              246,
+              211,
+              885,
+              276
+            ]
+          },
+          "target": "输入终点",
+          "name": "输入终点",
+          "pinyin": "ShuRuZhongDian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "",
+            "textReg": "^$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              960,
+              316,
+              1080,
+              454
+            ]
+          },
+          "target": "更多",
+          "name": "更多",
+          "pinyin": "GengDuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "家",
+            "textReg": "家",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              175,
+              536,
+              217,
+              596
+            ]
+          },
+          "target": "设置家庭住址",
+          "name": "设置家庭住址",
+          "pinyin": "SheZhiJiaTingZhuZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "公司",
+            "textReg": "公司",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              175,
+              681,
+              259,
+              741
+            ]
+          },
+          "target": "设置公司地址",
+          "name": "设置公司地址",
+          "pinyin": "SheZhiGongSiDiZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "实时公交",
+            "textReg": "实时公交",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              72,
+              873,
+              264,
+              939
+            ]
+          },
+          "target": "实时公交",
+          "name": "实时公交",
+          "pinyin": "ShiShiGongJiao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "查公交",
+            "textReg": "查公交",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              126,
+              1310,
+              252,
+              1367
+            ]
+          },
+          "target": "查公交",
+          "name": "查公交",
+          "pinyin": "ChaGongJiao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "地铁图",
+            "textReg": "地铁图",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              456,
+              1310,
+              582,
+              1367
+            ]
+          },
+          "target": "地铁图",
+          "name": "地铁图",
+          "pinyin": "DiTieTu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "3"
+    },
+    {
+      "pageId": "步行",
+      "pageName": "步行",
+      "pagePinyin": "BuXing",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "步行轨迹",
+          "textReg": "步行轨迹",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            72,
+            877,
+            240,
+            934
+          ]
+        },
+        {
+          "text": "快乐步行，强身健体",
+          "textReg": "快乐步行，强身健体",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            84,
+            1037,
+            516,
+            1085
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "我的位置",
+            "textReg": "我的位置",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              246,
+              103,
+              885,
+              168
+            ]
+          },
+          "target": "输入起点",
+          "name": "输入起点",
+          "pinyin": "ShuRuQiDian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "输入终点",
+            "textReg": "输入终点",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              246,
+              211,
+              885,
+              276
+            ]
+          },
+          "target": "输入终点",
+          "name": "输入终点",
+          "pinyin": "ShuRuZhongDian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "",
+            "textReg": "^$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              960,
+              316,
+              1080,
+              454
+            ]
+          },
+          "target": "更多",
+          "name": "更多",
+          "pinyin": "GengDuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "家",
+            "textReg": "家",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              175,
+              536,
+              217,
+              596
+            ]
+          },
+          "target": "设置家庭住址",
+          "name": "设置家庭住址",
+          "pinyin": "SheZhiJiaTingZhuZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "公司",
+            "textReg": "公司",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              175,
+              681,
+              259,
+              741
+            ]
+          },
+          "target": "设置公司地址",
+          "name": "设置公司地址",
+          "pinyin": "SheZhiGongSiDiZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "开始跑步",
+            "textReg": "开始跑步",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              99,
+              1581,
+              267,
+              1638
+            ]
+          },
+          "target": "开始跑步",
+          "name": "开始跑步",
+          "pinyin": "KaiShiPaoBu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "周边跑步路线",
+            "textReg": "周边跑步路线",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              414,
+              1581,
+              666,
+              1638
+            ]
+          },
+          "target": "周边跑步路线",
+          "name": "周边跑步路线",
+          "pinyin": "ZhouBianPaoBuLuXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "2"
+    }
+  ]
+}

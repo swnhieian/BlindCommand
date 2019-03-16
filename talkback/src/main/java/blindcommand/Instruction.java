@@ -10,7 +10,7 @@ public class Instruction {
     public String name;
     public String pinyin;
     public JsonAppInfo meta;
-    public int frequency;
+    public double frequency;
 
 
     public boolean inSameApp(Instruction ins){

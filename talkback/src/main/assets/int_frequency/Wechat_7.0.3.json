@@ -1,0 +1,1301 @@
+{
+  "meta": {
+    "packageName": "com.tencent.mm",
+    "appName": "微信",
+    "appPinyin": "WeiXin",
+    "resolution": [
+      1080,
+      2244
+    ]
+  },
+  "data": [
+    {
+      "pageId": "微信",
+      "pageName": "微信主页",
+      "pagePinyin": "WeiXin",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "微信",
+          "textReg": "^微信(\\(\\d+\\))?$",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            42,
+            123,
+            238,
+            191
+          ]
+        },
+        {
+          "text": "微信",
+          "textReg": "^微信$",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            99,
+            2049,
+            171,
+            2098
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "微信",
+            "textReg": "^微信$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              99,
+              2049,
+              171,
+              2098
+            ]
+          },
+          "target": "微信",
+          "name": "微信主页",
+          "pinyin": "WeiXin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "",
+            "textReg": "^$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              744,
+              85,
+              912,
+              229
+            ]
+          },
+          "target": "搜索",
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "通讯录",
+            "textReg": "通讯录",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              351,
+              2049,
+              459,
+              2098
+            ]
+          },
+          "target": "通讯录",
+          "name": "通讯录",
+          "pinyin": "TongXunLu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              639,
+              2049,
+              711,
+              2098
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "我",
+            "textReg": "我",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              927,
+              2049,
+              963,
+              2098
+            ]
+          },
+          "target": "我",
+          "name": "我",
+          "pinyin": "Wo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "更多功能按钮",
+            "textReg": "^$",
+            "contentReg": "更多功能按钮",
+            "boundsInScreen": [
+              912,
+              85,
+              1080,
+              229
+            ]
+          },
+          "target": "更多功能",
+          "name": "更多功能",
+          "pinyin": "GengDuoGongNeng",
+          "needParameter": "false",
+          "canDirectReach": "false",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "通讯录",
+      "pageName": "通讯录",
+      "pagePinyin": "TongXunLu",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "通讯录",
+          "textReg": "通讯录",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            42,
+            123,
+            195,
+            191
+          ]
+        },
+        {
+          "text": "",
+          "textReg": "^$",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            744,
+            85,
+            912,
+            229
+          ]
+        },
+        {
+          "text": "更多功能按钮",
+          "textReg": "^$",
+          "contentReg": "更多功能按钮",
+          "boundsInScreen": [
+            912,
+            85,
+            1080,
+            229
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "微信",
+            "textReg": "^微信$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              99,
+              2049,
+              171,
+              2098
+            ]
+          },
+          "target": "微信",
+          "name": "微信主页",
+          "pinyin": "WeiXin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "",
+            "textReg": "^$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              744,
+              85,
+              912,
+              229
+            ]
+          },
+          "target": "搜索",
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "通讯录",
+            "textReg": "通讯录",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              351,
+              2049,
+              459,
+              2098
+            ]
+          },
+          "target": "通讯录",
+          "name": "通讯录",
+          "pinyin": "TongXunLu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              639,
+              2049,
+              711,
+              2098
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "我",
+            "textReg": "我",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              927,
+              2049,
+              963,
+              2098
+            ]
+          },
+          "target": "我",
+          "name": "我",
+          "pinyin": "Wo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "更多功能按钮",
+            "textReg": "^$",
+            "contentReg": "更多功能按钮",
+            "boundsInScreen": [
+              912,
+              85,
+              1080,
+              229
+            ]
+          },
+          "target": "更多功能",
+          "name": "更多功能",
+          "pinyin": "GengDuoGongNeng",
+          "needParameter": "false",
+          "canDirectReach": "false",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "3"
+    },
+    {
+      "pageId": "发现",
+      "pageName": "发现",
+      "pagePinyin": "FaXian",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "发现",
+          "textReg": "发现",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            42,
+            123,
+            144,
+            191
+          ]
+        },
+        {
+          "text": "",
+          "textReg": "^$",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            744,
+            85,
+            912,
+            229
+          ]
+        },
+        {
+          "text": "更多功能按钮",
+          "textReg": "^$",
+          "contentReg": "更多功能按钮",
+          "boundsInScreen": [
+            912,
+            85,
+            1080,
+            229
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "微信",
+            "textReg": "^微信$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              99,
+              2049,
+              171,
+              2098
+            ]
+          },
+          "target": "微信",
+          "name": "微信主页",
+          "pinyin": "WeiXin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "",
+            "textReg": "^$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              744,
+              85,
+              912,
+              229
+            ]
+          },
+          "target": "搜索",
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "通讯录",
+            "textReg": "通讯录",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              351,
+              2049,
+              459,
+              2098
+            ]
+          },
+          "target": "通讯录",
+          "name": "通讯录",
+          "pinyin": "TongXunLu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              639,
+              2049,
+              711,
+              2098
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "我",
+            "textReg": "我",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              927,
+              2049,
+              963,
+              2098
+            ]
+          },
+          "target": "我",
+          "name": "我",
+          "pinyin": "Wo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "更多功能按钮",
+            "textReg": "^$",
+            "contentReg": "更多功能按钮",
+            "boundsInScreen": [
+              912,
+              85,
+              1080,
+              229
+            ]
+          },
+          "target": "更多功能",
+          "name": "更多功能",
+          "pinyin": "GengDuoGongNeng",
+          "needParameter": "false",
+          "canDirectReach": "false",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "朋友圈",
+            "textReg": "朋友圈",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              168,
+              280,
+              321,
+              348
+            ]
+          },
+          "target": "朋友圈",
+          "name": "朋友圈",
+          "pinyin": "PengYouQuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "扫一扫",
+            "textReg": "扫一扫",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              168,
+              473,
+              321,
+              541
+            ]
+          },
+          "target": "扫一扫",
+          "name": "扫一扫",
+          "pinyin": "SaoYiSao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "摇一摇",
+            "textReg": "摇一摇",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              168,
+              641,
+              321,
+              709
+            ]
+          },
+          "target": "摇一摇",
+          "name": "摇一摇",
+          "pinyin": "YaoYiYao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        }
+      ],
+      "frequency": "4"
+    },
+    {
+      "pageId": "我",
+      "pageName": "我",
+      "pagePinyin": "Wo",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "微信号",
+          "textReg": "微信号：.+",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            312,
+            408,
+            867,
+            469
+          ]
+        },
+        {
+          "text": "设置",
+          "textReg": "设置",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            168,
+            1398,
+            270,
+            1466
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "微信",
+            "textReg": "^微信$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              99,
+              2049,
+              171,
+              2098
+            ]
+          },
+          "target": "微信",
+          "name": "微信主页",
+          "pinyin": "WeiXin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "通讯录",
+            "textReg": "通讯录",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              351,
+              2049,
+              459,
+              2098
+            ]
+          },
+          "target": "通讯录",
+          "name": "通讯录",
+          "pinyin": "TongXunLu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              639,
+              2049,
+              711,
+              2098
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "我",
+            "textReg": "我",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              927,
+              2049,
+              963,
+              2098
+            ]
+          },
+          "target": "我",
+          "name": "我",
+          "pinyin": "Wo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+
+        {
+          "path": {
+            "text": "微信号",
+            "textReg": "微信号：.+",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              312,
+              408,
+              867,
+              469
+            ]
+          },
+          "target": "个人信息",
+          "name": "个人信息",
+          "pinyin": "GeRenXinXi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+
+      ],
+      "frequency": "3"
+    },
+    {
+      "pageId": "更多功能",
+      "pageName": "更多功能",
+      "pagePinyin": "GengDuoGongNeng",
+      "canDirectReach": false,
+      "features": [
+        {
+          "text": "发起群聊",
+          "textReg": "发起群聊",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            714,
+            298,
+            918,
+            366
+          ]
+        },
+        {
+          "text": "添加朋友",
+          "textReg": "添加朋友",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            714,
+            466,
+            918,
+            534
+          ]
+        },
+        {
+          "text": "扫一扫",
+          "textReg": "扫一扫",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            714,
+            634,
+            867,
+            702
+          ]
+        },
+        {
+          "text": "收付款",
+          "textReg": "收付款",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            714,
+            802,
+            867,
+            870
+          ]
+        },
+        {
+          "text": "帮助与反馈",
+          "textReg": "帮助与反馈",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            714,
+            970,
+            969,
+            1038
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "微信",
+            "textReg": "^微信$",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              99,
+              2049,
+              171,
+              2098
+            ]
+          },
+          "target": "微信",
+          "name": "微信主页",
+          "pinyin": "WeiXin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "通讯录",
+            "textReg": "通讯录",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              351,
+              2049,
+              459,
+              2098
+            ]
+          },
+          "target": "通讯录",
+          "name": "通讯录",
+          "pinyin": "TongXunLu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              639,
+              2049,
+              711,
+              2098
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "我",
+            "textReg": "我",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              927,
+              2049,
+              963,
+              2098
+            ]
+          },
+          "target": "我",
+          "name": "我",
+          "pinyin": "Wo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "发起群聊",
+            "textReg": "发起群聊",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              714,
+              298,
+              918,
+              366
+            ]
+          },
+          "target": "发起群聊",
+          "name": "发起群聊",
+          "pinyin": "FaQiQunLiao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "添加朋友",
+            "textReg": "添加朋友",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              714,
+              466,
+              918,
+              534
+            ]
+          },
+          "target": "添加朋友",
+          "name": "添加朋友",
+          "pinyin": "TianJiaPengYou",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "扫一扫",
+            "textReg": "扫一扫",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              714,
+              634,
+              867,
+              702
+            ]
+          },
+          "target": "扫一扫",
+          "name": "扫一扫",
+          "pinyin": "SaoYiSao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "收付款",
+            "textReg": "收付款",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              714,
+              802,
+              867,
+              870
+            ]
+          },
+          "target": "收付款",
+          "name": "收付款",
+          "pinyin": "ShouFuKuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "帮助与反馈",
+            "textReg": "帮助与反馈",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              714,
+              970,
+              969,
+              1038
+            ]
+          },
+          "target": "帮助与反馈",
+          "name": "帮助与反馈",
+          "pinyin": "BangZhuYuFanKui",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "4"
+    },
+    {
+      "pageId": "搜索",
+      "pageName": "搜索",
+      "pagePinyin": "SouSuo",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "返回",
+          "textReg": "^$",
+          "contentReg": "返回",
+          "boundsInScreen": [
+            0,
+            85,
+            120,
+            229
+          ]
+        },
+        {
+          "text": "搜索",
+          "textReg": "搜索",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            120,
+            114,
+            1056,
+            200
+          ]
+        },
+        {
+          "text": "搜索指定内容",
+          "textReg": "搜索指定内容",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            414,
+            289,
+            666,
+            346
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {},
+          "target": "聊天",
+          "name": "聊天",
+          "pinyin": "LiaoTian",
+          "needParameter": "true",
+          "parameterName": "用户名",
+          "canDirectReach": "true",
+          "frequency": "1"
+        }
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "聊天",
+      "pageName": "聊天",
+      "pagePinyin": "LiaoTian",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "聊天信息",
+          "textReg": "^$",
+          "contentReg": "聊天信息",
+          "boundsInScreen": [
+            912,
+            85,
+            1080,
+            229
+          ]
+        },
+        {
+          "text": "返回",
+          "textReg": "^$",
+          "contentReg": "返回",
+          "boundsInScreen": [
+            0,
+            85,
+            120,
+            229
+          ]
+        },
+        {
+          "text": "",
+          "textReg": "^.*$",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            120,
+            127,
+            273,
+            186
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "更多功能按钮",
+            "textReg": "^$",
+            "contentReg": "^更多功能按钮.*$",
+            "boundsInScreen": [
+              960,
+              1984,
+              1056,
+              2080
+            ]
+          },
+          "target": "聊天更多功能",
+          "name": "聊天更多功能",
+          "pinyin": "LiaoTianGengDuoGongNeng",
+          "needParameter": "false",
+          "canDirectReach": "false",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "聊天更多功能",
+      "pageName": "聊天更多功能",
+      "pagePinyin": "LiaoTianGengDuoGongNeng",
+      "canDirectReach": false,
+      "features": [
+        {
+          "text": "相册",
+          "textReg": "相册",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            138,
+            1626,
+            204,
+            1670
+          ]
+        },
+        {
+          "text": "拍摄",
+          "textReg": "拍摄",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            384,
+            1626,
+            450,
+            1670
+          ]
+        },
+        {
+          "text": "视频通话",
+          "textReg": "视频通话",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            597,
+            1626,
+            729,
+            1670
+          ]
+        },
+        {
+          "text": "位置",
+          "textReg": "位置",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            876,
+            1626,
+            942,
+            1670
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "红包",
+            "textReg": "红包",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              138,
+              1922,
+              204,
+              1966
+            ]
+          },
+          "target": "红包",
+          "name": "红包",
+          "pinyin": "HongBao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "视频通话",
+            "textReg": "视频通话",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              597,
+              1626,
+              729,
+              1670
+            ]
+          },
+          "target": "音视频通话",
+          "name": "音视频通话",
+          "pinyin": "YinShiPinTongHua",
+          "needParameter": "false",
+          "canDirectReach": "false",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "转账",
+            "textReg": "转账",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              384,
+              1922,
+              450,
+              1966
+            ]
+          },
+          "target": "转账",
+          "name": "转账",
+          "pinyin": "ZhuanZhang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        }
+      ],
+      "frequency": "4"
+    },
+    {
+      "pageId": "音视频通话",
+      "pageName": "音视频通话",
+      "pagePinyin": "YinShiPinTongHua",
+      "canDirectReach": false,
+      "features": [
+        {
+          "text": "视频通话",
+          "textReg": "视频通话",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            216,
+            1795,
+            408,
+            1860
+          ]
+        },
+        {
+          "text": "语音通话",
+          "textReg": "语音通话",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            216,
+            1987,
+            408,
+            2052
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "视频通话",
+            "textReg": "视频通话",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              216,
+              1795,
+              408,
+              1860
+            ]
+          },
+          "target": "视频通话",
+          "name": "视频通话",
+          "pinyin": "ShiPinTongHua",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "语音通话",
+            "textReg": "语音通话",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              216,
+              1987,
+              408,
+              2052
+            ]
+          },
+          "target": "语音通话",
+          "name": "语音通话",
+          "pinyin": "YuYinTongHua",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        }
+      ],
+      "frequency": "4"
+    },
+
+    {
+      "pageId": "扫一扫",
+      "pageName": "扫一扫",
+      "pagePinyin": "SaoYiSao",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "二维码/条码", "textReg": "二维码/条码", "contentReg": "^$", "boundsInScreen": [120,123,396,191]
+        },
+        {
+          "text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [912,85,1080,229]
+        }
+      ],
+      "buttons": [
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "个人信息",
+      "pageName": "个人信息",
+      "pagePinyin": "GeRenXinXi",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "个人信息", "textReg": "个人信息", "contentReg": "^$", "boundsInScreen": [120,123,324,191]
+        },
+        {
+          "text": "返回", "textReg": "^$", "contentReg": "返回", "boundsInScreen": [24,85,96,229]
+        },
+        {
+          "text": "头像", "textReg": "头像", "contentReg": "^$", "boundsInScreen": [48,315,150,383]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "二维码名片", "textReg": "二维码名片", "contentReg": "^$", "boundsInScreen": [48,855,915,923]
+          },
+          "target": "二维码名片",
+          "name": "二维码名片",
+          "pinyin": "ErWeiMaMingPian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "二维码名片", "textReg": "二维码名片", "contentReg": "^$", "boundsInScreen": [48,855,915,923]
+          },
+          "target": "我的二维码",
+          "name": "我的二维码",
+          "pinyin": "WoDeErWeiMa",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        }
+      ],
+      "frequency": "4"
+    },
+    {
+      "pageId": "朋友圈",
+      "pageName": "朋友圈",
+      "pagePinyin": "PengYouQuan",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "拍照分享", "textReg": "^$", "contentReg": "拍照分享", "boundsInScreen": [912,85,1080,229]
+        },
+        {
+          "text": "返回", "textReg": "^$", "contentReg": "返回", "boundsInScreen": [24,85,96,229]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "拍照分享", "textReg": "^$", "contentReg": "拍照分享", "boundsInScreen": [912,85,1080,229]
+          },
+          "target": "拍照分享",
+          "name": "拍照分享",
+          "pinyin": "PaiZhaoFenXiang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "拍照分享", "textReg": "^$", "contentReg": "拍照分享", "boundsInScreen": [912,85,1080,229]
+          },
+          "target": "发朋友圈",
+          "name": "发朋友圈",
+          "pinyin": "FaPengYouQuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        }
+      ],
+      "frequency": "1"
+    }
+
+
+  ]
+}

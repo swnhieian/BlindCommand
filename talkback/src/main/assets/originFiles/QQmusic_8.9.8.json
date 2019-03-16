@@ -1,0 +1,1393 @@
+{
+  "meta": {
+    "packageName": "com.tencent.qqmusic",
+    "appName": "QQ音乐",
+    "appPinyin": "QQYinYue",
+    "resolution": [
+      1080,
+      1920
+    ]
+  },
+  "data": [
+    {
+      "pageId": "音乐馆",
+      "pageName": "音乐馆",
+      "pagePinyin": "YinYueGuan",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "歌手",
+          "textReg": "^$",
+          "contentReg": "歌手",
+          "boundsInScreen": [
+            44,
+            796,
+            209,
+            961
+          ]
+        },
+        {
+          "text": "排行",
+          "textReg": "^$",
+          "contentReg": "排行",
+          "boundsInScreen": [
+            250,
+            796,
+            415,
+            961
+          ]
+        },
+        {
+          "text": "分类歌单",
+          "textReg": "^$",
+          "contentReg": "分类歌单",
+          "boundsInScreen": [
+            456,
+            796,
+            621,
+            961
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "我的",
+            "textReg": "我的",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              250,
+              72,
+              424,
+              204
+            ]
+          },
+          "target": "我的",
+          "name": "我的",
+          "pinyin": "WoDe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "音乐馆",
+            "textReg": "音乐馆",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              424,
+              72,
+              655,
+              204
+            ]
+          },
+          "target": "音乐馆",
+          "name": "音乐馆",
+          "pinyin": "YinYueGuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              655,
+              72,
+              829,
+              204
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "更多设置",
+            "textReg": "^$",
+            "contentReg": "更多设置",
+            "boundsInScreen": [
+              0,
+              72,
+              180,
+              204
+            ]
+          },
+          "target": "更多设置",
+          "name": "更多设置",
+          "pinyin": "GengDuoSheZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "听歌识曲",
+            "textReg": "^$",
+            "contentReg": "听歌识曲",
+            "boundsInScreen": [
+              960,
+              78,
+              1080,
+              198
+            ]
+          },
+          "target": "听歌识曲",
+          "name": "听歌识曲",
+          "pinyin": "TingGeShiQu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "搜索",
+            "textReg": "搜索",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              522,
+              213,
+              618,
+              278
+            ]
+          },
+          "target": "搜索",
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "播放",
+            "textReg": "^$",
+            "contentReg": "播放",
+            "boundsInScreen": [
+              795,
+              1794,
+              885,
+              1884
+            ]
+          },
+          "target": "播放",
+          "name": "播放",
+          "pinyin": "BoFang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "歌曲队列",
+            "textReg": "^$",
+            "contentReg": "歌曲队列",
+            "boundsInScreen": [
+              930,
+              1779,
+              1050,
+              1899
+            ]
+          },
+          "target": "歌曲队列",
+          "name": "歌曲队列",
+          "pinyin": "GeQuDuiLie",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "歌手",
+            "textReg": "^$",
+            "contentReg": "歌手",
+            "boundsInScreen": [
+              44,
+              796,
+              209,
+              961
+            ]
+          },
+          "target": "歌手",
+          "name": "歌手",
+          "pinyin": "GeShou",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "排行",
+            "textReg": "^$",
+            "contentReg": "排行",
+            "boundsInScreen": [
+              250,
+              796,
+              415,
+              961
+            ]
+          },
+          "target": "排行",
+          "name": "排行",
+          "pinyin": "PaiHang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "分类歌单",
+            "textReg": "^$",
+            "contentReg": "分类歌单",
+            "boundsInScreen": [
+              456,
+              796,
+              621,
+              961
+            ]
+          },
+          "target": "分类歌单",
+          "name": "分类歌单",
+          "pinyin": "FenLeiGeDan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "电台",
+            "textReg": "^$",
+            "contentReg": "电台",
+            "boundsInScreen": [
+              662,
+              796,
+              827,
+              961
+            ]
+          },
+          "target": "电台",
+          "name": "电台",
+          "pinyin": "DianTai",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "视频",
+            "textReg": "^$",
+            "contentReg": "视频",
+            "boundsInScreen": [
+              868,
+              796,
+              1033,
+              961
+            ]
+          },
+          "target": "视频",
+          "name": "视频",
+          "pinyin": "ShiPin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "2"
+    },
+    {
+      "pageId": "我的",
+      "pageName": "我的",
+      "pagePinyin": "WoDe",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "本地音乐",
+          "textReg": "本地音乐",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            90,
+            883,
+            270,
+            944
+          ]
+        },
+        {
+          "text": "我喜欢",
+          "textReg": "我喜欢",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            112,
+            1144,
+            247,
+            1205
+          ]
+        },
+        {
+          "text": "我的关注",
+          "textReg": "我的关注",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            36,
+            1302,
+            1080,
+            1367
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "我的",
+            "textReg": "我的",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              250,
+              72,
+              424,
+              204
+            ]
+          },
+          "target": "我的",
+          "name": "我的",
+          "pinyin": "WoDe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "音乐馆",
+            "textReg": "音乐馆",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              424,
+              72,
+              655,
+              204
+            ]
+          },
+          "target": "音乐馆",
+          "name": "音乐馆",
+          "pinyin": "YinYueGuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              655,
+              72,
+              829,
+              204
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "更多设置",
+            "textReg": "^$",
+            "contentReg": "更多设置",
+            "boundsInScreen": [
+              0,
+              72,
+              180,
+              204
+            ]
+          },
+          "target": "更多设置",
+          "name": "更多设置",
+          "pinyin": "GengDuoSheZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "听歌识曲",
+            "textReg": "^$",
+            "contentReg": "听歌识曲",
+            "boundsInScreen": [
+              960,
+              78,
+              1080,
+              198
+            ]
+          },
+          "target": "听歌识曲",
+          "name": "听歌识曲",
+          "pinyin": "TingGeShiQu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "搜索",
+            "textReg": "搜索",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              522,
+              213,
+              618,
+              278
+            ]
+          },
+          "target": "搜索",
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "播放",
+            "textReg": "^$",
+            "contentReg": "播放",
+            "boundsInScreen": [
+              795,
+              1794,
+              885,
+              1884
+            ]
+          },
+          "target": "播放",
+          "name": "播放",
+          "pinyin": "BoFang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "歌曲队列",
+            "textReg": "^$",
+            "contentReg": "歌曲队列",
+            "boundsInScreen": [
+              930,
+              1779,
+              1050,
+              1899
+            ]
+          },
+          "target": "歌曲队列",
+          "name": "歌曲队列",
+          "pinyin": "GeQuDuiLie",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "本地音乐",
+            "textReg": "本地音乐",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              90,
+              883,
+              270,
+              944
+            ]
+          },
+          "target": "本地音乐",
+          "name": "本地音乐",
+          "pinyin": "BenDiYinYue",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "下载音乐",
+            "textReg": "下载音乐",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              450,
+              883,
+              630,
+              944
+            ]
+          },
+          "target": "下载音乐",
+          "name": "下载音乐",
+          "pinyin": "XiaZaiYinYue",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "最近播放",
+            "textReg": "最近播放",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              810,
+              883,
+              990,
+              944
+            ]
+          },
+          "target": "最近播放",
+          "name": "最近播放",
+          "pinyin": "ZuiJinBoFang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "我喜欢",
+            "textReg": "我喜欢",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              112,
+              1144,
+              247,
+              1205
+            ]
+          },
+          "target": "我喜欢",
+          "name": "我喜欢",
+          "pinyin": "WoXiHuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "已购音乐",
+            "textReg": "已购音乐",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              450,
+              1144,
+              630,
+              1205
+            ]
+          },
+          "target": "已购音乐",
+          "name": "已购音乐",
+          "pinyin": "YiGouYinYue",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "跑步电台",
+            "textReg": "跑步电台",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              810,
+              1144,
+              990,
+              1205
+            ]
+          },
+          "target": "跑步电台",
+          "name": "跑步电台",
+          "pinyin": "PaoBuDianTai",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "1"
+    },
+    {
+      "pageId": "发现",
+      "pageName": "发现",
+      "pagePinyin": "FaXian",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "推荐",
+          "textReg": "推荐",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            30,
+            1212,
+            195,
+            1287
+          ]
+        },
+        {
+          "text": "视频",
+          "textReg": "视频",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            210,
+            1212,
+            375,
+            1287
+          ]
+        },
+        {
+          "text": "文章",
+          "textReg": "文章",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            390,
+            1212,
+            555,
+            1287
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "我的",
+            "textReg": "我的",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              250,
+              72,
+              424,
+              204
+            ]
+          },
+          "target": "我的",
+          "name": "我的",
+          "pinyin": "WoDe",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "音乐馆",
+            "textReg": "音乐馆",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              424,
+              72,
+              655,
+              204
+            ]
+          },
+          "target": "音乐馆",
+          "name": "音乐馆",
+          "pinyin": "YinYueGuan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              655,
+              72,
+              829,
+              204
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "更多设置",
+            "textReg": "^$",
+            "contentReg": "更多设置",
+            "boundsInScreen": [
+              0,
+              72,
+              180,
+              204
+            ]
+          },
+          "target": "更多设置",
+          "name": "更多设置",
+          "pinyin": "GengDuoSheZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "听歌识曲",
+            "textReg": "^$",
+            "contentReg": "听歌识曲",
+            "boundsInScreen": [
+              960,
+              78,
+              1080,
+              198
+            ]
+          },
+          "target": "听歌识曲",
+          "name": "听歌识曲",
+          "pinyin": "TingGeShiQu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "搜索",
+            "textReg": "搜索",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              522,
+              213,
+              618,
+              278
+            ]
+          },
+          "target": "搜索",
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "播放",
+            "textReg": "^$",
+            "contentReg": "播放",
+            "boundsInScreen": [
+              795,
+              1794,
+              885,
+              1884
+            ]
+          },
+          "target": "播放",
+          "name": "播放",
+          "pinyin": "BoFang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "歌曲队列",
+            "textReg": "^$",
+            "contentReg": "歌曲队列",
+            "boundsInScreen": [
+              930,
+              1779,
+              1050,
+              1899
+            ]
+          },
+          "target": "歌曲队列",
+          "name": "歌曲队列",
+          "pinyin": "GeQuDuiLie",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "推荐",
+            "textReg": "推荐",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              30,
+              1212,
+              195,
+              1287
+            ]
+          },
+          "target": "推荐",
+          "name": "推荐",
+          "pinyin": "TuiJian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "视频",
+            "textReg": "视频",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              210,
+              1212,
+              375,
+              1287
+            ]
+          },
+          "target": "视频",
+          "name": "视频",
+          "pinyin": "ShiPin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "文章",
+            "textReg": "文章",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              390,
+              1212,
+              555,
+              1287
+            ]
+          },
+          "target": "文章",
+          "name": "文章",
+          "pinyin": "WenZhang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "3"
+    },
+    {
+      "pageId": "本地音乐",
+      "pageName": "本地音乐",
+      "pagePinyin": "BenDiYinYue",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "本地音乐",
+          "textReg": "本地音乐",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            432,
+            101,
+            648,
+            174
+          ]
+        },
+        {
+          "text": "文件夹",
+          "textReg": "文件夹",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            853,
+            239,
+            997,
+            304
+          ]
+        },
+        {
+          "text": "全部播放",
+          "textReg": "全部播放",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            150,
+            394,
+            342,
+            459
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "返回",
+            "textReg": "^$",
+            "contentReg": "返回",
+            "boundsInScreen": [
+              0,
+              72,
+              132,
+              204
+            ]
+          },
+          "target": "我的",
+          "name": "返回",
+          "pinyin": "FanHui",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "单曲",
+            "textReg": "单曲",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              53,
+              239,
+              149,
+              304
+            ]
+          },
+          "target": "单曲",
+          "name": "单曲",
+          "pinyin": "DanQu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "歌手",
+            "textReg": "歌手",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              323,
+              239,
+              419,
+              304
+            ]
+          },
+          "target": "歌手",
+          "name": "歌手",
+          "pinyin": "GeShou",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "专辑",
+            "textReg": "专辑",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              593,
+              239,
+              689,
+              304
+            ]
+          },
+          "target": "专辑",
+          "name": "专辑",
+          "pinyin": "ZhuanJi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "文件夹",
+            "textReg": "文件夹",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              853,
+              239,
+              997,
+              304
+            ]
+          },
+          "target": "文件夹",
+          "name": "文件夹",
+          "pinyin": "WenJianJia",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "2"
+    },
+    {
+      "pageId": "最近播放",
+      "pageName": "最近播放",
+      "pagePinyin": "ZuiJinBoFang",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "最近播放",
+          "textReg": "最近播放",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            432,
+            101,
+            648,
+            174
+          ]
+        },
+        {
+          "text": "更多",
+          "textReg": "^$",
+          "contentReg": "更多",
+          "boundsInScreen": [
+            960,
+            84,
+            1080,
+            198
+          ]
+        },
+        {
+          "text": "单曲",
+          "textReg": "单曲",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            112,
+            239,
+            208,
+            304
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "更多",
+            "textReg": "^$",
+            "contentReg": "更多",
+            "boundsInScreen": [
+              960,
+              84,
+              1080,
+              198
+            ]
+          },
+          "target": "更多",
+          "name": "更多",
+          "pinyin": "GengDuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "单曲",
+            "textReg": "单曲",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              112,
+              239,
+              208,
+              304
+            ]
+          },
+          "target": "单曲",
+          "name": "单曲",
+          "pinyin": "DanQu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "专辑",
+            "textReg": "专辑",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              472,
+              239,
+              568,
+              304
+            ]
+          },
+          "target": "专辑",
+          "name": "专辑",
+          "pinyin": "ZhuanJi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "歌单",
+            "textReg": "歌单",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              832,
+              239,
+              928,
+              304
+            ]
+          },
+          "target": "歌单",
+          "name": "歌单",
+          "pinyin": "GeDan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "3"
+    },
+    {
+      "pageId": "更多设置",
+      "pageName": "更多设置",
+      "pagePinyin": "GengDuoSheZhi",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "个性装扮",
+          "textReg": "个性装扮",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            69,
+            200,
+            249,
+            261
+          ]
+        },
+        {
+          "text": "消息中心",
+          "textReg": "消息中心",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            24,
+            316,
+            249,
+            377
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "消息中心",
+            "textReg": "消息中心",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              24,
+              316,
+              249,
+              377
+            ]
+          },
+          "target": "消息中心",
+          "name": "消息中心",
+          "pinyin": "XiaoXiZhongXin",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "定时关闭",
+            "textReg": "定时关闭",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              24,
+              622,
+              249,
+              683
+            ]
+          },
+          "target": "定时关闭",
+          "name": "定时关闭",
+          "pinyin": "DingShiGuanBi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "仅Wi-Fi联网",
+            "textReg": "仅Wi-Fi联网",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              24,
+              733,
+              311,
+              794
+            ]
+          },
+          "target": "仅Wi-Fi联网",
+          "name": "仅Wi-Fi联网",
+          "pinyin": "JinWiFiLianWang",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "流量提醒",
+            "textReg": "流量提醒",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              24,
+              844,
+              249,
+              905
+            ]
+          },
+          "target": "流量提醒",
+          "name": "流量提醒",
+          "pinyin": "LiuLiangTiXing",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "听歌偏好",
+            "textReg": "听歌偏好",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              24,
+              955,
+              249,
+              1016
+            ]
+          },
+          "target": "听歌偏好",
+          "name": "听歌偏好",
+          "pinyin": "TingGePianHao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "微云音乐网盘",
+            "textReg": "微云音乐网盘",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              24,
+              1150,
+              339,
+              1211
+            ]
+          },
+          "target": "微云音乐网盘",
+          "name": "微云音乐网盘",
+          "pinyin": "WeiYunYinYueWangPan",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "清理占用空间",
+            "textReg": "清理占用空间",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              24,
+              1372,
+              339,
+              1433
+            ]
+          },
+          "target": "清理占用空间",
+          "name": "清理占用空间",
+          "pinyin": "QingLiZhanYongKongJian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "4"
+    },
+    {
+      "pageId": "听歌识曲",
+      "pageName": "听歌识曲",
+      "pagePinyin": "TingGeShiQu",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "听歌识曲",
+          "textReg": "听歌识曲",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            738,
+            237,
+            930,
+            302
+          ]
+        },
+        {
+          "text": "扫一扫",
+          "textReg": "扫一扫",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            738,
+            369,
+            882,
+            434
+          ]
+        },
+        {
+          "text": "歌词海报",
+          "textReg": "歌词海报",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            738,
+            501,
+            930,
+            566
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "听歌识曲",
+            "textReg": "听歌识曲",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              738,
+              237,
+              930,
+              302
+            ]
+          },
+          "target": "听歌识曲",
+          "name": "听歌识曲",
+          "pinyin": "TingGeShiQu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "扫一扫",
+            "textReg": "扫一扫",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              738,
+              369,
+              882,
+              434
+            ]
+          },
+          "target": "扫一扫",
+          "name": "扫一扫",
+          "pinyin": "SaoYiSao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "歌词海报",
+            "textReg": "歌词海报",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              738,
+              501,
+              930,
+              566
+            ]
+          },
+          "target": "歌词海报",
+          "name": "歌词海报",
+          "pinyin": "GeCiHaiBao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        }
+      ],
+      "frequency": "4"
+    }
+  ]
+}

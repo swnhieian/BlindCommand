@@ -2,24 +2,6 @@
   "data": [
     {
       "pageName": "首页",
-      "pagePinyin": "ShouYe",
-      "canDirectReach": true,
-      "features": [
-        {
-          "text": "关注",
-          "textReg": "^$",
-          "contentReg": "关注",
-          "boundsInScreen": [
-            18,
-            204,
-            170,
-            315
-          ]
-        },
-        {
-          "text": "", "textReg": "^$", "contentReg": "^$", "boundsInScreen": [882,225,1080,333]
-        }
-      ],
       "buttons": [
         {
           "target": "首页",
