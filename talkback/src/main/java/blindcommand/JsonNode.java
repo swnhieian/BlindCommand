@@ -9,5 +9,5 @@ public class JsonNode {
     public boolean canDirectReach = true;
     public List<JsonNodePath> features;
     public List<JsonClickable> buttons;
-    public int frequency;
+    public double frequency;
 }

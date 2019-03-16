@@ -1,0 +1,800 @@
+{
+  "meta": {
+    "packageName": "com.tencent.weread",
+    "appName": "微信读书",
+    "appPinyin": "WeiXinDuShu",
+    "resolution": [
+      1080,
+      1920
+    ]
+  },
+  "data": [
+    {
+      "pageId": "发现",
+      "pageName": "发现",
+      "pagePinyin": "FaXian",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "都挺好",
+          "textReg": "都挺好",
+          "contentReg": "在书城中搜索",
+          "boundsInScreen": [
+            192,
+            121,
+            816,
+            178
+          ]
+        },
+        {
+          "text": "书城",
+          "textReg": "书城",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            816,
+            90,
+            1008,
+            210
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              105,
+              1863,
+              165,
+              1904
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "书架",
+            "textReg": "书架",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              375,
+              1863,
+              435,
+              1904
+            ]
+          },
+          "target": "书架",
+          "name": "书架",
+          "pinyin": "ShuJia",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "想法",
+            "textReg": "想法",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              645,
+              1863,
+              705,
+              1904
+            ]
+          },
+          "target": "想法",
+          "name": "想法",
+          "pinyin": "XiangFa",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "我",
+            "textReg": "我",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              930,
+              1863,
+              960,
+              1904
+            ]
+          },
+          "target": "我",
+          "name": "我",
+          "pinyin": "Wo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "都挺好",
+            "textReg": "都挺好",
+            "contentReg": "在书城中搜索",
+            "boundsInScreen": [
+              192,
+              121,
+              816,
+              178
+            ]
+          },
+          "target": "搜索",
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "书城",
+            "textReg": "书城",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              816,
+              90,
+              1008,
+              210
+            ]
+          },
+          "target": "书城",
+          "name": "书城",
+          "pinyin": "ShuCheng",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        }
+      ],
+      "frequency": "4"
+    },
+    {
+      "pageId": "书城",
+      "pageName": "书城",
+      "pagePinyin": "ShuCheng",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "猜你喜欢",
+          "textReg": "猜你喜欢",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            48,
+            774,
+            888,
+            855
+          ]
+        },
+        {
+          "text": "换一批",
+          "textReg": "换一批",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            888,
+            782,
+            1032,
+            847
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "换一批",
+            "textReg": "换一批",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              888,
+              782,
+              1032,
+              847
+            ]
+          },
+          "target": "换一批",
+          "name": "换一批",
+          "pinyin": "HuanYiPi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "3"
+    },
+    {
+      "pageId": "书架",
+      "pageName": "书架",
+      "pagePinyin": "ShuJia",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "书架",
+          "textReg": "书架",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            489,
+            104,
+            591,
+            172
+          ]
+        },
+        {
+          "text": "编辑",
+          "textReg": "编辑",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            900,
+            54,
+            1068,
+            222
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              105,
+              1863,
+              165,
+              1904
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "书架",
+            "textReg": "书架",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              375,
+              1863,
+              435,
+              1904
+            ]
+          },
+          "target": "书架",
+          "name": "书架",
+          "pinyin": "ShuJia",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "想法",
+            "textReg": "想法",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              645,
+              1863,
+              705,
+              1904
+            ]
+          },
+          "target": "想法",
+          "name": "想法",
+          "pinyin": "XiangFa",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "我",
+            "textReg": "我",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              930,
+              1863,
+              960,
+              1904
+            ]
+          },
+          "target": "我",
+          "name": "我",
+          "pinyin": "Wo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "编辑",
+            "textReg": "编辑",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              900,
+              54,
+              1068,
+              222
+            ]
+          },
+          "target": "编辑",
+          "name": "编辑",
+          "pinyin": "BianJi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "搜索",
+            "textReg": "搜索",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              75,
+              222,
+              234,
+              330
+            ]
+          },
+          "target": "搜索",
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "1"
+        },
+        {
+          "path": {
+            "text": "阅读记录",
+            "textReg": "阅读记录",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              792,
+              249,
+              1032,
+              302
+            ]
+          },
+          "target": "阅读记录",
+          "name": "阅读记录",
+          "pinyin": "YueDuJiLu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        }
+      ],
+      "frequency": "2"
+    },
+    {
+      "pageId": "想法",
+      "pageName": "想法",
+      "pagePinyin": "XiangFa",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "想法",
+          "textReg": "想法",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            477,
+            104,
+            603,
+            172
+          ]
+        },
+        {
+          "text": "换一批",
+          "textReg": "换一批",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            477,
+            1087,
+            603,
+            1144
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              105,
+              1863,
+              165,
+              1904
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "书架",
+            "textReg": "书架",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              375,
+              1863,
+              435,
+              1904
+            ]
+          },
+          "target": "书架",
+          "name": "书架",
+          "pinyin": "ShuJia",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "想法",
+            "textReg": "想法",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              645,
+              1863,
+              705,
+              1904
+            ]
+          },
+          "target": "想法",
+          "name": "想法",
+          "pinyin": "XiangFa",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "我",
+            "textReg": "我",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              930,
+              1863,
+              960,
+              1904
+            ]
+          },
+          "target": "我",
+          "name": "我",
+          "pinyin": "Wo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "换一批",
+            "textReg": "换一批",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              477,
+              1087,
+              603,
+              1144
+            ]
+          },
+          "target": "换一批",
+          "name": "换一批",
+          "pinyin": "HuanYiPi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "3"
+    },
+    {
+      "pageId": "我",
+      "pageName": "我",
+      "pagePinyin": "Wo",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "编辑个人资料",
+          "textReg": "编辑个人资料",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            120,
+            540,
+            960,
+            597
+          ]
+        },
+        {
+          "text": "账户",
+          "textReg": "账户",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            168,
+            763,
+            264,
+            820
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "发现",
+            "textReg": "发现",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              105,
+              1863,
+              165,
+              1904
+            ]
+          },
+          "target": "发现",
+          "name": "发现",
+          "pinyin": "FaXian",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "书架",
+            "textReg": "书架",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              375,
+              1863,
+              435,
+              1904
+            ]
+          },
+          "target": "书架",
+          "name": "书架",
+          "pinyin": "ShuJia",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "2"
+        },
+        {
+          "path": {
+            "text": "想法",
+            "textReg": "想法",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              645,
+              1863,
+              705,
+              1904
+            ]
+          },
+          "target": "想法",
+          "name": "想法",
+          "pinyin": "XiangFa",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        },
+        {
+          "path": {
+            "text": "我",
+            "textReg": "我",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              930,
+              1863,
+              960,
+              1904
+            ]
+          },
+          "target": "我",
+          "name": "我",
+          "pinyin": "Wo",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "编辑个人资料",
+            "textReg": "编辑个人资料",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              120,
+              540,
+              960,
+              597
+            ]
+          },
+          "target": "编辑个人资料",
+          "name": "编辑个人资料",
+          "pinyin": "BianJiGeRenZiLiao",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "账户",
+            "textReg": "账户",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              168,
+              763,
+              264,
+              820
+            ]
+          },
+          "target": "账户",
+          "name": "账户",
+          "pinyin": "ZhangHu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "无限卡",
+            "textReg": "无限卡",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              168,
+              979,
+              312,
+              1036
+            ]
+          },
+          "target": "无限卡",
+          "name": "无限卡",
+          "pinyin": "WuXianKa",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "关注",
+            "textReg": "关注",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              168,
+              1441,
+              264,
+              1498
+            ]
+          },
+          "target": "关注",
+          "name": "关注",
+          "pinyin": "GuanZhu",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "3"
+        }
+      ],
+      "frequency": "4"
+    },
+    {
+      "pageId": "设置",
+      "pageName": "设置",
+      "pagePinyin": "SheZhi",
+      "canDirectReach": true,
+      "features": [
+        {
+          "text": "设置",
+          "textReg": "设置",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            489,
+            104,
+            591,
+            172
+          ]
+        },
+        {
+          "text": "阅读时不自动锁屏",
+          "textReg": "阅读时不自动锁屏",
+          "contentReg": "^$",
+          "boundsInScreen": [
+            48,
+            277,
+            432,
+            334
+          ]
+        }
+      ],
+      "buttons": [
+        {
+          "path": {
+            "text": "返回",
+            "textReg": "^$",
+            "contentReg": "返回",
+            "boundsInScreen": [
+              12,
+              54,
+              156,
+              222
+            ]
+          },
+          "target": "我",
+          "name": "返回",
+          "pinyin": "FanHui",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "阅读时不自动锁屏",
+            "textReg": "阅读时不自动锁屏",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              48,
+              277,
+              432,
+              334
+            ]
+          },
+          "target": "阅读时不自动锁屏",
+          "name": "阅读时不自动锁屏",
+          "pinyin": "YueDuShiBuZiDongSuoPing",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "翻页方式",
+            "textReg": "翻页方式",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              48,
+              613,
+              240,
+              670
+            ]
+          },
+          "target": "翻页方式",
+          "name": "翻页方式",
+          "pinyin": "FanYeFangShi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        },
+        {
+          "path": {
+            "text": "接收推送通知",
+            "textReg": "接收推送通知",
+            "contentReg": "^$",
+            "boundsInScreen": [
+              48,
+              1681,
+              336,
+              1738
+            ]
+          },
+          "target": "接收推送通知",
+          "name": "接收推送通知",
+          "pinyin": "JieShouTuiSongTongZhi",
+          "needParameter": "false",
+          "canDirectReach": "true",
+          "frequency": "4"
+        }
+      ],
+      "frequency": "4"
+    }
+  ]
+}

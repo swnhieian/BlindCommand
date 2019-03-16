@@ -15,7 +15,7 @@ public class SimpleParser implements  Parser {
     final String LOGTAG = "SimpleParser";
     final static double IN_SAME_APP_BONUS = Math.log(4.0);
     final static double IN_SYSTEM_BONUS = Math.log(2.0);
-    final static double FREQUENCY_WEIGHT = 2.0;
+    final static double FREQUENCY_WEIGHT = 1.0;
     final static double LENGTH_WEIGHT = 1.0;
     HashMap<Character, Key> allKeys;
     ArrayList<TouchPoint> touchPoints;
@@ -115,11 +115,12 @@ public class SimpleParser implements  Parser {
 //            }
         }
         System.out.println(packageName);
+        final double lambda = 1. / set.size();
         Collections.sort(set, new Comparator<Entry>() {
             @Override
             public int compare(Entry e1, Entry e2) {
-                double p1 =  e1.poss - FREQUENCY_WEIGHT *  e1.instruction.frequency - LENGTH_WEIGHT * e1.command.length();
-                double p2 =  e2.poss - FREQUENCY_WEIGHT *  e2.instruction.frequency - LENGTH_WEIGHT * e2.command.length();
+                double p1 =  e1.poss + FREQUENCY_WEIGHT * Math.log(e1.instruction.frequency + lambda) - LENGTH_WEIGHT * e1.command.length();
+                double p2 =  e2.poss + FREQUENCY_WEIGHT * Math.log(e2.instruction.frequency + lambda) - LENGTH_WEIGHT * e2.command.length();
                 return - Double.compare(p1, p2);
             }
         });
@@ -136,12 +137,12 @@ public class SimpleParser implements  Parser {
         //System.out.println("Entry set size" +  "parse: " + set.size());
 
         int cnt = 0;
-//        for(Entry e: candidateList){
-//            System.out.println(e.info());
-//            if(cnt >= 30)
-//                break;
-//            cnt ++;
-//        }
+        for(Entry e: candidateList){
+            System.out.println(e.info());
+            if(cnt >= 30)
+                break;
+            cnt ++;
+        }
     }
 
     public void previous() {
