@@ -525,7 +525,7 @@ public class TalkBackService extends AccessibilityService
     if (kbdView != null) {
       kbdView.executor.onAccessibilityEvent(event);
     }
-     blindcommand.Log.d("TalkBackService", AccessibilityEvent.eventTypeToString(event.getEventType()) + ":" + event.getEventTime());
+     blindcommand.Log.d("TalkBackService", "onAccessibilityEvent:" + AccessibilityEvent.eventTypeToString(event.getEventType()));
     if (event.getEventType() == AccessibilityEvent.TYPE_TOUCH_INTERACTION_START) {
       long time = event.getEventTime();
 //      if (time - lastTouchStartTime < QUICK_TYPE_TIMEOUT) {
@@ -1366,7 +1366,7 @@ public class TalkBackService extends AccessibilityService
     //Toast.makeText(this, "Trigger BC Mode", Toast.LENGTH_SHORT).show();
     if (kbdView.getVisibility() == View.VISIBLE) {
       kbdView.setVisibility(View.INVISIBLE);
-      blindcommand.Log.i(LOGTAG, "BCOff");
+      blindcommand.Log.i(LOGTAG, "BCStatus:BCOff");
       enableTouchExploration();
       SoundPlayer.end();
       //kbdView.setParser(Utility.parserType, null);
@@ -1374,7 +1374,7 @@ public class TalkBackService extends AccessibilityService
     } else {
       kbdView.setParser(Utility.parserType, paras);
       kbdView.setVisibility(View.VISIBLE);
-      blindcommand.Log.i(LOGTAG, "BCOn");
+      blindcommand.Log.i(LOGTAG, "BCStatus:BCOn");
       disableTouchExploration();
       SoundPlayer.start();
     }

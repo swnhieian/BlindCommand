@@ -126,7 +126,7 @@ public class Executor {
                     long lastTime = System.currentTimeMillis();
                     Edge edge = allEdges.get(index);
                     boolean executed = false;
-                    while (System.currentTimeMillis() - lastTime < 200) {
+                    while (System.currentTimeMillis() - lastTime < 500) {
                         System.out.println("time:" + (System.currentTimeMillis() - lastTime));
                         if (edge.from.represent(getCurrentWindow(), service)) {
                             System.out.println("in while execute");
@@ -160,6 +160,7 @@ public class Executor {
             AccessibilityNodeInfo root = getRoot();
             AccessibilityNodeInfo operatedNode = NodeInfoFinder.find(root, edge.path);
             if (operatedNode != null) {
+                System.out.println("perform click action of : "+ edge.toString());
                 operatedNode.performAction(edge.action);
             }
         }
