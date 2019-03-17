@@ -1247,6 +1247,7 @@
       1080,
       1920
     ],
-    "appName": "饿了么"
+    "appName": "饿了么",
+    "useFrequency": 0.4
   }
 }

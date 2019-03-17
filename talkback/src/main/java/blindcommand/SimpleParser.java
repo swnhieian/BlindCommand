@@ -9,18 +9,26 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class SimpleParser implements  Parser {
     final String LOGTAG = "SimpleParser";
-    final static double IN_SAME_APP_BONUS = Math.log(4.0);
-    final static double IN_SYSTEM_BONUS = Math.log(2.0);
+//    final static double IN_SAME_APP_BONUS = Math.log(4.0);
+//    final static double IN_SYSTEM_BONUS = Math.log(2.0);
     final static double FREQUENCY_WEIGHT = 1.0;
     final static double LENGTH_WEIGHT = 1.0;
+    final static double STAY_SAME_APP = 0.5;
     HashMap<Character, Key> allKeys;
     ArrayList<TouchPoint> touchPoints;
     List<Entry> candidateList;
     InstructionSet instructionSet;
+
+    final static double OFFSET_X = - 0.90 / 6.39;
+    final static double OFFSET_Y = 3.37 / 10.07;
+    final static double SIGMA_X = 2.92 / 6.39;
+    final static double SIGMA_Y = 6.47 / 10.07;
+
     int currentIndex = 0;
     public SimpleParser(ArrayList<Key> keys, InstructionSet instructionSet) {
         allKeys = new HashMap<>();
@@ -61,6 +69,18 @@ public class SimpleParser implements  Parser {
     public void parse() {
         final String packageName = Utility.getPackageName();
         List<Entry> set = new ArrayList<>();
+        Map<String, Double> transmit;
+        transmit = new HashMap<>();
+        transmit.put(packageName, STAY_SAME_APP);
+        double total = 0.0;
+        for(JsonAppInfo app: Utility.allApps){
+            if(app.packageName.equals(packageName)) continue;
+            total += app.useFrequency;
+        }
+        for(JsonAppInfo app: Utility.allApps){
+            if(app.packageName.equals(packageName)) continue;
+            transmit.put(app.packageName, (1 - STAY_SAME_APP) / total * app.useFrequency);
+        }
         for (String ins : instructionSet.dict) {
             String[] insArray = ins.split("\\|");
 //            for(String s: insArray){
@@ -69,13 +89,14 @@ public class SimpleParser implements  Parser {
 //            System.out.println("");
             if (insArray[0].length() == touchPoints.size()) {
                 Instruction instruction = instructionSet.instructions.get(ins);
-                double initial_poss = 0.0;
-                if(instruction.meta.packageName.equals(packageName)){
-                    initial_poss += IN_SAME_APP_BONUS;
-                }
-                if(instruction.meta.packageName.equals("System")){
-                    initial_poss += IN_SYSTEM_BONUS;
-                }
+                System.out.println(instruction.meta.packageName);
+                double initial_poss = Math.log(transmit.get(instruction.meta.packageName));
+//                if(instruction.meta.packageName.equals(packageName)){
+//                    initial_poss += IN_SAME_APP_BONUS;
+//                }
+//                if(instruction.meta.packageName.equals("System")){
+//                    initial_poss += IN_SYSTEM_BONUS;
+//                }
                 if(instruction.meta.packageName.equals(packageName)){
                     if(insArray[1].equals("9") || insArray[1].equals("10")){
                         set.add(new Entry(insArray[0], instruction, initial_poss, false));
@@ -89,8 +110,8 @@ public class SimpleParser implements  Parser {
         Key firstKey = allKeys.get('a');
         for (Entry entry: set) {
             firstKey = allKeys.get(Character.toLowerCase(entry.command.charAt(0)));
-            entry.poss += logGaussian(firstKey.x, touchPoints.get(0).x, 5.0 / 3 * firstKey.width);
-            entry.poss += logGaussian(firstKey.y, touchPoints.get(0).y, 0.5 * firstKey.height);
+            entry.poss += logGaussian(firstKey.x, touchPoints.get(0).x + OFFSET_X * firstKey.width, SIGMA_X * firstKey.width);
+            entry.poss += logGaussian(firstKey.y, touchPoints.get(0).y + OFFSET_Y * firstKey.height, SIGMA_Y * firstKey.height);
         }
         double maxPoss = Double.NEGATIVE_INFINITY;
         for (int i=1; i<touchPoints.size(); i++) {
@@ -101,8 +122,8 @@ public class SimpleParser implements  Parser {
                 char lastChar = e.command.charAt(i-1);
                 double relXExpected = allKeys.get(curChar).x - allKeys.get(lastChar).x;
                 double relYExpected = allKeys.get(curChar).y - allKeys.get(lastChar).y;
-                e.poss += logGaussian(relX, relXExpected, 5.0 / 3 * firstKey.width);
-                e.poss += logGaussian(relY, relYExpected, 0.5 * firstKey.height);
+                e.poss += logGaussian(relX, relXExpected, SIGMA_X * firstKey.width);
+                e.poss += logGaussian(relY, relYExpected, SIGMA_Y * firstKey.height);
                // System.out.println(e.instruction + " " + e.poss);
                 maxPoss = Math.max(e.poss, maxPoss);
             }

@@ -110,6 +110,7 @@ public class NodeGraph {
     */
     public void loadGraph(JsonAppNode jsonAppNode){
         this.meta = jsonAppNode.meta;
+        Utility.allApps.add(jsonAppNode.meta);
         loadGraph(jsonAppNode.data);
     }
 

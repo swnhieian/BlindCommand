@@ -1388,6 +1388,7 @@
       1080,
       1920
     ],
-    "appName": "QQ音乐"
+    "appName": "QQ音乐",
+    "useFrequency": 0.4
   }
 }

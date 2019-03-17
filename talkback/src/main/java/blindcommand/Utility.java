@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Utility {
@@ -16,6 +17,7 @@ public class Utility {
     public static int screenHeight = -1;
     public static int screenWidth = -1;
     public static int dpi = 0;
+    public static List<JsonAppInfo> allApps;
     public static void init(Context service) {
         WindowManager wm = (WindowManager)service.getSystemService(service.WINDOW_SERVICE);
         DisplayMetrics metrics = new DisplayMetrics();
@@ -23,6 +25,7 @@ public class Utility {
         Utility.screenHeight = metrics.heightPixels;
         Utility.screenWidth = metrics.widthPixels;
         Utility.dpi = metrics.densityDpi;
+        allApps = new ArrayList<>();
     }
     public static int getScreenHeight() {
         return Utility.screenHeight;

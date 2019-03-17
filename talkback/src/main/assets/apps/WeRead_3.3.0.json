@@ -6,7 +6,8 @@
     "resolution": [
       1080,
       1920
-    ]
+    ],
+    "useFrequency": 0.3
   },
   "data": [
     {

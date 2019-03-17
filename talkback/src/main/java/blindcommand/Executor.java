@@ -52,7 +52,8 @@ public class Executor {
 //            }
 
         }
-        JsonAppInfo sysInfo = new JsonAppInfo("System", "系统", "XiTong", new Integer[]{});
+        JsonAppInfo sysInfo = new JsonAppInfo("System", "系统", "XiTong", new Integer[]{}, 0.7);
+        Utility.allApps.add(sysInfo);
         ret.add(new Instruction("返回", "返回", "FanHui", sysInfo, 7.0));
         ret.add(new Instruction("桌面", "桌面", "ZhuoMian", sysInfo, 6.0));
         ret.add(new Instruction("手电筒", "手电筒", "ShouDianTong", sysInfo, 1.0));
@@ -296,7 +297,7 @@ public class Executor {
 
     }
     private int loopCount = 0; //to prevent dead loop
-    private final int LOOP_COUNT_MAX = 5;
+    private final int LOOP_COUNT_MAX = 3;
     private boolean isBackgroundRunning(String processName) {
         ActivityManager activityManager = (ActivityManager) service.getSystemService(ACTIVITY_SERVICE);
         KeyguardManager keyguardManager = (KeyguardManager) service.getSystemService(KEYGUARD_SERVICE);
@@ -324,6 +325,7 @@ public class Executor {
 
         AccessibilityNodeInfo rootNode = getRoot();
         final NodeGraph appGraph = graphs.get(instruction.meta.appName);
+        if(appGraph == null) return;
         if (rootNode.getPackageName().equals(instruction.meta.packageName)) {
             execute(instruction, appGraph, null);
             return;
