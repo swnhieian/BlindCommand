@@ -1,1821 +1,1821 @@
 {
   "meta": {
-    "appPinyin": "ZhiFuBao",
-    "packageName": "com.eg.android.AlipayGphone",
     "resolution": [
       1080,
       1920
     ],
+    "packageName": "com.eg.android.AlipayGphone",
+    "appPinyin": "ZhiFuBao",
     "appName": "支付宝"
   },
   "data": [
     {
+      "frequency": 1.0,
+      "pageId": "首页",
       "pagePinyin": "ShouYe",
       "canDirectReach": true,
+      "pageName": "首页",
       "features": [
         {
-          "text": "首页",
           "boundsInScreen": [
             68,
             1779,
             148,
             1900
           ],
+          "textReg": "首页",
           "contentReg": "^$",
-          "textReg": "首页"
+          "text": "首页"
         },
         {
-          "text": "通讯录",
           "boundsInScreen": [
             869,
             78,
             941,
             174
           ],
+          "textReg": "^$",
           "contentReg": "通讯录",
-          "textReg": "^$"
+          "text": "通讯录"
         },
         {
-          "text": "更多操作",
           "boundsInScreen": [
             989,
             78,
             1044,
             174
           ],
+          "textReg": "^$",
           "contentReg": "更多操作",
-          "textReg": "^$"
+          "text": "更多操作"
         }
       ],
-      "pageId": "首页",
-      "frequency": 1.0,
       "buttons": [
         {
-          "pinyin": "ShouYe",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "首页",
             "boundsInScreen": [
               68,
               1779,
               148,
               1900
             ],
+            "textReg": "首页",
             "contentReg": "^$",
-            "textReg": "首页"
+            "text": "首页"
           },
           "target": "首页",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "首页"
+          "name": "首页",
+          "pinyin": "ShouYe",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "CaiFu",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "财富",
             "boundsInScreen": [
               284,
               1779,
               364,
               1900
             ],
+            "textReg": "财富",
             "contentReg": "^$",
-            "textReg": "财富"
+            "text": "财富"
           },
           "target": "财富",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "财富"
+          "name": "财富",
+          "pinyin": "CaiFu",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "KouBei",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "口碑",
             "boundsInScreen": [
               500,
               1779,
               580,
               1900
             ],
+            "textReg": "口碑",
             "contentReg": "^$",
-            "textReg": "口碑"
+            "text": "口碑"
           },
           "target": "口碑",
-          "frequency": 0.8,
           "needParameter": "false",
-          "name": "口碑"
+          "name": "口碑",
+          "pinyin": "KouBei",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "PengYou",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "朋友",
             "boundsInScreen": [
               716,
               1779,
               796,
               1900
             ],
+            "textReg": "朋友",
             "contentReg": "^$",
-            "textReg": "朋友"
+            "text": "朋友"
           },
           "target": "朋友",
-          "frequency": 2.0,
           "needParameter": "false",
-          "name": "朋友"
+          "name": "朋友",
+          "pinyin": "PengYou",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "WoDe",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "我的",
             "boundsInScreen": [
               932,
               1779,
               1012,
               1900
             ],
+            "textReg": "我的",
             "contentReg": "^$",
-            "textReg": "我的"
+            "text": "我的"
           },
           "target": "我的",
-          "frequency": 0.5,
           "needParameter": "false",
-          "name": "我的"
+          "name": "我的",
+          "pinyin": "WoDe",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "SouSuo",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "",
             "boundsInScreen": [
               36,
               84,
               821,
               168
             ],
+            "textReg": "^$",
             "contentReg": "^$",
-            "textReg": "^$"
+            "text": ""
           },
           "target": "搜索",
-          "frequency": 0.3,
           "needParameter": "false",
-          "name": "搜索"
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "GengDuoCaoZuo",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "更多操作",
             "boundsInScreen": [
               989,
               78,
               1044,
               174
             ],
+            "textReg": "^$",
             "contentReg": "更多操作",
-            "textReg": "^$"
+            "text": "更多操作"
           },
           "target": "更多操作",
-          "frequency": 0.9,
           "needParameter": "false",
-          "name": "更多操作"
+          "name": "更多操作",
+          "pinyin": "GengDuoCaoZuo",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "TongXunLu",
-          "canDirectReach": "false",
+          "frequency": 1.0,
           "path": {
-            "text": "通讯录",
             "boundsInScreen": [
               869,
               78,
               941,
               174
             ],
+            "textReg": "^$",
             "contentReg": "通讯录",
-            "textReg": "^$"
+            "text": "通讯录"
           },
           "target": "通讯录",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "通讯录"
+          "name": "通讯录",
+          "pinyin": "TongXunLu",
+          "canDirectReach": "false"
         },
         {
-          "pinyin": "SaoYiSao",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "扫一扫",
             "boundsInScreen": [
               72,
               324,
               198,
               373
             ],
+            "textReg": "扫一扫",
             "contentReg": "^$",
-            "textReg": "扫一扫"
+            "text": "扫一扫"
           },
           "target": "扫一扫",
-          "frequency": 4.0,
           "needParameter": "false",
-          "name": "扫一扫"
+          "name": "扫一扫",
+          "pinyin": "SaoYiSao",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "FuQian",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "付钱",
             "boundsInScreen": [
               363,
               324,
               447,
               373
             ],
+            "textReg": "付钱",
             "contentReg": "^$",
-            "textReg": "付钱"
+            "text": "付钱"
           },
           "target": "付钱",
-          "frequency": 3.0,
           "needParameter": "false",
-          "name": "付钱"
+          "name": "付钱",
+          "pinyin": "FuQian",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "ShouQian",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "收钱",
             "boundsInScreen": [
               633,
               324,
               717,
               373
             ],
+            "textReg": "收钱",
             "contentReg": "^$",
-            "textReg": "收钱"
+            "text": "收钱"
           },
           "target": "收钱",
-          "frequency": 2.0,
           "needParameter": "false",
-          "name": "收钱"
+          "name": "收钱",
+          "pinyin": "ShouQian",
+          "canDirectReach": "true"
         }
-      ],
-      "pageName": "首页"
+      ]
     },
     {
+      "frequency": 1.0,
+      "pageId": "更多操作",
       "pagePinyin": "GengDuoCaoZuo",
       "canDirectReach": false,
+      "pageName": "更多操作",
       "features": [
         {
-          "text": "扫一扫",
           "boundsInScreen": [
             762,
             216,
             888,
             273
           ],
+          "textReg": "扫一扫",
           "contentReg": "^$",
-          "textReg": "扫一扫"
+          "text": "扫一扫"
         },
         {
-          "text": "收钱",
           "boundsInScreen": [
             762,
             334,
             846,
             391
           ],
+          "textReg": "收钱",
           "contentReg": "^$",
-          "textReg": "收钱"
+          "text": "收钱"
         },
         {
-          "text": "智能助理",
           "boundsInScreen": [
             762,
             452,
             930,
             509
           ],
+          "textReg": "智能助理",
           "contentReg": "^$",
-          "textReg": "智能助理"
+          "text": "智能助理"
         },
         {
-          "text": "支付宝汇生活",
           "boundsInScreen": [
             762,
             570,
             1014,
             627
           ],
+          "textReg": "支付宝汇生活",
           "contentReg": "^$",
-          "textReg": "支付宝汇生活"
+          "text": "支付宝汇生活"
         }
       ],
-      "pageId": "更多操作",
-      "frequency": 0.9,
       "buttons": [
         {
-          "pinyin": "SaoYiSao",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "扫一扫",
             "boundsInScreen": [
               762,
               216,
               888,
               273
             ],
+            "textReg": "扫一扫",
             "contentReg": "^$",
-            "textReg": "扫一扫"
+            "text": "扫一扫"
           },
           "target": "扫一扫",
-          "frequency": 4.0,
           "needParameter": "false",
-          "name": "扫一扫"
+          "name": "扫一扫",
+          "pinyin": "SaoYiSao",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "ShouQian",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "收钱",
             "boundsInScreen": [
               762,
               334,
               846,
               391
             ],
+            "textReg": "收钱",
             "contentReg": "^$",
-            "textReg": "收钱"
+            "text": "收钱"
           },
           "target": "收钱",
-          "frequency": 2.0,
           "needParameter": "false",
-          "name": "收钱"
+          "name": "收钱",
+          "pinyin": "ShouQian",
+          "canDirectReach": "true"
         }
-      ],
-      "pageName": "更多操作"
+      ]
     },
     {
+      "frequency": 1.0,
+      "pageId": "扫一扫",
       "pagePinyin": "SaoYiSao",
       "canDirectReach": true,
+      "pageName": "扫一扫",
       "features": [
         {
-          "text": "相册",
           "boundsInScreen": [
             894,
             54,
             1080,
             198
           ],
+          "textReg": "相册",
           "contentReg": "^$",
-          "textReg": "相册"
+          "text": "相册"
         },
         {
-          "text": "扫码",
           "boundsInScreen": [
             231,
             1840,
             309,
             1893
           ],
+          "textReg": "扫码",
           "contentReg": "^$",
-          "textReg": "扫码"
+          "text": "扫码"
         },
         {
-          "text": "AR",
           "boundsInScreen": [
             785,
             1840,
             834,
             1893
           ],
+          "textReg": "AR",
           "contentReg": "^$",
-          "textReg": "AR"
+          "text": "AR"
         }
       ],
-      "pageId": "扫一扫",
-      "frequency": 4.0,
       "buttons": [
         {
-          "pinyin": "TuiChu",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "退出",
             "boundsInScreen": [
               0,
               54,
               186,
               198
             ],
+            "textReg": "^$",
             "contentReg": "退出",
-            "textReg": "^$"
+            "text": "退出"
           },
           "target": "首页",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "退出"
+          "name": "退出",
+          "pinyin": "TuiChu",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "XiangCe",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "相册",
             "boundsInScreen": [
               894,
               54,
               1080,
               198
             ],
+            "textReg": "相册",
             "contentReg": "^$",
-            "textReg": "相册"
+            "text": "相册"
           },
           "target": "相册",
-          "frequency": 0.1,
           "needParameter": "false",
-          "name": "相册"
+          "name": "相册",
+          "pinyin": "XiangCe",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "SaoMa",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "扫码",
             "boundsInScreen": [
               231,
               1840,
               309,
               1893
             ],
+            "textReg": "扫码",
             "contentReg": "^$",
-            "textReg": "扫码"
+            "text": "扫码"
           },
           "target": "扫码",
-          "frequency": 3.0,
           "needParameter": "false",
-          "name": "扫码"
+          "name": "扫码",
+          "pinyin": "SaoMa",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "AR",
-          "canDirectReach": "true",
+          "frequency": 0.0,
           "path": {
-            "text": "AR",
             "boundsInScreen": [
               785,
               1840,
               834,
               1893
             ],
+            "textReg": "AR",
             "contentReg": "^$",
-            "textReg": "AR"
+            "text": "AR"
           },
           "target": "AR",
-          "frequency": 0.2,
           "needParameter": "false",
-          "name": "AR"
+          "name": "AR",
+          "pinyin": "AR",
+          "canDirectReach": "true"
         }
-      ],
-      "pageName": "扫一扫"
+      ]
     },
     {
+      "frequency": 1.0,
+      "pageId": "财富",
       "pagePinyin": "CaiFu",
       "canDirectReach": true,
+      "pageName": "财富",
       "features": [
         {
-          "text": "财富",
           "boundsInScreen": [
             47,
             88,
             155,
             161
           ],
+          "textReg": "财富",
           "contentReg": "^$",
-          "textReg": "财富"
+          "text": "财富"
         },
         {
-          "text": "定期",
           "boundsInScreen": [
             0,
             566,
             216,
             615
           ],
+          "textReg": "定期",
           "contentReg": "^$",
-          "textReg": "定期"
+          "text": "定期"
         }
       ],
-      "pageId": "财富",
-      "frequency": 1.0,
       "buttons": [
         {
-          "pinyin": "ShouYe",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "首页",
             "boundsInScreen": [
               68,
               1779,
               148,
               1900
             ],
+            "textReg": "首页",
             "contentReg": "^$",
-            "textReg": "首页"
+            "text": "首页"
           },
           "target": "首页",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "首页"
+          "name": "首页",
+          "pinyin": "ShouYe",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "CaiFu",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "财富",
             "boundsInScreen": [
               284,
               1779,
               364,
               1900
             ],
+            "textReg": "财富",
             "contentReg": "^$",
-            "textReg": "财富"
+            "text": "财富"
           },
           "target": "财富",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "财富"
+          "name": "财富",
+          "pinyin": "CaiFu",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "KouBei",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "口碑",
             "boundsInScreen": [
               500,
               1779,
               580,
               1900
             ],
+            "textReg": "口碑",
             "contentReg": "^$",
-            "textReg": "口碑"
+            "text": "口碑"
           },
           "target": "口碑",
-          "frequency": 0.8,
           "needParameter": "false",
-          "name": "口碑"
+          "name": "口碑",
+          "pinyin": "KouBei",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "PengYou",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "朋友",
             "boundsInScreen": [
               716,
               1779,
               796,
               1900
             ],
+            "textReg": "朋友",
             "contentReg": "^$",
-            "textReg": "朋友"
+            "text": "朋友"
           },
           "target": "朋友",
-          "frequency": 2.0,
           "needParameter": "false",
-          "name": "朋友"
+          "name": "朋友",
+          "pinyin": "PengYou",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "WoDe",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "我的",
             "boundsInScreen": [
               932,
               1779,
               1012,
               1900
             ],
+            "textReg": "我的",
             "contentReg": "^$",
-            "textReg": "我的"
+            "text": "我的"
           },
           "target": "我的",
-          "frequency": 0.5,
           "needParameter": "false",
-          "name": "我的"
+          "name": "我的",
+          "pinyin": "WoDe",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "DingQi",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "定期",
             "boundsInScreen": [
               0,
               566,
               216,
               615
             ],
+            "textReg": "定期",
             "contentReg": "^$",
-            "textReg": "定期"
+            "text": "定期"
           },
           "target": "定期",
-          "frequency": 0.2,
           "needParameter": "false",
-          "name": "定期"
+          "name": "定期",
+          "pinyin": "DingQi",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "JiJin",
-          "canDirectReach": "false",
+          "frequency": 1.0,
           "path": {
-            "text": "基金",
             "boundsInScreen": [
               216,
               566,
               432,
               615
             ],
+            "textReg": "基金",
             "contentReg": "^$",
-            "textReg": "基金"
+            "text": "基金"
           },
           "target": "基金",
-          "frequency": 0.15,
           "needParameter": "false",
-          "name": "基金"
+          "name": "基金",
+          "pinyin": "JiJin",
+          "canDirectReach": "false"
         },
         {
-          "pinyin": "GuPiao",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "股票",
             "boundsInScreen": [
               864,
               566,
               1080,
               615
             ],
+            "textReg": "股票",
             "contentReg": "^$",
-            "textReg": "股票"
+            "text": "股票"
           },
           "target": "股票",
-          "frequency": 0.15,
           "needParameter": "false",
-          "name": "股票"
+          "name": "股票",
+          "pinyin": "GuPiao",
+          "canDirectReach": "true"
         }
-      ],
-      "pageName": "财富"
+      ]
     },
     {
+      "frequency": 1.0,
+      "pageId": "口碑",
       "pagePinyin": "KouBei",
       "canDirectReach": true,
+      "pageName": "口碑",
       "features": [
         {
-          "text": "我的口碑",
           "boundsInScreen": [
             948,
             54,
             1080,
             198
           ],
+          "textReg": "^$",
           "contentReg": "我的口碑",
-          "textReg": "^$"
+          "text": "我的口碑"
         },
         {
-          "text": "口碑APP专享",
           "boundsInScreen": [
             48,
             1207,
             1032,
             1275
           ],
+          "textReg": "口碑APP专享",
           "contentReg": "^$",
-          "textReg": "口碑APP专享"
+          "text": "口碑APP专享"
         }
       ],
-      "pageId": "口碑",
-      "frequency": 0.8,
       "buttons": [
         {
-          "pinyin": "ShouYe",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "首页",
             "boundsInScreen": [
               68,
               1779,
               148,
               1900
             ],
+            "textReg": "首页",
             "contentReg": "^$",
-            "textReg": "首页"
+            "text": "首页"
           },
           "target": "首页",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "首页"
+          "name": "首页",
+          "pinyin": "ShouYe",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "CaiFu",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "财富",
             "boundsInScreen": [
               284,
               1779,
               364,
               1900
             ],
+            "textReg": "财富",
             "contentReg": "^$",
-            "textReg": "财富"
+            "text": "财富"
           },
           "target": "财富",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "财富"
+          "name": "财富",
+          "pinyin": "CaiFu",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "KouBei",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "口碑",
             "boundsInScreen": [
               500,
               1779,
               580,
               1900
             ],
+            "textReg": "口碑",
             "contentReg": "^$",
-            "textReg": "口碑"
+            "text": "口碑"
           },
           "target": "口碑",
-          "frequency": 0.8,
           "needParameter": "false",
-          "name": "口碑"
+          "name": "口碑",
+          "pinyin": "KouBei",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "PengYou",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "朋友",
             "boundsInScreen": [
               716,
               1779,
               796,
               1900
             ],
+            "textReg": "朋友",
             "contentReg": "^$",
-            "textReg": "朋友"
+            "text": "朋友"
           },
           "target": "朋友",
-          "frequency": 2.0,
           "needParameter": "false",
-          "name": "朋友"
+          "name": "朋友",
+          "pinyin": "PengYou",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "WoDe",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "我的",
             "boundsInScreen": [
               932,
               1779,
               1012,
               1900
             ],
+            "textReg": "我的",
             "contentReg": "^$",
-            "textReg": "我的"
+            "text": "我的"
           },
           "target": "我的",
-          "frequency": 0.5,
           "needParameter": "false",
-          "name": "我的"
+          "name": "我的",
+          "pinyin": "WoDe",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "DingDan",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "订单",
             "boundsInScreen": [
               816,
               54,
               948,
               198
             ],
+            "textReg": "^$",
             "contentReg": "订单",
-            "textReg": "^$"
+            "text": "订单"
           },
           "target": "订单",
-          "frequency": 0.2,
           "needParameter": "false",
-          "name": "订单"
+          "name": "订单",
+          "pinyin": "DingDan",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "WoDeKouBei",
-          "canDirectReach": "false",
+          "frequency": 1.0,
           "path": {
-            "text": "我的口碑",
             "boundsInScreen": [
               948,
               54,
               1080,
               198
             ],
+            "textReg": "^$",
             "contentReg": "我的口碑",
-            "textReg": "^$"
+            "text": "我的口碑"
           },
           "target": "我的口碑",
-          "frequency": 0.0,
           "needParameter": "false",
-          "name": "我的口碑"
+          "name": "我的口碑",
+          "pinyin": "WoDeKouBei",
+          "canDirectReach": "false"
         }
-      ],
-      "pageName": "口碑"
+      ]
     },
     {
+      "frequency": 1.0,
+      "pageId": "朋友",
       "pagePinyin": "PengYou",
       "canDirectReach": true,
+      "pageName": "朋友",
       "features": [
         {
-          "text": "朋友",
           "boundsInScreen": [
             47,
             89,
             155,
             162
           ],
+          "textReg": "朋友",
           "contentReg": "^$",
-          "textReg": "朋友"
+          "text": "朋友"
         },
         {
-          "text": "生活号",
           "boundsInScreen": [
             107,
             372,
             251,
             437
           ],
+          "textReg": "生活号",
           "contentReg": "^$",
-          "textReg": "生活号"
+          "text": "生活号"
         },
         {
-          "text": "小程序",
           "boundsInScreen": [
             467,
             372,
             611,
             437
           ],
+          "textReg": "小程序",
           "contentReg": "^$",
-          "textReg": "小程序"
+          "text": "小程序"
         }
       ],
-      "pageId": "朋友",
-      "frequency": 2.0,
       "buttons": [
         {
-          "pinyin": "ShouYe",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "首页",
             "boundsInScreen": [
               68,
               1779,
               148,
               1900
             ],
+            "textReg": "首页",
             "contentReg": "^$",
-            "textReg": "首页"
+            "text": "首页"
           },
           "target": "首页",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "首页"
+          "name": "首页",
+          "pinyin": "ShouYe",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "CaiFu",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "财富",
             "boundsInScreen": [
               284,
               1779,
               364,
               1900
             ],
+            "textReg": "财富",
             "contentReg": "^$",
-            "textReg": "财富"
+            "text": "财富"
           },
           "target": "财富",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "财富"
+          "name": "财富",
+          "pinyin": "CaiFu",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "KouBei",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "口碑",
             "boundsInScreen": [
               500,
               1779,
               580,
               1900
             ],
+            "textReg": "口碑",
             "contentReg": "^$",
-            "textReg": "口碑"
+            "text": "口碑"
           },
           "target": "口碑",
-          "frequency": 0.8,
           "needParameter": "false",
-          "name": "口碑"
+          "name": "口碑",
+          "pinyin": "KouBei",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "PengYou",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "朋友",
             "boundsInScreen": [
               716,
               1779,
               796,
               1900
             ],
+            "textReg": "朋友",
             "contentReg": "^$",
-            "textReg": "朋友"
+            "text": "朋友"
           },
           "target": "朋友",
-          "frequency": 2.0,
           "needParameter": "false",
-          "name": "朋友"
+          "name": "朋友",
+          "pinyin": "PengYou",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "WoDe",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "我的",
             "boundsInScreen": [
               932,
               1779,
               1012,
               1900
             ],
+            "textReg": "我的",
             "contentReg": "^$",
-            "textReg": "我的"
+            "text": "我的"
           },
           "target": "我的",
-          "frequency": 0.5,
           "needParameter": "false",
-          "name": "我的"
+          "name": "我的",
+          "pinyin": "WoDe",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "SouSuo",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "搜索",
             "boundsInScreen": [
               737,
               78,
               809,
               174
             ],
+            "textReg": "^$",
             "contentReg": "搜索",
-            "textReg": "^$"
+            "text": "搜索"
           },
           "target": "搜索",
-          "frequency": 0.3,
           "needParameter": "false",
-          "name": "搜索"
+          "name": "搜索",
+          "pinyin": "SouSuo",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "TongXunLu",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "通讯录",
             "boundsInScreen": [
               869,
               78,
               941,
               174
             ],
+            "textReg": "^$",
             "contentReg": "通讯录",
-            "textReg": "^$"
+            "text": "通讯录"
           },
           "target": "通讯录",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "通讯录"
+          "name": "通讯录",
+          "pinyin": "TongXunLu",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "GengDuoCaoZuo",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "更多操作",
             "boundsInScreen": [
               989,
               78,
               1044,
               174
             ],
+            "textReg": "^$",
             "contentReg": "更多操作",
-            "textReg": "^$"
+            "text": "更多操作"
           },
           "target": "更多操作",
-          "frequency": 0.9,
           "needParameter": "false",
-          "name": "更多操作"
+          "name": "更多操作",
+          "pinyin": "GengDuoCaoZuo",
+          "canDirectReach": "true"
         }
-      ],
-      "pageName": "朋友"
+      ]
     },
     {
+      "frequency": 1.0,
+      "pageId": "我的",
       "pagePinyin": "WoDe",
       "canDirectReach": true,
+      "pageName": "我的",
       "features": [
         {
-          "text": "我的",
           "boundsInScreen": [
             47,
             88,
             155,
             161
           ],
+          "textReg": "我的",
           "contentReg": "^$",
-          "textReg": "我的"
+          "text": "我的"
         },
         {
-          "text": "设置",
           "boundsInScreen": [
             925,
             87,
             1033,
             162
           ],
+          "textReg": "设置",
           "contentReg": "^$",
-          "textReg": "设置"
+          "text": "设置"
         }
       ],
-      "pageId": "我的",
-      "frequency": 0.5,
       "buttons": [
         {
-          "pinyin": "ShouYe",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "首页",
             "boundsInScreen": [
               68,
               1779,
               148,
               1900
             ],
+            "textReg": "首页",
             "contentReg": "^$",
-            "textReg": "首页"
+            "text": "首页"
           },
           "target": "首页",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "首页"
+          "name": "首页",
+          "pinyin": "ShouYe",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "CaiFu",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "财富",
             "boundsInScreen": [
               284,
               1779,
               364,
               1900
             ],
+            "textReg": "财富",
             "contentReg": "^$",
-            "textReg": "财富"
+            "text": "财富"
           },
           "target": "财富",
-          "frequency": 1.0,
           "needParameter": "false",
-          "name": "财富"
+          "name": "财富",
+          "pinyin": "CaiFu",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "KouBei",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "口碑",
             "boundsInScreen": [
               500,
               1779,
               580,
               1900
             ],
+            "textReg": "口碑",
             "contentReg": "^$",
-            "textReg": "口碑"
+            "text": "口碑"
           },
           "target": "口碑",
-          "frequency": 0.8,
           "needParameter": "false",
-          "name": "口碑"
+          "name": "口碑",
+          "pinyin": "KouBei",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "PengYou",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "朋友",
             "boundsInScreen": [
               716,
               1779,
               796,
               1900
             ],
+            "textReg": "朋友",
             "contentReg": "^$",
-            "textReg": "朋友"
+            "text": "朋友"
           },
           "target": "朋友",
-          "frequency": 2.0,
           "needParameter": "false",
-          "name": "朋友"
+          "name": "朋友",
+          "pinyin": "PengYou",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "WoDe",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "我的",
             "boundsInScreen": [
               932,
               1779,
               1012,
               1900
             ],
+            "textReg": "我的",
             "contentReg": "^$",
-            "textReg": "我的"
+            "text": "我的"
           },
           "target": "我的",
-          "frequency": 0.5,
           "needParameter": "false",
-          "name": "我的"
+          "name": "我的",
+          "pinyin": "WoDe",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "SheZhi",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "设置",
             "boundsInScreen": [
               925,
               87,
               1033,
               162
             ],
+            "textReg": "设置",
             "contentReg": "^$",
-            "textReg": "设置"
+            "text": "设置"
           },
           "target": "设置",
-          "frequency": 0.07,
           "needParameter": "false",
-          "name": "设置"
+          "name": "设置",
+          "pinyin": "SheZhi",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "ZhangDan",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "账单",
             "boundsInScreen": [
               186,
               740,
               282,
               805
             ],
+            "textReg": "账单",
             "contentReg": "^$",
-            "textReg": "账单"
+            "text": "账单"
           },
           "target": "账单",
-          "frequency": 0.3,
           "needParameter": "false",
-          "name": "账单"
+          "name": "账单",
+          "pinyin": "ZhangDan",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "ZongZiChan",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "总资产",
             "boundsInScreen": [
               186,
               878,
               330,
               943
             ],
+            "textReg": "总资产",
             "contentReg": "^$",
-            "textReg": "总资产"
+            "text": "总资产"
           },
           "target": "总资产",
-          "frequency": 0.1,
           "needParameter": "false",
-          "name": "总资产"
+          "name": "总资产",
+          "pinyin": "ZongZiChan",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "YuE",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "余额",
             "boundsInScreen": [
               186,
               1016,
               282,
               1081
             ],
+            "textReg": "余额",
             "contentReg": "^$",
-            "textReg": "余额"
+            "text": "余额"
           },
           "target": "余额",
-          "frequency": 0.2,
           "needParameter": "false",
-          "name": "余额"
+          "name": "余额",
+          "pinyin": "YuE",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "YuEBao",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "余额宝",
             "boundsInScreen": [
               186,
               1154,
               330,
               1219
             ],
+            "textReg": "余额宝",
             "contentReg": "^$",
-            "textReg": "余额宝"
+            "text": "余额宝"
           },
           "target": "余额宝",
-          "frequency": 0.3,
           "needParameter": "false",
-          "name": "余额宝"
+          "name": "余额宝",
+          "pinyin": "YuEBao",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "HuaBei",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "花呗",
             "boundsInScreen": [
               186,
               1292,
               282,
               1357
             ],
+            "textReg": "花呗",
             "contentReg": "^$",
-            "textReg": "花呗"
+            "text": "花呗"
           },
           "target": "花呗",
-          "frequency": 0.8,
           "needParameter": "false",
-          "name": "花呗"
+          "name": "花呗",
+          "pinyin": "HuaBei",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "YinHangKa",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "银行卡",
             "boundsInScreen": [
               186,
               1430,
               330,
               1495
             ],
+            "textReg": "银行卡",
             "contentReg": "^$",
-            "textReg": "银行卡"
+            "text": "银行卡"
           },
           "target": "银行卡",
-          "frequency": 0.05,
           "needParameter": "false",
-          "name": "银行卡"
+          "name": "银行卡",
+          "pinyin": "YinHangKa",
+          "canDirectReach": "true"
         }
-      ],
-      "pageName": "我的"
+      ]
     },
     {
+      "frequency": 1.0,
+      "pageId": "账单",
       "pagePinyin": "ZhangDan",
       "canDirectReach": true,
+      "pageName": "账单",
       "features": [
         {
-          "text": "账单",
           "boundsInScreen": [
             138,
             88,
             246,
             161
           ],
+          "textReg": "账单",
           "contentReg": "^$",
-          "textReg": "账单"
+          "text": "账单"
         },
         {
-          "text": "账单",
           "boundsInScreen": [
             0,
             1796,
             540,
             1900
           ],
+          "textReg": "账单",
           "contentReg": "^$",
-          "textReg": "账单"
+          "text": "账单"
         },
         {
-          "text": "统计",
           "boundsInScreen": [
             540,
             1796,
             1080,
             1900
           ],
+          "textReg": "统计",
           "contentReg": "^$",
-          "textReg": "统计"
+          "text": "统计"
         }
       ],
-      "pageId": "账单",
-      "frequency": 0.3,
       "buttons": [
         {
-          "pinyin": "FanHui",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "",
             "boundsInScreen": [
               46,
               99,
               97,
               151
             ],
+            "textReg": "",
             "contentReg": "^$",
-            "textReg": ""
+            "text": ""
           },
           "target": "我的",
-          "frequency": 0.5,
           "needParameter": "false",
-          "name": "返回"
+          "name": "返回",
+          "pinyin": "FanHui",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "ShaiXuan",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "筛选",
             "boundsInScreen": [
               45,
               425,
               129,
               482
             ],
+            "textReg": "筛选",
             "contentReg": "^$",
-            "textReg": "筛选"
+            "text": "筛选"
           },
           "target": "筛选",
-          "frequency": 0.0,
           "needParameter": "false",
-          "name": "筛选"
+          "name": "筛选",
+          "pinyin": "ShaiXuan",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "FenXi",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "分类",
             "boundsInScreen": [
               285,
               425,
               369,
               482
             ],
+            "textReg": "分类",
             "contentReg": "^$",
-            "textReg": "分类"
+            "text": "分类"
           },
           "target": "分类",
-          "frequency": 0.02,
           "needParameter": "false",
-          "name": "分类"
+          "name": "分类",
+          "pinyin": "FenXi",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "ZhangDan",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "账单",
             "boundsInScreen": [
               0,
               1796,
               540,
               1900
             ],
+            "textReg": "账单",
             "contentReg": "^$",
-            "textReg": "账单"
+            "text": "账单"
           },
           "target": "账单",
-          "frequency": 0.3,
           "needParameter": "false",
-          "name": "账单"
+          "name": "账单",
+          "pinyin": "ZhangDan",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "TongJi",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "统计",
             "boundsInScreen": [
               540,
               1796,
               1080,
               1900
             ],
+            "textReg": "统计",
             "contentReg": "^$",
-            "textReg": "统计"
+            "text": "统计"
           },
           "target": "统计",
-          "frequency": 0.2,
           "needParameter": "false",
-          "name": "统计"
+          "name": "统计",
+          "pinyin": "TongJi",
+          "canDirectReach": "true"
         }
-      ],
-      "pageName": "账单"
+      ]
     },
     {
+      "frequency": 1.0,
+      "pageId": "总资产",
       "pagePinyin": "ZongZiChan",
       "canDirectReach": true,
+      "pageName": "总资产",
       "features": [
         {
-          "text": "总资产",
           "boundsInScreen": [
             132,
             86,
             294,
             165
           ],
+          "textReg": "总资产",
           "contentReg": "^$",
-          "textReg": "总资产"
+          "text": "总资产"
         },
         {
-          "text": "资产服务",
           "boundsInScreen": [
             840,
             54,
             1068,
             198
           ],
+          "textReg": "资产服务",
           "contentReg": "资产服务",
-          "textReg": "资产服务"
+          "text": "资产服务"
         }
       ],
-      "pageId": "总资产",
-      "frequency": 0.1,
       "buttons": [
         {
-          "pinyin": "FanHui",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "",
             "boundsInScreen": [
               0,
               54,
               132,
               198
             ],
+            "textReg": "",
             "contentReg": "返回",
-            "textReg": ""
+            "text": ""
           },
           "target": "我的",
-          "frequency": 0.5,
           "needParameter": "false",
-          "name": "返回"
+          "name": "返回",
+          "pinyin": "FanHui",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "ZiChanFuWu",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "资产服务",
             "boundsInScreen": [
               840,
               54,
               1068,
               198
             ],
+            "textReg": "资产服务",
             "contentReg": "资产服务",
-            "textReg": "资产服务"
+            "text": "资产服务"
           },
           "target": "资产服务",
-          "frequency": 0.01,
           "needParameter": "false",
-          "name": "资产服务"
+          "name": "资产服务",
+          "pinyin": "ZiChanFuWu",
+          "canDirectReach": "true"
         }
-      ],
-      "pageName": "总资产"
+      ]
     },
     {
+      "frequency": 1.0,
+      "pageId": "余额",
       "pagePinyin": "YuE",
       "canDirectReach": true,
+      "pageName": "余额",
       "features": [
         {
-          "text": "余额",
           "boundsInScreen": [
             131,
             87,
             239,
             160
           ],
+          "textReg": "余额",
           "contentReg": "^$",
-          "textReg": "余额"
+          "text": "余额"
         },
         {
-          "text": "明细",
           "boundsInScreen": [
             931,
             91,
             1033,
             159
           ],
+          "textReg": "明细",
           "contentReg": "^$",
-          "textReg": "明细"
+          "text": "明细"
         }
       ],
-      "pageId": "余额",
-      "frequency": 0.2,
       "buttons": [
         {
-          "pinyin": "MingXi",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "明细",
             "boundsInScreen": [
               931,
               91,
               1033,
               159
             ],
+            "textReg": "明细",
             "contentReg": "^$",
-            "textReg": "明细"
+            "text": "明细"
           },
           "target": "明细",
-          "frequency": 0.015,
           "needParameter": "false",
-          "name": "明细"
+          "name": "明细",
+          "pinyin": "MingXi",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "ChongZhi",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "充值",
             "boundsInScreen": [
               141,
               860,
               243,
               928
             ],
+            "textReg": "充值",
             "contentReg": "^$",
-            "textReg": "充值"
+            "text": "充值"
           },
           "target": "充值",
-          "frequency": 0.09,
           "needParameter": "false",
-          "name": "充值"
+          "name": "充值",
+          "pinyin": "ChongZhi",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "TiXian",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "提现",
             "boundsInScreen": [
               141,
               998,
               243,
               1066
             ],
+            "textReg": "提现",
             "contentReg": "^$",
-            "textReg": "提现"
+            "text": "提现"
           },
           "target": "提现",
-          "frequency": 0.1,
           "needParameter": "false",
-          "name": "提现"
+          "name": "提现",
+          "pinyin": "TiXian",
+          "canDirectReach": "true"
         }
-      ],
-      "pageName": "余额"
+      ]
     },
     {
+      "frequency": 1.0,
+      "pageId": "设置",
       "pagePinyin": "SheZhi",
       "canDirectReach": true,
+      "pageName": "设置",
       "features": [
         {
-          "text": "设置",
           "boundsInScreen": [
             138,
             88,
             246,
             161
           ],
+          "textReg": "设置",
           "contentReg": "^$",
-          "textReg": "设置"
+          "text": "设置"
         },
         {
-          "text": "安全设置",
           "boundsInScreen": [
             48,
             293,
             240,
             358
           ],
+          "textReg": "安全设置",
           "contentReg": "^$",
-          "textReg": "安全设置"
+          "text": "安全设置"
         },
         {
-          "text": "生物识别",
           "boundsInScreen": [
             48,
             431,
             240,
             496
           ],
+          "textReg": "生物识别",
           "contentReg": "^$",
-          "textReg": "生物识别"
+          "text": "生物识别"
         }
       ],
-      "pageId": "设置",
-      "frequency": 0.07,
       "buttons": [
         {
-          "pinyin": "FanHui",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "",
             "boundsInScreen": [
               46,
               99,
               97,
               151
             ],
+            "textReg": "",
             "contentReg": "^$",
-            "textReg": ""
+            "text": ""
           },
           "target": "我的",
-          "frequency": 0.5,
           "needParameter": "false",
-          "name": "返回"
+          "name": "返回",
+          "pinyin": "FanHui",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "AnQuanSheZhi",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "安全设置",
             "boundsInScreen": [
               48,
               293,
               240,
               358
             ],
+            "textReg": "安全设置",
             "contentReg": "^$",
-            "textReg": "安全设置"
+            "text": "安全设置"
           },
           "target": "安全设置",
-          "frequency": 0.0,
           "needParameter": "false",
-          "name": "安全设置"
+          "name": "安全设置",
+          "pinyin": "AnQuanSheZhi",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "ShengWuShiBie",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "生物识别",
             "boundsInScreen": [
               48,
               431,
               240,
               496
             ],
+            "textReg": "生物识别",
             "contentReg": "^$",
-            "textReg": "生物识别"
+            "text": "生物识别"
           },
           "target": "生物识别",
-          "frequency": 0.033,
           "needParameter": "false",
-          "name": "生物识别"
+          "name": "生物识别",
+          "pinyin": "ShengWuShiBie",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "ZhiFuSheZhi",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "支付设置",
             "boundsInScreen": [
               48,
               629,
               240,
               694
             ],
+            "textReg": "支付设置",
             "contentReg": "^$",
-            "textReg": "支付设置"
+            "text": "支付设置"
           },
           "target": "支付设置",
-          "frequency": 0.016,
           "needParameter": "false",
-          "name": "支付设置"
+          "name": "支付设置",
+          "pinyin": "ZhiFuSheZhi",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "TongYong",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "通用",
             "boundsInScreen": [
               48,
               767,
               144,
               832
             ],
+            "textReg": "通用",
             "contentReg": "^$",
-            "textReg": "通用"
+            "text": "通用"
           },
           "target": "通用",
-          "frequency": 0.05,
           "needParameter": "false",
-          "name": "通用"
+          "name": "通用",
+          "pinyin": "TongYong",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "KuaiJieFangShiSheZhi",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "快捷方式设置",
             "boundsInScreen": [
               48,
               905,
               336,
               970
             ],
+            "textReg": "快捷方式设置",
             "contentReg": "^$",
-            "textReg": "快捷方式设置"
+            "text": "快捷方式设置"
           },
           "target": "快捷方式设置",
-          "frequency": 0.016,
           "needParameter": "false",
-          "name": "快捷方式设置"
+          "name": "快捷方式设置",
+          "pinyin": "KuaiJieFangShiSheZhi",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "YinSi",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "隐私",
             "boundsInScreen": [
               48,
               1103,
               144,
               1168
             ],
+            "textReg": "隐私",
             "contentReg": "^$",
-            "textReg": "隐私"
+            "text": "隐私"
           },
           "target": "隐私",
-          "frequency": 0.016,
           "needParameter": "false",
-          "name": "隐私"
+          "name": "隐私",
+          "pinyin": "YinSi",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "QiuZhuFanKui",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "求助反馈",
             "boundsInScreen": [
               48,
               1241,
               240,
               1306
             ],
+            "textReg": "求助反馈",
             "contentReg": "^$",
-            "textReg": "求助反馈"
+            "text": "求助反馈"
           },
           "target": "求助反馈",
-          "frequency": 0.016,
           "needParameter": "false",
-          "name": "求助反馈"
+          "name": "求助反馈",
+          "pinyin": "QiuZhuFanKui",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "HuanZhangHaoDengLu",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "换账号登录",
             "boundsInScreen": [
               48,
               1577,
               288,
               1642
             ],
+            "textReg": "换账号登录",
             "contentReg": "^$",
-            "textReg": "换账号登录"
+            "text": "换账号登录"
           },
           "target": "换账号登录",
-          "frequency": 0.2,
           "needParameter": "false",
-          "name": "换账号登录"
+          "name": "换账号登录",
+          "pinyin": "HuanZhangHaoDengLu",
+          "canDirectReach": "true"
         },
         {
-          "pinyin": "TuiChuDengLu",
-          "canDirectReach": "true",
+          "frequency": 1.0,
           "path": {
-            "text": "退出登录",
             "boundsInScreen": [
               48,
               1715,
               240,
               1780
             ],
+            "textReg": "退出登录",
             "contentReg": "^$",
-            "textReg": "退出登录"
+            "text": "退出登录"
           },
           "target": "退出登录",
-          "frequency": 0.2,
           "needParameter": "false",
-          "name": "退出登录"
+          "name": "退出登录",
+          "pinyin": "TuiChuDengLu",
+          "canDirectReach": "true"
         }
-      ],
-      "pageName": "设置"
+      ]
     }
   ]
 }

@@ -1439,6 +1439,7 @@
       1080,
       1920
     ],
-    "appName": "手机淘宝"
+    "appName": "手机淘宝",
+    "useFrequency": 0.3
   }
 }

@@ -12,6 +12,7 @@ public class JsonAppInfo {
     public String appName = "";
     public String appPinyin = "";
     public Integer[] resolution;
+    public double useFrequency;
 
     @Override
     public String toString() {

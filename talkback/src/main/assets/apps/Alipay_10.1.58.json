@@ -6,7 +6,8 @@
       1080,
       1920
     ],
-    "appName": "支付宝"
+    "appName": "支付宝",
+    "useFrequency": 0.5
   },
   "data": [
     {
@@ -185,7 +186,7 @@
         },
         {
           "pinyin": "TongXunLu",
-          "canDirectReach": "false",
+          "canDirectReach": "true",
           "path": {
             "text": "通讯录",
             "boundsInScreen": [
@@ -621,7 +622,7 @@
         },
         {
           "pinyin": "JiJin",
-          "canDirectReach": "false",
+          "canDirectReach": "true",
           "path": {
             "text": "基金",
             "boundsInScreen": [
@@ -1363,7 +1364,7 @@
           "name": "筛选"
         },
         {
-          "pinyin": "FenXi",
+          "pinyin": "FenLei",
           "canDirectReach": "true",
           "path": {
             "text": "分类",
