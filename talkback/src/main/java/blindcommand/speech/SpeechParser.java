@@ -1,6 +1,8 @@
 package blindcommand.speech;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -148,6 +150,17 @@ public class SpeechParser implements Parser, SpeechCallback {
         candidateList.clear();
         if(nameToIns.containsKey(result))
             candidateList.addAll(nameToIns.get(result));
+        final String packageName = Utility.getPackageName();
+        Collections.sort(candidateList, new Comparator<Instruction>() {
+            @Override
+            public int compare(Instruction o1, Instruction o2) {
+                if (packageName != null) {
+                    if (packageName.equals(o1.meta.packageName)) return -1;
+                    if (packageName.equals(o2.meta.packageName)) return 1;
+                }
+                return -Double.compare(o1.frequency, o2.frequency);
+            }
+        });
         currentIndex = 0;
         user.readParseResult(this.getCurrent());
     }
