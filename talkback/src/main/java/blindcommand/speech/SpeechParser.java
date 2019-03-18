@@ -143,7 +143,7 @@ public class SpeechParser implements Parser, SpeechCallback {
     }
 
     public void onStringResult(String result){
-        Log.d(LOGTAG, "result:" + result);
+        Log.d(LOGTAG, "recognizeResult:" + result);
         System.out.println(result);
         candidateList.clear();
         if(nameToIns.containsKey(result))

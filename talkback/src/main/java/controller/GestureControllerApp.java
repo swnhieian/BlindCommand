@@ -351,10 +351,10 @@ public class GestureControllerApp implements GestureController {
       mService.triggerBCMode();
     }
     else if (action.equals(mService.getString(R.string.shortcut_value_start))){
-      Log.i("TalkBackService", "start");
+      Log.i("TalkBackService", "startNoneParser");
     }
     else if (action.equals(mService.getString(R.string.shortcut_value_end))){
-      Log.i("TalkBackService", "end");
+      Log.i("TalkBackService", "endNoneParser");
     }
     Intent intent = new Intent(GestureActionMonitor.ACTION_GESTURE_ACTION_PERFORMED);
     intent.putExtra(GestureActionMonitor.EXTRA_SHORTCUT_GESTURE_ACTION, action);

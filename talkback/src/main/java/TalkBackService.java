@@ -824,16 +824,16 @@ public class TalkBackService extends AccessibilityService
     // System.out.println("==========================================================gesture????????????????????" + gestureId);
     switch(gestureId){
       case 1:
-        blindcommand.Log.d("TalkBack.onGesture", "Swipe up not on overlay.");
+        blindcommand.Log.d("TalkBack.onGesture", "onGesture:Swipe up not on overlay.");
         break;
       case 2:
-        blindcommand.Log.d("TalkBack.onGesture", "Swipe down not on overlay.");
+        blindcommand.Log.d("TalkBack.onGesture", "onGesture:Swipe down not on overlay.");
         break;
       case 3:
-        blindcommand.Log.d("TalkBack.onGesture", "Swipe left not on overlay.");
+        blindcommand.Log.d("TalkBack.onGesture", "onGesture:Swipe left not on overlay.");
         break;
       case 4:
-        blindcommand.Log.d("TalkBack.onGesture", "Swipe right not on overlay.");
+        blindcommand.Log.d("TalkBack.onGesture", "onGesture:Swipe right not on overlay.");
         break;
       default:
         break;

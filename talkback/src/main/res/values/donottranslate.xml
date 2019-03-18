@@ -367,6 +367,8 @@
         <item>@string/shortcut_value_show_language_options</item>
         <item>@string/shortcut_value_perform_click_action</item>
         <item>@string/shortcut_value_trigger_BC_mode</item>
+        <item>@string/shortcut_value_start</item>
+        <item>@string/shortcut_value_end</item>
     </string-array>
 
     <!-- Assignable shortcuts -->
@@ -504,8 +506,8 @@
     <string name="pref_shortcut_left_default">@string/shortcut_value_previous</string>
     <string name="pref_shortcut_down_default">@string/shortcut_value_next_granularity</string>
     <string name="pref_shortcut_right_default">@string/shortcut_value_next</string>
-    <string name="pref_shortcut_left_and_right_default">@string/shortcut_value_scroll_back</string>
-    <string name="pref_shortcut_right_and_left_default">@string/shortcut_value_scroll_forward</string>
+    <string name="pref_shortcut_left_and_right_default">@string/shortcut_value_start</string>
+    <string name="pref_shortcut_right_and_left_default">@string/shortcut_value_end</string>
     <string name="pref_shortcut_up_and_down_default">@string/shortcut_value_first_in_screen</string>
     <!--<string name="pref_shortcut_down_and_up_default">@string/shortcut_value_last_in_screen</string>-->
     <string name="pref_shortcut_down_and_up_default">@string/shortcut_value_trigger_BC_mode</string>
