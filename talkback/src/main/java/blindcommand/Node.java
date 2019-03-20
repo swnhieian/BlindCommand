@@ -37,10 +37,7 @@ public class Node {
         neighbours = new Hashtable<>();
         pre = null;
         visited = false;
-//        if(frequency == 0)
-//            this.frequency = DEFAULT_FREQUENCY;
-//        else
-//            this.frequency = frequency;
+        this.frequency = frequency;
     }
     public Node(String id, String name, String pinyin, JsonAppInfo meta, int frequency) {
         this(id, name, pinyin, true, meta, frequency);
