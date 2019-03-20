@@ -89,7 +89,6 @@ public class SimpleParser implements  Parser {
 //            System.out.println("");
             if (insArray[0].length() == touchPoints.size()) {
                 Instruction instruction = instructionSet.instructions.get(ins);
-                System.out.println(instruction.meta.packageName);
                 double initial_poss = Math.log(transmit.get(instruction.meta.packageName));
 //                if(instruction.meta.packageName.equals(packageName)){
 //                    initial_poss += IN_SAME_APP_BONUS;
@@ -103,7 +102,9 @@ public class SimpleParser implements  Parser {
                     }
                 }
                 else {
-                    set.add(new Entry(insArray[0], instruction, initial_poss, insArray[1].equals("2") || insArray[1].equals("3")));
+                    if(!insArray[1].equals("9") && !insArray[1].equals("10")) {
+                        set.add(new Entry(insArray[0], instruction, initial_poss, insArray[1].equals("2") || insArray[1].equals("3")));
+                    }
                 }
             }
         }
