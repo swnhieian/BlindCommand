@@ -2,6 +2,7 @@
 import json
 import os
 import copy
+import operator
 ORIGIN_DIR = "originFiles"
 OUTPUT_DIR = "outputFiles"
 
@@ -44,8 +45,22 @@ def transferEncoding(fileName):
         origin = json.loads(f.read())
         with open(fileName, 'w') as fout:
             fout.write(json.dumps(origin, indent=2, ensure_ascii=False))
+
+def showAllCommands(dirName):
+    allCommands = []
+    for file in os.listdir(dirName):
+        with open(os.path.join(dirName, file)) as f:
+            data = json.loads(f.read())
+            for page in data['data']:
+                for button in page['buttons']:
+                    allCommands.append([button['target'] + '-' + data['meta']['appName'], button['frequency']])
+    allCommands.sort(key=operator.itemgetter(1), reverse=True)
+    print(len(allCommands))
+    print(allCommands)
 if __name__ == "__main__":
-    complete = os.listdir(OUTPUT_DIR)
-    for i in os.listdir(ORIGIN_DIR):
-        if (i not in complete):
-            addFrequency(os.path.join(ORIGIN_DIR, i), os.path.join(OUTPUT_DIR, i))
+    if False:
+        complete = os.listdir(OUTPUT_DIR)
+        for i in os.listdir(ORIGIN_DIR):
+            if (i not in complete):
+                addFrequency(os.path.join(ORIGIN_DIR, i), os.path.join(OUTPUT_DIR, i))
+    showAllCommands('apps')

@@ -18,7 +18,7 @@ public class SimpleParser implements  Parser {
 //    final static double IN_SYSTEM_BONUS = Math.log(2.0);
     final static double FREQUENCY_WEIGHT = 1.0;
     final static double LENGTH_WEIGHT = 1.0;
-    final static double STAY_SAME_APP = 0.8;
+    final static double STAY_SAME_APP = 0.6;
     HashMap<Character, Key> allKeys;
     ArrayList<TouchPoint> touchPoints;
     List<Entry> candidateList;
