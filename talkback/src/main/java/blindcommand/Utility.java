@@ -80,4 +80,7 @@ public class Utility {
     }
     public static Parser.ParserType parserType = Parser.ParserType.DEFAULT;
     public static boolean useDiffNav = true;
+    public static boolean isAppInstruction(Instruction instruction){
+        return instruction.id.equals(instruction.meta.appName) && instruction.name.equals(instruction.id);
+    }
 }

@@ -89,7 +89,6 @@ public class SimpleParser implements  Parser {
 //            System.out.println("");
             if (insArray[0].length() == touchPoints.size()) {
                 Instruction instruction = instructionSet.instructions.get(ins);
-                System.out.println(instruction.meta.packageName);
                 double initial_poss = Math.log(transmit.get(instruction.meta.packageName));
 //                if(instruction.meta.packageName.equals(packageName)){
 //                    initial_poss += IN_SAME_APP_BONUS;
@@ -97,13 +96,20 @@ public class SimpleParser implements  Parser {
 //                if(instruction.meta.packageName.equals("System")){
 //                    initial_poss += IN_SYSTEM_BONUS;
 //                }
-                if(instruction.meta.packageName.equals(packageName)){
-                    if(insArray[1].equals("9") || insArray[1].equals("10")){
+                if(Utility.isAppInstruction(instruction)){
+                    if(insArray[1].equals("9") || insArray[1].equals("10")) {
+                        set.add(new Entry(insArray[0], instruction, initial_poss, false));
+                    }
+                }
+                else if(instruction.meta.packageName.equals(packageName)){
+                    if(insArray[1].equals("9") || insArray[1].equals("10")) {
                         set.add(new Entry(insArray[0], instruction, initial_poss, false));
                     }
                 }
                 else {
-                    set.add(new Entry(insArray[0], instruction, initial_poss, insArray[1].equals("2") || insArray[1].equals("3")));
+                    if(!insArray[1].equals("9") && !insArray[1].equals("10")) {
+                        set.add(new Entry(insArray[0], instruction, initial_poss, insArray[1].equals("2") || insArray[1].equals("3")));
+                    }
                 }
             }
         }
@@ -154,9 +160,6 @@ public class SimpleParser implements  Parser {
                 candidateList.add(element);
         }
         currentIndex = 0;
-
-        //System.out.println("Entry set size" +  "parse: " + set.size());
-
         int cnt = 0;
         for(Entry e: candidateList){
             System.out.println(e.info());

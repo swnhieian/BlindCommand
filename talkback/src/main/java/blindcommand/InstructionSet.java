@@ -97,6 +97,7 @@ public class InstructionSet {
 
             instructions.put(insQP + "|9|" + appQP, instruction);  // saoyisao
             instructions.put(insJP + "|10|" + appQP, instruction); // sys
+
         }
         this.dict = instructions.keySet().toArray(new String[]{});
     }
