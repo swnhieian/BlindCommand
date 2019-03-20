@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.graphics.Rect;
 import android.hardware.camera2.CameraManager;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -109,6 +110,18 @@ public class Executor {
         SoundPlayer.success();
         SoundPlayer.tts("执行完毕");
     }
+    public void traverseNode(AccessibilityNodeInfo root) {
+        Rect rect = new Rect();
+        root.getBoundsInScreen(rect);
+        System.out.println("node:" + (root.getText()==null?"null":root.getText()) +
+        ";" + (root.getContentDescription()==null?"null":root.getContentDescription()) +
+        ";" + (rect.top+","+rect.left+","+rect.bottom+","+rect.right)+";"+rect.getClass().toString());
+        for (int i=0; i<root.getChildCount(); i++) {
+            AccessibilityNodeInfo child = root.getChild(i);
+            traverseNode(child);
+        }
+    }
+
 
     public void executeSteps(final List<Edge> allEdges) {
         if (allEdges == null) {
@@ -127,6 +140,8 @@ public class Executor {
                     Edge edge = allEdges.get(index);
                     boolean executed = false;
                     while (System.currentTimeMillis() - lastTime < 500) {
+//                        System.out.println("index:"+index+"=========");
+//                        traverseNode(getRoot());
                         System.out.println("time:" + (System.currentTimeMillis() - lastTime));
                         if (edge.from.represent(getCurrentWindow(), service)) {
                             System.out.println("in while execute");
