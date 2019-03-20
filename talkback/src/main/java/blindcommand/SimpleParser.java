@@ -96,7 +96,12 @@ public class SimpleParser implements  Parser {
 //                if(instruction.meta.packageName.equals("System")){
 //                    initial_poss += IN_SYSTEM_BONUS;
 //                }
-                if(instruction.meta.packageName.equals(packageName)){
+                if(Utility.isAppInstruction(instruction)){
+                    if(insArray[1].equals("9") || insArray[1].equals("10")) {
+                        set.add(new Entry(insArray[0], instruction, initial_poss, false));
+                    }
+                }
+                else if(instruction.meta.packageName.equals(packageName)){
                     if(insArray[1].equals("9") || insArray[1].equals("10")) {
                         set.add(new Entry(insArray[0], instruction, initial_poss, false));
                     }

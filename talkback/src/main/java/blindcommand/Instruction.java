@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"id", "meta"})
+@EqualsAndHashCode(of = {"id", "meta", "name"})
 public class Instruction {
     public String id;
     public String name;
