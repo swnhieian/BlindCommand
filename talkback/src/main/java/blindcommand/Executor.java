@@ -46,10 +46,10 @@ public class Executor {
         List<Instruction> ret = new ArrayList<>();
         for (NodeGraph nodeGraph:graphs.values()) {
             ret.addAll(nodeGraph.getInstructions());
-//            Instruction appIns = new Instruction(nodeGraph.meta.appName, nodeGraph.meta.appName, nodeGraph.meta.appPinyin, nodeGraph.meta);
-//            if (!ret.contains(appIns)) {
-//                ret.add(appIns);
-//            }
+            Instruction appIns = new Instruction(nodeGraph.meta.appName, nodeGraph.meta.appName, nodeGraph.meta.appPinyin, nodeGraph.meta, nodeGraph.meta.useFrequency);
+            if (!ret.contains(appIns)) {
+                ret.add(appIns);
+            }
 
         }
         JsonAppInfo sysInfo = new JsonAppInfo("System", "系统", "XiTong", new Integer[]{}, 0.7);
@@ -327,7 +327,7 @@ public class Executor {
         AccessibilityNodeInfo rootNode = getRoot();
         final NodeGraph appGraph = graphs.get(instruction.meta.appName);
         if(appGraph == null) return;
-        if (rootNode.getPackageName().equals(instruction.meta.packageName)) {
+        if (rootNode.getPackageName()!= null && rootNode.getPackageName().equals(instruction.meta.packageName)) {
             execute(instruction, appGraph, null);
             return;
         }
@@ -399,6 +399,11 @@ public class Executor {
         String commandId = ins.id;
         if (commandId.equals("null")) {
             Log.i(LOGTAG, "endExecute:null command");
+            return;
+        }
+        if (ins.id.equals(graph.meta.appName) && ins.name.equals(graph.meta.appName)) {
+            endExecute();
+            Log.i(LOGTAG, "endExecute:jumptoApp command");
             return;
         }
         System.out.println("execute: " + commandId);

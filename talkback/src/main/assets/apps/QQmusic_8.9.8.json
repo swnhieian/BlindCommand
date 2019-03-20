@@ -80,7 +80,7 @@
           "pinyin": "GengDuoSheZhi"
         },
         {
-          "target": "听歌识曲",
+          "target": "听歌识曲功能列表",
           "needParameter": "false",
           "path": {
             "textReg": "^$",
@@ -93,10 +93,10 @@
             ],
             "contentReg": "听歌识曲"
           },
-          "name": "听歌识曲",
+          "name": "听歌识曲功能列表",
           "frequency": 0.5,
-          "canDirectReach": "true",
-          "pinyin": "TingGeShiQu"
+          "canDirectReach": "false",
+          "pinyin": "TingGeShiQuGongNengLieBiao"
         },
         {
           "target": "搜索",
@@ -135,6 +135,25 @@
           "frequency": 1.0,
           "canDirectReach": "true",
           "pinyin": "BoFang"
+        },
+        {
+          "target": "暂停",
+          "needParameter": "false",
+          "path": {
+            "textReg": "^$",
+            "text": "暂停",
+            "boundsInScreen": [
+              795,
+              1794,
+              885,
+              1884
+            ],
+            "contentReg": "暂停"
+          },
+          "name": "暂停",
+          "frequency": 1.0,
+          "canDirectReach": "true",
+          "pinyin": "ZanTing"
         },
         {
           "target": "歌曲队列",
@@ -371,7 +390,7 @@
           "pinyin": "GengDuoSheZhi"
         },
         {
-          "target": "听歌识曲",
+          "target": "听歌识曲功能列表",
           "needParameter": "false",
           "path": {
             "textReg": "^$",
@@ -384,10 +403,10 @@
             ],
             "contentReg": "听歌识曲"
           },
-          "name": "听歌识曲",
+          "name": "听歌识曲功能列表",
           "frequency": 0.5,
-          "canDirectReach": "true",
-          "pinyin": "TingGeShiQu"
+          "canDirectReach": "false",
+          "pinyin": "TingGeShiQuGongNengLieBiao"
         },
         {
           "target": "搜索",
@@ -681,7 +700,7 @@
           "pinyin": "GengDuoSheZhi"
         },
         {
-          "target": "听歌识曲",
+          "target": "听歌识曲功能列表",
           "needParameter": "false",
           "path": {
             "textReg": "^$",
@@ -694,10 +713,10 @@
             ],
             "contentReg": "听歌识曲"
           },
-          "name": "听歌识曲",
+          "name": "听歌识曲功能列表",
           "frequency": 0.5,
-          "canDirectReach": "true",
-          "pinyin": "TingGeShiQu"
+          "canDirectReach": "false",
+          "pinyin": "TingGeShiQuGongNengLieBiao"
         },
         {
           "target": "搜索",
@@ -1280,7 +1299,7 @@
       "canDirectReach": true
     },
     {
-      "pageName": "听歌识曲",
+      "pageName": "听歌识曲功能列表",
       "buttons": [
         {
           "target": "听歌识曲",
@@ -1341,8 +1360,8 @@
         }
       ],
       "frequency": 0.5,
-      "pagePinyin": "TingGeShiQu",
-      "pageId": "听歌识曲",
+      "pagePinyin": "TingGeShiQuGongNengLieBiao",
+      "pageId": "听歌识曲功能列表",
       "features": [
         {
           "textReg": "听歌识曲",
@@ -1378,7 +1397,7 @@
           "contentReg": "^$"
         }
       ],
-      "canDirectReach": true
+      "canDirectReach": false
     }
   ],
   "meta": {
