@@ -14,7 +14,7 @@
       "buttons": [
         {
           "name": "微信主页",
-          "frequency": 10.0,
+          "frequency": 5.0,
           "canDirectReach": "true",
           "needParameter": "false",
           "target": "微信",
@@ -33,7 +33,7 @@
         },
         {
           "name": "搜索",
-          "frequency": 4.0,
+          "frequency": 1.0,
           "canDirectReach": "true",
           "needParameter": "false",
           "target": "搜索",
@@ -128,7 +128,7 @@
         }
       ],
       "pageName": "微信主页",
-      "frequency": 10.0,
+      "frequency": 5.0,
       "canDirectReach": true,
       "pageId": "微信",
       "pagePinyin": "WeiXin",
@@ -161,7 +161,7 @@
       "buttons": [
         {
           "name": "微信主页",
-          "frequency": 10.0,
+          "frequency": 5.0,
           "canDirectReach": "true",
           "needParameter": "false",
           "target": "微信",
@@ -180,7 +180,7 @@
         },
         {
           "name": "搜索",
-          "frequency": 4.0,
+          "frequency": 1.0,
           "canDirectReach": "true",
           "needParameter": "false",
           "target": "搜索",
@@ -319,7 +319,7 @@
       "buttons": [
         {
           "name": "微信主页",
-          "frequency": 10.0,
+          "frequency": 5.0,
           "canDirectReach": "true",
           "needParameter": "false",
           "target": "微信",
@@ -338,7 +338,7 @@
         },
         {
           "name": "搜索",
-          "frequency": 4.0,
+          "frequency": 1.0,
           "canDirectReach": "true",
           "needParameter": "false",
           "target": "搜索",
@@ -534,7 +534,7 @@
       "buttons": [
         {
           "name": "微信主页",
-          "frequency": 10.0,
+          "frequency": 5.0,
           "canDirectReach": "true",
           "needParameter": "false",
           "target": "微信",
@@ -662,7 +662,7 @@
       "buttons": [
         {
           "name": "微信主页",
-          "frequency": 10.0,
+          "frequency": 5.0,
           "canDirectReach": "true",
           "needParameter": "false",
           "target": "微信",
@@ -909,7 +909,7 @@
         }
       ],
       "pageName": "搜索",
-      "frequency": 4.0,
+      "frequency": 1.0,
       "canDirectReach": true,
       "pageId": "搜索",
       "pagePinyin": "SouSuo",
