@@ -333,6 +333,7 @@ public class Executor {
     }
     public void execute(final Instruction instruction) {
         Log.i(LOGTAG, "startExecute:"+instruction.toString());
+        Log.i(LOGTAG, "currentPackage:" + Utility.getPackageName());
         if (instruction.meta.packageName.equals("System")) {
             executeSystemFunctions(instruction);
             Log.i(LOGTAG, "endExecute:" + "system function");
