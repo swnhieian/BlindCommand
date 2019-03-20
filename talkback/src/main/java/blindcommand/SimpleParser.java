@@ -97,7 +97,7 @@ public class SimpleParser implements  Parser {
 //                    initial_poss += IN_SYSTEM_BONUS;
 //                }
                 if(instruction.meta.packageName.equals(packageName)){
-                    if(insArray[1].equals("9") || insArray[1].equals("10")){
+                    if(insArray[1].equals("9") || insArray[1].equals("10")) {
                         set.add(new Entry(insArray[0], instruction, initial_poss, false));
                     }
                 }
@@ -155,9 +155,6 @@ public class SimpleParser implements  Parser {
                 candidateList.add(element);
         }
         currentIndex = 0;
-
-        //System.out.println("Entry set size" +  "parse: " + set.size());
-
         int cnt = 0;
         for(Entry e: candidateList){
             System.out.println(e.info());
