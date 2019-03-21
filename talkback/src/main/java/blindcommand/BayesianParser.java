@@ -1,6 +1,6 @@
 package blindcommand;
 
-import android.util.Pair;
+import android.text.method.Touch;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class SimpleParser implements  Parser {
+public class BayesianParser implements  Parser {
     final String LOGTAG = "SimpleParser";
 //    final static double IN_SAME_APP_BONUS = Math.log(4.0);
 //    final static double IN_SYSTEM_BONUS = Math.log(2.0);
@@ -30,7 +30,7 @@ public class SimpleParser implements  Parser {
     final static double SIGMA_Y = 6.47 / 10.07;
 
     int currentIndex = 0;
-    public SimpleParser(ArrayList<Key> keys, InstructionSet instructionSet) {
+    public BayesianParser(ArrayList<Key> keys, InstructionSet instructionSet) {
         allKeys = new HashMap<>();
         for (Key k: keys) {
             allKeys.put(Character.toLowerCase(k.name), k);
@@ -66,6 +66,103 @@ public class SimpleParser implements  Parser {
     private static double logGaussian(double x, double mu, double sigma) {
         return -Math.log(sigma*Math.sqrt(2*Math.PI)) - (x - mu)*(x-mu)/2/sigma/sigma;
     }
+    public double getTouchModelPoss(String target, List<TouchPoint> points) {
+        if (target.length() != points.size()) {
+            return Double.MIN_VALUE;
+        }
+        if (target.length() == 0) return Double.MIN_VALUE;
+        double poss = 0.0;
+        Key firstKey = allKeys.get(Character.toLowerCase(target.charAt(0)));
+        poss += logGaussian(firstKey.x, touchPoints.get(0).x + OFFSET_X * firstKey.width, SIGMA_X * firstKey.width);
+        poss += logGaussian(firstKey.y, touchPoints.get(0).y + OFFSET_Y * firstKey.height, SIGMA_Y * firstKey.height);
+        for (int i=1; i<touchPoints.size(); i++) {
+            double relX = touchPoints.get(i).x - touchPoints.get(i - 1).x;
+            double relY = touchPoints.get(i).y - touchPoints.get(i - 1).y;
+            char curChar = target.charAt(i);
+            char lastChar = target.charAt(i-1);
+            double relXExpected = allKeys.get(curChar).x - allKeys.get(lastChar).x;
+            double relYExpected = allKeys.get(curChar).y - allKeys.get(lastChar).y;
+            poss += logGaussian(relX, relXExpected, SIGMA_X * firstKey.width);
+            poss += logGaussian(relY, relYExpected, SIGMA_Y * firstKey.height);
+        }
+        return poss;
+    }
+    public double getInstructionPoss(Instruction instruction, String currentPackage, List<TouchPoint> touch) {
+        double poss = 0.0;
+        double p; //temp possibility
+        String insJP = instruction.pinyin.replaceAll("[a-z]+", "").toLowerCase();
+        String insQP = instruction.pinyin.toLowerCase();
+        String appQP = instruction.meta.appPinyin.toLowerCase();
+        String appJP = instruction.meta.appPinyin.replaceAll("[a-z]+", "").toLowerCase();
+        if (Utility.isAppInstruction(instruction) || instruction.meta.packageName.equals(currentPackage)) {
+            double freq = 1.0 / 2;
+            p = getTouchModelPoss(insJP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(insQP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+        } else if (Utility.isSystemInstruction(instruction)) {
+            double freq = 1.0 / 10;
+            p = getTouchModelPoss(insJP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(insQP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(insJP+appJP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(insJP+appQP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(insQP+appJP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(insQP+appQP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(appJP+insJP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(appJP+insQP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(appQP+insJP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(appQP+insQP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+        } else { // other app instructions
+            double freq = 1.0 / 8;
+            p = getTouchModelPoss(insJP+appJP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(insJP+appQP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(insQP+appJP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(insQP+appQP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(appJP+insJP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(appJP+insQP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(appQP+insJP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+            p = getTouchModelPoss(appQP+insQP, touch);
+            if (p == Double.MIN_VALUE) p = 0.0;
+            poss += freq*p;
+        }
+        return Math.log(poss);
+    }
     public void parse() {
         final String packageName = Utility.getPackageName();
         List<Entry> set = new ArrayList<>();
@@ -81,69 +178,13 @@ public class SimpleParser implements  Parser {
             if(app.packageName.equals(packageName)) continue;
             transmit.put(app.packageName, (1 - STAY_SAME_APP) / total * app.useFrequency);
         }
-        for (String ins : instructionSet.dict) {
-            String[] insArray = ins.split("\\|");
-//            for(String s: insArray){
-//                System.out.print(s);
-//            }
-//            System.out.println("");
-            if (insArray[0].length() == touchPoints.size()) {
-                Instruction instruction = instructionSet.instructions.get(ins);
-                double initial_poss = Math.log(transmit.get(instruction.meta.packageName));
-//                if(instruction.meta.packageName.equals(packageName)){
-//                    initial_poss += IN_SAME_APP_BONUS;
-//                }
-//                if(instruction.meta.packageName.equals("System")){
-//                    initial_poss += IN_SYSTEM_BONUS;
-//                }
-                if(Utility.isAppInstruction(instruction)){
-                    if(insArray[1].equals("9") || insArray[1].equals("10")) {
-                        set.add(new Entry(insArray[0], instruction, initial_poss, false));
-                    }
-                }
-                else if(instruction.meta.packageName.equals(packageName)){
-                    if(insArray[1].equals("9") || insArray[1].equals("10")) {
-                        set.add(new Entry(insArray[0], instruction, initial_poss, false));
-                    }
-                }
-                else {
-                    if(Utility.isSystemInstruction(instruction)) {
-                        set.add(new Entry(insArray[0], instruction, initial_poss, insArray[1].equals("2") || insArray[1].equals("3")));
-                    }
-                    else if(!insArray[1].equals("9") && !insArray[1].equals("10")) {
-                        set.add(new Entry(insArray[0], instruction, initial_poss, insArray[1].equals("2") || insArray[1].equals("3")));
-                    }
-                }
-            }
+
+        for (Instruction instruction: instructionSet.allInstructions) {
+            double poss = getInstructionPoss(instruction, packageName, touchPoints);
+            poss += transmit.get(instruction.meta.packageName);
+            set.add(new Entry(instruction, poss));
         }
-        Key firstKey = allKeys.get('a');
-        for (Entry entry: set) {
-            firstKey = allKeys.get(Character.toLowerCase(entry.command.charAt(0)));
-            entry.poss += logGaussian(firstKey.x, touchPoints.get(0).x + OFFSET_X * firstKey.width, SIGMA_X * firstKey.width);
-            entry.poss += logGaussian(firstKey.y, touchPoints.get(0).y + OFFSET_Y * firstKey.height, SIGMA_Y * firstKey.height);
-        }
-        double maxPoss = Double.NEGATIVE_INFINITY;
-        for (int i=1; i<touchPoints.size(); i++) {
-            double relX = touchPoints.get(i).x - touchPoints.get(i - 1).x;
-            double relY = touchPoints.get(i).y - touchPoints.get(i - 1).y;
-            for (Entry e: set) {
-                char curChar = e.command.charAt(i);
-                char lastChar = e.command.charAt(i-1);
-                double relXExpected = allKeys.get(curChar).x - allKeys.get(lastChar).x;
-                double relYExpected = allKeys.get(curChar).y - allKeys.get(lastChar).y;
-                e.poss += logGaussian(relX, relXExpected, SIGMA_X * firstKey.width);
-                e.poss += logGaussian(relY, relYExpected, SIGMA_Y * firstKey.height);
-               // System.out.println(e.instruction + " " + e.poss);
-                maxPoss = Math.max(e.poss, maxPoss);
-            }
-//            Iterator<Entry> it = set.iterator();
-//            while (it.hasNext()) {
-//                Entry e = it.next();
-//                if (e.poss < maxPoss * 100) {
-//                    it.remove();
-//                }
-//            }
-        }
+
         System.out.println(packageName);
         final double lambda = 1. / set.size();
         Collections.sort(set, new Comparator<Entry>() {

@@ -21,6 +21,7 @@ public class InstructionSet {
     public String[] dict;
     //public static HashMap<String, String> instructions;
     public HashMap<String, Instruction> instructions;
+    public List<Instruction> allInstructions;
     public static String[][] ins = {
             {"截屏", "JiePing"},
             {"手电筒", "ShouDianTong"},
@@ -74,6 +75,7 @@ public class InstructionSet {
             {"Open Weibo", "Weibo"}
     };
     public InstructionSet(List<Instruction> allInstructions) {
+        this.allInstructions = allInstructions;
         instructions = new HashMap<>();
         for (Instruction instruction:allInstructions) {
             // 区分app名和全简拼

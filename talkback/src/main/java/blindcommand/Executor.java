@@ -62,6 +62,10 @@ public class Executor {
         ret.add(new Instruction("截屏", "截屏", "JiePing", sysInfo, 1.2));
         ret.add(new Instruction("电话", "电话", "DianHua", sysInfo, 0.3));
         ret.add(new Instruction("设置", "设置", "SheZhi", sysInfo, 1.0));
+//        System.out.println("all Instruction size:" + ret.size());
+//        for (Instruction ins:ret) {
+//            System.out.println(ins.meta.appName+"-"+ins.pinyin+"-"+ins.name+"-"+ins.frequency);
+//        }
         return ret;
     }
 

@@ -83,4 +83,7 @@ public class Utility {
     public static boolean isAppInstruction(Instruction instruction){
         return instruction.id.equals(instruction.meta.appName) && instruction.name.equals(instruction.id);
     }
+    public static boolean isSystemInstruction(Instruction instruction) {
+        return instruction.meta.packageName.equals("System");
+    }
 }

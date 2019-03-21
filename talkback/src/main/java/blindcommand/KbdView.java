@@ -402,7 +402,8 @@ public class KbdView extends View{
                 parser = new NoDictParser(keys);
                 break;
             case LIST:
-                parser = new SimpleParser(keys, new InstructionSet(paras));
+               // parser = new SimpleParser(keys, new InstructionSet(paras));
+                parser = new BayesianParser(keys, new InstructionSet(paras));
             case SPEECH:
                 parser = new SpeechParser(this, this.instructionSet);
             default:
