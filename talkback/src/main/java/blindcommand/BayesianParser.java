@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class BayesianParser implements  Parser {
-    final String LOGTAG = "SimpleParser";
+    final String LOGTAG = "BayesianParser";
 //    final static double IN_SAME_APP_BONUS = Math.log(4.0);
 //    final static double IN_SYSTEM_BONUS = Math.log(2.0);
     final static double FREQUENCY_WEIGHT = 1.0;
@@ -68,9 +68,9 @@ public class BayesianParser implements  Parser {
     }
     public double getTouchModelPoss(String target, List<TouchPoint> points) {
         if (target.length() != points.size()) {
-            return Double.MIN_VALUE;
+            return 0;
         }
-        if (target.length() == 0) return Double.MIN_VALUE;
+        if (target.length() == 0) return 0;
         double poss = 0.0;
         Key firstKey = allKeys.get(Character.toLowerCase(target.charAt(0)));
         poss += logGaussian(firstKey.x, touchPoints.get(0).x + OFFSET_X * firstKey.width, SIGMA_X * firstKey.width);
@@ -85,16 +85,16 @@ public class BayesianParser implements  Parser {
             poss += logGaussian(relX, relXExpected, SIGMA_X * firstKey.width);
             poss += logGaussian(relY, relYExpected, SIGMA_Y * firstKey.height);
         }
-        return poss;
+        return Math.exp(poss);
     }
-    public double getInstructionPoss(Instruction instruction, String currentPackage, List<TouchPoint> touch) {
+    public double getLogInstructionPoss(Instruction instruction, String currentPackage, List<TouchPoint> touch) {
         double poss = 0.0;
         double p; //temp possibility
         String insJP = instruction.pinyin.replaceAll("[a-z]+", "").toLowerCase();
         String insQP = instruction.pinyin.toLowerCase();
         String appQP = instruction.meta.appPinyin.toLowerCase();
         String appJP = instruction.meta.appPinyin.replaceAll("[a-z]+", "").toLowerCase();
-        if (Utility.isAppInstruction(instruction) || instruction.meta.packageName.equals(currentPackage)) {
+        if (Utility.isAppInstruction(instruction)) {
             double freq = 1.0 / 2;
             p = getTouchModelPoss(insJP, touch);
             if (p == Double.MIN_VALUE) p = 0.0;
@@ -102,7 +102,7 @@ public class BayesianParser implements  Parser {
             p = getTouchModelPoss(insQP, touch);
             if (p == Double.MIN_VALUE) p = 0.0;
             poss += freq*p;
-        } else if (Utility.isSystemInstruction(instruction)) {
+        } else if (Utility.isSystemInstruction(instruction) || instruction.meta.packageName.equals(currentPackage)) {
             double freq = 1.0 / 10;
             p = getTouchModelPoss(insJP, touch);
             if (p == Double.MIN_VALUE) p = 0.0;
@@ -179,20 +179,27 @@ public class BayesianParser implements  Parser {
             transmit.put(app.packageName, (1 - STAY_SAME_APP) / total * app.useFrequency);
         }
 
+
         for (Instruction instruction: instructionSet.allInstructions) {
-            double poss = getInstructionPoss(instruction, packageName, touchPoints);
-            poss += transmit.get(instruction.meta.packageName);
-            set.add(new Entry(instruction, poss));
+            double poss = getLogInstructionPoss(instruction, packageName, touchPoints);
+            poss += Math.log(transmit.get(instruction.meta.packageName));
+            if (poss > Double.NEGATIVE_INFINITY) {
+                set.add(new Entry(instruction, poss));
+            }
         }
+
 
         System.out.println(packageName);
         final double lambda = 1. / set.size();
+        for (Entry e:set) {
+            e.poss += (FREQUENCY_WEIGHT * Math.log(e.instruction.frequency + lambda));
+        }
         Collections.sort(set, new Comparator<Entry>() {
             @Override
             public int compare(Entry e1, Entry e2) {
-                double p1 =  e1.poss + FREQUENCY_WEIGHT * Math.log(e1.instruction.frequency + lambda) - LENGTH_WEIGHT * e1.command.length();
-                double p2 =  e2.poss + FREQUENCY_WEIGHT * Math.log(e2.instruction.frequency + lambda) - LENGTH_WEIGHT * e2.command.length();
-                return - Double.compare(p1, p2);
+                //double p1 =  e1.poss + FREQUENCY_WEIGHT * Math.log(e1.instruction.frequency + lambda);// - LENGTH_WEIGHT * e1.command.length();
+                //double p2 =  e2.poss + FREQUENCY_WEIGHT * Math.log(e2.instruction.frequency + lambda);// - LENGTH_WEIGHT * e2.command.length();
+                return - Double.compare(e1.poss, e2.poss);
             }
         });
         //remove duplicate commands

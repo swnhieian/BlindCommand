@@ -64,7 +64,7 @@ public class Executor {
         ret.add(new Instruction("设置", "设置", "SheZhi", sysInfo, 1.0));
 //        System.out.println("all Instruction size:" + ret.size());
 //        for (Instruction ins:ret) {
-//            System.out.println(ins.meta.appName+"-"+ins.pinyin+"-"+ins.name+"-"+ins.frequency);
+//            System.out.println(ins.meta.appName+"-"+ins.pinyin+"-"+ins.name+"-"+ins.frequency+"-"+ins.meta.useFrequency);
 //        }
         return ret;
     }
@@ -346,6 +346,11 @@ public class Executor {
 
         AccessibilityNodeInfo rootNode = getRoot();
         final NodeGraph appGraph = graphs.get(instruction.meta.appName);
+        if (rootNode == null) {
+            endExecute();
+            Log.i(LOGTAG, "endExecute:" + "error due to null rootNode");
+            return;
+        }
         if(appGraph == null) return;
         if (rootNode.getPackageName()!= null && rootNode.getPackageName().equals(instruction.meta.packageName)) {
             execute(instruction, appGraph, null);

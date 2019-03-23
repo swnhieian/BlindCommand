@@ -106,7 +106,7 @@ public class KbdView extends View{
     final int SWIPE_TIME = 400;
     final int NO_FEEDBACK_TIME = 40;
     boolean judgingTwoFingers = false;
-    SimpleParser defaultParser;
+    Parser defaultParser;
     Parser parser;
     Parser.ParserType parserType;
     InstructionSet instructionSet;
@@ -390,7 +390,9 @@ public class KbdView extends View{
 
         this.invalidate();
         this.instructionSet = new InstructionSet(executor.getInstructions());
-        defaultParser = new SimpleParser(keys, this.instructionSet);
+        //defaultParser = new SimpleParser(keys, this.instructionSet);
+        defaultParser = new BayesianParser(keys, this.instructionSet);
+
     }
     public void setParser(Parser.ParserType type, List<Instruction> paras) {
         this.parserType = type;
@@ -403,7 +405,8 @@ public class KbdView extends View{
                 break;
             case LIST:
                // parser = new SimpleParser(keys, new InstructionSet(paras));
-                parser = new BayesianParser(keys, new InstructionSet(paras));
+                parser = defaultParser;
+                //parser = new BayesianParser(keys, new InstructionSet(paras));
             case SPEECH:
                 parser = new SpeechParser(this, this.instructionSet);
             default:

@@ -47,7 +47,7 @@
                 android:id="@+id/navigation_switcher"
                 android:layout_width="wrap_content"
                 android:layout_weight="2"
-                android:checked="true"
+                android:checked="false"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <TextView
