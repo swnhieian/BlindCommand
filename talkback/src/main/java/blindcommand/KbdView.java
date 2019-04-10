@@ -104,7 +104,7 @@ public class KbdView extends View{
     long downTime, downTime2, tempTime;
     final int SWIPE_DIST = 40;
     final int SWIPE_TIME = 400;
-    final int NO_FEEDBACK_TIME = 40;
+    final int NO_FEEDBACK_TIME = 100;
     boolean judgingTwoFingers = false;
     Parser defaultParser;
     Parser parser;
@@ -113,9 +113,9 @@ public class KbdView extends View{
     public void upTouch(MotionEvent event) { //confirm
         if(parserType != Parser.ParserType.SPEECH) {
             parser.addTouchPoint(event.getEventTime(), event.getX(), event.getY());
-            if (event.getEventTime() - downTime < NO_FEEDBACK_TIME) {
+            //if (event.getEventTime() - downTime < NO_FEEDBACK_TIME) {
                 SoundPlayer.click();
-            }
+            //}
             readParseResult(parser.getCurrent());
         }
         else{
@@ -125,7 +125,7 @@ public class KbdView extends View{
         }
     }
     public void readParseResult(ParseResult parseResult){
-        Log.d(LOGTAG, "currentResult:" + parseResult.instruction.toString());
+        Log.d(LOGTAG, "currentResult:" + parseResult.instruction.toString()+","+(parseResult.index+1)+","+parseResult.size);
         if(Utility.isAppInstruction(parseResult.instruction)){
             SoundPlayer.tts(parseResult.instruction.meta.appName +  ". 当前第" + (parseResult.index + 1) + "项, 共" + (parseResult.size) +"项");
         }
