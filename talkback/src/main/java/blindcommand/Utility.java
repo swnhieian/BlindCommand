@@ -17,6 +17,10 @@ public class Utility {
     public static int screenHeight = -1;
     public static int screenWidth = -1;
     public static int dpi = 0;
+    public static String speechSpeed = "135";
+    public static String speechPitch = "60";
+    public static String speechVolume = "50";
+
     public static List<JsonAppInfo> allApps;
     public static void init(Context service) {
         WindowManager wm = (WindowManager)service.getSystemService(service.WINDOW_SERVICE);

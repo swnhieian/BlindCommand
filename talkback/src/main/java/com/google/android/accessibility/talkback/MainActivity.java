@@ -1,5 +1,6 @@
 package com.google.android.accessibility.talkback;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -11,15 +12,25 @@ import android.view.View;
 import android.widget.Button;
 import android.Manifest;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import blindcommand.Parser;
+import blindcommand.SoundPlayer;
 import blindcommand.Utility;
 import blindcommand.Log;
 
 public class MainActivity extends AppCompatActivity {
     Button openSettingsButton;
     Switch parserSwitcher;
+    Button speechTest;
+    Button speechConfirm;
+    EditText speechSpeed;
+    EditText speechPitch;
+    EditText speechVolume;
+    Context activity = this;
     static final String LOGTAG = "MainActivity";
 
     @Override
@@ -51,8 +62,33 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(LOGTAG, "useDiffNav: " + isChecked);
             }
         });
-    }
 
+        speechTest = findViewById(R.id.test_button);
+        speechConfirm = findViewById(R.id.confirm_button);
+        speechSpeed = findViewById(R.id.speechSpeed);
+        speechPitch = findViewById(R.id.speechPitch);
+        speechVolume = findViewById(R.id.speechVolume);
+        speechTest.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Utility.speechPitch = speechPitch.getText().toString();
+                Utility.speechSpeed = speechSpeed.getText().toString();
+                Utility.speechVolume = speechVolume.getText().toString();
+                SoundPlayer.setParam();
+                SoundPlayer.tts("微信朋友圈，当前第1项，共1项");
+            }
+        });
+        speechConfirm.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Utility.speechPitch = speechPitch.getText().toString();
+                Utility.speechSpeed = speechSpeed.getText().toString();
+                Utility.speechVolume = speechVolume.getText().toString();
+                SoundPlayer.setParam();
+                Toast.makeText(activity, "设置完成",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     private void requestPermissions(){
 //        try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

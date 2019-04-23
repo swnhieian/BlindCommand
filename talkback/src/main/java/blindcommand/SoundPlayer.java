@@ -4,10 +4,20 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.KeyEvent;
 import android.widget.Toast;
-
+import com.iflytek.cloud.ErrorCode;
+import com.iflytek.cloud.InitListener;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.SpeechEvent;
+import com.iflytek.cloud.SpeechSynthesizer;
+import com.iflytek.cloud.SpeechUtility;
+import com.iflytek.cloud.SynthesizerListener;
+import com.iflytek.cloud.util.ResourceUtil;
+import com.iflytek.cloud.util.ResourceUtil.RESOURCE_TYPE;
 import com.google.android.accessibility.talkback.R;
 import com.google.android.accessibility.talkback.TalkBackService;
 
@@ -17,7 +27,7 @@ import java.util.Locale;
 public class SoundPlayer {
     private static SoundPool soundPool;
     private static Context context;
-    private static TextToSpeech tts;
+//    private static TextToSpeech tts;
     static HashMap<String, int[]> voice = new HashMap<>();
     public static void setContext(Context context) {
         SoundPlayer.context = context;
@@ -29,29 +39,28 @@ public class SoundPlayer {
         soundPool.load(context, R.raw.start, 1);
         soundPool.load(context, R.raw.end, 1);
         soundPool.load(context, R.raw.success, 1);
+        initTTS();
 
-        tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int i) {
-                if (i == TextToSpeech.SUCCESS) {
-                    int result;
-                    if (Utility.getLanguage().equals("CN")) {
-                        result = tts.setLanguage(Locale.CHINA);
-                    } else {
-                        result = tts.setLanguage(Locale.US);
-                    }
-                    if (result != TextToSpeech.LANG_COUNTRY_AVAILABLE
-                            && result != TextToSpeech.LANG_AVAILABLE) {
-                        Toast.makeText(SoundPlayer.context, "TTS暂不支持", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
-        tts.setPitch(0.5f);
-        tts.setSpeechRate(2.0f);
+//        tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+//            @Override
+//            public void onInit(int i) {
+//                if (i == TextToSpeech.SUCCESS) {
+//                    int result;
+//                    if (Utility.getLanguage().equals("CN")) {
+//                        result = tts.setLanguage(Locale.CHINA);
+//                    } else {
+//                        result = tts.setLanguage(Locale.US);
+//                    }
+//                    if (result != TextToSpeech.LANG_COUNTRY_AVAILABLE
+//                            && result != TextToSpeech.LANG_AVAILABLE) {
+//                        Toast.makeText(SoundPlayer.context, "TTS暂不支持", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//        });
+//        tts.setPitch(0.5f);
+//        tts.setSpeechRate(2.0f);
         initVoice();
-
-
     }
     public static void interrupt() {
         if (TalkBackService.isServiceActive()) {
@@ -76,30 +85,31 @@ public class SoundPlayer {
     public static void success() {soundPool.play(6,1,1,10,0,1.5f); }
 
     public static void tts(String text) {
-        interrupt();
-        System.out.println("tts: " + text +"   " + System.currentTimeMillis());
-        String[] splitSpeech = text.split("\\.");
-        for (int i = 0; i < splitSpeech.length; i++) {
-            if (i == 0) { // Use for the first splited text to flush on audio stream
-                tts.speak(splitSpeech[i].toString().trim(),TextToSpeech.QUEUE_FLUSH, null);
-            } else { // add the new test on previous then play the TTS
-                tts.speak(splitSpeech[i].toString().trim(), TextToSpeech.QUEUE_ADD, null);
-            }
-            tts.playSilence(250, TextToSpeech.QUEUE_ADD, null);
-        }
+//        interrupt();
+//        System.out.println("tts: " + text +"   " + System.currentTimeMillis());
+//        String[] splitSpeech = text.split("\\.");
+//        for (int i = 0; i < splitSpeech.length; i++) {
+//            if (i == 0) { // Use for the first splited text to flush on audio stream
+//                tts.speak(splitSpeech[i].toString().trim(),TextToSpeech.QUEUE_FLUSH, null);
+//            } else { // add the new test on previous then play the TTS
+//                tts.speak(splitSpeech[i].toString().trim(), TextToSpeech.QUEUE_ADD, null);
+//            }
+//            tts.playSilence(250, TextToSpeech.QUEUE_ADD, null);
+//        }
+        xftts(text);
     }
     public static void readKey(int speed, char key) {
-        interrupt();
-        MediaPlayer current = MediaPlayer.create(context, voice.get("ios11_"+speed)[Character.toLowerCase(key)- 'a']);
-        current.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                mediaPlayer.reset();
-                mediaPlayer.release();
-            }
-        });
-        current.start();
-
+//        interrupt();
+//        MediaPlayer current = MediaPlayer.create(context, voice.get("ios11_"+speed)[Character.toLowerCase(key)- 'a']);
+//        current.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//            @Override
+//            public void onCompletion(MediaPlayer mediaPlayer) {
+//                mediaPlayer.reset();
+//                mediaPlayer.release();
+//            }
+//        });
+//        current.start();
+        xftts(String.valueOf(key));
     }
 
     public static void initVoice() {
@@ -276,6 +286,117 @@ public class SoundPlayer {
         voice.get("ios11_100")[23] = R.raw.ios11_100_x;
         voice.get("ios11_100")[24] = R.raw.ios11_100_y;
         voice.get("ios11_100")[25] = R.raw.ios11_100_z;
+    }
+    private static String TAG = "SoundPlayer";
+    // 默认云端发音人
+    public static String voicerCloud="xiaoyan";
+    // 默认本地发音人
+    public static String voicerLocal="xiaoyan";
+
+    // 云端发音人列表
+    private static String[] cloudVoicersEntries;
+    private static String[] cloudVoicersValue ;
+
+    // 本地发音人列表
+    private static String[] localVoicersEntries = {"小燕","小峰"};
+    private static String[] localVoicersValue = {"xiaoyan","xiaofeng"};
+
+    // 引擎类型
+    private static String mEngineType = SpeechConstant.TYPE_LOCAL;
+
+
+    private static InitListener mTtsInitListener = new InitListener() {
+        @Override
+        public void onInit(int code) {
+            if (code != ErrorCode.SUCCESS) {
+                System.out.println("初始化失败，错误码：" + code);
+            }
+                // 初始化成功，之后可以调用startSpeaking方法
+                // 注：有的开发者在onCreate方法中创建完合成对象之后马上就调用startSpeaking进行合成，
+                // 正确的做法是将onCreate中的startSpeaking调用移至这里
+        }
+    };
+
+    /**
+     * 合成回调监听。
+     */
+    private static SynthesizerListener mTtsListener = new SynthesizerListener() {
+
+        @Override
+        public void onSpeakBegin() {
+        }
+
+        @Override
+        public void onSpeakPaused() {
+        }
+
+        @Override
+        public void onSpeakResumed() {
+        }
+
+        @Override
+        public void onBufferProgress(int percent, int beginPos, int endPos,
+                                     String info) {
+            // 合成进度
+        }
+
+        @Override
+        public void onSpeakProgress(int percent, int beginPos, int endPos) {
+            // 播放进度
+        }
+
+        @Override
+        public void onCompleted(SpeechError error) {
+        }
+
+        @Override
+        public void onEvent(int eventType, int arg1, int arg2, Bundle obj) {
+        }
+    };
+
+    // 语音合成对象
+    private static SpeechSynthesizer mTts;
+
+    public static void initTTS(){
+        System.out.println("context: " + context);
+        System.out.println("listener: " + mTtsInitListener);
+        mTts = SpeechSynthesizer.createSynthesizer(context, mTtsInitListener);
+        setParam();
+    }
+    public static void xftts(String text){
+        mTts.stopSpeaking();
+        mTts.startSpeaking(text, mTtsListener);
+    }
+
+    public static void setParam(){
+        mTts.setParameter(SpeechConstant.PARAMS, null);
+        mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_LOCAL);
+        mTts.setParameter(ResourceUtil.TTS_RES_PATH, getResourcePath());
+        mTts.setParameter(SpeechConstant.VOICE_NAME,voicerLocal);
+
+        //合成语速
+        mTts.setParameter(SpeechConstant.SPEED, Utility.speechSpeed);
+        //设置合成音调
+        mTts.setParameter(SpeechConstant.PITCH, Utility.speechPitch);
+        //设置合成音量
+        mTts.setParameter(SpeechConstant.VOLUME, Utility.speechVolume);
+        //设置播放器音频流类型
+        mTts.setParameter(SpeechConstant.STREAM_TYPE, "3");
+        // 设置播放合成音频打断音乐播放，默认为true
+        mTts.setParameter(SpeechConstant.KEY_REQUEST_FOCUS, "true");
+//        // 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
+//        mTts.setParameter(SpeechConstant.AUDIO_FORMAT, "wav");
+//        mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, Environment.getExternalStorageDirectory()+"/msc/tts.wav");
+   }
+
+    private static String getResourcePath(){
+        StringBuffer tempBuffer = new StringBuffer();
+        //合成通用资源
+        tempBuffer.append(ResourceUtil.generateResourcePath(context, RESOURCE_TYPE.assets, "tts/common.jet"));
+        tempBuffer.append(";");
+        //发音人资源
+        tempBuffer.append(ResourceUtil.generateResourcePath(context, RESOURCE_TYPE.assets, "tts/"+ voicerLocal + ".jet"));
+        return tempBuffer.toString();
     }
 
 }
